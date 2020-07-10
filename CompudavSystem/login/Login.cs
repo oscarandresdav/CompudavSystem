@@ -12,7 +12,7 @@ namespace CompudavSystem.login
 {
     public partial class Login : Form
     {
-        public Main Main { get; set; } = new Main();
+        private Main MainForm { get; set; } = new Main();
         public Login()
         {
             InitializeComponent();
@@ -20,8 +20,25 @@ namespace CompudavSystem.login
 
         private void ButtonIniciar_Click(object sender, EventArgs e)
         {
-            Main.Show();
+            MainForm.Show();
             Hide();
+        }
+
+        private void ButtonCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea salir del sistema?", "CompudavSystem", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                Application.ExitThread();
+            }
         }
     }
 }

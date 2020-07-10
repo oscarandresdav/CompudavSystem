@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelContainer = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelFirma2 = new System.Windows.Forms.Label();
+            this.labelFirma = new System.Windows.Forms.Label();
             this.buttonConfiguracion = new System.Windows.Forms.Button();
             this.buttonAnulacion = new System.Windows.Forms.Button();
             this.buttonCompras = new System.Windows.Forms.Button();
@@ -39,14 +42,14 @@
             this.buttonClientes = new System.Windows.Forms.Button();
             this.buttonCatalogo = new System.Windows.Forms.Button();
             this.buttonVentas = new System.Windows.Forms.Button();
-            this.labelFirma = new System.Windows.Forms.Label();
-            this.labelFirma2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.buttonCerrar = new System.Windows.Forms.Button();
+            this.panelContainer.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelContainer
             // 
+            this.panelContainer.Controls.Add(this.buttonCerrar);
             this.panelContainer.Location = new System.Drawing.Point(127, 0);
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(785, 645);
@@ -70,6 +73,39 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(120, 645);
             this.panelMenu.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Open Sans SemiBold", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(5, 613);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 28);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "@osk1dav\r\n+593984563319\r\n";
+            // 
+            // labelFirma2
+            // 
+            this.labelFirma2.AutoSize = true;
+            this.labelFirma2.Font = new System.Drawing.Font("Sacramento", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirma2.ForeColor = System.Drawing.Color.White;
+            this.labelFirma2.Location = new System.Drawing.Point(5, 590);
+            this.labelFirma2.Name = "labelFirma2";
+            this.labelFirma2.Size = new System.Drawing.Size(95, 27);
+            this.labelFirma2.TabIndex = 42;
+            this.labelFirma2.Text = "Oscar Davila";
+            // 
+            // labelFirma
+            // 
+            this.labelFirma.AutoSize = true;
+            this.labelFirma.Font = new System.Drawing.Font("Open Sans SemiBold", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirma.ForeColor = System.Drawing.Color.White;
+            this.labelFirma.Location = new System.Drawing.Point(5, 575);
+            this.labelFirma.Name = "labelFirma";
+            this.labelFirma.Size = new System.Drawing.Size(72, 11);
+            this.labelFirma.TabIndex = 41;
+            this.labelFirma.Text = "Desarrollado por:";
             // 
             // buttonConfiguracion
             // 
@@ -215,38 +251,19 @@
             this.buttonVentas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonVentas.UseVisualStyleBackColor = true;
             // 
-            // labelFirma
+            // buttonCerrar
             // 
-            this.labelFirma.AutoSize = true;
-            this.labelFirma.Font = new System.Drawing.Font("Open Sans SemiBold", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFirma.ForeColor = System.Drawing.Color.White;
-            this.labelFirma.Location = new System.Drawing.Point(5, 575);
-            this.labelFirma.Name = "labelFirma";
-            this.labelFirma.Size = new System.Drawing.Size(72, 11);
-            this.labelFirma.TabIndex = 41;
-            this.labelFirma.Text = "Desarrollado por:";
-            // 
-            // labelFirma2
-            // 
-            this.labelFirma2.AutoSize = true;
-            this.labelFirma2.Font = new System.Drawing.Font("Sacramento", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFirma2.ForeColor = System.Drawing.Color.White;
-            this.labelFirma2.Location = new System.Drawing.Point(5, 590);
-            this.labelFirma2.Name = "labelFirma2";
-            this.labelFirma2.Size = new System.Drawing.Size(95, 27);
-            this.labelFirma2.TabIndex = 42;
-            this.labelFirma2.Text = "Oscar Davila";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans SemiBold", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(5, 613);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 28);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "@osk1dav\r\n+593984563319\r\n";
+            this.buttonCerrar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
+            this.buttonCerrar.Location = new System.Drawing.Point(752, 611);
+            this.buttonCerrar.Name = "buttonCerrar";
+            this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
+            this.buttonCerrar.TabIndex = 0;
+            this.buttonCerrar.UseVisualStyleBackColor = true;
+            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
             // 
             // Main
             // 
@@ -263,6 +280,8 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CompudavSystem";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
+            this.panelContainer.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -284,5 +303,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelFirma2;
         private System.Windows.Forms.Label labelFirma;
+        private System.Windows.Forms.Button buttonCerrar;
     }
 }

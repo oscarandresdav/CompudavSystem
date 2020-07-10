@@ -33,7 +33,7 @@
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblClave = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.buttonSalir = new System.Windows.Forms.Button();
+            this.buttonCerrar = new System.Windows.Forms.Button();
             this.buttonIniciar = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -76,23 +76,24 @@
             this.lblUsuario.TabIndex = 30;
             this.lblUsuario.Text = "Usuario :";
             // 
-            // buttonSalir
+            // buttonCerrar
             // 
-            this.buttonSalir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
-            this.buttonSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.buttonSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.buttonSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSalir.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSalir.ForeColor = System.Drawing.Color.Red;
-            this.buttonSalir.Image = global::CompudavSystem.Properties.Resources.shutdown_36px;
-            this.buttonSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonSalir.Location = new System.Drawing.Point(195, 239);
-            this.buttonSalir.Name = "buttonSalir";
-            this.buttonSalir.Size = new System.Drawing.Size(60, 60);
-            this.buttonSalir.TabIndex = 33;
-            this.buttonSalir.Text = "Salir";
-            this.buttonSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonSalir.UseVisualStyleBackColor = true;
+            this.buttonCerrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCerrar.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCerrar.ForeColor = System.Drawing.Color.Red;
+            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_36px;
+            this.buttonCerrar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonCerrar.Location = new System.Drawing.Point(195, 239);
+            this.buttonCerrar.Name = "buttonCerrar";
+            this.buttonCerrar.Size = new System.Drawing.Size(60, 60);
+            this.buttonCerrar.TabIndex = 33;
+            this.buttonCerrar.Text = "Salir";
+            this.buttonCerrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonCerrar.UseVisualStyleBackColor = true;
+            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
             // 
             // buttonIniciar
             // 
@@ -129,7 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(434, 311);
-            this.Controls.Add(this.buttonSalir);
+            this.Controls.Add(this.buttonCerrar);
             this.Controls.Add(this.buttonIniciar);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.txtUsuario);
@@ -142,6 +143,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio de sesion";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -156,6 +158,6 @@
         internal System.Windows.Forms.Label lblClave;
         internal System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button buttonIniciar;
-        private System.Windows.Forms.Button buttonSalir;
+        private System.Windows.Forms.Button buttonCerrar;
     }
 }

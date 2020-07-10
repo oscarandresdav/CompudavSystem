@@ -13,7 +13,7 @@ namespace CompudavSystem
 {
     public partial class Inicio : Form
     {
-        private Login loginForm { get; set; } = new Login();
+        private Login LoginForm { get; set; } = new Login();
         public Inicio()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace CompudavSystem
         private void timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
-            loginForm.Show();
+            LoginForm.Show();
             Hide();
         }
     }
