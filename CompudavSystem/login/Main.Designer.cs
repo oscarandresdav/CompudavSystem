@@ -1,0 +1,288 @@
+﻿namespace CompudavSystem.login
+{
+    partial class Main
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            this.panelContainer = new System.Windows.Forms.Panel();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.buttonConfiguracion = new System.Windows.Forms.Button();
+            this.buttonAnulacion = new System.Windows.Forms.Button();
+            this.buttonCompras = new System.Windows.Forms.Button();
+            this.buttonHistorial = new System.Windows.Forms.Button();
+            this.buttonProveedores = new System.Windows.Forms.Button();
+            this.buttonClientes = new System.Windows.Forms.Button();
+            this.buttonCatalogo = new System.Windows.Forms.Button();
+            this.buttonVentas = new System.Windows.Forms.Button();
+            this.labelFirma = new System.Windows.Forms.Label();
+            this.labelFirma2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelMenu.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panelContainer
+            // 
+            this.panelContainer.Location = new System.Drawing.Point(127, 0);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(785, 645);
+            this.panelContainer.TabIndex = 0;
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.panelMenu.Controls.Add(this.label1);
+            this.panelMenu.Controls.Add(this.labelFirma2);
+            this.panelMenu.Controls.Add(this.labelFirma);
+            this.panelMenu.Controls.Add(this.buttonConfiguracion);
+            this.panelMenu.Controls.Add(this.buttonAnulacion);
+            this.panelMenu.Controls.Add(this.buttonCompras);
+            this.panelMenu.Controls.Add(this.buttonHistorial);
+            this.panelMenu.Controls.Add(this.buttonProveedores);
+            this.panelMenu.Controls.Add(this.buttonClientes);
+            this.panelMenu.Controls.Add(this.buttonCatalogo);
+            this.panelMenu.Controls.Add(this.buttonVentas);
+            this.panelMenu.Location = new System.Drawing.Point(1, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(120, 645);
+            this.panelMenu.TabIndex = 1;
+            // 
+            // buttonConfiguracion
+            // 
+            this.buttonConfiguracion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonConfiguracion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonConfiguracion.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConfiguracion.ForeColor = System.Drawing.Color.White;
+            this.buttonConfiguracion.Image = global::CompudavSystem.Properties.Resources.administrative_tools_36px;
+            this.buttonConfiguracion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonConfiguracion.Location = new System.Drawing.Point(12, 492);
+            this.buttonConfiguracion.Name = "buttonConfiguracion";
+            this.buttonConfiguracion.Size = new System.Drawing.Size(100, 60);
+            this.buttonConfiguracion.TabIndex = 40;
+            this.buttonConfiguracion.Text = "Configuración";
+            this.buttonConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonConfiguracion.UseVisualStyleBackColor = true;
+            // 
+            // buttonAnulacion
+            // 
+            this.buttonAnulacion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonAnulacion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonAnulacion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonAnulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAnulacion.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAnulacion.ForeColor = System.Drawing.Color.White;
+            this.buttonAnulacion.Image = global::CompudavSystem.Properties.Resources.remove_book_36px;
+            this.buttonAnulacion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonAnulacion.Location = new System.Drawing.Point(11, 406);
+            this.buttonAnulacion.Name = "buttonAnulacion";
+            this.buttonAnulacion.Size = new System.Drawing.Size(100, 80);
+            this.buttonAnulacion.TabIndex = 39;
+            this.buttonAnulacion.Text = "Anulación de comprobantes";
+            this.buttonAnulacion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonAnulacion.UseVisualStyleBackColor = true;
+            // 
+            // buttonCompras
+            // 
+            this.buttonCompras.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonCompras.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonCompras.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonCompras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCompras.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCompras.ForeColor = System.Drawing.Color.White;
+            this.buttonCompras.Image = global::CompudavSystem.Properties.Resources.return_purchase_36px;
+            this.buttonCompras.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonCompras.Location = new System.Drawing.Point(11, 76);
+            this.buttonCompras.Name = "buttonCompras";
+            this.buttonCompras.Size = new System.Drawing.Size(100, 60);
+            this.buttonCompras.TabIndex = 38;
+            this.buttonCompras.Text = "Compras";
+            this.buttonCompras.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonCompras.UseVisualStyleBackColor = true;
+            // 
+            // buttonHistorial
+            // 
+            this.buttonHistorial.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonHistorial.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonHistorial.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHistorial.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHistorial.ForeColor = System.Drawing.Color.White;
+            this.buttonHistorial.Image = global::CompudavSystem.Properties.Resources.order_history_36px;
+            this.buttonHistorial.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonHistorial.Location = new System.Drawing.Point(11, 340);
+            this.buttonHistorial.Name = "buttonHistorial";
+            this.buttonHistorial.Size = new System.Drawing.Size(100, 60);
+            this.buttonHistorial.TabIndex = 37;
+            this.buttonHistorial.Text = "Historial";
+            this.buttonHistorial.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonHistorial.UseVisualStyleBackColor = true;
+            // 
+            // buttonProveedores
+            // 
+            this.buttonProveedores.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonProveedores.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonProveedores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonProveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonProveedores.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonProveedores.ForeColor = System.Drawing.Color.White;
+            this.buttonProveedores.Image = global::CompudavSystem.Properties.Resources.conference_36px;
+            this.buttonProveedores.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonProveedores.Location = new System.Drawing.Point(12, 274);
+            this.buttonProveedores.Name = "buttonProveedores";
+            this.buttonProveedores.Size = new System.Drawing.Size(100, 60);
+            this.buttonProveedores.TabIndex = 36;
+            this.buttonProveedores.Text = "Proveedores";
+            this.buttonProveedores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonProveedores.UseVisualStyleBackColor = true;
+            // 
+            // buttonClientes
+            // 
+            this.buttonClientes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClientes.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClientes.ForeColor = System.Drawing.Color.White;
+            this.buttonClientes.Image = global::CompudavSystem.Properties.Resources.user_group_36px;
+            this.buttonClientes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonClientes.Location = new System.Drawing.Point(12, 208);
+            this.buttonClientes.Name = "buttonClientes";
+            this.buttonClientes.Size = new System.Drawing.Size(100, 60);
+            this.buttonClientes.TabIndex = 35;
+            this.buttonClientes.Text = "Clientes";
+            this.buttonClientes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonClientes.UseVisualStyleBackColor = true;
+            // 
+            // buttonCatalogo
+            // 
+            this.buttonCatalogo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonCatalogo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonCatalogo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonCatalogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCatalogo.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCatalogo.ForeColor = System.Drawing.Color.White;
+            this.buttonCatalogo.Image = global::CompudavSystem.Properties.Resources.pills_36px;
+            this.buttonCatalogo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonCatalogo.Location = new System.Drawing.Point(11, 142);
+            this.buttonCatalogo.Name = "buttonCatalogo";
+            this.buttonCatalogo.Size = new System.Drawing.Size(100, 60);
+            this.buttonCatalogo.TabIndex = 34;
+            this.buttonCatalogo.Text = "Catálogo";
+            this.buttonCatalogo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonCatalogo.UseVisualStyleBackColor = true;
+            // 
+            // buttonVentas
+            // 
+            this.buttonVentas.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonVentas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonVentas.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonVentas.ForeColor = System.Drawing.Color.White;
+            this.buttonVentas.Image = global::CompudavSystem.Properties.Resources.market_square_36px;
+            this.buttonVentas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonVentas.Location = new System.Drawing.Point(10, 10);
+            this.buttonVentas.Name = "buttonVentas";
+            this.buttonVentas.Size = new System.Drawing.Size(100, 60);
+            this.buttonVentas.TabIndex = 33;
+            this.buttonVentas.Text = "Ventas";
+            this.buttonVentas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonVentas.UseVisualStyleBackColor = true;
+            // 
+            // labelFirma
+            // 
+            this.labelFirma.AutoSize = true;
+            this.labelFirma.Font = new System.Drawing.Font("Open Sans SemiBold", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirma.ForeColor = System.Drawing.Color.White;
+            this.labelFirma.Location = new System.Drawing.Point(5, 575);
+            this.labelFirma.Name = "labelFirma";
+            this.labelFirma.Size = new System.Drawing.Size(72, 11);
+            this.labelFirma.TabIndex = 41;
+            this.labelFirma.Text = "Desarrollado por:";
+            // 
+            // labelFirma2
+            // 
+            this.labelFirma2.AutoSize = true;
+            this.labelFirma2.Font = new System.Drawing.Font("Sacramento", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirma2.ForeColor = System.Drawing.Color.White;
+            this.labelFirma2.Location = new System.Drawing.Point(5, 590);
+            this.labelFirma2.Name = "labelFirma2";
+            this.labelFirma2.Size = new System.Drawing.Size(95, 27);
+            this.labelFirma2.TabIndex = 42;
+            this.labelFirma2.Text = "Oscar Davila";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Open Sans SemiBold", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(5, 613);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 28);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "@osk1dav\r\n+593984563319\r\n";
+            // 
+            // Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(915, 647);
+            this.Controls.Add(this.panelMenu);
+            this.Controls.Add(this.panelContainer);
+            this.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "CompudavSystem";
+            this.panelMenu.ResumeLayout(false);
+            this.panelMenu.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panelContainer;
+        private System.Windows.Forms.Panel panelMenu;
+        private System.Windows.Forms.Button buttonVentas;
+        private System.Windows.Forms.Button buttonCatalogo;
+        private System.Windows.Forms.Button buttonClientes;
+        private System.Windows.Forms.Button buttonProveedores;
+        private System.Windows.Forms.Button buttonHistorial;
+        private System.Windows.Forms.Button buttonCompras;
+        private System.Windows.Forms.Button buttonAnulacion;
+        private System.Windows.Forms.Button buttonConfiguracion;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelFirma2;
+        private System.Windows.Forms.Label labelFirma;
+    }
+}
