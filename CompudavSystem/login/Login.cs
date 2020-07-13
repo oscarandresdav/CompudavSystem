@@ -13,9 +13,16 @@ namespace CompudavSystem.login
     public partial class Login : Form
     {
         private Main MainForm { get; set; } = new Main();
+        private bool toggleConfiguracion { get; set; } = false;
         public Login()
         {
             InitializeComponent();
+        }
+        private void ToggleButtonConfiguracion()
+        {
+            toggleConfiguracion = !toggleConfiguracion;
+            textBoxServidor.Visible = toggleConfiguracion;
+            if (toggleConfiguracion) { textBoxServidor.Focus(); }
         }
 
         private void ButtonIniciar_Click(object sender, EventArgs e)
@@ -39,6 +46,26 @@ namespace CompudavSystem.login
             {
                 Application.ExitThread();
             }
+        }
+
+        private void ButtonConfiguracion_Click(object sender, EventArgs e)
+        {
+            ToggleButtonConfiguracion();
+        }
+
+        private void TxtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ( e.KeyCode == Keys.F8 ) { ToggleButtonConfiguracion(); }
+        }
+
+        private void TextBoxServidor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8) { ToggleButtonConfiguracion(); }
+        }
+
+        private void TxtClave_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8) { ToggleButtonConfiguracion(); }
         }
     }
 }

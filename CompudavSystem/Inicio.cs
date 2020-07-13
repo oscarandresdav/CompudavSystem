@@ -1,12 +1,6 @@
-﻿using CompudavSystem.login;
+﻿using CompudavSystem.bdd;
+using CompudavSystem.login;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CompudavSystem
@@ -14,6 +8,7 @@ namespace CompudavSystem
     public partial class Inicio : Form
     {
         private Login LoginForm { get; set; } = new Login();
+        public string Acceso { get; set; } = "False";
         public Inicio()
         {
             InitializeComponent();
@@ -21,11 +16,20 @@ namespace CompudavSystem
             timer.Start();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
-            LoginForm.Show();
-            Hide();
+            Acceso = Conexion.InicializarInstanciaMySQL(Conexion.User, Conexion.Password, Conexion.Server);
+            if (Acceso == "True") 
+            {
+                LoginForm.Show();
+                Hide();
+            }
+            else if (Acceso == "False")
+            {
+                Application.Exit();
+            }
         }
+
     }
 }

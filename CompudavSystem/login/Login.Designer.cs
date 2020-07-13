@@ -33,9 +33,11 @@
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblClave = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.buttonConfiguracion = new System.Windows.Forms.Button();
             this.buttonCerrar = new System.Windows.Forms.Button();
             this.buttonIniciar = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.textBoxServidor = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +49,7 @@
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(150, 24);
             this.txtClave.TabIndex = 29;
+            this.txtClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtClave_KeyDown);
             // 
             // txtUsuario
             // 
@@ -55,6 +58,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(150, 24);
             this.txtUsuario.TabIndex = 28;
+            this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUsuario_KeyDown);
             // 
             // lblClave
             // 
@@ -75,6 +79,23 @@
             this.lblUsuario.Size = new System.Drawing.Size(60, 17);
             this.lblUsuario.TabIndex = 30;
             this.lblUsuario.Text = "Usuario :";
+            // 
+            // buttonConfiguracion
+            // 
+            this.buttonConfiguracion.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonConfiguracion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.buttonConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonConfiguracion.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConfiguracion.ForeColor = System.Drawing.Color.Red;
+            this.buttonConfiguracion.Image = global::CompudavSystem.Properties.Resources.settings_24px;
+            this.buttonConfiguracion.Location = new System.Drawing.Point(396, 273);
+            this.buttonConfiguracion.Name = "buttonConfiguracion";
+            this.buttonConfiguracion.Size = new System.Drawing.Size(26, 26);
+            this.buttonConfiguracion.TabIndex = 34;
+            this.buttonConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonConfiguracion.UseVisualStyleBackColor = true;
+            this.buttonConfiguracion.Click += new System.EventHandler(this.ButtonConfiguracion_Click);
             // 
             // buttonCerrar
             // 
@@ -124,12 +145,27 @@
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 
+            // textBoxServidor
+            // 
+            this.textBoxServidor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxServidor.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxServidor.Location = new System.Drawing.Point(311, 250);
+            this.textBoxServidor.Name = "textBoxServidor";
+            this.textBoxServidor.Size = new System.Drawing.Size(111, 17);
+            this.textBoxServidor.TabIndex = 35;
+            this.textBoxServidor.Text = "localhost";
+            this.textBoxServidor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxServidor.Visible = false;
+            this.textBoxServidor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxServidor_KeyDown);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(434, 311);
+            this.Controls.Add(this.textBoxServidor);
+            this.Controls.Add(this.buttonConfiguracion);
             this.Controls.Add(this.buttonCerrar);
             this.Controls.Add(this.buttonIniciar);
             this.Controls.Add(this.txtClave);
@@ -159,5 +195,7 @@
         internal System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button buttonIniciar;
         private System.Windows.Forms.Button buttonCerrar;
+        private System.Windows.Forms.Button buttonConfiguracion;
+        internal System.Windows.Forms.TextBox textBoxServidor;
     }
 }
