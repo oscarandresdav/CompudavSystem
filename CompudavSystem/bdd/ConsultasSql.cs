@@ -9,33 +9,53 @@ using MySql.Data.MySqlClient;
 
 namespace CompudavSystem.bdd
 {
-    public class ConsultasSql
+    public static class ConsultasSql
     {
-        readonly MySqlConnection Connection = new MySqlConnection(Conexion.CadenaConexion(Conexion.User, Conexion.Password, Conexion.Server));
-        private string SqlStament { get; set; } = "";
+        private static readonly MySqlConnection Connection = new MySqlConnection( Conexion.CadenaConexion( Conexion.User, Conexion.Password, Conexion.Server, Conexion.Database ) );
+        private static string SqlStament { get; set; } = "";
 
-        public void Insertar(string tabla, string campos, string valores) 
+        public static void Insertar( string tabla, string campos, string valores ) 
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"INSERT INTO {tabla} ({campos}) VALUES ({valores})";
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            SqlStament = $"INSERT INTO { tabla } ({ campos }) VALUES ({ valores })";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter( SqlStament, Connection );
             try
             {
-                dataAdapter.Fill(dataSet);
+                dataAdapter.Fill( dataSet );
             }
-            catch (MySqlException err)
+            catch ( MySqlException err )
             {
-                switch (err.Number)
+                switch ( err.Number )
                 {
                     case 1062:
-                        MessageBox.Show("Registro duplicado, operacion cancelada", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show( "Registro duplicado, operacion cancelada", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                         break;
                     case 1054:
-                        MessageBox.Show("Columna o campo desconocido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show( "Columna o campo desconocido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                         break;
                 }
                 //throw;
             }
         }
+
+        public static DataTable ConsultaIndividual( string tabla, string campo, string condicion, string expresion,string valor )
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } { expresion } '{ valor }'";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
+        public static DataTable ConsultaIndividual(string tabla, string campo, string condicion, string expresion, string valor, string condicion2, string expresion2, string valor2)
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } { expresion } '{ valor }' AND { condicion2 } { expresion2 } '{ valor2 }'";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
+
     }
 }

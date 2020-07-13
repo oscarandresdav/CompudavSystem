@@ -8,22 +8,24 @@ namespace CompudavSystem.bdd
         public static string User { get; set; } = "compudav";
         public static string Password { get; set; } = "compudav";
         public static string Server { get; set; } = "localhost";
+        public static string Database { get; set; } = "compudav";
 
 
-        public static string CadenaConexion(string usuario, string clave, string servidor)
+        public static string CadenaConexion(string usuario, string clave, string servidor, string database)
         {
             MySqlConnectionStringBuilder stringBuilder = new MySqlConnectionStringBuilder
             {
                 UserID = usuario,
                 Password = clave,
-                Server = servidor
+                Server = servidor,
+                Database = database,
             };
             return stringBuilder.ConnectionString;
         }
 
-        public static string InicializarInstanciaMySQL(string usuario, string clave, string servidor)
+        public static string InicializarInstanciaMySQL(string usuario, string clave, string servidor, string database)
         {
-            MySqlConnection connection = new MySqlConnection(CadenaConexion(usuario, clave, servidor));
+            MySqlConnection connection = new MySqlConnection(CadenaConexion(usuario, clave, servidor, database));
             try
             {
                 connection.Open();

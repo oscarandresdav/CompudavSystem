@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.txtClave = new System.Windows.Forms.TextBox();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.textBoxClave = new System.Windows.Forms.TextBox();
+            this.textBoxUsuario = new System.Windows.Forms.TextBox();
             this.lblClave = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.buttonConfiguracion = new System.Windows.Forms.Button();
@@ -41,24 +41,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtClave
+            // textBoxClave
             // 
-            this.txtClave.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClave.Location = new System.Drawing.Point(150, 173);
-            this.txtClave.Name = "txtClave";
-            this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(150, 24);
-            this.txtClave.TabIndex = 29;
-            this.txtClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtClave_KeyDown);
+            this.textBoxClave.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxClave.Location = new System.Drawing.Point(150, 173);
+            this.textBoxClave.Name = "textBoxClave";
+            this.textBoxClave.PasswordChar = '*';
+            this.textBoxClave.Size = new System.Drawing.Size(150, 24);
+            this.textBoxClave.TabIndex = 29;
+            this.textBoxClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtClave_KeyDown);
             // 
-            // txtUsuario
+            // textBoxUsuario
             // 
-            this.txtUsuario.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(150, 143);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(150, 24);
-            this.txtUsuario.TabIndex = 28;
-            this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUsuario_KeyDown);
+            this.textBoxUsuario.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUsuario.Location = new System.Drawing.Point(150, 143);
+            this.textBoxUsuario.Name = "textBoxUsuario";
+            this.textBoxUsuario.Size = new System.Drawing.Size(150, 24);
+            this.textBoxUsuario.TabIndex = 28;
+            this.textBoxUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUsuario_KeyDown);
             // 
             // lblClave
             // 
@@ -168,8 +168,8 @@
             this.Controls.Add(this.buttonConfiguracion);
             this.Controls.Add(this.buttonCerrar);
             this.Controls.Add(this.buttonIniciar);
-            this.Controls.Add(this.txtClave);
-            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.textBoxClave);
+            this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.lblClave);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.logo);
@@ -180,6 +180,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio de sesion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
+            this.Shown += new System.EventHandler(this.Login_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -189,8 +190,8 @@
         #endregion
 
         private System.Windows.Forms.PictureBox logo;
-        internal System.Windows.Forms.TextBox txtClave;
-        internal System.Windows.Forms.TextBox txtUsuario;
+        internal System.Windows.Forms.TextBox textBoxClave;
+        internal System.Windows.Forms.TextBox textBoxUsuario;
         internal System.Windows.Forms.Label lblClave;
         internal System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button buttonIniciar;
