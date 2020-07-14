@@ -49,6 +49,18 @@
   <ItemGroup>
     <Compile Include="bdd\Conexion.cs" />
     <Compile Include="bdd\ConsultasSql.cs" />
+    <Compile Include="catalogo\Catalogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="catalogo\Catalogo.Designer.cs">
+      <DependentUpon>Catalogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="catalogo\Fabricante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="catalogo\Fabricante.Designer.cs">
+      <DependentUpon>Fabricante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +81,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="catalogo\Catalogo.resx">
+      <DependentUpon>Catalogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="catalogo\Fabricante.resx">
+      <DependentUpon>Fabricante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +181,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\settings_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\combo_chart_36px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bayer_logo_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctors_bag_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bayer_logo_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_window_12px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_window_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_window_18px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,6 +8,7 @@ namespace CompudavSystem.login
 {
     public partial class Login : Form
     {
+        public string Acceso { get; set; } = "False";
         private Main MainForm { get; set; } = new Main();
         private bool ToggleConfiguracion { get; set; } = false;
         public DataTable DataTableUser { get; set; } = new DataTable();
@@ -16,6 +17,7 @@ namespace CompudavSystem.login
         {
             InitializeComponent();
             textBoxUsuario.Text = Settings.Default.username;
+            textBoxServidor.Text = Settings.Default.servidor;
         }
         private void ToggleButtonConfiguracion()
         {
@@ -31,30 +33,34 @@ namespace CompudavSystem.login
 
         private void InicioSesion()
         {
-            DataTableUser = ConsultasSql.ConsultaIndividual("user", "*", "username", "=", $"{ textBoxUsuario.Text }", "password", "=", $"{ textBoxClave.Text }");
-            if (DataTableUser.Rows.Count >= 1)
+            Acceso = Conexion.InicializarInstanciaMySQL(Conexion.User, Conexion.Password, Settings.Default.servidor, Conexion.Database);
+            if (Acceso == "True")
             {
-                Settings.Default.username = textBoxUsuario.Text;
-                Settings.Default.Save();
-                Settings.Default.Reload();
-                MainForm.Show();
-                Hide();
-            }
-            else
-            {
-                MessageBox.Show("Usuario y/o contraseña erroneos", "CompudavSystem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Intentos += 1;
-
-                if (Intentos >= 3)
+                DataTableUser = ConsultasSql.ConsultaIndividual("user", "*", "username", "=", $"{ textBoxUsuario.Text }", "password", "=", $"{ textBoxClave.Text }");
+                if (DataTableUser.Rows.Count >= 1)
                 {
-                    textBoxClave.Text = "";
-                    textBoxUsuario.Text = "";
-                    textBoxUsuario.Focus();
+                    Settings.Default.username = textBoxUsuario.Text;
+                    Settings.Default.Save();
+                    Settings.Default.Reload();
+                    MainForm.Show();
+                    Hide();
                 }
                 else
                 {
-                    textBoxClave.Text = "";
-                    textBoxClave.Focus();
+                    MessageBox.Show("Usuario y/o contraseña erroneos", "CompudavSystem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Intentos += 1;
+
+                    if (Intentos >= 3)
+                    {
+                        textBoxClave.Text = "";
+                        textBoxUsuario.Text = "";
+                        textBoxUsuario.Focus();
+                    }
+                    else
+                    {
+                        textBoxClave.Text = "";
+                        textBoxClave.Focus();
+                    }
                 }
             }
         }
@@ -89,8 +95,14 @@ namespace CompudavSystem.login
 
         private void TextBoxServidor_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F8) { ToggleButtonConfiguracion(); }
-            if (e.KeyCode == Keys.Enter) { Settings.Default.servidor = textBoxServidor.Text; }
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.F8) { ToggleButtonConfiguracion(); }
+            if (e.KeyCode == Keys.Enter)
+            {
+                Settings.Default.servidor = textBoxServidor.Text;
+                Settings.Default.Save();
+                Settings.Default.Reload();
+                ToggleButtonConfiguracion();
+            }
         }
 
         private void TxtClave_KeyDown(object sender, KeyEventArgs e)

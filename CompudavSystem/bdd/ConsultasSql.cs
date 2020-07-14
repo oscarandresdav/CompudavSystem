@@ -11,7 +11,7 @@ namespace CompudavSystem.bdd
 {
     public static class ConsultasSql
     {
-        private static readonly MySqlConnection Connection = new MySqlConnection( Conexion.CadenaConexion( Conexion.User, Conexion.Password, Conexion.Server, Conexion.Database ) );
+        private static readonly MySqlConnection Connection = new MySqlConnection( Conexion.CadenaConexion( Conexion.User, Conexion.Password, Properties.Settings.Default.servidor, Conexion.Database ) );
         private static string SqlStament { get; set; } = "";
 
         public static void Insertar( string tabla, string campos, string valores ) 
@@ -38,6 +38,15 @@ namespace CompudavSystem.bdd
             }
         }
 
+
+        public static DataTable ConsultaGeneral(string tabla, string campo = "*")
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla }";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
         public static DataTable ConsultaIndividual( string tabla, string campo, string condicion, string expresion,string valor )
         {
             DataSet dataSet = new DataSet();

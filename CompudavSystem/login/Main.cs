@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CompudavSystem.catalogo;
 
 namespace CompudavSystem.login
 {
     public partial class Main : Form
     {
-        
+        private Catalogo FormCatalogo { get; set; } = new Catalogo();
+
         public Main()
         {
             InitializeComponent();
@@ -33,6 +35,19 @@ namespace CompudavSystem.login
         private void ButtonCerrar_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buttonCatalogo_Click(object sender, EventArgs e)
+        {
+            MostrarFormulario(FormCatalogo);
+        }
+
+        private void MostrarFormulario(Form formulario)
+        {
+            formulario.TopLevel = false;
+            formulario.Parent = panelContainer;
+            formulario.Show();
+            formulario.BringToFront();
         }
     }
 }

@@ -19,16 +19,8 @@ namespace CompudavSystem
         private void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
-            Acceso = Conexion.InicializarInstanciaMySQL(Conexion.User, Conexion.Password, Conexion.Server, Conexion.Database);
-            if (Acceso == "True") 
-            {
-                LoginForm.Show();
-                Hide();
-            }
-            else if (Acceso == "False")
-            {
-                Application.Exit();
-            }
+            LoginForm.Show();
+            Hide();
         }
 
     }
