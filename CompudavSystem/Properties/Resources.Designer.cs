@@ -63,6 +63,26 @@ namespace CompudavSystem.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_18px {
+            get {
+                object obj = ResourceManager.GetObject("add_18px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add_24px {
+            get {
+                object obj = ResourceManager.GetObject("add_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap administrative_tools_36px {
             get {
                 object obj = ResourceManager.GetObject("administrative_tools_36px", resourceCulture);
@@ -96,6 +116,16 @@ namespace CompudavSystem.Properties {
         internal static System.Drawing.Bitmap businessman_36px {
             get {
                 object obj = ResourceManager.GetObject("businessman_36px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap checkmark_24px {
+            get {
+                object obj = ResourceManager.GetObject("checkmark_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +203,29 @@ namespace CompudavSystem.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete_bin_18px {
+            get {
+                object obj = ResourceManager.GetObject("delete_bin_18px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap doctors_bag_24px {
             get {
                 object obj = ResourceManager.GetObject("doctors_bag_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit_18px {
+            get {
+                object obj = ResourceManager.GetObject("edit_18px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

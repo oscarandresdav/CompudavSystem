@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.encabezadoPanel = new System.Windows.Forms.Panel();
-            this.busquedaLabel = new System.Windows.Forms.Label();
-            this.busquedaTextBox = new System.Windows.Forms.TextBox();
-            this.tituloLabel = new System.Windows.Forms.Label();
-            this.listadoDataGridView = new System.Windows.Forms.DataGridView();
             this.categoriaButton = new System.Windows.Forms.Button();
             this.fabricanteButton = new System.Windows.Forms.Button();
+            this.busquedaLabel = new System.Windows.Forms.Label();
+            this.busquedaTextBox = new System.Windows.Forms.TextBox();
             this.tituloPictureBox = new System.Windows.Forms.PictureBox();
+            this.tituloLabel = new System.Windows.Forms.Label();
+            this.listadoDataGridView = new System.Windows.Forms.DataGridView();
             this.encabezadoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // encabezadoPanel
@@ -53,6 +53,31 @@
             this.encabezadoPanel.Name = "encabezadoPanel";
             this.encabezadoPanel.Size = new System.Drawing.Size(760, 90);
             this.encabezadoPanel.TabIndex = 0;
+            // 
+            // categoriaButton
+            // 
+            this.categoriaButton.Image = global::CompudavSystem.Properties.Resources.doctors_bag_24px;
+            this.categoriaButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.categoriaButton.Location = new System.Drawing.Point(660, 10);
+            this.categoriaButton.Name = "categoriaButton";
+            this.categoriaButton.Size = new System.Drawing.Size(95, 35);
+            this.categoriaButton.TabIndex = 4;
+            this.categoriaButton.Text = "Categoria";
+            this.categoriaButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.categoriaButton.UseVisualStyleBackColor = true;
+            // 
+            // fabricanteButton
+            // 
+            this.fabricanteButton.Image = global::CompudavSystem.Properties.Resources.bayer_logo_24;
+            this.fabricanteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.fabricanteButton.Location = new System.Drawing.Point(660, 51);
+            this.fabricanteButton.Name = "fabricanteButton";
+            this.fabricanteButton.Size = new System.Drawing.Size(95, 35);
+            this.fabricanteButton.TabIndex = 3;
+            this.fabricanteButton.Text = "Fabricante";
+            this.fabricanteButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.fabricanteButton.UseVisualStyleBackColor = true;
+            this.fabricanteButton.Click += new System.EventHandler(this.FabricanteButton_Click);
             // 
             // busquedaLabel
             // 
@@ -78,6 +103,16 @@
             this.busquedaTextBox.Size = new System.Drawing.Size(400, 15);
             this.busquedaTextBox.TabIndex = 0;
             // 
+            // tituloPictureBox
+            // 
+            this.tituloPictureBox.Image = global::CompudavSystem.Properties.Resources.pills_36px;
+            this.tituloPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.tituloPictureBox.Name = "tituloPictureBox";
+            this.tituloPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.tituloPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.tituloPictureBox.TabIndex = 1;
+            this.tituloPictureBox.TabStop = false;
+            // 
             // tituloLabel
             // 
             this.tituloLabel.AutoSize = true;
@@ -98,41 +133,6 @@
             this.listadoDataGridView.Size = new System.Drawing.Size(760, 515);
             this.listadoDataGridView.TabIndex = 1;
             // 
-            // categoriaButton
-            // 
-            this.categoriaButton.Image = global::CompudavSystem.Properties.Resources.doctors_bag_24px;
-            this.categoriaButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.categoriaButton.Location = new System.Drawing.Point(657, 10);
-            this.categoriaButton.Name = "categoriaButton";
-            this.categoriaButton.Size = new System.Drawing.Size(100, 35);
-            this.categoriaButton.TabIndex = 4;
-            this.categoriaButton.Text = "Categoria";
-            this.categoriaButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.categoriaButton.UseVisualStyleBackColor = true;
-            // 
-            // fabricanteButton
-            // 
-            this.fabricanteButton.Image = global::CompudavSystem.Properties.Resources.bayer_logo_24;
-            this.fabricanteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.fabricanteButton.Location = new System.Drawing.Point(657, 51);
-            this.fabricanteButton.Name = "fabricanteButton";
-            this.fabricanteButton.Size = new System.Drawing.Size(100, 35);
-            this.fabricanteButton.TabIndex = 3;
-            this.fabricanteButton.Text = "Fabricante";
-            this.fabricanteButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.fabricanteButton.UseVisualStyleBackColor = true;
-            this.fabricanteButton.Click += new System.EventHandler(this.FabricanteButton_Click);
-            // 
-            // tituloPictureBox
-            // 
-            this.tituloPictureBox.Image = global::CompudavSystem.Properties.Resources.pills_36px;
-            this.tituloPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.tituloPictureBox.Name = "tituloPictureBox";
-            this.tituloPictureBox.Size = new System.Drawing.Size(40, 40);
-            this.tituloPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.tituloPictureBox.TabIndex = 1;
-            this.tituloPictureBox.TabStop = false;
-            // 
             // Catalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
@@ -148,8 +148,8 @@
             this.Load += new System.EventHandler(this.Catalogo_Load);
             this.encabezadoPanel.ResumeLayout(false);
             this.encabezadoPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -14,26 +14,32 @@ namespace CompudavSystem.bdd
         private static readonly MySqlConnection Connection = new MySqlConnection( Conexion.CadenaConexion( Conexion.User, Conexion.Password, Properties.Settings.Default.servidor, Conexion.Database ) );
         private static string SqlStament { get; set; } = "";
 
-        public static void Insertar( string tabla, string campos, string valores ) 
+        public static bool Insertar( string tabla, string campos, string valores ) 
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"INSERT INTO { tabla } ({ campos }) VALUES ({ valores })";
+            SqlStament = $"INSERT INTO { tabla } (id, { campos }) VALUES ('{Guid.NewGuid()}', { valores })";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter( SqlStament, Connection );
             try
             {
                 dataAdapter.Fill( dataSet );
+                return true;
             }
             catch ( MySqlException err )
             {
                 switch ( err.Number )
                 {
                     case 1062:
-                        MessageBox.Show( "Registro duplicado, operacion cancelada", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                        MessageBox.Show( "Registro duplicado, operacion cancelada.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                         break;
                     case 1054:
-                        MessageBox.Show( "Columna o campo desconocido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                        MessageBox.Show("Columna o campo desconocido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
+                    case 1364:
+                        MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+
                 }
+                return false;
                 //throw;
             }
         }
