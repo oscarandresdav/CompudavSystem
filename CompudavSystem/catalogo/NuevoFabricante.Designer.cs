@@ -100,8 +100,8 @@
         #endregion
 
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.TextBox descripcionTextBox;
-        private System.Windows.Forms.Button aceptarButton;
+        public System.Windows.Forms.TextBox descripcionTextBox;
+        public System.Windows.Forms.Button aceptarButton;
         private System.Windows.Forms.Button cancelarButton;
     }
 }

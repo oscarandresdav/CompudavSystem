@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -17,7 +13,7 @@ namespace CompudavSystem.bdd
         public static bool Insertar( string tabla, string campos, string valores ) 
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"INSERT INTO { tabla } (id, { campos }) VALUES ('{Guid.NewGuid()}', { valores })";
+            SqlStament = $"INSERT INTO { tabla } (id, revision, { campos }) VALUES ('{Guid.NewGuid()}', '1', { valores })";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter( SqlStament, Connection );
             try
             {
@@ -34,16 +30,79 @@ namespace CompudavSystem.bdd
                     case 1054:
                         MessageBox.Show("Columna o campo desconocido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
+                    case 1292:
+                        MessageBox.Show("Formato de fecha incorrecto.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1364:
+                        MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                }
+                return false;
+            }
+        }
+
+        public static bool Actualizar(string tabla, string campos, string campoId, string valorId)
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"UPDATE { tabla } SET { campos }, modified_at = '{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffffff}' WHERE { campoId } = {valorId}";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            try
+            {
+                dataAdapter.Fill(dataSet);
+                return true;
+            }
+            catch (MySqlException err)
+            {
+                switch (err.Number)
+                {
+                    case 1062:
+                        MessageBox.Show("Registro duplicado, operacion cancelada.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1054:
+                        MessageBox.Show("Columna o campo desconocido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1292:
+                        MessageBox.Show("Formato de fecha incorrecto.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1364:
+                        MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                }
+                return false;
+            }
+        }
+
+        public static bool Eliminar(string tabla, string campoId, string valorId)
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"DELETE FROM { tabla } WHERE { campoId } = {valorId}";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            try
+            {
+                dataAdapter.Fill(dataSet);
+                return true;
+            }
+            catch (MySqlException err)
+            {
+                switch (err.Number)
+                {
+                    case 1062:
+                        MessageBox.Show("Registro duplicado, operacion cancelada.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1054:
+                        MessageBox.Show("Columna o campo desconocido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1292:
+                        MessageBox.Show("Formato de fecha incorrecto.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
                     case 1364:
                         MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
 
                 }
                 return false;
-                //throw;
             }
         }
-
 
         public static DataTable ConsultaGeneral(string tabla, string campo = "*")
         {
@@ -53,6 +112,7 @@ namespace CompudavSystem.bdd
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];
         }
+
         public static DataTable ConsultaIndividual( string tabla, string campo, string condicion, string expresion,string valor )
         {
             DataSet dataSet = new DataSet();
@@ -66,6 +126,15 @@ namespace CompudavSystem.bdd
         {
             DataSet dataSet = new DataSet();
             SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } { expresion } '{ valor }' AND { condicion2 } { expresion2 } '{ valor2 }'";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
+        public static DataTable Busqueda(string tabla, string condicion, string valor, string campo = "*" )
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } LIKE '%{ valor }%'";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];

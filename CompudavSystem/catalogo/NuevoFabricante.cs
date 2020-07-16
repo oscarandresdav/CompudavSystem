@@ -1,12 +1,5 @@
 ﻿using CompudavSystem.bdd;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CompudavSystem.catalogo
@@ -15,36 +8,61 @@ namespace CompudavSystem.catalogo
     {
         public IComunicacionCatalogo comunicacionCatalogo { get; set; } 
         private string TableBdd { get; set; } = "manufacturer";
+        public string IdField { get; set; } = "";
+
         public NuevoFabricante()
         {
             InitializeComponent();
         }
 
-        private void CancelarButton_Click(object sender, EventArgs e)
-        {
-            Hide();
-        }
-
-        private void DescripcionTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape) { Hide(); }
-        }
-
         private void AceptarButton_Click(object sender, EventArgs e)
         {
-            string name = descripcionTextBox.Text.Trim();
+            Guardar();
+        }
+
+        private void Guardar()
+        {
+            string name = descripcionTextBox.Text.Replace("'", "\\'").Trim();
             if (name.Length > 0)
             {
-                if (ConsultasSql.Insertar(TableBdd, "name", $"'{ name }'"))
+                if (aceptarButton.Text == "Actualizar")
                 {
-                    Hide();
-                    comunicacionCatalogo.DatosInicialesDatagrid();
+                    if (ConsultasSql.Actualizar(TableBdd, $"name = '{name}'","id", $"'{IdField}'"))
+                    {
+                        CerrarYRefrescarFormulario();
+                    }
+                }
+
+                if (aceptarButton.Text == "Guardar")
+                {
+                    if (ConsultasSql.Insertar(TableBdd, "name", $"'{ name }'"))
+                    {
+                        CerrarYRefrescarFormulario();
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Campo descripcion en blanco");
             }
+        }
+
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            CerrarYRefrescarFormulario();
+        }
+
+        private void DescripcionTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) { CerrarYRefrescarFormulario(); }
+            if (e.KeyCode == Keys.Enter) { Guardar(); }
+        }
+
+        private void CerrarYRefrescarFormulario()
+        {
+            Hide();
+            comunicacionCatalogo.FocoEnTextBoxDeBusqueda();
+            comunicacionCatalogo.Busqueda();
         }
     }
 }

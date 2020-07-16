@@ -108,6 +108,7 @@
             this.busquedaTextBox.Name = "busquedaTextBox";
             this.busquedaTextBox.Size = new System.Drawing.Size(280, 15);
             this.busquedaTextBox.TabIndex = 0;
+            this.busquedaTextBox.TextChanged += new System.EventHandler(this.BusquedaTextBox_TextChanged);
             this.busquedaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BusquedaTextBox_KeyDown);
             // 
             // tituloPictureBox
@@ -144,6 +145,8 @@
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(365, 332);
             this.listadoDataGridView.TabIndex = 3;
+            this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);
+            this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
             // 
             // Fabricante
             // 

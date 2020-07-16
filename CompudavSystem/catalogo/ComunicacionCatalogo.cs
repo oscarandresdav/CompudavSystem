@@ -9,5 +9,7 @@ namespace CompudavSystem.catalogo
     public interface IComunicacionCatalogo
     {
         void DatosInicialesDatagrid();
+        void FocoEnTextBoxDeBusqueda();
+        void Busqueda();
     }
 }
