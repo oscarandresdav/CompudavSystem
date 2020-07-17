@@ -1,6 +1,6 @@
 ﻿namespace CompudavSystem.catalogo
 {
-    partial class NuevoFabricante
+    partial class NuevoItem
     {
         /// <summary>
         /// Required designer variable.

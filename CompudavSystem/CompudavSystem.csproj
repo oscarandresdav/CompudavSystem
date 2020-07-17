@@ -55,6 +55,12 @@
     <Compile Include="catalogo\Catalogo.Designer.cs">
       <DependentUpon>Catalogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="catalogo\Categoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="catalogo\Categoria.Designer.cs">
+      <DependentUpon>Categoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="catalogo\ICatalogo.cs" />
     <Compile Include="catalogo\Fabricante.cs">
       <SubType>Form</SubType>
@@ -62,11 +68,11 @@
     <Compile Include="catalogo\Fabricante.Designer.cs">
       <DependentUpon>Fabricante.cs</DependentUpon>
     </Compile>
-    <Compile Include="catalogo\NuevoFabricante.cs">
+    <Compile Include="catalogo\NuevoItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="catalogo\NuevoFabricante.Designer.cs">
-      <DependentUpon>NuevoFabricante.cs</DependentUpon>
+    <Compile Include="catalogo\NuevoItem.Designer.cs">
+      <DependentUpon>NuevoItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
@@ -91,11 +97,14 @@
     <EmbeddedResource Include="catalogo\Catalogo.resx">
       <DependentUpon>Catalogo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="catalogo\Categoria.resx">
+      <DependentUpon>Categoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="catalogo\Fabricante.resx">
       <DependentUpon>Fabricante.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="catalogo\NuevoFabricante.resx">
-      <DependentUpon>NuevoFabricante.cs</DependentUpon>
+    <EmbeddedResource Include="catalogo\NuevoItem.resx">
+      <DependentUpon>NuevoItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
@@ -230,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\category_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\category_36px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

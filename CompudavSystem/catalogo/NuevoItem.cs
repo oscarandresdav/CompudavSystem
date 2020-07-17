@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace CompudavSystem.catalogo
 {
-    public partial class NuevoFabricante : Form
+    public partial class NuevoItem : Form
     {
-        public ICatalogo comunicacionCatalogo { get; set; } 
-        private string TableBdd { get; set; } = "manufacturer";
-        public string IdField { get; set; } = "";
+        public ICatalogo Icatalogo { get; set; } 
+        public string TableBdd { get; set; }
+        public string IdField { get; set; }
 
-        public NuevoFabricante()
+        public NuevoItem()
         {
             InitializeComponent();
         }
@@ -61,8 +61,8 @@ namespace CompudavSystem.catalogo
         private void CerrarYRefrescarFormulario()
         {
             Hide();
-            comunicacionCatalogo.FocoEnTextBoxDeBusqueda();
-            comunicacionCatalogo.Busqueda();
+            Icatalogo.FocoEnTextBoxDeBusqueda();
+            Icatalogo.Busqueda();
         }
     }
 }

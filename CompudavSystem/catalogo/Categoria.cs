@@ -6,12 +6,12 @@ using CompudavSystem.bdd;
 
 namespace CompudavSystem.catalogo
 {
-    public partial class Fabricante : Form, ICatalogo
+    public partial class Categoria : Form, ICatalogo
     {
         private NuevoItem NuevoItemForm { get; set; } = new NuevoItem();
-        private string TableBdd { get; set; } = "manufacturer";
+        private string TableBdd { get; set; } = "category";
 
-        public Fabricante()
+        public Categoria()
         {
             InitializeComponent();
             DatosInicialesDatagrid();
