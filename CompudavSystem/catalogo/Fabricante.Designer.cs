@@ -53,7 +53,7 @@
             this.encabezadoPanel.Location = new System.Drawing.Point(10, 11);
             this.encabezadoPanel.Name = "encabezadoPanel";
             this.encabezadoPanel.Size = new System.Drawing.Size(365, 119);
-            this.encabezadoPanel.TabIndex = 2;
+            this.encabezadoPanel.TabIndex = 0;
             // 
             // agregarButton
             // 
@@ -66,7 +66,7 @@
             this.agregarButton.Name = "agregarButton";
             this.agregarButton.Padding = new System.Windows.Forms.Padding(5);
             this.agregarButton.Size = new System.Drawing.Size(80, 35);
-            this.agregarButton.TabIndex = 4;
+            this.agregarButton.TabIndex = 1;
             this.agregarButton.Text = "Nuevo";
             this.agregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.agregarButton.UseVisualStyleBackColor = true;
@@ -81,7 +81,7 @@
             this.cerrarButton.Location = new System.Drawing.Point(345, 0);
             this.cerrarButton.Name = "cerrarButton";
             this.cerrarButton.Size = new System.Drawing.Size(20, 20);
-            this.cerrarButton.TabIndex = 3;
+            this.cerrarButton.TabIndex = 2;
             this.cerrarButton.UseVisualStyleBackColor = true;
             this.cerrarButton.Click += new System.EventHandler(this.ButtonCerrar_Click);
             // 
@@ -92,7 +92,7 @@
             this.busquedaLabel.Location = new System.Drawing.Point(3, 50);
             this.busquedaLabel.Name = "busquedaLabel";
             this.busquedaLabel.Size = new System.Drawing.Size(62, 15);
-            this.busquedaLabel.TabIndex = 1;
+            this.busquedaLabel.TabIndex = 3;
             this.busquedaLabel.Text = "Busqueda:";
             // 
             // busquedaTextBox
@@ -129,7 +129,7 @@
             this.tituloLabel.Location = new System.Drawing.Point(50, 15);
             this.tituloLabel.Name = "tituloLabel";
             this.tituloLabel.Size = new System.Drawing.Size(81, 19);
-            this.tituloLabel.TabIndex = 2;
+            this.tituloLabel.TabIndex = 4;
             this.tituloLabel.Text = "Fabricante";
             // 
             // listadoDataGridView
@@ -144,7 +144,7 @@
             this.listadoDataGridView.RowHeadersVisible = false;
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(365, 332);
-            this.listadoDataGridView.TabIndex = 3;
+            this.listadoDataGridView.TabIndex = 1;
             this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);
             this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
             // 
@@ -163,7 +163,7 @@
             this.MinimizeBox = false;
             this.Name = "Fabricante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Fabricante";
+            this.Text = "0";
             this.Load += new System.EventHandler(this.Fabricante_Load);
             this.encabezadoPanel.ResumeLayout(false);
             this.encabezadoPanel.PerformLayout();

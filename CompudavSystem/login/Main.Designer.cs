@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.buttonCerrar = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.buttonPanel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelFirma2 = new System.Windows.Forms.Label();
             this.labelFirma = new System.Windows.Forms.Label();
-            this.buttonPanel = new System.Windows.Forms.Button();
             this.buttonConfiguracion = new System.Windows.Forms.Button();
             this.buttonCompras = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
             this.buttonUsuarios = new System.Windows.Forms.Button();
             this.buttonCatalogo = new System.Windows.Forms.Button();
             this.buttonVentas = new System.Windows.Forms.Button();
-            this.buttonCerrar = new System.Windows.Forms.Button();
             this.panelContainer.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +52,21 @@
             this.panelContainer.Location = new System.Drawing.Point(127, 0);
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(785, 645);
-            this.panelContainer.TabIndex = 0;
+            this.panelContainer.TabIndex = 1;
+            // 
+            // buttonCerrar
+            // 
+            this.buttonCerrar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
+            this.buttonCerrar.Location = new System.Drawing.Point(752, 611);
+            this.buttonCerrar.Name = "buttonCerrar";
+            this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
+            this.buttonCerrar.TabIndex = 0;
+            this.buttonCerrar.UseVisualStyleBackColor = true;
+            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
             // 
             // panelMenu
             // 
@@ -70,40 +84,7 @@
             this.panelMenu.Location = new System.Drawing.Point(1, 0);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(120, 645);
-            this.panelMenu.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans SemiBold", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(5, 613);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 28);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "@osk1dav\r\n+593984563319\r\n";
-            // 
-            // labelFirma2
-            // 
-            this.labelFirma2.AutoSize = true;
-            this.labelFirma2.Font = new System.Drawing.Font("Sacramento", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFirma2.ForeColor = System.Drawing.Color.White;
-            this.labelFirma2.Location = new System.Drawing.Point(5, 590);
-            this.labelFirma2.Name = "labelFirma2";
-            this.labelFirma2.Size = new System.Drawing.Size(95, 27);
-            this.labelFirma2.TabIndex = 42;
-            this.labelFirma2.Text = "Oscar Davila";
-            // 
-            // labelFirma
-            // 
-            this.labelFirma.AutoSize = true;
-            this.labelFirma.Font = new System.Drawing.Font("Open Sans SemiBold", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFirma.ForeColor = System.Drawing.Color.White;
-            this.labelFirma.Location = new System.Drawing.Point(5, 575);
-            this.labelFirma.Name = "labelFirma";
-            this.labelFirma.Size = new System.Drawing.Size(72, 11);
-            this.labelFirma.TabIndex = 41;
-            this.labelFirma.Text = "Desarrollado por:";
+            this.panelMenu.TabIndex = 0;
             // 
             // buttonPanel
             // 
@@ -118,10 +99,43 @@
             this.buttonPanel.Location = new System.Drawing.Point(8, 12);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(100, 60);
-            this.buttonPanel.TabIndex = 44;
+            this.buttonPanel.TabIndex = 0;
             this.buttonPanel.Text = "Panel";
             this.buttonPanel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonPanel.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Open Sans SemiBold", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(5, 613);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 28);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "@osk1dav\r\n+593984563319\r\n";
+            // 
+            // labelFirma2
+            // 
+            this.labelFirma2.AutoSize = true;
+            this.labelFirma2.Font = new System.Drawing.Font("Sacramento", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirma2.ForeColor = System.Drawing.Color.White;
+            this.labelFirma2.Location = new System.Drawing.Point(5, 590);
+            this.labelFirma2.Name = "labelFirma2";
+            this.labelFirma2.Size = new System.Drawing.Size(95, 27);
+            this.labelFirma2.TabIndex = 8;
+            this.labelFirma2.Text = "Oscar Davila";
+            // 
+            // labelFirma
+            // 
+            this.labelFirma.AutoSize = true;
+            this.labelFirma.Font = new System.Drawing.Font("Open Sans SemiBold", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirma.ForeColor = System.Drawing.Color.White;
+            this.labelFirma.Location = new System.Drawing.Point(5, 575);
+            this.labelFirma.Name = "labelFirma";
+            this.labelFirma.Size = new System.Drawing.Size(72, 11);
+            this.labelFirma.TabIndex = 7;
+            this.labelFirma.Text = "Desarrollado por:";
             // 
             // buttonConfiguracion
             // 
@@ -136,7 +150,7 @@
             this.buttonConfiguracion.Location = new System.Drawing.Point(9, 408);
             this.buttonConfiguracion.Name = "buttonConfiguracion";
             this.buttonConfiguracion.Size = new System.Drawing.Size(100, 60);
-            this.buttonConfiguracion.TabIndex = 40;
+            this.buttonConfiguracion.TabIndex = 6;
             this.buttonConfiguracion.Text = "Configuración";
             this.buttonConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonConfiguracion.UseVisualStyleBackColor = true;
@@ -154,7 +168,7 @@
             this.buttonCompras.Location = new System.Drawing.Point(9, 144);
             this.buttonCompras.Name = "buttonCompras";
             this.buttonCompras.Size = new System.Drawing.Size(100, 60);
-            this.buttonCompras.TabIndex = 38;
+            this.buttonCompras.TabIndex = 2;
             this.buttonCompras.Text = "Compras";
             this.buttonCompras.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonCompras.UseVisualStyleBackColor = true;
@@ -172,7 +186,7 @@
             this.buttonHistorial.Location = new System.Drawing.Point(9, 342);
             this.buttonHistorial.Name = "buttonHistorial";
             this.buttonHistorial.Size = new System.Drawing.Size(100, 60);
-            this.buttonHistorial.TabIndex = 37;
+            this.buttonHistorial.TabIndex = 5;
             this.buttonHistorial.Text = "Historial";
             this.buttonHistorial.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonHistorial.UseVisualStyleBackColor = true;
@@ -190,7 +204,7 @@
             this.buttonUsuarios.Location = new System.Drawing.Point(10, 276);
             this.buttonUsuarios.Name = "buttonUsuarios";
             this.buttonUsuarios.Size = new System.Drawing.Size(100, 60);
-            this.buttonUsuarios.TabIndex = 35;
+            this.buttonUsuarios.TabIndex = 4;
             this.buttonUsuarios.Text = "Usuarios";
             this.buttonUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUsuarios.UseVisualStyleBackColor = true;
@@ -208,7 +222,7 @@
             this.buttonCatalogo.Location = new System.Drawing.Point(9, 210);
             this.buttonCatalogo.Name = "buttonCatalogo";
             this.buttonCatalogo.Size = new System.Drawing.Size(100, 60);
-            this.buttonCatalogo.TabIndex = 34;
+            this.buttonCatalogo.TabIndex = 3;
             this.buttonCatalogo.Text = "Catálogo";
             this.buttonCatalogo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonCatalogo.UseVisualStyleBackColor = true;
@@ -227,24 +241,10 @@
             this.buttonVentas.Location = new System.Drawing.Point(8, 78);
             this.buttonVentas.Name = "buttonVentas";
             this.buttonVentas.Size = new System.Drawing.Size(100, 60);
-            this.buttonVentas.TabIndex = 33;
+            this.buttonVentas.TabIndex = 1;
             this.buttonVentas.Text = "Ventas";
             this.buttonVentas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonVentas.UseVisualStyleBackColor = true;
-            // 
-            // buttonCerrar
-            // 
-            this.buttonCerrar.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.buttonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.buttonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
-            this.buttonCerrar.Location = new System.Drawing.Point(752, 611);
-            this.buttonCerrar.Name = "buttonCerrar";
-            this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
-            this.buttonCerrar.TabIndex = 0;
-            this.buttonCerrar.UseVisualStyleBackColor = true;
-            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
             // 
             // Main
             // 

@@ -6,7 +6,7 @@ namespace CompudavSystem.catalogo
 {
     public partial class NuevoFabricante : Form
     {
-        public IComunicacionCatalogo comunicacionCatalogo { get; set; } 
+        public ICatalogo comunicacionCatalogo { get; set; } 
         private string TableBdd { get; set; } = "manufacturer";
         public string IdField { get; set; } = "";
 

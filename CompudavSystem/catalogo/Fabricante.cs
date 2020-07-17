@@ -6,7 +6,7 @@ using CompudavSystem.bdd;
 
 namespace CompudavSystem.catalogo
 {
-    public partial class Fabricante : Form, IComunicacionCatalogo
+    public partial class Fabricante : Form, ICatalogo
     {
         private NuevoFabricante NuevoForm { get; set; } = new NuevoFabricante();
         private string TableBdd { get; set; } = "manufacturer";
@@ -21,7 +21,7 @@ namespace CompudavSystem.catalogo
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
             listadoDataGridView.Columns["name"].HeaderText = "Descripción";
-            listadoDataGridView.Columns["name"].Width = 230;
+            listadoDataGridView.Columns["name"].Width = 242;
             
             listadoDataGridView.Columns["id"].Visible = false;
             listadoDataGridView.Columns["revision"].Visible = false;
