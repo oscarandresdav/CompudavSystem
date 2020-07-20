@@ -73,6 +73,16 @@ namespace CompudavSystem.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_22px {
+            get {
+                object obj = ResourceManager.GetObject("add_22px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_24px {
             get {
                 object obj = ResourceManager.GetObject("add_24px", resourceCulture);

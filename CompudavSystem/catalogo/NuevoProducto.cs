@@ -13,6 +13,26 @@ namespace CompudavSystem.catalogo
         public NuevoProducto()
         {
             InitializeComponent();
+            DatosInicialesComboBoxs();
+        }
+
+        public void DatosInicialesComboBoxs()
+        {
+            CargaDeDatosCombobox(categoryComboBox, "category");
+            CargaDeDatosCombobox(manufacturerComboBox, "manufacturer");
+            CargaDeDatosCombobox(typeProductComboBox, "type_product");
+            CargaDeDatosCombobox(unitMeasurementComboBox, "unit_measurement");
+
+            
+        }
+
+        private void CargaDeDatosCombobox(ComboBox comboBox, string table, string displayMember = "name", string valueMember = "id")
+        {
+            comboBox.DataSource = ConsultasSql.ConsultaGeneral(table);
+            comboBox.DisplayMember = displayMember;
+            comboBox.ValueMember = valueMember;
+            comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
         private void AceptarButton_Click(object sender, EventArgs e)
@@ -22,7 +42,7 @@ namespace CompudavSystem.catalogo
 
         private void Guardar()
         {
-            string name = descripcionTextBox.Text.Replace("'", "\\'").Trim();
+            string name = nameTextBox.Text.Replace("'", "\\'").Trim();
             if (name.Length > 0)
             {
                 if (aceptarButton.Text == "Actualizar")

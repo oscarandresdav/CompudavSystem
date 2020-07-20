@@ -6,10 +6,11 @@ using CompudavSystem.bdd;
 
 namespace CompudavSystem.catalogo
 {
-    public partial class Catalogo : Form
+    public partial class Catalogo : Form, ICatalogo
     {
         private Fabricante FabricanteForm { get; set; } = new Fabricante();
         private Categoria CategoriaForm { get; set; } = new Categoria();
+        private NuevoProducto NuevoItemForm { get; set; } = new NuevoProducto();
         private string TableBdd { get; set; } = "product";
         
         public Catalogo()
@@ -18,7 +19,7 @@ namespace CompudavSystem.catalogo
             DatosInicialesDatagrid();
         }
 
-        private void DatosInicialesDatagrid() 
+        public void DatosInicialesDatagrid() 
         {
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
@@ -59,7 +60,7 @@ namespace CompudavSystem.catalogo
             CrearBotonAccionesDatagridview("Eliminar", "deleteButton", Properties.Resources.delete_bin_18px);
         }
 
-        private void FocoEnTextBoxDeBusqueda()
+        public void FocoEnTextBoxDeBusqueda()
         {
             busquedaTextBox.Focus();
         }
@@ -89,6 +90,65 @@ namespace CompudavSystem.catalogo
             CategoriaForm.BringToFront();
             CategoriaForm.busquedaTextBox.Focus();
             CategoriaForm.DatosInicialesDatagrid();
+        }
+
+        private void AgregarButton_Click(object sender, EventArgs e)
+        {
+            DatosGuardarActualizar
+                (
+                    "",
+                    "Guardar",
+                    ""
+                );
+        }
+
+        private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton")
+            {
+                DatosGuardarActualizar
+                    (
+                        listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(),
+                        "Actualizar",
+                        listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value.ToString()
+                    );
+            }
+
+            if (listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
+            {
+                if (MessageBox.Show("¿Está seguro que desea eliminar este item?", "Eliminar item", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (ConsultasSql.Eliminar(TableBdd, "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value}'"))
+                    {
+                        DatosInicialesDatagrid();
+                    }
+                }
+
+            }
+        }
+
+        private void DatosGuardarActualizar(string id, string accionBoton, string nameCampo)
+        {
+            NuevoItemForm.Icatalogo = this;
+            NuevoItemForm.Show();
+            NuevoItemForm.BringToFront();
+            NuevoItemForm.IdField = id;
+            NuevoItemForm.TableBdd = TableBdd;
+            NuevoItemForm.aceptarButton.Text = accionBoton;
+            NuevoItemForm.nameTextBox.Text = nameCampo;
+            NuevoItemForm.nameTextBox.Focus();
+            NuevoItemForm.nameTextBox.SelectAll();
+        }
+
+        private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Busqueda();
+        }
+
+        public void Busqueda()
+        {
+            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busquedaTextBox.Text }");
+            listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
         }
     }
 }
