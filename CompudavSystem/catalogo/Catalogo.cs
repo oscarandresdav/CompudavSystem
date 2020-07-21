@@ -94,6 +94,7 @@ namespace CompudavSystem.catalogo
 
         private void AgregarButton_Click(object sender, EventArgs e)
         {
+            NuevoItemForm.DatosInicialesComboBoxs();
             DatosGuardarActualizar
                 (
                     "",

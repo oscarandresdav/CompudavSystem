@@ -104,10 +104,10 @@ namespace CompudavSystem.bdd
             }
         }
 
-        public static DataTable ConsultaGeneral(string tabla, string campo = "*")
+        public static DataTable ConsultaGeneral(string tabla, string campo = "*", string campoOrden = "name", string orden = "ASC")
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"SELECT { campo } FROM { tabla }";
+            SqlStament = $"SELECT { campo } FROM { tabla } ORDER BY {campoOrden} {orden}";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];
