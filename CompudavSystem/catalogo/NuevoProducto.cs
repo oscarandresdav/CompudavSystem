@@ -12,6 +12,8 @@ namespace CompudavSystem.catalogo
         public string TableBdd { get; set; }
         public string IdField { get; set; }
 
+        public ErrorProvider ErrorProvider { get; set; } = new ErrorProvider();
+
         public NuevoProducto()
         {
             InitializeComponent();
@@ -91,7 +93,15 @@ namespace CompudavSystem.catalogo
             {
                 if (aceptarButton.Text == "Actualizar")
                 {
-                    if (ConsultasSql.Actualizar(TableBdd, $"name = '{name}'","id", $"'{IdField}'"))
+                    if (ConsultasSql.Actualizar(TableBdd, 
+                        $"main_code = {mainCode}, aux_code = {auxCode}, name = {name}, detail = {descripcion}, " +
+                        $"stock = {stock}, minimum_stock_level = {minimumStockLevel}, cost = {cost}, " +
+                        $"percentage_price = {percentagePrice1}, price = {price1}, " +
+                        $"percentage_price2 = {percentagePrice2}, price2 = {price2}, " +
+                        $"percentage_price3 = {percentagePrice3}, price3 = {price3}, " +
+                        $"categoryId = {category}, manufacturerId = {manufacturer}, iceRateId = {iceRate}, " +
+                        $"ivaRateId = {ivaRate}, typeProductId = {typeProduct}, unitMeasurementId = {unitMeasurement}",
+                        "id", $"'{IdField}'"))
                     {
                         CerrarYRefrescarFormulario();
                     }
@@ -135,6 +145,29 @@ namespace CompudavSystem.catalogo
             Hide();
             Icatalogo.FocoEnTextBoxDeBusqueda();
             Icatalogo.Busqueda();
+        }
+
+        private void NameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateRequire(nameTextBox, "Por favor ingrese el Nombre");
+        }
+
+        private bool ValidateRequire(TextBox textBox, string mensaje)
+        {
+            bool bStatus = true;
+            if (textBox.Text == "")
+            {
+                ErrorProvider.SetError(textBox, mensaje);
+                bStatus = false;
+            }
+            else
+                ErrorProvider.SetError(textBox, "");
+            return bStatus;
+        }
+
+        private void MainCodeTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateRequire(mainCodeTextBox, "Por favor ingrese el Código UPC");
         }
     }
 }

@@ -33,45 +33,45 @@
             this.aceptarButton = new System.Windows.Forms.Button();
             this.cancelarButton = new System.Windows.Forms.Button();
             this.mainCodeTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.mainCodeLabel = new System.Windows.Forms.Label();
             this.auxCodeTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.auxCodeLabel = new System.Windows.Forms.Label();
             this.descripcionTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.descripcionLabel = new System.Windows.Forms.Label();
             this.stockTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.stockLabel = new System.Windows.Forms.Label();
             this.costTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.typeProductLabel = new System.Windows.Forms.Label();
             this.minimumStockLevelTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.minimumStockLevelLabel = new System.Windows.Forms.Label();
+            this.listaPreciosGroupBox = new System.Windows.Forms.GroupBox();
+            this.price3Label = new System.Windows.Forms.Label();
             this.price3TextBox = new System.Windows.Forms.TextBox();
             this.percentagePrice3TextBox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.percentagePrice3Label = new System.Windows.Forms.Label();
+            this.price2Label = new System.Windows.Forms.Label();
             this.price2TextBox = new System.Windows.Forms.TextBox();
             this.percentagePrice2TextBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.percentagePrice2Label = new System.Windows.Forms.Label();
+            this.price1Label = new System.Windows.Forms.Label();
             this.price1TextBox = new System.Windows.Forms.TextBox();
             this.percentagePrice1TextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.percentagePrice1Label = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.categoryLabel = new System.Windows.Forms.Label();
+            this.manufacturerLabel = new System.Windows.Forms.Label();
             this.manufacturerComboBox = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.unitMeasurementLabel = new System.Windows.Forms.Label();
             this.unitMeasurementComboBox = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.iceRateLabel = new System.Windows.Forms.Label();
             this.iceRateComboBox = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
+            this.ivaRateLabel = new System.Windows.Forms.Label();
             this.ivaRateComboBox = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.costLabel = new System.Windows.Forms.Label();
             this.typeProductComboBox = new System.Windows.Forms.ComboBox();
             this.categoryAddButton = new System.Windows.Forms.Button();
             this.manufacturerAddButton = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.listaPreciosGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -89,8 +89,9 @@
             this.nameTextBox.Location = new System.Drawing.Point(40, 38);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(406, 22);
-            this.nameTextBox.TabIndex = 1;
+            this.nameTextBox.TabIndex = 0;
             this.nameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DescripcionTextBox_KeyDown);
+            this.nameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
             // 
             // aceptarButton
             // 
@@ -100,7 +101,7 @@
             this.aceptarButton.Location = new System.Drawing.Point(246, 485);
             this.aceptarButton.Name = "aceptarButton";
             this.aceptarButton.Size = new System.Drawing.Size(200, 29);
-            this.aceptarButton.TabIndex = 4;
+            this.aceptarButton.TabIndex = 15;
             this.aceptarButton.Text = "Aceptar";
             this.aceptarButton.UseVisualStyleBackColor = true;
             this.aceptarButton.Click += new System.EventHandler(this.AceptarButton_Click);
@@ -112,7 +113,7 @@
             this.cancelarButton.Location = new System.Drawing.Point(40, 485);
             this.cancelarButton.Name = "cancelarButton";
             this.cancelarButton.Size = new System.Drawing.Size(200, 29);
-            this.cancelarButton.TabIndex = 5;
+            this.cancelarButton.TabIndex = 14;
             this.cancelarButton.Text = "Cancelar";
             this.cancelarButton.UseVisualStyleBackColor = true;
             this.cancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
@@ -123,16 +124,17 @@
             this.mainCodeTextBox.Location = new System.Drawing.Point(40, 81);
             this.mainCodeTextBox.Name = "mainCodeTextBox";
             this.mainCodeTextBox.Size = new System.Drawing.Size(180, 22);
-            this.mainCodeTextBox.TabIndex = 7;
+            this.mainCodeTextBox.TabIndex = 1;
+            this.mainCodeTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.MainCodeTextBox_Validating);
             // 
-            // label1
+            // mainCodeLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 63);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Código UPC";
+            this.mainCodeLabel.AutoSize = true;
+            this.mainCodeLabel.Location = new System.Drawing.Point(20, 63);
+            this.mainCodeLabel.Name = "mainCodeLabel";
+            this.mainCodeLabel.Size = new System.Drawing.Size(69, 15);
+            this.mainCodeLabel.TabIndex = 6;
+            this.mainCodeLabel.Text = "Código UPC";
             // 
             // auxCodeTextBox
             // 
@@ -140,16 +142,16 @@
             this.auxCodeTextBox.Location = new System.Drawing.Point(266, 81);
             this.auxCodeTextBox.Name = "auxCodeTextBox";
             this.auxCodeTextBox.Size = new System.Drawing.Size(180, 22);
-            this.auxCodeTextBox.TabIndex = 9;
+            this.auxCodeTextBox.TabIndex = 2;
             // 
-            // label2
+            // auxCodeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(246, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 15);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Código Auxiliar";
+            this.auxCodeLabel.AutoSize = true;
+            this.auxCodeLabel.Location = new System.Drawing.Point(246, 63);
+            this.auxCodeLabel.Name = "auxCodeLabel";
+            this.auxCodeLabel.Size = new System.Drawing.Size(86, 15);
+            this.auxCodeLabel.TabIndex = 8;
+            this.auxCodeLabel.Text = "Código Auxiliar";
             // 
             // descripcionTextBox
             // 
@@ -158,16 +160,16 @@
             this.descripcionTextBox.Multiline = true;
             this.descripcionTextBox.Name = "descripcionTextBox";
             this.descripcionTextBox.Size = new System.Drawing.Size(406, 44);
-            this.descripcionTextBox.TabIndex = 11;
+            this.descripcionTextBox.TabIndex = 3;
             // 
-            // label3
+            // descripcionLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 106);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Descripción";
+            this.descripcionLabel.AutoSize = true;
+            this.descripcionLabel.Location = new System.Drawing.Point(20, 106);
+            this.descripcionLabel.Name = "descripcionLabel";
+            this.descripcionLabel.Size = new System.Drawing.Size(67, 15);
+            this.descripcionLabel.TabIndex = 10;
+            this.descripcionLabel.Text = "Descripción";
             // 
             // stockTextBox
             // 
@@ -175,16 +177,16 @@
             this.stockTextBox.Location = new System.Drawing.Point(198, 189);
             this.stockTextBox.Name = "stockTextBox";
             this.stockTextBox.Size = new System.Drawing.Size(120, 22);
-            this.stockTextBox.TabIndex = 15;
+            this.stockTextBox.TabIndex = 5;
             // 
-            // label4
+            // stockLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(178, 171);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 15);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Stock";
+            this.stockLabel.AutoSize = true;
+            this.stockLabel.Location = new System.Drawing.Point(178, 171);
+            this.stockLabel.Name = "stockLabel";
+            this.stockLabel.Size = new System.Drawing.Size(35, 15);
+            this.stockLabel.TabIndex = 14;
+            this.stockLabel.Text = "Stock";
             // 
             // costTextBox
             // 
@@ -192,16 +194,16 @@
             this.costTextBox.Location = new System.Drawing.Point(40, 276);
             this.costTextBox.Name = "costTextBox";
             this.costTextBox.Size = new System.Drawing.Size(110, 22);
-            this.costTextBox.TabIndex = 13;
+            this.costTextBox.TabIndex = 9;
             // 
-            // label5
+            // typeProductLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 171);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 15);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Tipo de producto";
+            this.typeProductLabel.AutoSize = true;
+            this.typeProductLabel.Location = new System.Drawing.Point(20, 171);
+            this.typeProductLabel.Name = "typeProductLabel";
+            this.typeProductLabel.Size = new System.Drawing.Size(97, 15);
+            this.typeProductLabel.TabIndex = 12;
+            this.typeProductLabel.Text = "Tipo de producto";
             // 
             // minimumStockLevelTextBox
             // 
@@ -209,46 +211,46 @@
             this.minimumStockLevelTextBox.Location = new System.Drawing.Point(356, 189);
             this.minimumStockLevelTextBox.Name = "minimumStockLevelTextBox";
             this.minimumStockLevelTextBox.Size = new System.Drawing.Size(90, 22);
-            this.minimumStockLevelTextBox.TabIndex = 17;
+            this.minimumStockLevelTextBox.TabIndex = 6;
             // 
-            // label6
+            // minimumStockLevelLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(336, 171);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 15);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Stock mínimo";
+            this.minimumStockLevelLabel.AutoSize = true;
+            this.minimumStockLevelLabel.Location = new System.Drawing.Point(336, 171);
+            this.minimumStockLevelLabel.Name = "minimumStockLevelLabel";
+            this.minimumStockLevelLabel.Size = new System.Drawing.Size(78, 15);
+            this.minimumStockLevelLabel.TabIndex = 16;
+            this.minimumStockLevelLabel.Text = "Stock mínimo";
             // 
-            // groupBox1
+            // listaPreciosGroupBox
             // 
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.price3TextBox);
-            this.groupBox1.Controls.Add(this.percentagePrice3TextBox);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.price2TextBox);
-            this.groupBox1.Controls.Add(this.percentagePrice2TextBox);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.price1TextBox);
-            this.groupBox1.Controls.Add(this.percentagePrice1TextBox);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Location = new System.Drawing.Point(40, 305);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(406, 110);
-            this.groupBox1.TabIndex = 18;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lista de precios";
+            this.listaPreciosGroupBox.Controls.Add(this.price3Label);
+            this.listaPreciosGroupBox.Controls.Add(this.price3TextBox);
+            this.listaPreciosGroupBox.Controls.Add(this.percentagePrice3TextBox);
+            this.listaPreciosGroupBox.Controls.Add(this.percentagePrice3Label);
+            this.listaPreciosGroupBox.Controls.Add(this.price2Label);
+            this.listaPreciosGroupBox.Controls.Add(this.price2TextBox);
+            this.listaPreciosGroupBox.Controls.Add(this.percentagePrice2TextBox);
+            this.listaPreciosGroupBox.Controls.Add(this.percentagePrice2Label);
+            this.listaPreciosGroupBox.Controls.Add(this.price1Label);
+            this.listaPreciosGroupBox.Controls.Add(this.price1TextBox);
+            this.listaPreciosGroupBox.Controls.Add(this.percentagePrice1TextBox);
+            this.listaPreciosGroupBox.Controls.Add(this.percentagePrice1Label);
+            this.listaPreciosGroupBox.Location = new System.Drawing.Point(40, 305);
+            this.listaPreciosGroupBox.Name = "listaPreciosGroupBox";
+            this.listaPreciosGroupBox.Size = new System.Drawing.Size(406, 110);
+            this.listaPreciosGroupBox.TabIndex = 12;
+            this.listaPreciosGroupBox.TabStop = false;
+            this.listaPreciosGroupBox.Text = "Lista de precios";
             // 
-            // label11
+            // price3Label
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(163, 80);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(39, 15);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "Precio";
+            this.price3Label.AutoSize = true;
+            this.price3Label.Location = new System.Drawing.Point(163, 80);
+            this.price3Label.Name = "price3Label";
+            this.price3Label.Size = new System.Drawing.Size(39, 15);
+            this.price3Label.TabIndex = 26;
+            this.price3Label.Text = "Precio";
             // 
             // price3TextBox
             // 
@@ -256,7 +258,7 @@
             this.price3TextBox.Location = new System.Drawing.Point(208, 77);
             this.price3TextBox.Name = "price3TextBox";
             this.price3TextBox.Size = new System.Drawing.Size(120, 22);
-            this.price3TextBox.TabIndex = 25;
+            this.price3TextBox.TabIndex = 5;
             // 
             // percentagePrice3TextBox
             // 
@@ -264,25 +266,25 @@
             this.percentagePrice3TextBox.Location = new System.Drawing.Point(95, 77);
             this.percentagePrice3TextBox.Name = "percentagePrice3TextBox";
             this.percentagePrice3TextBox.Size = new System.Drawing.Size(50, 22);
-            this.percentagePrice3TextBox.TabIndex = 24;
+            this.percentagePrice3TextBox.TabIndex = 4;
             // 
-            // label12
+            // percentagePrice3Label
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(73, 80);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(16, 15);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "%";
+            this.percentagePrice3Label.AutoSize = true;
+            this.percentagePrice3Label.Location = new System.Drawing.Point(73, 80);
+            this.percentagePrice3Label.Name = "percentagePrice3Label";
+            this.percentagePrice3Label.Size = new System.Drawing.Size(16, 15);
+            this.percentagePrice3Label.TabIndex = 23;
+            this.percentagePrice3Label.Text = "%";
             // 
-            // label9
+            // price2Label
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(163, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 15);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "Precio";
+            this.price2Label.AutoSize = true;
+            this.price2Label.Location = new System.Drawing.Point(163, 52);
+            this.price2Label.Name = "price2Label";
+            this.price2Label.Size = new System.Drawing.Size(39, 15);
+            this.price2Label.TabIndex = 22;
+            this.price2Label.Text = "Precio";
             // 
             // price2TextBox
             // 
@@ -290,7 +292,7 @@
             this.price2TextBox.Location = new System.Drawing.Point(208, 49);
             this.price2TextBox.Name = "price2TextBox";
             this.price2TextBox.Size = new System.Drawing.Size(120, 22);
-            this.price2TextBox.TabIndex = 21;
+            this.price2TextBox.TabIndex = 3;
             // 
             // percentagePrice2TextBox
             // 
@@ -298,25 +300,25 @@
             this.percentagePrice2TextBox.Location = new System.Drawing.Point(95, 49);
             this.percentagePrice2TextBox.Name = "percentagePrice2TextBox";
             this.percentagePrice2TextBox.Size = new System.Drawing.Size(50, 22);
-            this.percentagePrice2TextBox.TabIndex = 20;
+            this.percentagePrice2TextBox.TabIndex = 2;
             // 
-            // label10
+            // percentagePrice2Label
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(73, 52);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(16, 15);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "%";
+            this.percentagePrice2Label.AutoSize = true;
+            this.percentagePrice2Label.Location = new System.Drawing.Point(73, 52);
+            this.percentagePrice2Label.Name = "percentagePrice2Label";
+            this.percentagePrice2Label.Size = new System.Drawing.Size(16, 15);
+            this.percentagePrice2Label.TabIndex = 19;
+            this.percentagePrice2Label.Text = "%";
             // 
-            // label8
+            // price1Label
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(163, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 15);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Precio";
+            this.price1Label.AutoSize = true;
+            this.price1Label.Location = new System.Drawing.Point(163, 24);
+            this.price1Label.Name = "price1Label";
+            this.price1Label.Size = new System.Drawing.Size(39, 15);
+            this.price1Label.TabIndex = 18;
+            this.price1Label.Text = "Precio";
             // 
             // price1TextBox
             // 
@@ -324,7 +326,7 @@
             this.price1TextBox.Location = new System.Drawing.Point(208, 21);
             this.price1TextBox.Name = "price1TextBox";
             this.price1TextBox.Size = new System.Drawing.Size(120, 22);
-            this.price1TextBox.TabIndex = 17;
+            this.price1TextBox.TabIndex = 1;
             // 
             // percentagePrice1TextBox
             // 
@@ -332,16 +334,16 @@
             this.percentagePrice1TextBox.Location = new System.Drawing.Point(95, 21);
             this.percentagePrice1TextBox.Name = "percentagePrice1TextBox";
             this.percentagePrice1TextBox.Size = new System.Drawing.Size(50, 22);
-            this.percentagePrice1TextBox.TabIndex = 15;
+            this.percentagePrice1TextBox.TabIndex = 0;
             // 
-            // label7
+            // percentagePrice1Label
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(73, 24);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(16, 15);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "%";
+            this.percentagePrice1Label.AutoSize = true;
+            this.percentagePrice1Label.Location = new System.Drawing.Point(73, 24);
+            this.percentagePrice1Label.Name = "percentagePrice1Label";
+            this.percentagePrice1Label.Size = new System.Drawing.Size(16, 15);
+            this.percentagePrice1Label.TabIndex = 14;
+            this.percentagePrice1Label.Text = "%";
             // 
             // categoryComboBox
             // 
@@ -350,25 +352,25 @@
             this.categoryComboBox.Location = new System.Drawing.Point(40, 232);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(155, 23);
-            this.categoryComboBox.TabIndex = 19;
+            this.categoryComboBox.TabIndex = 7;
             // 
-            // label13
+            // categoryLabel
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(20, 214);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(56, 15);
-            this.label13.TabIndex = 20;
-            this.label13.Text = "Categoría";
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Location = new System.Drawing.Point(20, 214);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(56, 15);
+            this.categoryLabel.TabIndex = 20;
+            this.categoryLabel.Text = "Categoría";
             // 
-            // label14
+            // manufacturerLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(246, 214);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(61, 15);
-            this.label14.TabIndex = 22;
-            this.label14.Text = "Fabricante";
+            this.manufacturerLabel.AutoSize = true;
+            this.manufacturerLabel.Location = new System.Drawing.Point(246, 214);
+            this.manufacturerLabel.Name = "manufacturerLabel";
+            this.manufacturerLabel.Size = new System.Drawing.Size(61, 15);
+            this.manufacturerLabel.TabIndex = 22;
+            this.manufacturerLabel.Text = "Fabricante";
             // 
             // manufacturerComboBox
             // 
@@ -377,16 +379,16 @@
             this.manufacturerComboBox.Location = new System.Drawing.Point(266, 232);
             this.manufacturerComboBox.Name = "manufacturerComboBox";
             this.manufacturerComboBox.Size = new System.Drawing.Size(155, 23);
-            this.manufacturerComboBox.TabIndex = 21;
+            this.manufacturerComboBox.TabIndex = 8;
             // 
-            // label15
+            // unitMeasurementLabel
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(316, 258);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(103, 15);
-            this.label15.TabIndex = 24;
-            this.label15.Text = "Unidad de medida";
+            this.unitMeasurementLabel.AutoSize = true;
+            this.unitMeasurementLabel.Location = new System.Drawing.Point(316, 258);
+            this.unitMeasurementLabel.Name = "unitMeasurementLabel";
+            this.unitMeasurementLabel.Size = new System.Drawing.Size(103, 15);
+            this.unitMeasurementLabel.TabIndex = 24;
+            this.unitMeasurementLabel.Text = "Unidad de medida";
             // 
             // unitMeasurementComboBox
             // 
@@ -395,16 +397,16 @@
             this.unitMeasurementComboBox.Location = new System.Drawing.Point(336, 276);
             this.unitMeasurementComboBox.Name = "unitMeasurementComboBox";
             this.unitMeasurementComboBox.Size = new System.Drawing.Size(110, 23);
-            this.unitMeasurementComboBox.TabIndex = 23;
+            this.unitMeasurementComboBox.TabIndex = 11;
             // 
-            // label16
+            // iceRateLabel
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(20, 418);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(23, 15);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "ICE";
+            this.iceRateLabel.AutoSize = true;
+            this.iceRateLabel.Location = new System.Drawing.Point(20, 418);
+            this.iceRateLabel.Name = "iceRateLabel";
+            this.iceRateLabel.Size = new System.Drawing.Size(23, 15);
+            this.iceRateLabel.TabIndex = 30;
+            this.iceRateLabel.Text = "ICE";
             // 
             // iceRateComboBox
             // 
@@ -413,16 +415,16 @@
             this.iceRateComboBox.Location = new System.Drawing.Point(40, 436);
             this.iceRateComboBox.Name = "iceRateComboBox";
             this.iceRateComboBox.Size = new System.Drawing.Size(406, 23);
-            this.iceRateComboBox.TabIndex = 29;
+            this.iceRateComboBox.TabIndex = 13;
             // 
-            // label17
+            // ivaRateLabel
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(168, 258);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(24, 15);
-            this.label17.TabIndex = 28;
-            this.label17.Text = "IVA";
+            this.ivaRateLabel.AutoSize = true;
+            this.ivaRateLabel.Location = new System.Drawing.Point(168, 258);
+            this.ivaRateLabel.Name = "ivaRateLabel";
+            this.ivaRateLabel.Size = new System.Drawing.Size(24, 15);
+            this.ivaRateLabel.TabIndex = 28;
+            this.ivaRateLabel.Text = "IVA";
             // 
             // ivaRateComboBox
             // 
@@ -431,16 +433,16 @@
             this.ivaRateComboBox.Location = new System.Drawing.Point(188, 276);
             this.ivaRateComboBox.Name = "ivaRateComboBox";
             this.ivaRateComboBox.Size = new System.Drawing.Size(110, 23);
-            this.ivaRateComboBox.TabIndex = 27;
+            this.ivaRateComboBox.TabIndex = 10;
             // 
-            // label18
+            // costLabel
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(20, 258);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 15);
-            this.label18.TabIndex = 26;
-            this.label18.Text = "Costo";
+            this.costLabel.AutoSize = true;
+            this.costLabel.Location = new System.Drawing.Point(20, 258);
+            this.costLabel.Name = "costLabel";
+            this.costLabel.Size = new System.Drawing.Size(37, 15);
+            this.costLabel.TabIndex = 26;
+            this.costLabel.Text = "Costo";
             // 
             // typeProductComboBox
             // 
@@ -449,7 +451,7 @@
             this.typeProductComboBox.Location = new System.Drawing.Point(40, 189);
             this.typeProductComboBox.Name = "typeProductComboBox";
             this.typeProductComboBox.Size = new System.Drawing.Size(120, 23);
-            this.typeProductComboBox.TabIndex = 25;
+            this.typeProductComboBox.TabIndex = 4;
             // 
             // categoryAddButton
             // 
@@ -460,7 +462,7 @@
             this.categoryAddButton.Location = new System.Drawing.Point(197, 232);
             this.categoryAddButton.Name = "categoryAddButton";
             this.categoryAddButton.Size = new System.Drawing.Size(23, 23);
-            this.categoryAddButton.TabIndex = 31;
+            this.categoryAddButton.TabIndex = 16;
             this.categoryAddButton.UseVisualStyleBackColor = true;
             // 
             // manufacturerAddButton
@@ -472,7 +474,7 @@
             this.manufacturerAddButton.Location = new System.Drawing.Point(423, 232);
             this.manufacturerAddButton.Name = "manufacturerAddButton";
             this.manufacturerAddButton.Size = new System.Drawing.Size(23, 23);
-            this.manufacturerAddButton.TabIndex = 32;
+            this.manufacturerAddButton.TabIndex = 17;
             this.manufacturerAddButton.UseVisualStyleBackColor = true;
             // 
             // NuevoProducto
@@ -483,31 +485,31 @@
             this.ClientSize = new System.Drawing.Size(485, 530);
             this.Controls.Add(this.manufacturerAddButton);
             this.Controls.Add(this.categoryAddButton);
-            this.Controls.Add(this.label16);
+            this.Controls.Add(this.iceRateLabel);
             this.Controls.Add(this.iceRateComboBox);
-            this.Controls.Add(this.label17);
+            this.Controls.Add(this.ivaRateLabel);
             this.Controls.Add(this.ivaRateComboBox);
-            this.Controls.Add(this.label18);
+            this.Controls.Add(this.costLabel);
             this.Controls.Add(this.typeProductComboBox);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.unitMeasurementLabel);
             this.Controls.Add(this.unitMeasurementComboBox);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.manufacturerLabel);
             this.Controls.Add(this.manufacturerComboBox);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.categoryComboBox);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.listaPreciosGroupBox);
             this.Controls.Add(this.minimumStockLevelTextBox);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.minimumStockLevelLabel);
             this.Controls.Add(this.stockTextBox);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.stockLabel);
             this.Controls.Add(this.costTextBox);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.typeProductLabel);
             this.Controls.Add(this.descripcionTextBox);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.descripcionLabel);
             this.Controls.Add(this.auxCodeTextBox);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.auxCodeLabel);
             this.Controls.Add(this.mainCodeTextBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.mainCodeLabel);
             this.Controls.Add(this.cancelarButton);
             this.Controls.Add(this.aceptarButton);
             this.Controls.Add(this.nameTextBox);
@@ -517,8 +519,8 @@
             this.Name = "NuevoProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NuevoCategoriaFabricante";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.listaPreciosGroupBox.ResumeLayout(false);
+            this.listaPreciosGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -531,42 +533,42 @@
         public System.Windows.Forms.Button aceptarButton;
         private System.Windows.Forms.Button cancelarButton;
         public System.Windows.Forms.TextBox mainCodeTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label mainCodeLabel;
         public System.Windows.Forms.TextBox auxCodeTextBox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label auxCodeLabel;
         public System.Windows.Forms.TextBox descripcionTextBox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label descripcionLabel;
         public System.Windows.Forms.TextBox stockTextBox;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label stockLabel;
         public System.Windows.Forms.TextBox costTextBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label typeProductLabel;
         public System.Windows.Forms.TextBox minimumStockLevelTextBox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label minimumStockLevelLabel;
+        private System.Windows.Forms.GroupBox listaPreciosGroupBox;
+        private System.Windows.Forms.Label price3Label;
         public System.Windows.Forms.TextBox price3TextBox;
         public System.Windows.Forms.TextBox percentagePrice3TextBox;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label percentagePrice3Label;
+        private System.Windows.Forms.Label price2Label;
         public System.Windows.Forms.TextBox price2TextBox;
         public System.Windows.Forms.TextBox percentagePrice2TextBox;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label percentagePrice2Label;
+        private System.Windows.Forms.Label price1Label;
         public System.Windows.Forms.TextBox price1TextBox;
         public System.Windows.Forms.TextBox percentagePrice1TextBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox categoryComboBox;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox manufacturerComboBox;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox unitMeasurementComboBox;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox iceRateComboBox;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox ivaRateComboBox;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox typeProductComboBox;
+        private System.Windows.Forms.Label percentagePrice1Label;
+        public System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.Label manufacturerLabel;
+        public System.Windows.Forms.ComboBox manufacturerComboBox;
+        private System.Windows.Forms.Label unitMeasurementLabel;
+        public System.Windows.Forms.ComboBox unitMeasurementComboBox;
+        private System.Windows.Forms.Label iceRateLabel;
+        public System.Windows.Forms.ComboBox iceRateComboBox;
+        private System.Windows.Forms.Label ivaRateLabel;
+        public System.Windows.Forms.ComboBox ivaRateComboBox;
+        private System.Windows.Forms.Label costLabel;
+        public System.Windows.Forms.ComboBox typeProductComboBox;
         private System.Windows.Forms.Button categoryAddButton;
         private System.Windows.Forms.Button manufacturerAddButton;
     }

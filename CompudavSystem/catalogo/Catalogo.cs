@@ -94,13 +94,32 @@ namespace CompudavSystem.catalogo
 
         private void AgregarButton_Click(object sender, EventArgs e)
         {
-            NuevoItemForm.DatosInicialesComboBoxs();
             DatosGuardarActualizar
                 (
                     "",
                     "Guardar",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
                     ""
                 );
+            
+
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -111,7 +130,25 @@ namespace CompudavSystem.catalogo
                     (
                         listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(),
                         "Actualizar",
-                        listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value.ToString()
+                        listadoDataGridView.Rows[e.RowIndex].Cells["main_code"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["aux_code"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["detail"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["stock"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["minimum_stock_level"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["cost"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["percentage_price"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["price"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["percentage_price2"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["price2"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["percentage_price3"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["price3"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["categoryId"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["manufacturerId"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["iceRateId"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["ivaRateId"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["typeProductId"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["unitMeasurementId"].Value.ToString()
                     );
             }
 
@@ -128,7 +165,11 @@ namespace CompudavSystem.catalogo
             }
         }
 
-        private void DatosGuardarActualizar(string id, string accionBoton, string nameCampo)
+        private void DatosGuardarActualizar(string id, string accionBoton, string mainCodeCampo, string auxCodeCampo,
+            string nameCampo, string detailCampo, string stockCampo, string minimumStockLevelCampo, string costCampo,
+            string percentagePrice1Campo, string price1Campo, string percentagePrice2Campo, string price2Campo,
+            string percentagePrice3Campo, string price3Campo, string categoryIdCampo, string manufacturerIdCampo,
+            string iceRateIdCampo, string ivaRateIdCampo, string typeProductIdCampo, string unitMeasurementIdCampo)
         {
             NuevoItemForm.Icatalogo = this;
             NuevoItemForm.Show();
@@ -139,6 +180,24 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.nameTextBox.Text = nameCampo;
             NuevoItemForm.nameTextBox.Focus();
             NuevoItemForm.nameTextBox.SelectAll();
+            NuevoItemForm.mainCodeTextBox.Text = mainCodeCampo;
+            NuevoItemForm.auxCodeTextBox.Text = auxCodeCampo;
+            NuevoItemForm.descripcionTextBox.Text = detailCampo;
+            NuevoItemForm.stockTextBox.Text = stockCampo;
+            NuevoItemForm.minimumStockLevelTextBox.Text = minimumStockLevelCampo;
+            NuevoItemForm.costTextBox.Text = costCampo;
+            NuevoItemForm.percentagePrice1TextBox.Text = percentagePrice1Campo;
+            NuevoItemForm.price1TextBox.Text = price1Campo;
+            NuevoItemForm.percentagePrice2TextBox.Text = percentagePrice2Campo;
+            NuevoItemForm.price2TextBox.Text = price2Campo;
+            NuevoItemForm.percentagePrice3TextBox.Text = percentagePrice3Campo;
+            NuevoItemForm.price3TextBox.Text = price3Campo;
+            NuevoItemForm.categoryComboBox.SelectedValue = (categoryIdCampo == "") ? "nulo" : categoryIdCampo;
+            NuevoItemForm.manufacturerComboBox.SelectedValue = manufacturerIdCampo;
+            NuevoItemForm.iceRateComboBox.SelectedValue = iceRateIdCampo;
+            NuevoItemForm.ivaRateComboBox.SelectedValue = ivaRateIdCampo;
+            NuevoItemForm.typeProductComboBox.SelectedValue = typeProductIdCampo;
+            NuevoItemForm.unitMeasurementComboBox.SelectedValue = unitMeasurementIdCampo;
         }
 
         private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
@@ -148,7 +207,8 @@ namespace CompudavSystem.catalogo
 
         public void Busqueda()
         {
-            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busquedaTextBox.Text }");
+            string busqueda = busquedaTextBox.Text.Replace("'", "\\'").Trim();
+            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busqueda }");
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
         }
     }

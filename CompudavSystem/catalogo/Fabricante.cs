@@ -127,7 +127,8 @@ namespace CompudavSystem.catalogo
 
         public void Busqueda()
         {
-            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busquedaTextBox.Text }");
+            string busqueda = busquedaTextBox.Text.Replace("'", "\\'").Trim();
+            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busqueda }");
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
         }
     }

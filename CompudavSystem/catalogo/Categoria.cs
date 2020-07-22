@@ -76,10 +76,11 @@ namespace CompudavSystem.catalogo
         {
             DatosGuardarActualizar
                 (
-                    "", 
-                    "Guardar", 
+                    "",
+                    "Guardar",
                     ""
                 );
+            
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -88,10 +89,11 @@ namespace CompudavSystem.catalogo
             {
                 DatosGuardarActualizar
                     (
-                        listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 
-                        "Actualizar", 
+                        listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(),
+                        "Actualizar",
                         listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value.ToString()
                     );
+                
             }
 
             if (listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
@@ -107,7 +109,7 @@ namespace CompudavSystem.catalogo
             }
         }
 
-        private void DatosGuardarActualizar(string id, string accionBoton, string descripcionCampo)
+        private void DatosGuardarActualizar(string id, string accionBoton, string nameCampo)
         {
             NuevoItemForm.Icatalogo = this;
             NuevoItemForm.Show();
@@ -115,10 +117,11 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
             NuevoItemForm.aceptarButton.Text = accionBoton;
-            NuevoItemForm.descripcionTextBox.Text = descripcionCampo;
+            NuevoItemForm.descripcionTextBox.Text = nameCampo;
             NuevoItemForm.descripcionTextBox.Focus();
             NuevoItemForm.descripcionTextBox.SelectAll();
         }
+        
 
         private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -127,7 +130,8 @@ namespace CompudavSystem.catalogo
 
         public void Busqueda()
         {
-            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busquedaTextBox.Text }");
+            string busqueda = busquedaTextBox.Text.Replace("'", "\\'").Trim();
+            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busqueda }");
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
         }
     }
