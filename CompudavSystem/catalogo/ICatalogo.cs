@@ -2,7 +2,7 @@
 {
     public interface ICatalogo
     {
-        void DatosInicialesDatagrid();
+        void DatosIniciales();
         void FocoEnTextBoxDeBusqueda();
         void Busqueda();
     }

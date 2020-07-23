@@ -16,10 +16,10 @@ namespace CompudavSystem.catalogo
         public Catalogo()
         {
             InitializeComponent();
-            DatosInicialesDatagrid();
+            DatosIniciales();
         }
 
-        public void DatosInicialesDatagrid() 
+        public void DatosIniciales() 
         {
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
@@ -81,7 +81,7 @@ namespace CompudavSystem.catalogo
             FabricanteForm.Show();
             FabricanteForm.BringToFront();
             FabricanteForm.busquedaTextBox.Focus();
-            FabricanteForm.DatosInicialesDatagrid();
+            FabricanteForm.DatosIniciales();
         }
 
         private void CategoriaButton_Click(object sender, EventArgs e)
@@ -89,11 +89,12 @@ namespace CompudavSystem.catalogo
             CategoriaForm.Show();
             CategoriaForm.BringToFront();
             CategoriaForm.busquedaTextBox.Focus();
-            CategoriaForm.DatosInicialesDatagrid();
+            CategoriaForm.DatosIniciales();
         }
 
         private void AgregarButton_Click(object sender, EventArgs e)
         {
+            
             DatosGuardarActualizar
                 (
                     "",
@@ -119,12 +120,11 @@ namespace CompudavSystem.catalogo
                     ""
                 );
             
-
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton")
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton")
             {
                 DatosGuardarActualizar
                     (
@@ -152,16 +152,15 @@ namespace CompudavSystem.catalogo
                     );
             }
 
-            if (listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
             {
                 if (MessageBox.Show("¿Está seguro que desea eliminar este item?", "Eliminar item", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (ConsultasSql.Eliminar(TableBdd, "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value}'"))
                     {
-                        DatosInicialesDatagrid();
+                        DatosIniciales();
                     }
                 }
-
             }
         }
 
@@ -176,7 +175,10 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.BringToFront();
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
+            NuevoItemForm.ErrorProvider.Clear();
+            NuevoItemForm.DatosIniciales();
             NuevoItemForm.aceptarButton.Text = accionBoton;
+
             NuevoItemForm.nameTextBox.Text = nameCampo;
             NuevoItemForm.nameTextBox.Focus();
             NuevoItemForm.nameTextBox.SelectAll();
@@ -193,11 +195,22 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.percentagePrice3TextBox.Text = percentagePrice3Campo;
             NuevoItemForm.price3TextBox.Text = price3Campo;
             NuevoItemForm.categoryComboBox.SelectedValue = (categoryIdCampo == "") ? "nulo" : categoryIdCampo;
-            NuevoItemForm.manufacturerComboBox.SelectedValue = manufacturerIdCampo;
-            NuevoItemForm.iceRateComboBox.SelectedValue = iceRateIdCampo;
-            NuevoItemForm.ivaRateComboBox.SelectedValue = ivaRateIdCampo;
-            NuevoItemForm.typeProductComboBox.SelectedValue = typeProductIdCampo;
-            NuevoItemForm.unitMeasurementComboBox.SelectedValue = unitMeasurementIdCampo;
+            NuevoItemForm.manufacturerComboBox.SelectedValue = (manufacturerIdCampo == "") ? "nulo" : manufacturerIdCampo;
+            NuevoItemForm.iceRateComboBox.SelectedValue = (iceRateIdCampo == "") ? "nulo" : iceRateIdCampo;
+            NuevoItemForm.unitMeasurementComboBox.SelectedValue = (unitMeasurementIdCampo == "") ? "nulo" : unitMeasurementIdCampo;
+            
+            if (accionBoton == "Actualizar")
+            {
+                NuevoItemForm.typeProductComboBox.SelectedValue = typeProductIdCampo;
+                NuevoItemForm.ivaRateComboBox.SelectedValue = ivaRateIdCampo;
+                NuevoItemForm.stockTextBox.ReadOnly = true;
+            }
+            else if (accionBoton == "Guardar")
+            {
+                NuevoItemForm.typeProductComboBox.SelectedIndex = 0;
+                NuevoItemForm.ivaRateComboBox.SelectedIndex = 0;
+                NuevoItemForm.stockTextBox.ReadOnly = false;
+            }
         }
 
         private void BusquedaTextBox_TextChanged(object sender, EventArgs e)

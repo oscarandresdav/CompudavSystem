@@ -14,9 +14,9 @@ namespace CompudavSystem.catalogo
         public Fabricante()
         {
             InitializeComponent();
-            DatosInicialesDatagrid();
+            DatosIniciales();
         }
-        public void DatosInicialesDatagrid()
+        public void DatosIniciales()
         {
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
@@ -84,7 +84,7 @@ namespace CompudavSystem.catalogo
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton") 
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton") 
             {
                 DatosGuardarActualizar
                     (
@@ -94,13 +94,13 @@ namespace CompudavSystem.catalogo
                     );
             }
 
-            if (listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
             {
                 if (MessageBox.Show("¿Está seguro que desea eliminar este item?", "Eliminar item", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (ConsultasSql.Eliminar(TableBdd, "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value}'"))
                     {
-                        DatosInicialesDatagrid();
+                        DatosIniciales();
                     }
                 }
 

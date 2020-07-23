@@ -69,8 +69,6 @@
             this.ivaRateComboBox = new System.Windows.Forms.ComboBox();
             this.costLabel = new System.Windows.Forms.Label();
             this.typeProductComboBox = new System.Windows.Forms.ComboBox();
-            this.categoryAddButton = new System.Windows.Forms.Button();
-            this.manufacturerAddButton = new System.Windows.Forms.Button();
             this.listaPreciosGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +85,7 @@
             // 
             this.nameTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.nameTextBox.Location = new System.Drawing.Point(40, 38);
+            this.nameTextBox.MaxLength = 255;
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(406, 22);
             this.nameTextBox.TabIndex = 0;
@@ -122,9 +121,11 @@
             // 
             this.mainCodeTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.mainCodeTextBox.Location = new System.Drawing.Point(40, 81);
+            this.mainCodeTextBox.MaxLength = 45;
             this.mainCodeTextBox.Name = "mainCodeTextBox";
             this.mainCodeTextBox.Size = new System.Drawing.Size(180, 22);
             this.mainCodeTextBox.TabIndex = 1;
+            this.mainCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainCodeTextBox_KeyDown);
             this.mainCodeTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.MainCodeTextBox_Validating);
             // 
             // mainCodeLabel
@@ -140,9 +141,11 @@
             // 
             this.auxCodeTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.auxCodeTextBox.Location = new System.Drawing.Point(266, 81);
+            this.auxCodeTextBox.MaxLength = 45;
             this.auxCodeTextBox.Name = "auxCodeTextBox";
             this.auxCodeTextBox.Size = new System.Drawing.Size(180, 22);
             this.auxCodeTextBox.TabIndex = 2;
+            this.auxCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuxCodeTextBox_KeyDown);
             // 
             // auxCodeLabel
             // 
@@ -161,6 +164,7 @@
             this.descripcionTextBox.Name = "descripcionTextBox";
             this.descripcionTextBox.Size = new System.Drawing.Size(406, 44);
             this.descripcionTextBox.TabIndex = 3;
+            this.descripcionTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DescripcionTextBox_KeyDown_1);
             // 
             // descripcionLabel
             // 
@@ -175,9 +179,13 @@
             // 
             this.stockTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.stockTextBox.Location = new System.Drawing.Point(198, 189);
+            this.stockTextBox.MaxLength = 11;
             this.stockTextBox.Name = "stockTextBox";
             this.stockTextBox.Size = new System.Drawing.Size(120, 22);
             this.stockTextBox.TabIndex = 5;
+            this.stockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StockTextBox_KeyDown);
+            this.stockTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StockTextBox_KeyPress);
+            this.stockTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.StockTextBox_Validating);
             // 
             // stockLabel
             // 
@@ -192,9 +200,13 @@
             // 
             this.costTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.costTextBox.Location = new System.Drawing.Point(40, 276);
+            this.costTextBox.MaxLength = 13;
             this.costTextBox.Name = "costTextBox";
             this.costTextBox.Size = new System.Drawing.Size(110, 22);
             this.costTextBox.TabIndex = 9;
+            this.costTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CostTextBox_KeyDown);
+            this.costTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
+            this.costTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.CostTextBox_Validating);
             // 
             // typeProductLabel
             // 
@@ -209,9 +221,12 @@
             // 
             this.minimumStockLevelTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.minimumStockLevelTextBox.Location = new System.Drawing.Point(356, 189);
+            this.minimumStockLevelTextBox.MaxLength = 11;
             this.minimumStockLevelTextBox.Name = "minimumStockLevelTextBox";
             this.minimumStockLevelTextBox.Size = new System.Drawing.Size(90, 22);
             this.minimumStockLevelTextBox.TabIndex = 6;
+            this.minimumStockLevelTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MinimumStockLevelTextBox_KeyDown);
+            this.minimumStockLevelTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MinimumStockLevelTextBox_KeyPress);
             // 
             // minimumStockLevelLabel
             // 
@@ -256,17 +271,23 @@
             // 
             this.price3TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.price3TextBox.Location = new System.Drawing.Point(208, 77);
+            this.price3TextBox.MaxLength = 13;
             this.price3TextBox.Name = "price3TextBox";
             this.price3TextBox.Size = new System.Drawing.Size(120, 22);
             this.price3TextBox.TabIndex = 5;
+            this.price3TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Price3TextBox_KeyDown);
+            this.price3TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Price3TextBox_KeyPress);
             // 
             // percentagePrice3TextBox
             // 
             this.percentagePrice3TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.percentagePrice3TextBox.Location = new System.Drawing.Point(95, 77);
+            this.percentagePrice3TextBox.MaxLength = 8;
             this.percentagePrice3TextBox.Name = "percentagePrice3TextBox";
             this.percentagePrice3TextBox.Size = new System.Drawing.Size(50, 22);
             this.percentagePrice3TextBox.TabIndex = 4;
+            this.percentagePrice3TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice3TextBox_KeyDown);
+            this.percentagePrice3TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PercentagePrice3TextBox_KeyPress);
             // 
             // percentagePrice3Label
             // 
@@ -290,17 +311,23 @@
             // 
             this.price2TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.price2TextBox.Location = new System.Drawing.Point(208, 49);
+            this.price2TextBox.MaxLength = 13;
             this.price2TextBox.Name = "price2TextBox";
             this.price2TextBox.Size = new System.Drawing.Size(120, 22);
             this.price2TextBox.TabIndex = 3;
+            this.price2TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Price2TextBox_KeyDown);
+            this.price2TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Price2TextBox_KeyPress);
             // 
             // percentagePrice2TextBox
             // 
             this.percentagePrice2TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.percentagePrice2TextBox.Location = new System.Drawing.Point(95, 49);
+            this.percentagePrice2TextBox.MaxLength = 8;
             this.percentagePrice2TextBox.Name = "percentagePrice2TextBox";
             this.percentagePrice2TextBox.Size = new System.Drawing.Size(50, 22);
             this.percentagePrice2TextBox.TabIndex = 2;
+            this.percentagePrice2TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice2TextBox_KeyDown);
+            this.percentagePrice2TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PercentagePrice2TextBox_KeyPress);
             // 
             // percentagePrice2Label
             // 
@@ -324,17 +351,29 @@
             // 
             this.price1TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.price1TextBox.Location = new System.Drawing.Point(208, 21);
+            this.price1TextBox.MaxLength = 13;
             this.price1TextBox.Name = "price1TextBox";
             this.price1TextBox.Size = new System.Drawing.Size(120, 22);
             this.price1TextBox.TabIndex = 1;
+            this.price1TextBox.TextChanged += new System.EventHandler(this.Price1TextBox_TextChanged);
+            this.price1TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Price1TextBox_KeyDown);
+            this.price1TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Price1TextBox_KeyPress);
+            this.price1TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Price1TextBox_KeyUp);
+            this.price1TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.Price1TextBox_Validating);
             // 
             // percentagePrice1TextBox
             // 
             this.percentagePrice1TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.percentagePrice1TextBox.Location = new System.Drawing.Point(95, 21);
+            this.percentagePrice1TextBox.MaxLength = 8;
             this.percentagePrice1TextBox.Name = "percentagePrice1TextBox";
             this.percentagePrice1TextBox.Size = new System.Drawing.Size(50, 22);
             this.percentagePrice1TextBox.TabIndex = 0;
+            this.percentagePrice1TextBox.TextChanged += new System.EventHandler(this.PercentagePrice1TextBox_TextChanged);
+            this.percentagePrice1TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice1TextBox_KeyDown);
+            this.percentagePrice1TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PercentagePrice1TextBox_KeyPress);
+            this.percentagePrice1TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice1TextBox_KeyUp);
+            this.percentagePrice1TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PercentagePrice1TextBox_Validating);
             // 
             // percentagePrice1Label
             // 
@@ -351,7 +390,7 @@
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(40, 232);
             this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(155, 23);
+            this.categoryComboBox.Size = new System.Drawing.Size(180, 23);
             this.categoryComboBox.TabIndex = 7;
             // 
             // categoryLabel
@@ -378,7 +417,7 @@
             this.manufacturerComboBox.FormattingEnabled = true;
             this.manufacturerComboBox.Location = new System.Drawing.Point(266, 232);
             this.manufacturerComboBox.Name = "manufacturerComboBox";
-            this.manufacturerComboBox.Size = new System.Drawing.Size(155, 23);
+            this.manufacturerComboBox.Size = new System.Drawing.Size(180, 23);
             this.manufacturerComboBox.TabIndex = 8;
             // 
             // unitMeasurementLabel
@@ -453,38 +492,12 @@
             this.typeProductComboBox.Size = new System.Drawing.Size(120, 23);
             this.typeProductComboBox.TabIndex = 4;
             // 
-            // categoryAddButton
-            // 
-            this.categoryAddButton.BackgroundImage = global::CompudavSystem.Properties.Resources.add_22px;
-            this.categoryAddButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.categoryAddButton.FlatAppearance.BorderSize = 0;
-            this.categoryAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.categoryAddButton.Location = new System.Drawing.Point(197, 232);
-            this.categoryAddButton.Name = "categoryAddButton";
-            this.categoryAddButton.Size = new System.Drawing.Size(23, 23);
-            this.categoryAddButton.TabIndex = 16;
-            this.categoryAddButton.UseVisualStyleBackColor = true;
-            // 
-            // manufacturerAddButton
-            // 
-            this.manufacturerAddButton.BackgroundImage = global::CompudavSystem.Properties.Resources.add_22px;
-            this.manufacturerAddButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.manufacturerAddButton.FlatAppearance.BorderSize = 0;
-            this.manufacturerAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.manufacturerAddButton.Location = new System.Drawing.Point(423, 232);
-            this.manufacturerAddButton.Name = "manufacturerAddButton";
-            this.manufacturerAddButton.Size = new System.Drawing.Size(23, 23);
-            this.manufacturerAddButton.TabIndex = 17;
-            this.manufacturerAddButton.UseVisualStyleBackColor = true;
-            // 
             // NuevoProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(485, 530);
-            this.Controls.Add(this.manufacturerAddButton);
-            this.Controls.Add(this.categoryAddButton);
             this.Controls.Add(this.iceRateLabel);
             this.Controls.Add(this.iceRateComboBox);
             this.Controls.Add(this.ivaRateLabel);
@@ -569,7 +582,5 @@
         public System.Windows.Forms.ComboBox ivaRateComboBox;
         private System.Windows.Forms.Label costLabel;
         public System.Windows.Forms.ComboBox typeProductComboBox;
-        private System.Windows.Forms.Button categoryAddButton;
-        private System.Windows.Forms.Button manufacturerAddButton;
     }
 }
