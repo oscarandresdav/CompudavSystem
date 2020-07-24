@@ -206,6 +206,7 @@
             this.costTextBox.TabIndex = 9;
             this.costTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CostTextBox_KeyDown);
             this.costTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
+            this.costTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CostTextBox_KeyUp);
             this.costTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.CostTextBox_Validating);
             // 
             // typeProductLabel
@@ -277,6 +278,7 @@
             this.price3TextBox.TabIndex = 5;
             this.price3TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Price3TextBox_KeyDown);
             this.price3TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Price3TextBox_KeyPress);
+            this.price3TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Price3TextBox_KeyUp);
             // 
             // percentagePrice3TextBox
             // 
@@ -288,6 +290,7 @@
             this.percentagePrice3TextBox.TabIndex = 4;
             this.percentagePrice3TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice3TextBox_KeyDown);
             this.percentagePrice3TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PercentagePrice3TextBox_KeyPress);
+            this.percentagePrice3TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice3TextBox_KeyUp);
             // 
             // percentagePrice3Label
             // 
@@ -317,6 +320,7 @@
             this.price2TextBox.TabIndex = 3;
             this.price2TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Price2TextBox_KeyDown);
             this.price2TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Price2TextBox_KeyPress);
+            this.price2TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Price2TextBox_KeyUp);
             // 
             // percentagePrice2TextBox
             // 
@@ -328,6 +332,7 @@
             this.percentagePrice2TextBox.TabIndex = 2;
             this.percentagePrice2TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice2TextBox_KeyDown);
             this.percentagePrice2TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PercentagePrice2TextBox_KeyPress);
+            this.percentagePrice2TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice2TextBox_KeyUp);
             // 
             // percentagePrice2Label
             // 
@@ -355,7 +360,6 @@
             this.price1TextBox.Name = "price1TextBox";
             this.price1TextBox.Size = new System.Drawing.Size(120, 22);
             this.price1TextBox.TabIndex = 1;
-            this.price1TextBox.TextChanged += new System.EventHandler(this.Price1TextBox_TextChanged);
             this.price1TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Price1TextBox_KeyDown);
             this.price1TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Price1TextBox_KeyPress);
             this.price1TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Price1TextBox_KeyUp);
@@ -369,7 +373,6 @@
             this.percentagePrice1TextBox.Name = "percentagePrice1TextBox";
             this.percentagePrice1TextBox.Size = new System.Drawing.Size(50, 22);
             this.percentagePrice1TextBox.TabIndex = 0;
-            this.percentagePrice1TextBox.TextChanged += new System.EventHandler(this.PercentagePrice1TextBox_TextChanged);
             this.percentagePrice1TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice1TextBox_KeyDown);
             this.percentagePrice1TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PercentagePrice1TextBox_KeyPress);
             this.percentagePrice1TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PercentagePrice1TextBox_KeyUp);

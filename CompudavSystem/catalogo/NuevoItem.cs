@@ -1,6 +1,6 @@
-﻿using CompudavSystem.bdd;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using CompudavSystem.bdd;
 
 namespace CompudavSystem.catalogo
 {

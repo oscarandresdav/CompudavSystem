@@ -80,7 +80,6 @@ namespace CompudavSystem.catalogo
                     "Guardar",
                     ""
                 );
-            
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -39,6 +39,7 @@ namespace CompudavSystem.catalogo
         {
             CerrarFormularios();
         }
+
         private void BusquedaTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) { CerrarFormularios(); }

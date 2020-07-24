@@ -94,32 +94,11 @@ namespace CompudavSystem.catalogo
 
         private void AgregarButton_Click(object sender, EventArgs e)
         {
-            
             DatosGuardarActualizar
                 (
-                    "",
-                    "Guardar",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
+                    "", "Guardar", "", "", "", "", "", "", "", "", 
+                    "", "", "", "", "", "", "", "", "", "", ""
                 );
-            
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)

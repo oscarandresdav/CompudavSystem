@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CompudavSystem.utilitario
 {
@@ -55,6 +56,19 @@ namespace CompudavSystem.utilitario
             {
                 return codigo;
             }
+        }
+
+        public static bool UnSoloPunto(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using CompudavSystem.bdd;
-using System;
+﻿using System;
 using System.Data;
-using System.Net.Http.Headers;
 using System.Windows.Forms;
+using CompudavSystem.bdd;
 using CompudavSystem.utilitario;
-using System.Text;
 
 namespace CompudavSystem.catalogo
 {
@@ -62,13 +60,17 @@ namespace CompudavSystem.catalogo
 
         private void AceptarButton_Click(object sender, EventArgs e)
         {
-            ValidateRequire(nameTextBox, "Por favor ingrese el Nombre");
-            ValidateRequire(mainCodeTextBox, "Por favor ingrese el Código UPC"); 
-            ValidateRequire(stockTextBox, "Por favor ingrese la cantidad de Existencia actual del item");
-            ValidateRequire(costTextBox, "Por favor ingrese el Costo del item actual");
-            ValidateRequire(percentagePrice1TextBox, "Por favor ingrese el Porcentaje de Venta del item actual");
-            ValidateRequire(price1TextBox, "Por favor ingrese el Precio del item actual");
-            if (ErrorStatus) { Guardar(); }           
+            ValidarCampoRequerido(nameTextBox, "Por favor ingrese el Nombre");
+            ValidarCampoRequerido(mainCodeTextBox, "Por favor ingrese el Código UPC"); 
+            ValidarCampoRequerido(stockTextBox, "Por favor ingrese la cantidad de Existencia actual del item");
+            ValidarCampoRequerido(costTextBox, "Por favor ingrese el Costo del item actual");
+            ValidarCampoRequerido(percentagePrice1TextBox, "Por favor ingrese el Porcentaje de Venta del item actual");
+            ValidarCampoRequerido(price1TextBox, "Por favor ingrese el Precio del item actual");
+            
+            if (ErrorStatus) 
+            { 
+                Guardar(); 
+            }           
         }
 
         private void Guardar()
@@ -157,12 +159,7 @@ namespace CompudavSystem.catalogo
             Icatalogo.Busqueda();
         }
 
-        private void NameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ValidateRequire(nameTextBox, "Por favor ingrese el Nombre");
-        }
-
-        private bool ValidateRequire(TextBox textBox, string mensaje)
+        private bool ValidarCampoRequerido(TextBox textBox, string mensaje)
         {
             ErrorStatus = true;
             if (textBox.Text == "")
@@ -175,78 +172,86 @@ namespace CompudavSystem.catalogo
             return ErrorStatus;
         }
 
+        private void NameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidarCampoRequerido(nameTextBox, "Por favor ingrese el Nombre");
+        }
+
         private void MainCodeTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ValidateRequire(mainCodeTextBox, "Por favor ingrese el Código UPC");
+            ValidarCampoRequerido(mainCodeTextBox, "Por favor ingrese el Código UPC");
         }
 
         private void StockTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ValidateRequire(stockTextBox, "Por favor ingrese la cantidad de Existencia actual del item");
+            ValidarCampoRequerido(stockTextBox, "Por favor ingrese la cantidad de Existencia actual del item");
         }
 
         private void CostTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ValidateRequire(costTextBox, "Por favor ingrese el Costo del item actual");
+            ValidarCampoRequerido(costTextBox, "Por favor ingrese el Costo del item actual");
         }
 
         private void PercentagePrice1TextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ValidateRequire(percentagePrice1TextBox, "Por favor ingrese el Porcentaje de Venta del item actual");
+            ValidarCampoRequerido(percentagePrice1TextBox, "Por favor ingrese el Porcentaje de Venta del item actual");
         }
 
         private void Price1TextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ValidateRequire(price1TextBox, "Por favor ingrese el Precio del item actual");
+            ValidarCampoRequerido(price1TextBox, "Por favor ingrese el Precio del item actual");
         }
 
         private void StockTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.Numeros((int)e.KeyChar);
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
         }
 
         private void MinimumStockLevelTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.Numeros((int)e.KeyChar);
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
         }
 
         private void CostTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.DecimalesPunto((int)e.KeyChar);
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
         }
 
         private void PercentagePrice1TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.DecimalesPunto((int)e.KeyChar);
-
-            
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
         }
 
         private void PercentagePrice2TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.DecimalesPunto((int)e.KeyChar);
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
         }
 
         private void PercentagePrice3TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.DecimalesPunto((int)e.KeyChar);
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
         }
 
         private void Price1TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.DecimalesPunto((int)e.KeyChar);
-
-            
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
         }
 
         private void Price2TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.DecimalesPunto((int)e.KeyChar);
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
         }
 
         private void Price3TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = (char)Validaciones.DecimalesPunto((int)e.KeyChar);
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
         }
 
         private void MainCodeTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -282,15 +287,11 @@ namespace CompudavSystem.catalogo
         private void PercentagePrice1TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) { price1TextBox.Focus(); }
-
-            
         }
 
         private void Price1TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) { percentagePrice2TextBox.Focus(); }
-
-            
         }
 
         private void PercentagePrice2TextBox_KeyDown(object sender, KeyEventArgs e)
@@ -313,38 +314,70 @@ namespace CompudavSystem.catalogo
             if (e.KeyCode == Keys.Enter) { iceRateComboBox.Focus(); }
         }
 
-        private void PercentagePrice1TextBox_TextChanged(object sender, EventArgs e)
+        private void CalculoPrecio(TextBox cost, TextBox percentage, TextBox price)
         {
-            
+            decimal priceDecimal;
+            _ = decimal.TryParse(cost.Text, out decimal costDecimal);
+            _ = decimal.TryParse(percentage.Text, out decimal percentageDecimal);
+            priceDecimal = costDecimal + (costDecimal * (percentageDecimal / 100));
+            price.Text = decimal.Round(priceDecimal, 4).ToString();
         }
 
-        private void Price1TextBox_TextChanged(object sender, EventArgs e)
+        private void CalculoPorcentaje(TextBox cost, TextBox percentage, TextBox price)
         {
-            
+            decimal percentageDecimal;
+            _ = decimal.TryParse(cost.Text, out decimal costDecimal);
+            _ = decimal.TryParse(price.Text, out decimal priceDecimal);
+            if (costDecimal == 0)
+            {
+                ErrorProvider.SetError(cost, "Costo es igual a 0");
+                ErrorStatus = false;
+                percentageDecimal = 0;
+            }
+            else
+            {
+                ErrorProvider.SetError(cost, "");
+                percentageDecimal = ((priceDecimal - costDecimal) * 100) / costDecimal;
+            }
+            percentage.Text = decimal.Round(percentageDecimal, 4).ToString();
         }
 
         private void PercentagePrice1TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            decimal cost = costTextBox.Text == "" ? 0 : Convert.ToDecimal(costTextBox.Text);
-            decimal percentage1 = percentagePrice1TextBox.Text == "" ? 0 : Convert.ToDecimal(percentagePrice1TextBox.Text);
-            decimal price1;
+            CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox);
+        }
 
-            price1 = cost + (cost * (percentage1 / 100));
+        private void PercentagePrice2TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox);
+        }
 
-            price1TextBox.Text = price1.ToString();
+        private void PercentagePrice3TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox);
         }
 
         private void Price1TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            decimal cost = costTextBox.Text == "" || costTextBox.Text == "." ? 0 : Convert.ToDecimal(costTextBox.Text);
-            decimal price1 = price1TextBox.Text == "" || price1TextBox.Text == "." ? 0 : Convert.ToDecimal(price1TextBox.Text);
-            decimal percentage1;
-
-            // price1 = cost + (cost * (percentage1 / 100));
-
-            percentage1 = ((price1 - cost) * 100) / cost;
-
-            percentagePrice1TextBox.Text = percentage1.ToString();
+            CalculoPorcentaje(costTextBox, percentagePrice1TextBox, price1TextBox);
         }
+
+        private void Price2TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPorcentaje(costTextBox, percentagePrice2TextBox, price2TextBox);
+        }
+
+        private void Price3TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPorcentaje(costTextBox, percentagePrice3TextBox, price3TextBox);
+        }
+
+        private void CostTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox);
+            if (percentagePrice2TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox); }
+            if (percentagePrice3TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox); }
+        }
+
     }
 }
