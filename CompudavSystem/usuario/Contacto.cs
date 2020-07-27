@@ -23,36 +23,31 @@ namespace CompudavSystem.usuario
 
         public void DatosIniciales()
         {
-            listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
-            listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
-            listadoDataGridView.Columns["name"].HeaderText = "Descripción";
-            listadoDataGridView.Columns["name"].Width = 347;
+            listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd, campoOrden: "business_name");
+            listadoDataGridView.Sort(listadoDataGridView.Columns["business_name"], ListSortDirection.Ascending);
+            listadoDataGridView.Columns["business_name"].HeaderText = "Nombre";
+            listadoDataGridView.Columns["business_name"].Width = 320;
 
-            listadoDataGridView.Columns["cost"].HeaderText = "Costo";
-            listadoDataGridView.Columns["price"].HeaderText = "P.V.P.";
-            listadoDataGridView.Columns["stock"].HeaderText = "Existencias";
-            listadoDataGridView.Columns["stock"].Width = 90;
+            listadoDataGridView.Columns["id_number"].HeaderText = "Identificación";
+            listadoDataGridView.Columns["landline"].HeaderText = "Telefono";
+            listadoDataGridView.Columns["landline"].Width = 90;
+            listadoDataGridView.Columns["email"].HeaderText = "Correo";
+            listadoDataGridView.Columns["email"].Width = 120;
 
             listadoDataGridView.Columns["id"].Visible = false;
-            listadoDataGridView.Columns["main_code"].Visible = false;
-            listadoDataGridView.Columns["aux_code"].Visible = false;
-            listadoDataGridView.Columns["detail"].Visible = false;
-            listadoDataGridView.Columns["minimum_stock_level"].Visible = false;
-            listadoDataGridView.Columns["percentage_price"].Visible = false;
-            listadoDataGridView.Columns["percentage_price2"].Visible = false;
-            listadoDataGridView.Columns["price2"].Visible = false;
-            listadoDataGridView.Columns["percentage_price3"].Visible = false;
-            listadoDataGridView.Columns["price3"].Visible = false;
+            listadoDataGridView.Columns["tradename"].Visible = false;
+            listadoDataGridView.Columns["address"].Visible = false;
+            listadoDataGridView.Columns["mobile_phone"].Visible = false;
+            listadoDataGridView.Columns["client"].Visible = false;
+            listadoDataGridView.Columns["provider"].Visible = false;
+            listadoDataGridView.Columns["special_taxpayer"].Visible = false;
+            listadoDataGridView.Columns["additional_information"].Visible = false;
             listadoDataGridView.Columns["status"].Visible = false;
             listadoDataGridView.Columns["created_at"].Visible = false;
             listadoDataGridView.Columns["modified_at"].Visible = false;
             listadoDataGridView.Columns["revision"].Visible = false;
-            listadoDataGridView.Columns["categoryId"].Visible = false;
-            listadoDataGridView.Columns["manufacturerId"].Visible = false;
-            listadoDataGridView.Columns["iceRateId"].Visible = false;
-            listadoDataGridView.Columns["ivaRateId"].Visible = false;
-            listadoDataGridView.Columns["typeProductId"].Visible = false;
-            listadoDataGridView.Columns["unitMeasurementId"].Visible = false;
+            listadoDataGridView.Columns["typeIdentificationId"].Visible = false;
+            
         }
 
 
@@ -61,65 +56,118 @@ namespace CompudavSystem.usuario
         {
             busquedaTextBox.Focus();
         }
+
+        private void CrearBotonAccionesDatagridview(string headerText, string name, Bitmap pathImage)
+        {
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
+            Image image = pathImage;
+            img.Image = image;
+            listadoDataGridView.Columns.Add(img);
+            img.HeaderText = headerText;
+            img.Name = name;
+            img.Width = 60;
+        }
         private void AgregarButton_Click(object sender, EventArgs e)
         {
-
+            DatosGuardarActualizar
+                (
+                    "", "Guardar", "", "", "", "", "", "", "", "0",
+                    "0", "0", "", ""
+                );
         }
 
-        private void DatosGuardarActualizar(string id, string accionBoton, string mainCodeCampo, string auxCodeCampo,
-            string nameCampo, string detailCampo, string stockCampo, string minimumStockLevelCampo, string costCampo,
-            string percentagePrice1Campo, string price1Campo, string percentagePrice2Campo, string price2Campo,
-            string percentagePrice3Campo, string price3Campo, string categoryIdCampo, string manufacturerIdCampo,
-            string iceRateIdCampo, string ivaRateIdCampo, string typeProductIdCampo, string unitMeasurementIdCampo)
+        private void DatosGuardarActualizar(string id, string accionBoton, string idNumberCampo, string businessNameCampo,
+            string tradenameCampo, string addressCampo, string landlineCampo, string mobilePhoneCampo, string emailCampo,
+            string clientCampo, string providerCampo, string specialTaxpayerCampo, string additionalInformationCampo, string typeIdentificationIdCampo)
         {
             NuevoItemForm.Icontacto = this;
             NuevoItemForm.Show();
             NuevoItemForm.BringToFront();
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
-            //NuevoItemForm.ErrorProvider.Clear();
-            //NuevoItemForm.DatosIniciales();
+            NuevoItemForm.ErrorProvider.Clear();
+            NuevoItemForm.DatosIniciales();
             NuevoItemForm.aceptarButton.Text = accionBoton;
 
-            //NuevoItemForm.nameTextBox.Text = nameCampo;
-            //NuevoItemForm.nameTextBox.Focus();
-            //NuevoItemForm.nameTextBox.SelectAll();
-            //NuevoItemForm.mainCodeTextBox.Text = mainCodeCampo;
-            //NuevoItemForm.auxCodeTextBox.Text = auxCodeCampo;
-            //NuevoItemForm.descripcionTextBox.Text = detailCampo;
-            //NuevoItemForm.stockTextBox.Text = stockCampo;
-            //NuevoItemForm.minimumStockLevelTextBox.Text = minimumStockLevelCampo;
-            //NuevoItemForm.costTextBox.Text = costCampo;
-            //NuevoItemForm.percentagePrice1TextBox.Text = percentagePrice1Campo;
-            //NuevoItemForm.price1TextBox.Text = price1Campo;
-            //NuevoItemForm.percentagePrice2TextBox.Text = percentagePrice2Campo;
-            //NuevoItemForm.price2TextBox.Text = price2Campo;
-            //NuevoItemForm.percentagePrice3TextBox.Text = percentagePrice3Campo;
-            //NuevoItemForm.price3TextBox.Text = price3Campo;
-            //NuevoItemForm.categoryComboBox.SelectedValue = (categoryIdCampo == "") ? "nulo" : categoryIdCampo;
-            //NuevoItemForm.manufacturerComboBox.SelectedValue = (manufacturerIdCampo == "") ? "nulo" : manufacturerIdCampo;
-            //NuevoItemForm.iceRateComboBox.SelectedValue = (iceRateIdCampo == "") ? "nulo" : iceRateIdCampo;
-            //NuevoItemForm.unitMeasurementComboBox.SelectedValue = (unitMeasurementIdCampo == "") ? "nulo" : unitMeasurementIdCampo;
+            NuevoItemForm.businessNameTextBox.Text = businessNameCampo;
+            NuevoItemForm.businessNameTextBox.Focus();
+            NuevoItemForm.businessNameTextBox.SelectAll();
+            NuevoItemForm.tradenameTextBox.Text = tradenameCampo;
+            NuevoItemForm.addressTextBox.Text = addressCampo;
+            NuevoItemForm.idNumberTextBox.Text = idNumberCampo;
+            NuevoItemForm.clientCheckBox.Checked = clientCampo != "0";
+            NuevoItemForm.providerCheckBox.Checked = providerCampo != "0";
+            NuevoItemForm.specialTaxpayerCheckBox.Checked = specialTaxpayerCampo != "0";
+            NuevoItemForm.emailTextBox.Text = emailCampo;
+            NuevoItemForm.landlineTextBox.Text = landlineCampo;
+            NuevoItemForm.mobilePhoneTextBox.Text = mobilePhoneCampo;
+            NuevoItemForm.additionalInformationTextBox.Text = additionalInformationCampo;
+            NuevoItemForm.typeIdentificationComboBox.SelectedValue = (typeIdentificationIdCampo == "") ? "nulo" : typeIdentificationIdCampo; ;
+            
 
             if (accionBoton == "Actualizar")
             {
-                //NuevoItemForm.typeProductComboBox.SelectedValue = typeProductIdCampo;
-                //NuevoItemForm.ivaRateComboBox.SelectedValue = ivaRateIdCampo;
-                //NuevoItemForm.stockTextBox.ReadOnly = true;
+                NuevoItemForm.typeIdentificationComboBox.SelectedValue = typeIdentificationIdCampo;
             }
             else if (accionBoton == "Guardar")
             {
-                //NuevoItemForm.typeProductComboBox.SelectedIndex = 0;
-                //NuevoItemForm.ivaRateComboBox.SelectedIndex = 0;
-                //NuevoItemForm.stockTextBox.ReadOnly = false;
+                NuevoItemForm.typeIdentificationComboBox.SelectedIndex = 0;
             }
         }
 
         public void Busqueda()
         {
             string busqueda = busquedaTextBox.Text.Replace("'", "\\'").Trim();
-            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busqueda }");
-            listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
+            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "business_name", $"{ busqueda }");
+            listadoDataGridView.Sort(listadoDataGridView.Columns["business_name"], ListSortDirection.Ascending);
+        }
+
+        private void Contacto_Load(object sender, EventArgs e)
+        {
+            FocoEnTextBoxDeBusqueda();
+            CrearBotonAccionesDatagridview("Editar", "editButton", Properties.Resources.edit_18px);
+            CrearBotonAccionesDatagridview("Eliminar", "deleteButton", Properties.Resources.delete_bin_18px);
+        }
+
+        private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Busqueda();
+        }
+
+        private void listadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton")
+            {
+                DatosGuardarActualizar
+                    (
+                        listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(),
+                        "Actualizar",
+                        listadoDataGridView.Rows[e.RowIndex].Cells["id_number"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["business_name"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["tradename"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["address"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["landline"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["mobile_phone"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["email"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["client"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["provider"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["special_taxpayer"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["additional_information"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["typeIdentificationId"].Value.ToString()
+                        
+                    );
+            }
+
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
+            {
+                if (MessageBox.Show("¿Está seguro que desea eliminar este item?", "Eliminar item", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (ConsultasSql.Eliminar(TableBdd, "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value}'"))
+                    {
+                        DatosIniciales();
+                    }
+                }
+            }
         }
     }
 }

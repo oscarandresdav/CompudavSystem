@@ -101,44 +101,38 @@ namespace CompudavSystem.catalogo
             string typeProduct = (typeProductComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{typeProductComboBox.SelectedValue}'"; 
             string unitMeasurement = (unitMeasurementComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{unitMeasurementComboBox.SelectedValue}'"; 
             
-            if (name.Length > 0)
+            if (aceptarButton.Text == "Actualizar")
             {
-                if (aceptarButton.Text == "Actualizar")
+                if (ConsultasSql.Actualizar(TableBdd, 
+                    $"main_code = {mainCode}, aux_code = {auxCode}, name = {name}, detail = {descripcion}, " +
+                    $"stock = {stock}, minimum_stock_level = {minimumStockLevel}, cost = {cost}, " +
+                    $"percentage_price = {percentagePrice1}, price = {price1}, " +
+                    $"percentage_price2 = {percentagePrice2}, price2 = {price2}, " +
+                    $"percentage_price3 = {percentagePrice3}, price3 = {price3}, " +
+                    $"categoryId = {category}, manufacturerId = {manufacturer}, iceRateId = {iceRate}, " +
+                    $"ivaRateId = {ivaRate}, typeProductId = {typeProduct}, unitMeasurementId = {unitMeasurement}",
+                    "id", $"'{IdField}'"))
                 {
-                    if (ConsultasSql.Actualizar(TableBdd, 
-                        $"main_code = {mainCode}, aux_code = {auxCode}, name = {name}, detail = {descripcion}, " +
-                        $"stock = {stock}, minimum_stock_level = {minimumStockLevel}, cost = {cost}, " +
-                        $"percentage_price = {percentagePrice1}, price = {price1}, " +
-                        $"percentage_price2 = {percentagePrice2}, price2 = {price2}, " +
-                        $"percentage_price3 = {percentagePrice3}, price3 = {price3}, " +
-                        $"categoryId = {category}, manufacturerId = {manufacturer}, iceRateId = {iceRate}, " +
-                        $"ivaRateId = {ivaRate}, typeProductId = {typeProduct}, unitMeasurementId = {unitMeasurement}",
-                        "id", $"'{IdField}'"))
-                    {
-                        CerrarYRefrescarFormulario();
-                    }
+                    CerrarYRefrescarFormulario();
                 }
+            }
 
-                if (aceptarButton.Text == "Guardar")
+            if (aceptarButton.Text == "Guardar")
+            {
+                if (ConsultasSql.Insertar(
+                    TableBdd,
+                    "main_code, aux_code, name, detail, stock, minimum_stock_level, " +
+                    "cost, percentage_price, price, percentage_price2, price2, percentage_price3, price3, " +
+                    "categoryId, manufacturerId, iceRateId, ivaRateId, typeProductId, unitMeasurementId", 
+                    $"{mainCode}, {auxCode}, {name}, {descripcion}, {stock}, {minimumStockLevel}, " +
+                    $"{cost}, {percentagePrice1}, {price1}, {percentagePrice2}, {price2}, {percentagePrice3}, {price3}, " +
+                    $"{category}, {manufacturer}, {iceRate}, {ivaRate}, {typeProduct}, {unitMeasurement}"
+                    ))
                 {
-                    if (ConsultasSql.Insertar(
-                        TableBdd,
-                        "main_code, aux_code, name, detail, stock, minimum_stock_level, " +
-                        "cost, percentage_price, price, percentage_price2, price2, percentage_price3, price3, " +
-                        "categoryId, manufacturerId, iceRateId, ivaRateId, typeProductId, unitMeasurementId", 
-                        $"{mainCode}, {auxCode}, {name}, {descripcion}, {stock}, {minimumStockLevel}, " +
-                        $"{cost}, {percentagePrice1}, {price1}, {percentagePrice2}, {price2}, {percentagePrice3}, {price3}, " +
-                        $"{category}, {manufacturer}, {iceRate}, {ivaRate}, {typeProduct}, {unitMeasurement}"
-                        ))
-                    {
-                        CerrarYRefrescarFormulario();
-                    }
+                    CerrarYRefrescarFormulario();
                 }
             }
-            else
-            {
-                MessageBox.Show("Campo descripcion en blanco");
-            }
+            
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)

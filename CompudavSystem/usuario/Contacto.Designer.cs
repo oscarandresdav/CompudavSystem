@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.encabezadoPanel = new System.Windows.Forms.Panel();
+            this.agregarButton = new System.Windows.Forms.Button();
             this.busquedaLabel = new System.Windows.Forms.Label();
             this.busquedaTextBox = new System.Windows.Forms.TextBox();
+            this.tituloPictureBox = new System.Windows.Forms.PictureBox();
             this.tituloLabel = new System.Windows.Forms.Label();
             this.listadoDataGridView = new System.Windows.Forms.DataGridView();
-            this.agregarButton = new System.Windows.Forms.Button();
-            this.tituloPictureBox = new System.Windows.Forms.PictureBox();
             this.encabezadoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // encabezadoPanel
@@ -51,6 +51,23 @@
             this.encabezadoPanel.Name = "encabezadoPanel";
             this.encabezadoPanel.Size = new System.Drawing.Size(760, 129);
             this.encabezadoPanel.TabIndex = 2;
+            // 
+            // agregarButton
+            // 
+            this.agregarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.agregarButton.FlatAppearance.BorderSize = 0;
+            this.agregarButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agregarButton.Image = global::CompudavSystem.Properties.Resources.add_24px;
+            this.agregarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.agregarButton.Location = new System.Drawing.Point(340, 89);
+            this.agregarButton.Name = "agregarButton";
+            this.agregarButton.Padding = new System.Windows.Forms.Padding(5);
+            this.agregarButton.Size = new System.Drawing.Size(80, 35);
+            this.agregarButton.TabIndex = 1;
+            this.agregarButton.Text = "Nuevo";
+            this.agregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.agregarButton.UseVisualStyleBackColor = true;
+            this.agregarButton.Click += new System.EventHandler(this.AgregarButton_Click);
             // 
             // busquedaLabel
             // 
@@ -75,6 +92,17 @@
             this.busquedaTextBox.Name = "busquedaTextBox";
             this.busquedaTextBox.Size = new System.Drawing.Size(600, 15);
             this.busquedaTextBox.TabIndex = 0;
+            this.busquedaTextBox.TextChanged += new System.EventHandler(this.BusquedaTextBox_TextChanged);
+            // 
+            // tituloPictureBox
+            // 
+            this.tituloPictureBox.Image = global::CompudavSystem.Properties.Resources.user_group_36px;
+            this.tituloPictureBox.Location = new System.Drawing.Point(3, 2);
+            this.tituloPictureBox.Name = "tituloPictureBox";
+            this.tituloPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.tituloPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.tituloPictureBox.TabIndex = 1;
+            this.tituloPictureBox.TabStop = false;
             // 
             // tituloLabel
             // 
@@ -100,33 +128,7 @@
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(760, 483);
             this.listadoDataGridView.TabIndex = 3;
-            // 
-            // agregarButton
-            // 
-            this.agregarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.agregarButton.FlatAppearance.BorderSize = 0;
-            this.agregarButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agregarButton.Image = global::CompudavSystem.Properties.Resources.add_24px;
-            this.agregarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.agregarButton.Location = new System.Drawing.Point(340, 89);
-            this.agregarButton.Name = "agregarButton";
-            this.agregarButton.Padding = new System.Windows.Forms.Padding(5);
-            this.agregarButton.Size = new System.Drawing.Size(80, 35);
-            this.agregarButton.TabIndex = 1;
-            this.agregarButton.Text = "Nuevo";
-            this.agregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agregarButton.UseVisualStyleBackColor = true;
-            this.agregarButton.Click += new System.EventHandler(this.AgregarButton_Click);
-            // 
-            // tituloPictureBox
-            // 
-            this.tituloPictureBox.Image = global::CompudavSystem.Properties.Resources.user_group_36px;
-            this.tituloPictureBox.Location = new System.Drawing.Point(3, 2);
-            this.tituloPictureBox.Name = "tituloPictureBox";
-            this.tituloPictureBox.Size = new System.Drawing.Size(40, 40);
-            this.tituloPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.tituloPictureBox.TabIndex = 1;
-            this.tituloPictureBox.TabStop = false;
+            this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listadoDataGridView_CellClick);
             // 
             // Contacto
             // 
@@ -140,10 +142,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Contacto";
             this.Text = "contacto";
+            this.Load += new System.EventHandler(this.Contacto_Load);
             this.encabezadoPanel.ResumeLayout(false);
             this.encabezadoPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }

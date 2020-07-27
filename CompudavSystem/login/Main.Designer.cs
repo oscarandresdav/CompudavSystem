@@ -208,6 +208,7 @@
             this.buttonUsuarios.Text = "Usuarios";
             this.buttonUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUsuarios.UseVisualStyleBackColor = true;
+            this.buttonUsuarios.Click += new System.EventHandler(this.ButtonUsuarios_Click);
             // 
             // buttonCatalogo
             // 
@@ -226,7 +227,7 @@
             this.buttonCatalogo.Text = "Catálogo";
             this.buttonCatalogo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonCatalogo.UseVisualStyleBackColor = true;
-            this.buttonCatalogo.Click += new System.EventHandler(this.buttonCatalogo_Click);
+            this.buttonCatalogo.Click += new System.EventHandler(this.ButtonCatalogo_Click);
             // 
             // buttonVentas
             // 

@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CompudavSystem.catalogo;
+using CompudavSystem.usuario;
 
 namespace CompudavSystem.login
 {
     public partial class Main : Form
     {
         private Catalogo FormCatalogo { get; set; } = new Catalogo();
+        private Contacto FormContacto { get; set; } = new Contacto();
 
         public Main()
         {
@@ -37,7 +39,7 @@ namespace CompudavSystem.login
             Application.Exit();
         }
 
-        private void buttonCatalogo_Click(object sender, EventArgs e)
+        private void ButtonCatalogo_Click(object sender, EventArgs e)
         {
             MostrarFormulario(FormCatalogo);
         }
@@ -48,6 +50,11 @@ namespace CompudavSystem.login
             formulario.Parent = panelContainer;
             formulario.Show();
             formulario.BringToFront();
+        }
+
+        private void ButtonUsuarios_Click(object sender, EventArgs e)
+        {
+           MostrarFormulario(FormContacto);
         }
     }
 }

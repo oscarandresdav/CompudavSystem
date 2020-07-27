@@ -38,8 +38,8 @@
             this.idNumberLabel = new System.Windows.Forms.Label();
             this.clientCheckBox = new System.Windows.Forms.CheckBox();
             this.tipoContactoGroupBox = new System.Windows.Forms.GroupBox();
-            this.providerCheckBox = new System.Windows.Forms.CheckBox();
             this.specialTaxpayerCheckBox = new System.Windows.Forms.CheckBox();
+            this.providerCheckBox = new System.Windows.Forms.CheckBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.landlineTextBox = new System.Windows.Forms.TextBox();
@@ -63,6 +63,7 @@
             this.businessNameTextBox.Name = "businessNameTextBox";
             this.businessNameTextBox.Size = new System.Drawing.Size(406, 22);
             this.businessNameTextBox.TabIndex = 1;
+            this.businessNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BusinessNameTextBox_KeyDown);
             // 
             // businessNameLabel
             // 
@@ -149,17 +150,6 @@
             this.tipoContactoGroupBox.TabIndex = 19;
             this.tipoContactoGroupBox.TabStop = false;
             // 
-            // providerCheckBox
-            // 
-            this.providerCheckBox.AutoSize = true;
-            this.providerCheckBox.Location = new System.Drawing.Point(123, 20);
-            this.providerCheckBox.Name = "providerCheckBox";
-            this.providerCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.providerCheckBox.Size = new System.Drawing.Size(80, 19);
-            this.providerCheckBox.TabIndex = 19;
-            this.providerCheckBox.Text = "Proveedor";
-            this.providerCheckBox.UseVisualStyleBackColor = true;
-            // 
             // specialTaxpayerCheckBox
             // 
             this.specialTaxpayerCheckBox.AutoSize = true;
@@ -171,9 +161,20 @@
             this.specialTaxpayerCheckBox.Text = "Contribuyente Especial";
             this.specialTaxpayerCheckBox.UseVisualStyleBackColor = true;
             // 
+            // providerCheckBox
+            // 
+            this.providerCheckBox.AutoSize = true;
+            this.providerCheckBox.Location = new System.Drawing.Point(123, 20);
+            this.providerCheckBox.Name = "providerCheckBox";
+            this.providerCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.providerCheckBox.Size = new System.Drawing.Size(80, 19);
+            this.providerCheckBox.TabIndex = 19;
+            this.providerCheckBox.Text = "Proveedor";
+            this.providerCheckBox.UseVisualStyleBackColor = true;
+            // 
             // emailTextBox
             // 
-            this.emailTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.emailTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.emailTextBox.Location = new System.Drawing.Point(40, 272);
             this.emailTextBox.MaxLength = 255;
             this.emailTextBox.Name = "emailTextBox";
@@ -271,6 +272,7 @@
             this.cancelarButton.TabIndex = 30;
             this.cancelarButton.Text = "Cancelar";
             this.cancelarButton.UseVisualStyleBackColor = true;
+            this.cancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
             // aceptarButton
             // 
@@ -283,6 +285,7 @@
             this.aceptarButton.TabIndex = 31;
             this.aceptarButton.Text = "Aceptar";
             this.aceptarButton.UseVisualStyleBackColor = true;
+            this.aceptarButton.Click += new System.EventHandler(this.AceptarButton_Click);
             // 
             // NuevoContacto
             // 
@@ -314,6 +317,7 @@
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NuevoContacto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NuevoContacto";
             this.tipoContactoGroupBox.ResumeLayout(false);
             this.tipoContactoGroupBox.PerformLayout();
@@ -332,10 +336,10 @@
         private System.Windows.Forms.Label typeIdentificationLabel;
         public System.Windows.Forms.TextBox idNumberTextBox;
         private System.Windows.Forms.Label idNumberLabel;
-        private System.Windows.Forms.CheckBox clientCheckBox;
+        public System.Windows.Forms.CheckBox clientCheckBox;
         private System.Windows.Forms.GroupBox tipoContactoGroupBox;
-        private System.Windows.Forms.CheckBox specialTaxpayerCheckBox;
-        private System.Windows.Forms.CheckBox providerCheckBox;
+        public System.Windows.Forms.CheckBox specialTaxpayerCheckBox;
+        public System.Windows.Forms.CheckBox providerCheckBox;
         public System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label emailLabel;
         public System.Windows.Forms.TextBox landlineTextBox;
