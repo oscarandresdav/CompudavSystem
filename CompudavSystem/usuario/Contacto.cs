@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
 
@@ -49,8 +44,6 @@ namespace CompudavSystem.usuario
             listadoDataGridView.Columns["typeIdentificationId"].Visible = false;
             
         }
-
-
 
         public void FocoEnTextBoxDeBusqueda()
         {
@@ -104,15 +97,6 @@ namespace CompudavSystem.usuario
             NuevoItemForm.additionalInformationTextBox.Text = additionalInformationCampo;
             NuevoItemForm.typeIdentificationComboBox.SelectedValue = (typeIdentificationIdCampo == "") ? "nulo" : typeIdentificationIdCampo; ;
             
-
-            if (accionBoton == "Actualizar")
-            {
-                NuevoItemForm.typeIdentificationComboBox.SelectedValue = typeIdentificationIdCampo;
-            }
-            else if (accionBoton == "Guardar")
-            {
-                NuevoItemForm.typeIdentificationComboBox.SelectedIndex = 0;
-            }
         }
 
         public void Busqueda()
@@ -154,7 +138,6 @@ namespace CompudavSystem.usuario
                         listadoDataGridView.Rows[e.RowIndex].Cells["special_taxpayer"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["additional_information"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["typeIdentificationId"].Value.ToString()
-                        
                     );
             }
 

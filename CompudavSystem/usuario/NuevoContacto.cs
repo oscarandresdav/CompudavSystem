@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
+using CompudavSystem.utilitario;
 
 namespace CompudavSystem.usuario
 {
@@ -55,9 +51,10 @@ namespace CompudavSystem.usuario
         private void AceptarButton_Click(object sender, EventArgs e)
         {
             ValidarCampoRequerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
-            ValidarCampoRequerido(businessNameTextBox, "Por favor ingrese el Nombre");
+            ValidarCampoRequerido(businessNameTextBox, "Por favor ingrese la Razón Social");
             ValidarCampoRequerido(addressTextBox, "Por favor ingrese la Dirección");
-            
+            ValidaCampoIdentificacion(idNumberTextBox);
+
             if (ErrorStatus)
             {
                 Guardar();
@@ -108,7 +105,6 @@ namespace CompudavSystem.usuario
                     CerrarYRefrescarFormulario();
                 }
             }
-            
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)
@@ -136,10 +132,95 @@ namespace CompudavSystem.usuario
             return ErrorStatus;
         }
 
+        private bool ValidaCampoIdentificacion(TextBox textBox, bool seleccionaTipoIdAuto = false)
+        {
+            ErrorStatus = ValidaIDNumber.VerificaIdentificacion(textBox.Text);
+            if (ErrorStatus)
+            {
+                ErrorProvider.SetError(textBox, "");
+                if (seleccionaTipoIdAuto)
+                {
+                    if (textBox.Text.Length == 10)
+                    {
+                        typeIdentificationComboBox.SelectedIndex = 1;
+                    }
+                    else if (textBox.Text.Length == 13)
+                    {
+                        typeIdentificationComboBox.SelectedIndex = 2;
+                    }
+                    else
+                    {
+                        typeIdentificationComboBox.SelectedIndex = 0;
+                    }
+                }
+            }
+            else
+            {
+                ErrorProvider.SetError(textBox, "Verifica número de ID");
+            }
+
+            return ErrorStatus;
+        }
+
+        private void IdNumberTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            ValidaCampoIdentificacion(idNumberTextBox, true);
+        }
+
+        private void IdNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void LandlineTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Telefonos(e.KeyChar);
+        }
+
+        private void MobilePhoneTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Telefonos(e.KeyChar);
+        }
+
+        private void EmailTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Correos(e.KeyChar);
+        }
+
         private void BusinessNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) { CerrarYRefrescarFormulario(); }
             if (e.KeyCode == Keys.Enter) { tradenameTextBox.Focus(); }
+        }
+
+        private void TradenameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { addressTextBox.Focus(); }
+        }
+
+        private void AddressTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { idNumberTextBox.Focus(); }
+        }
+
+        private void IdNumberTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { clientCheckBox.Focus(); }
+        }
+
+        private void EmailTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { landlineTextBox.Focus(); }
+        }
+
+        private void LandlineTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { mobilePhoneTextBox.Focus(); }
+        }
+
+        private void MobilePhoneTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { additionalInformationTextBox.Focus(); }
         }
     }
 }

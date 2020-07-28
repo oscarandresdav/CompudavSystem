@@ -114,6 +114,7 @@
       <DependentUpon>NuevoContacto.cs</DependentUpon>
     </Compile>
     <Compile Include="utilitario\Validaciones.cs" />
+    <Compile Include="utilitario\ValidaIDNumber.cs" />
     <EmbeddedResource Include="catalogo\Catalogo.resx">
       <DependentUpon>Catalogo.cs</DependentUpon>
     </EmbeddedResource>
