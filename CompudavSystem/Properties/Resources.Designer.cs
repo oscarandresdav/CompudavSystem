@@ -123,6 +123,16 @@ namespace CompudavSystem.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bayer_logo_white_24 {
+            get {
+                object obj = ResourceManager.GetObject("bayer_logo_white_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap businessman_36px {
             get {
                 object obj = ResourceManager.GetObject("businessman_36px", resourceCulture);

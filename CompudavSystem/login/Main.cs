@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CompudavSystem.catalogo;
+using CompudavSystem.documento;
 using CompudavSystem.usuario;
 
 namespace CompudavSystem.login
@@ -9,6 +10,7 @@ namespace CompudavSystem.login
     {
         private Catalogo FormCatalogo { get; set; } = new Catalogo();
         private Contacto FormContacto { get; set; } = new Contacto();
+        private Venta FormVenta { get; set; } = new Venta();
 
         public Main()
         {
@@ -35,10 +37,10 @@ namespace CompudavSystem.login
 
         private void ButtonCatalogo_Click(object sender, EventArgs e)
         {
-            MostrarFormulario(FormCatalogo);
+            MostrarFormulario(FormCatalogo, FormCatalogo.busquedaTextBox);
         }
 
-        private void MostrarFormulario(Form formulario)
+        private void MostrarFormulario(Form formulario, TextBox textBoxFocus)
         {
             if (panelContainer.Controls.Count > 0)
             {
@@ -48,11 +50,18 @@ namespace CompudavSystem.login
             panelContainer.Controls.Add(formulario);
             panelContainer.Tag = formulario;
             formulario.Show();
+            textBoxFocus.Focus();
+            
         }
 
         private void ButtonUsuarios_Click(object sender, EventArgs e)
         {
-            MostrarFormulario(FormContacto);
+            MostrarFormulario(FormContacto, FormContacto.busquedaTextBox);
+        }
+
+        private void ButtonVentas_Click(object sender, EventArgs e)
+        {
+            MostrarFormulario(FormVenta, FormVenta.idNumberTextBox);
         }
     }
 }

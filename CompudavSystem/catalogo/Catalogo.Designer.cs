@@ -75,34 +75,36 @@
             // 
             // categoriaButton
             // 
-            this.categoriaButton.Font = new System.Drawing.Font("Open Sans", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoriaButton.BackColor = System.Drawing.Color.White;
+            this.categoriaButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoriaButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
             this.categoriaButton.Image = global::CompudavSystem.Properties.Resources.category_24px;
             this.categoriaButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.categoriaButton.Location = new System.Drawing.Point(550, 0);
+            this.categoriaButton.Location = new System.Drawing.Point(551, 3);
             this.categoriaButton.Name = "categoriaButton";
-            this.categoriaButton.Padding = new System.Windows.Forms.Padding(1);
-            this.categoriaButton.Size = new System.Drawing.Size(90, 35);
+            this.categoriaButton.Padding = new System.Windows.Forms.Padding(2);
+            this.categoriaButton.Size = new System.Drawing.Size(100, 40);
             this.categoriaButton.TabIndex = 2;
             this.categoriaButton.Text = "Categoría";
             this.categoriaButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.categoriaButton.UseVisualStyleBackColor = true;
+            this.categoriaButton.UseVisualStyleBackColor = false;
             this.categoriaButton.Click += new System.EventHandler(this.CategoriaButton_Click);
             // 
             // fabricanteButton
             // 
-            this.fabricanteButton.Font = new System.Drawing.Font("Open Sans", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fabricanteButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.fabricanteButton.Image = global::CompudavSystem.Properties.Resources.bayer_logo_24;
+            this.fabricanteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.fabricanteButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fabricanteButton.ForeColor = System.Drawing.Color.White;
+            this.fabricanteButton.Image = global::CompudavSystem.Properties.Resources.bayer_logo_white_24;
             this.fabricanteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.fabricanteButton.Location = new System.Drawing.Point(646, 0);
+            this.fabricanteButton.Location = new System.Drawing.Point(657, 3);
             this.fabricanteButton.Name = "fabricanteButton";
             this.fabricanteButton.Padding = new System.Windows.Forms.Padding(1);
-            this.fabricanteButton.Size = new System.Drawing.Size(90, 35);
+            this.fabricanteButton.Size = new System.Drawing.Size(100, 40);
             this.fabricanteButton.TabIndex = 3;
             this.fabricanteButton.Text = "Fabricante";
             this.fabricanteButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.fabricanteButton.UseVisualStyleBackColor = true;
+            this.fabricanteButton.UseVisualStyleBackColor = false;
             this.fabricanteButton.Click += new System.EventHandler(this.FabricanteButton_Click);
             // 
             // busquedaLabel
@@ -143,11 +145,11 @@
             // tituloLabel
             // 
             this.tituloLabel.AutoSize = true;
-            this.tituloLabel.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tituloLabel.Font = new System.Drawing.Font("Roboto Medium", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tituloLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
             this.tituloLabel.Location = new System.Drawing.Point(50, 15);
             this.tituloLabel.Name = "tituloLabel";
-            this.tituloLabel.Size = new System.Drawing.Size(70, 19);
+            this.tituloLabel.Size = new System.Drawing.Size(74, 17);
             this.tituloLabel.TabIndex = 4;
             this.tituloLabel.Text = "Catálogo";
             // 
@@ -192,7 +194,7 @@
         private System.Windows.Forms.Panel encabezadoPanel;
         private System.Windows.Forms.Label tituloLabel;
         private System.Windows.Forms.PictureBox tituloPictureBox;
-        private System.Windows.Forms.TextBox busquedaTextBox;
+        public System.Windows.Forms.TextBox busquedaTextBox;
         private System.Windows.Forms.Label busquedaLabel;
         private System.Windows.Forms.Button fabricanteButton;
         private System.Windows.Forms.Button categoriaButton;

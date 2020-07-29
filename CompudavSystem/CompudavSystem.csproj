@@ -80,6 +80,12 @@
     <Compile Include="catalogo\NuevoItem.Designer.cs">
       <DependentUpon>NuevoItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="documento\Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="documento\Venta.Designer.cs">
+      <DependentUpon>Venta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="catalogo\NuevoItem.resx">
       <DependentUpon>NuevoItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="documento\Venta.resx">
+      <DependentUpon>Venta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
@@ -275,6 +284,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_22px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bayer_logo_white_24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

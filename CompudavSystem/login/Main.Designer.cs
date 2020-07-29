@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.buttonCerrar = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.buttonPanel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelFirma2 = new System.Windows.Forms.Label();
             this.labelFirma = new System.Windows.Forms.Label();
+            this.buttonCerrar = new System.Windows.Forms.Button();
+            this.buttonPanel = new System.Windows.Forms.Button();
             this.buttonConfiguracion = new System.Windows.Forms.Button();
             this.buttonCompras = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
@@ -51,18 +51,6 @@
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(790, 645);
             this.panelContainer.TabIndex = 1;
-            // 
-            // buttonCerrar
-            // 
-            this.buttonCerrar.FlatAppearance.BorderSize = 0;
-            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
-            this.buttonCerrar.Location = new System.Drawing.Point(45, 525);
-            this.buttonCerrar.Name = "buttonCerrar";
-            this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
-            this.buttonCerrar.TabIndex = 0;
-            this.buttonCerrar.UseVisualStyleBackColor = true;
-            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
             // 
             // panelMenu
             // 
@@ -82,24 +70,6 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(120, 645);
             this.panelMenu.TabIndex = 0;
-            // 
-            // buttonPanel
-            // 
-            this.buttonPanel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
-            this.buttonPanel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.buttonPanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.buttonPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPanel.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPanel.ForeColor = System.Drawing.Color.White;
-            this.buttonPanel.Image = global::CompudavSystem.Properties.Resources.combo_chart_36px;
-            this.buttonPanel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonPanel.Location = new System.Drawing.Point(8, 12);
-            this.buttonPanel.Name = "buttonPanel";
-            this.buttonPanel.Size = new System.Drawing.Size(100, 60);
-            this.buttonPanel.TabIndex = 0;
-            this.buttonPanel.Text = "Panel";
-            this.buttonPanel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonPanel.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -133,6 +103,36 @@
             this.labelFirma.Size = new System.Drawing.Size(72, 11);
             this.labelFirma.TabIndex = 7;
             this.labelFirma.Text = "Desarrollado por:";
+            // 
+            // buttonCerrar
+            // 
+            this.buttonCerrar.FlatAppearance.BorderSize = 0;
+            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
+            this.buttonCerrar.Location = new System.Drawing.Point(45, 525);
+            this.buttonCerrar.Name = "buttonCerrar";
+            this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
+            this.buttonCerrar.TabIndex = 0;
+            this.buttonCerrar.UseVisualStyleBackColor = true;
+            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
+            // 
+            // buttonPanel
+            // 
+            this.buttonPanel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.buttonPanel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.buttonPanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.buttonPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPanel.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPanel.ForeColor = System.Drawing.Color.White;
+            this.buttonPanel.Image = global::CompudavSystem.Properties.Resources.combo_chart_36px;
+            this.buttonPanel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonPanel.Location = new System.Drawing.Point(8, 12);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(100, 60);
+            this.buttonPanel.TabIndex = 0;
+            this.buttonPanel.Text = "Panel";
+            this.buttonPanel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonPanel.UseVisualStyleBackColor = true;
             // 
             // buttonConfiguracion
             // 
@@ -243,6 +243,7 @@
             this.buttonVentas.Text = "Ventas";
             this.buttonVentas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonVentas.UseVisualStyleBackColor = true;
+            this.buttonVentas.Click += new System.EventHandler(this.ButtonVentas_Click);
             // 
             // Main
             // 
