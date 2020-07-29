@@ -42,26 +42,22 @@
             this.buttonUsuarios = new System.Windows.Forms.Button();
             this.buttonCatalogo = new System.Windows.Forms.Button();
             this.buttonVentas = new System.Windows.Forms.Button();
-            this.panelContainer.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelContainer
             // 
-            this.panelContainer.Controls.Add(this.buttonCerrar);
-            this.panelContainer.Location = new System.Drawing.Point(127, 0);
+            this.panelContainer.Location = new System.Drawing.Point(123, 0);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(785, 645);
+            this.panelContainer.Size = new System.Drawing.Size(790, 645);
             this.panelContainer.TabIndex = 1;
             // 
             // buttonCerrar
             // 
-            this.buttonCerrar.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.buttonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.buttonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.buttonCerrar.FlatAppearance.BorderSize = 0;
             this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
-            this.buttonCerrar.Location = new System.Drawing.Point(752, 611);
+            this.buttonCerrar.Location = new System.Drawing.Point(45, 525);
             this.buttonCerrar.Name = "buttonCerrar";
             this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
             this.buttonCerrar.TabIndex = 0;
@@ -71,6 +67,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.panelMenu.Controls.Add(this.buttonCerrar);
             this.panelMenu.Controls.Add(this.buttonPanel);
             this.panelMenu.Controls.Add(this.label1);
             this.panelMenu.Controls.Add(this.labelFirma2);
@@ -263,7 +260,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CompudavSystem";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
-            this.panelContainer.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -272,7 +268,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelContainer;
+        public System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Button buttonVentas;
         private System.Windows.Forms.Button buttonCatalogo;

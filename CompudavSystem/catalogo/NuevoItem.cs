@@ -6,7 +6,7 @@ namespace CompudavSystem.catalogo
 {
     public partial class NuevoItem : Form
     {
-        public ICatalogo Icatalogo { get; set; } 
+        public ICatalogo Icatalogo { get; set; }
         public string TableBdd { get; set; }
         public string IdField { get; set; }
 

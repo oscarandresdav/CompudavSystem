@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
+using CompudavSystem.login;
 
 namespace CompudavSystem.catalogo
 {
@@ -12,20 +13,20 @@ namespace CompudavSystem.catalogo
         private Categoria CategoriaForm { get; set; } = new Categoria();
         private NuevoProducto NuevoItemForm { get; set; } = new NuevoProducto();
         private string TableBdd { get; set; } = "product";
-        
+
         public Catalogo()
         {
             InitializeComponent();
             DatosIniciales();
         }
 
-        public void DatosIniciales() 
+        public void DatosIniciales()
         {
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
             listadoDataGridView.Columns["name"].HeaderText = "Descripción";
             listadoDataGridView.Columns["name"].Width = 347;
-            
+
             listadoDataGridView.Columns["cost"].HeaderText = "Costo";
             listadoDataGridView.Columns["price"].HeaderText = "P.V.P.";
             listadoDataGridView.Columns["stock"].HeaderText = "Existencias";
@@ -96,7 +97,7 @@ namespace CompudavSystem.catalogo
         {
             DatosGuardarActualizar
                 (
-                    "", "Guardar", "", "", "", "", "", "", "", "", 
+                    "", "Guardar", "", "", "", "", "", "", "", "",
                     "", "", "", "", "", "", "", "", "", "", ""
                 );
         }
@@ -152,6 +153,7 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.Icatalogo = this;
             NuevoItemForm.Show();
             NuevoItemForm.BringToFront();
+
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
             NuevoItemForm.ErrorProvider.Clear();
@@ -177,7 +179,7 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.manufacturerComboBox.SelectedValue = (manufacturerIdCampo == "") ? "nulo" : manufacturerIdCampo;
             NuevoItemForm.iceRateComboBox.SelectedValue = (iceRateIdCampo == "") ? "nulo" : iceRateIdCampo;
             NuevoItemForm.unitMeasurementComboBox.SelectedValue = (unitMeasurementIdCampo == "") ? "nulo" : unitMeasurementIdCampo;
-            
+
             if (accionBoton == "Actualizar")
             {
                 NuevoItemForm.typeProductComboBox.SelectedValue = typeProductIdCampo;

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CompudavSystem.catalogo;
 using CompudavSystem.usuario;
@@ -28,7 +21,8 @@ namespace CompudavSystem.login
             {
                 e.Cancel = true;
             }
-            else {
+            else
+            {
                 Application.ExitThread();
             }
 
@@ -46,15 +40,19 @@ namespace CompudavSystem.login
 
         private void MostrarFormulario(Form formulario)
         {
+            if (panelContainer.Controls.Count > 0)
+            {
+                panelContainer.Controls.RemoveAt(0);
+            }
             formulario.TopLevel = false;
-            formulario.Parent = panelContainer;
+            panelContainer.Controls.Add(formulario);
+            panelContainer.Tag = formulario;
             formulario.Show();
-            formulario.BringToFront();
         }
 
         private void ButtonUsuarios_Click(object sender, EventArgs e)
         {
-           MostrarFormulario(FormContacto);
+            MostrarFormulario(FormContacto);
         }
     }
 }
