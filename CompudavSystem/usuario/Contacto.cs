@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
+using CompudavSystem.utilitario;
 
 namespace CompudavSystem.usuario
 {
@@ -74,8 +75,7 @@ namespace CompudavSystem.usuario
             string clientCampo, string providerCampo, string specialTaxpayerCampo, string additionalInformationCampo, string typeIdentificationIdCampo)
         {
             NuevoItemForm.Icontacto = this;
-            NuevoItemForm.Show();
-            NuevoItemForm.BringToFront();
+            FormularioPanel.MostrarFormulario(NuevoItemForm, NuevoItemForm.businessNameTextBox);
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
             NuevoItemForm.ErrorProvider.Clear();
@@ -83,7 +83,6 @@ namespace CompudavSystem.usuario
             NuevoItemForm.aceptarButton.Text = accionBoton;
 
             NuevoItemForm.businessNameTextBox.Text = businessNameCampo;
-            NuevoItemForm.businessNameTextBox.Focus();
             NuevoItemForm.businessNameTextBox.SelectAll();
             NuevoItemForm.tradenameTextBox.Text = tradenameCampo;
             NuevoItemForm.addressTextBox.Text = addressCampo;
