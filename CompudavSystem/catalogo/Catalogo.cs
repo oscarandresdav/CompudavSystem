@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
-using CompudavSystem.login;
+using CompudavSystem.utilitario;
 
 namespace CompudavSystem.catalogo
 {
@@ -79,17 +79,13 @@ namespace CompudavSystem.catalogo
 
         private void FabricanteButton_Click(object sender, EventArgs e)
         {
-            FabricanteForm.Show();
-            FabricanteForm.BringToFront();
-            FabricanteForm.busquedaTextBox.Focus();
+            FormularioPanel.MostrarFormulario(FabricanteForm, FabricanteForm.busquedaTextBox);
             FabricanteForm.DatosIniciales();
         }
 
         private void CategoriaButton_Click(object sender, EventArgs e)
         {
-            CategoriaForm.Show();
-            CategoriaForm.BringToFront();
-            CategoriaForm.busquedaTextBox.Focus();
+            FormularioPanel.MostrarFormulario(CategoriaForm, CategoriaForm.busquedaTextBox);
             CategoriaForm.DatosIniciales();
         }
 
@@ -151,17 +147,13 @@ namespace CompudavSystem.catalogo
             string iceRateIdCampo, string ivaRateIdCampo, string typeProductIdCampo, string unitMeasurementIdCampo)
         {
             NuevoItemForm.Icatalogo = this;
-            NuevoItemForm.Show();
-            NuevoItemForm.BringToFront();
-
+            FormularioPanel.MostrarFormulario(NuevoItemForm, NuevoItemForm.nameTextBox);
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
             NuevoItemForm.ErrorProvider.Clear();
             NuevoItemForm.DatosIniciales();
             NuevoItemForm.aceptarButton.Text = accionBoton;
-
             NuevoItemForm.nameTextBox.Text = nameCampo;
-            NuevoItemForm.nameTextBox.Focus();
             NuevoItemForm.nameTextBox.SelectAll();
             NuevoItemForm.mainCodeTextBox.Text = mainCodeCampo;
             NuevoItemForm.auxCodeTextBox.Text = auxCodeCampo;

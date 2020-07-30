@@ -7,25 +7,25 @@ namespace CompudavSystem.bdd
 {
     public static class ConsultasSql
     {
-        private static readonly MySqlConnection Connection = new MySqlConnection( Conexion.CadenaConexion( Conexion.User, Conexion.Password, Properties.Settings.Default.servidor, Conexion.Database ) );
+        private static readonly MySqlConnection Connection = new MySqlConnection(Conexion.CadenaConexion(Conexion.User, Conexion.Password, Properties.Settings.Default.servidor, Conexion.Database));
         private static string SqlStament { get; set; } = "";
 
-        public static bool Insertar( string tabla, string campos, string valores ) 
+        public static bool Insertar(string tabla, string campos, string valores)
         {
             DataSet dataSet = new DataSet();
             SqlStament = $"INSERT INTO { tabla } (id, revision, { campos }) VALUES ('{Guid.NewGuid()}', '1', { valores })";
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter( SqlStament, Connection );
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             try
             {
-                dataAdapter.Fill( dataSet );
+                dataAdapter.Fill(dataSet);
                 return true;
             }
-            catch ( MySqlException err )
+            catch (MySqlException err)
             {
-                switch ( err.Number )
+                switch (err.Number)
                 {
                     case 1062:
-                        MessageBox.Show( "Registro duplicado, operacion cancelada.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                        MessageBox.Show("Registro duplicado, operacion cancelada.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                     case 1054:
                         MessageBox.Show("Columna o campo desconocido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -113,7 +113,7 @@ namespace CompudavSystem.bdd
             return dataSet.Tables[tabla];
         }
 
-        public static DataTable ConsultaIndividual( string tabla, string campo, string condicion, string expresion,string valor )
+        public static DataTable ConsultaIndividual(string tabla, string campo, string condicion, string expresion, string valor)
         {
             DataSet dataSet = new DataSet();
             SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } { expresion } '{ valor }'";
@@ -131,7 +131,7 @@ namespace CompudavSystem.bdd
             return dataSet.Tables[tabla];
         }
 
-        public static DataTable Busqueda(string tabla, string condicion, string valor, string campo = "*" )
+        public static DataTable Busqueda(string tabla, string condicion, string valor, string campo = "*")
         {
             DataSet dataSet = new DataSet();
             SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } LIKE '%{ valor }%'";

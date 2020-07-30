@@ -119,6 +119,7 @@
     <Compile Include="usuario\NuevoContacto.Designer.cs">
       <DependentUpon>NuevoContacto.cs</DependentUpon>
     </Compile>
+    <Compile Include="utilitario\FormularioPanel.cs" />
     <Compile Include="utilitario\Validaciones.cs" />
     <Compile Include="utilitario\ValidaIDNumber.cs" />
     <EmbeddedResource Include="catalogo\Catalogo.resx">

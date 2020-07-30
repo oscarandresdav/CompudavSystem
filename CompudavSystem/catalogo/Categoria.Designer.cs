@@ -57,19 +57,17 @@
             // 
             // agregarButton
             // 
+            this.agregarButton.BackColor = System.Drawing.Color.White;
             this.agregarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.agregarButton.FlatAppearance.BorderSize = 0;
-            this.agregarButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agregarButton.Image = global::CompudavSystem.Properties.Resources.add_24px;
-            this.agregarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.agregarButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agregarButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
             this.agregarButton.Location = new System.Drawing.Point(148, 75);
             this.agregarButton.Name = "agregarButton";
-            this.agregarButton.Padding = new System.Windows.Forms.Padding(5);
             this.agregarButton.Size = new System.Drawing.Size(80, 35);
             this.agregarButton.TabIndex = 1;
             this.agregarButton.Text = "Nuevo";
-            this.agregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agregarButton.UseVisualStyleBackColor = true;
+            this.agregarButton.UseVisualStyleBackColor = false;
             this.agregarButton.Click += new System.EventHandler(this.AgregarButton_Click);
             // 
             // cerrarButton
@@ -162,7 +160,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Categoria";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "0";
             this.Load += new System.EventHandler(this.Fabricante_Load);
             this.encabezadoPanel.ResumeLayout(false);

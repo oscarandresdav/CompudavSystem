@@ -10,7 +10,7 @@ namespace CompudavSystem.catalogo
     {
         public Categoria CategoriaForm { get; set; } = new Categoria();
         public Fabricante FabricanteForm { get; set; } = new Fabricante();
-        public ICatalogo Icatalogo { get; set; } 
+        public ICatalogo Icatalogo { get; set; }
         public string TableBdd { get; set; }
         public string IdField { get; set; }
         public bool ErrorStatus { get; set; }
@@ -30,7 +30,7 @@ namespace CompudavSystem.catalogo
             CargaDeDatosCombobox(manufacturerComboBox, "manufacturer");
             CargaDeDatosCombobox(typeProductComboBox, "type_product", campoOrden: "sort");
             CargaDeDatosCombobox(unitMeasurementComboBox, "unit_measurement", campoOrden: "sort");
-            
+
             CampoInicialComboBox(categoryComboBox);
             CampoInicialComboBox(iceRateComboBox);
             CampoInicialComboBox(manufacturerComboBox);
@@ -61,28 +61,28 @@ namespace CompudavSystem.catalogo
         private void AceptarButton_Click(object sender, EventArgs e)
         {
             ValidarCampoRequerido(nameTextBox, "Por favor ingrese el Nombre");
-            ValidarCampoRequerido(mainCodeTextBox, "Por favor ingrese el Código UPC"); 
+            ValidarCampoRequerido(mainCodeTextBox, "Por favor ingrese el Código UPC");
             ValidarCampoRequerido(stockTextBox, "Por favor ingrese la cantidad de Existencia actual del item");
             ValidarCampoRequerido(costTextBox, "Por favor ingrese el Costo del item actual");
             ValidarCampoRequerido(percentagePrice1TextBox, "Por favor ingrese el Porcentaje de Venta del item actual");
             ValidarCampoRequerido(price1TextBox, "Por favor ingrese el Precio del item actual");
-            
-            if (ErrorStatus) 
-            { 
-                Guardar(); 
-            }           
+
+            if (ErrorStatus)
+            {
+                Guardar();
+            }
         }
 
         private void Guardar()
         {
             string mainCode = mainCodeTextBox.Text.Replace("'", "\\'").Trim();
             mainCode = (mainCode == "") ? "null" : $"'{mainCode}'";
-            string auxCode = auxCodeTextBox.Text.Replace("'", "\\'").Trim(); 
+            string auxCode = auxCodeTextBox.Text.Replace("'", "\\'").Trim();
             auxCode = (auxCode == "") ? "null" : $"'{auxCode}'";
             string name = nameTextBox.Text.Replace("'", "\\'").Trim();
-            name = (name == "") ? "null": $"'{name}'";
+            name = (name == "") ? "null" : $"'{name}'";
             string descripcion = descripcionTextBox.Text.Replace("'", "\\'").Trim();
-            descripcion = (descripcion == "") ? "null": $"'{descripcion}'";
+            descripcion = (descripcion == "") ? "null" : $"'{descripcion}'";
 
             string stock = (stockTextBox.Text.Trim() == "") ? "null" : stockTextBox.Text.Trim();
             string minimumStockLevel = (minimumStockLevelTextBox.Text.Trim() == "") ? "null" : minimumStockLevelTextBox.Text.Trim();
@@ -94,16 +94,16 @@ namespace CompudavSystem.catalogo
             string percentagePrice3 = (percentagePrice3TextBox.Text.Trim() == "") ? "null" : percentagePrice3TextBox.Text.Trim();
             string price3 = (price3TextBox.Text.Trim() == "") ? "null" : price3TextBox.Text.Trim();
 
-            string category = (categoryComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{categoryComboBox.SelectedValue}'"; 
-            string manufacturer = (manufacturerComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{manufacturerComboBox.SelectedValue}'"; 
-            string iceRate = (iceRateComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{iceRateComboBox.SelectedValue}'"; 
-            string ivaRate = (ivaRateComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{ivaRateComboBox.SelectedValue}'"; 
-            string typeProduct = (typeProductComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{typeProductComboBox.SelectedValue}'"; 
-            string unitMeasurement = (unitMeasurementComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{unitMeasurementComboBox.SelectedValue}'"; 
-            
+            string category = (categoryComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{categoryComboBox.SelectedValue}'";
+            string manufacturer = (manufacturerComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{manufacturerComboBox.SelectedValue}'";
+            string iceRate = (iceRateComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{iceRateComboBox.SelectedValue}'";
+            string ivaRate = (ivaRateComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{ivaRateComboBox.SelectedValue}'";
+            string typeProduct = (typeProductComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{typeProductComboBox.SelectedValue}'";
+            string unitMeasurement = (unitMeasurementComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{unitMeasurementComboBox.SelectedValue}'";
+
             if (aceptarButton.Text == "Actualizar")
             {
-                if (ConsultasSql.Actualizar(TableBdd, 
+                if (ConsultasSql.Actualizar(TableBdd,
                     $"main_code = {mainCode}, aux_code = {auxCode}, name = {name}, detail = {descripcion}, " +
                     $"stock = {stock}, minimum_stock_level = {minimumStockLevel}, cost = {cost}, " +
                     $"percentage_price = {percentagePrice1}, price = {price1}, " +
@@ -123,7 +123,7 @@ namespace CompudavSystem.catalogo
                     TableBdd,
                     "main_code, aux_code, name, detail, stock, minimum_stock_level, " +
                     "cost, percentage_price, price, percentage_price2, price2, percentage_price3, price3, " +
-                    "categoryId, manufacturerId, iceRateId, ivaRateId, typeProductId, unitMeasurementId", 
+                    "categoryId, manufacturerId, iceRateId, ivaRateId, typeProductId, unitMeasurementId",
                     $"{mainCode}, {auxCode}, {name}, {descripcion}, {stock}, {minimumStockLevel}, " +
                     $"{cost}, {percentagePrice1}, {price1}, {percentagePrice2}, {price2}, {percentagePrice3}, {price3}, " +
                     $"{category}, {manufacturer}, {iceRate}, {ivaRate}, {typeProduct}, {unitMeasurement}"
@@ -132,7 +132,7 @@ namespace CompudavSystem.catalogo
                     CerrarYRefrescarFormulario();
                 }
             }
-            
+
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)

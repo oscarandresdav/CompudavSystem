@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using CompudavSystem.catalogo;
 using CompudavSystem.documento;
 using CompudavSystem.usuario;
+using CompudavSystem.utilitario;
 
 namespace CompudavSystem.login
 {
@@ -37,31 +38,22 @@ namespace CompudavSystem.login
 
         private void ButtonCatalogo_Click(object sender, EventArgs e)
         {
-            MostrarFormulario(FormCatalogo, FormCatalogo.busquedaTextBox);
-        }
-
-        private void MostrarFormulario(Form formulario, TextBox textBoxFocus)
-        {
-            if (panelContainer.Controls.Count > 0)
-            {
-                panelContainer.Controls.RemoveAt(0);
-            }
-            formulario.TopLevel = false;
-            panelContainer.Controls.Add(formulario);
-            panelContainer.Tag = formulario;
-            formulario.Show();
-            textBoxFocus.Focus();
-            
+            FormularioPanel.MostrarFormulario(FormCatalogo, FormCatalogo.busquedaTextBox);
         }
 
         private void ButtonUsuarios_Click(object sender, EventArgs e)
         {
-            MostrarFormulario(FormContacto, FormContacto.busquedaTextBox);
+            FormularioPanel.MostrarFormulario(FormContacto, FormContacto.busquedaTextBox);
         }
 
         private void ButtonVentas_Click(object sender, EventArgs e)
         {
-            MostrarFormulario(FormVenta, FormVenta.idNumberTextBox);
+            FormularioPanel.MostrarFormulario(FormVenta, FormVenta.idNumberTextBox);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            FormularioPanel.PanelContenedor = panelContainer;
         }
     }
 }

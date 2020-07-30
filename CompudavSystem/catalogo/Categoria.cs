@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
+using CompudavSystem.utilitario;
 
 namespace CompudavSystem.catalogo
 {
@@ -16,13 +17,14 @@ namespace CompudavSystem.catalogo
             InitializeComponent();
             DatosIniciales();
         }
+
         public void DatosIniciales()
         {
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
             listadoDataGridView.Columns["name"].HeaderText = "Descripción";
             listadoDataGridView.Columns["name"].Width = 242;
-            
+
             listadoDataGridView.Columns["id"].Visible = false;
             listadoDataGridView.Columns["revision"].Visible = false;
             listadoDataGridView.Columns["status"].Visible = false;
@@ -71,7 +73,7 @@ namespace CompudavSystem.catalogo
             img.Name = name;
             img.Width = 60;
         }
-        
+
         private void AgregarButton_Click(object sender, EventArgs e)
         {
             DatosGuardarActualizar
@@ -84,7 +86,7 @@ namespace CompudavSystem.catalogo
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton") 
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton")
             {
                 DatosGuardarActualizar
                     (
@@ -92,7 +94,7 @@ namespace CompudavSystem.catalogo
                         "Actualizar",
                         listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value.ToString()
                     );
-                
+
             }
 
             if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
@@ -111,16 +113,13 @@ namespace CompudavSystem.catalogo
         private void DatosGuardarActualizar(string id, string accionBoton, string nameCampo)
         {
             NuevoItemForm.Icatalogo = this;
-            NuevoItemForm.Show();
-            NuevoItemForm.BringToFront();
+            FormularioPanel.MostrarFormulario(NuevoItemForm, NuevoItemForm.descripcionTextBox);
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
             NuevoItemForm.aceptarButton.Text = accionBoton;
             NuevoItemForm.descripcionTextBox.Text = nameCampo;
-            NuevoItemForm.descripcionTextBox.Focus();
             NuevoItemForm.descripcionTextBox.SelectAll();
         }
-        
 
         private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
         {

@@ -89,7 +89,7 @@ namespace CompudavSystem.login
 
         private void TxtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
-            if ( e.KeyCode == Keys.F8 ) { ToggleButtonConfiguracion(); }
+            if (e.KeyCode == Keys.F8) { ToggleButtonConfiguracion(); }
             if (e.KeyCode == Keys.Enter) { InicioSesion(); }
         }
 

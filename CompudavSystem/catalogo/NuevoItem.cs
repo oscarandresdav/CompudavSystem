@@ -27,7 +27,7 @@ namespace CompudavSystem.catalogo
             {
                 if (aceptarButton.Text == "Actualizar")
                 {
-                    if (ConsultasSql.Actualizar(TableBdd, $"name = '{name}'","id", $"'{IdField}'"))
+                    if (ConsultasSql.Actualizar(TableBdd, $"name = '{name}'", "id", $"'{IdField}'"))
                     {
                         CerrarYRefrescarFormulario();
                     }

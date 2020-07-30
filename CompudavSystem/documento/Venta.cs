@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompudavSystem.bdd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace CompudavSystem.documento
         public Venta()
         {
             InitializeComponent();
+            CargaNombre();
+        }
+
+        private void CargaNombre()
+        {
+            DataGridView dataGrid = new DataGridView();
+
         }
     }
 }

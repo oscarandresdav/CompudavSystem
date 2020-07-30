@@ -54,26 +54,24 @@
             // 
             // agregarButton
             // 
+            this.agregarButton.BackColor = System.Drawing.Color.White;
             this.agregarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.agregarButton.FlatAppearance.BorderSize = 0;
-            this.agregarButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agregarButton.Image = global::CompudavSystem.Properties.Resources.add_24px;
-            this.agregarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.agregarButton.Location = new System.Drawing.Point(340, 89);
+            this.agregarButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agregarButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.agregarButton.Location = new System.Drawing.Point(657, 3);
             this.agregarButton.Name = "agregarButton";
-            this.agregarButton.Padding = new System.Windows.Forms.Padding(5);
-            this.agregarButton.Size = new System.Drawing.Size(80, 35);
+            this.agregarButton.Size = new System.Drawing.Size(100, 40);
             this.agregarButton.TabIndex = 1;
             this.agregarButton.Text = "Nuevo";
-            this.agregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agregarButton.UseVisualStyleBackColor = true;
+            this.agregarButton.UseVisualStyleBackColor = false;
             this.agregarButton.Click += new System.EventHandler(this.AgregarButton_Click);
             // 
             // busquedaLabel
             // 
             this.busquedaLabel.AutoSize = true;
             this.busquedaLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.busquedaLabel.Location = new System.Drawing.Point(51, 59);
+            this.busquedaLabel.Location = new System.Drawing.Point(50, 85);
             this.busquedaLabel.Name = "busquedaLabel";
             this.busquedaLabel.Size = new System.Drawing.Size(62, 15);
             this.busquedaLabel.TabIndex = 5;
@@ -88,7 +86,7 @@
             this.busquedaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.busquedaTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.busquedaTextBox.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.busquedaTextBox.Location = new System.Drawing.Point(119, 59);
+            this.busquedaTextBox.Location = new System.Drawing.Point(118, 85);
             this.busquedaTextBox.Name = "busquedaTextBox";
             this.busquedaTextBox.Size = new System.Drawing.Size(600, 15);
             this.busquedaTextBox.TabIndex = 0;

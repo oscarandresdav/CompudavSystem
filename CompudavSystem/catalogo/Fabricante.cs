@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
+using CompudavSystem.utilitario;
 
 namespace CompudavSystem.catalogo
 {
@@ -22,7 +23,7 @@ namespace CompudavSystem.catalogo
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
             listadoDataGridView.Columns["name"].HeaderText = "Descripción";
             listadoDataGridView.Columns["name"].Width = 242;
-            
+
             listadoDataGridView.Columns["id"].Visible = false;
             listadoDataGridView.Columns["revision"].Visible = false;
             listadoDataGridView.Columns["status"].Visible = false;
@@ -72,25 +73,25 @@ namespace CompudavSystem.catalogo
             img.Name = name;
             img.Width = 60;
         }
-        
+
         private void AgregarButton_Click(object sender, EventArgs e)
         {
             DatosGuardarActualizar
                 (
-                    "", 
-                    "Guardar", 
+                    "",
+                    "Guardar",
                     ""
                 );
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton") 
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "editButton")
             {
                 DatosGuardarActualizar
                     (
-                        listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 
-                        "Actualizar", 
+                        listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(),
+                        "Actualizar",
                         listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value.ToString()
                     );
             }
@@ -111,13 +112,11 @@ namespace CompudavSystem.catalogo
         private void DatosGuardarActualizar(string id, string accionBoton, string descripcionCampo)
         {
             NuevoItemForm.Icatalogo = this;
-            NuevoItemForm.Show();
-            NuevoItemForm.BringToFront();
+            FormularioPanel.MostrarFormulario(NuevoItemForm, NuevoItemForm.descripcionTextBox);
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
             NuevoItemForm.aceptarButton.Text = accionBoton;
             NuevoItemForm.descripcionTextBox.Text = descripcionCampo;
-            NuevoItemForm.descripcionTextBox.Focus();
             NuevoItemForm.descripcionTextBox.SelectAll();
         }
 

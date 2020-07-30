@@ -42,7 +42,7 @@ namespace CompudavSystem.usuario
             listadoDataGridView.Columns["modified_at"].Visible = false;
             listadoDataGridView.Columns["revision"].Visible = false;
             listadoDataGridView.Columns["typeIdentificationId"].Visible = false;
-            
+
         }
 
         public void FocoEnTextBoxDeBusqueda()
@@ -96,7 +96,7 @@ namespace CompudavSystem.usuario
             NuevoItemForm.mobilePhoneTextBox.Text = mobilePhoneCampo;
             NuevoItemForm.additionalInformationTextBox.Text = additionalInformationCampo;
             NuevoItemForm.typeIdentificationComboBox.SelectedValue = (typeIdentificationIdCampo == "") ? "nulo" : typeIdentificationIdCampo; ;
-            
+
         }
 
         public void Busqueda()

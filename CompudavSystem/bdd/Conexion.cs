@@ -8,7 +8,7 @@ namespace CompudavSystem.bdd
         public static string User { get; set; } = "compudav";
         public static string Password { get; set; } = "compudav";
         public static string Server { get; set; } = Properties.Settings.Default.servidor;
-        public static string Database { get; set; } =  "compudav";
+        public static string Database { get; set; } = "compudav";
 
 
         public static string CadenaConexion(string usuario, string clave, string servidor, string database)
