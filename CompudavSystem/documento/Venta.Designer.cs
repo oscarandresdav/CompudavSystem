@@ -84,6 +84,7 @@
             this.nuevoButton.TabIndex = 5;
             this.nuevoButton.Text = "Nuevo";
             this.nuevoButton.UseVisualStyleBackColor = false;
+            this.nuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
             // printButton
             // 
@@ -96,6 +97,7 @@
             this.printButton.TabIndex = 6;
             this.printButton.Text = "Imprimir";
             this.printButton.UseVisualStyleBackColor = false;
+            this.printButton.Click += new System.EventHandler(this.PrintButton_Click);
             // 
             // dateIssueLabel
             // 
@@ -138,6 +140,9 @@
             this.landlineTextBox.Name = "landlineTextBox";
             this.landlineTextBox.Size = new System.Drawing.Size(300, 15);
             this.landlineTextBox.TabIndex = 3;
+            this.landlineTextBox.DoubleClick += new System.EventHandler(this.LandlineTextBox_DoubleClick);
+            this.landlineTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LandlineTextBox_KeyDown);
+            this.landlineTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LandlineTextBox_KeyPress);
             // 
             // addressLabel
             // 
@@ -162,6 +167,8 @@
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(300, 15);
             this.addressTextBox.TabIndex = 2;
+            this.addressTextBox.DoubleClick += new System.EventHandler(this.AddressTextBox_DoubleClick);
+            this.addressTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddressTextBox_KeyDown);
             // 
             // idNumberLabel
             // 
@@ -186,6 +193,11 @@
             this.idNumberTextBox.Name = "idNumberTextBox";
             this.idNumberTextBox.Size = new System.Drawing.Size(300, 15);
             this.idNumberTextBox.TabIndex = 0;
+            this.idNumberTextBox.TextChanged += new System.EventHandler(this.IdNumberTextBox_TextChanged);
+            this.idNumberTextBox.DoubleClick += new System.EventHandler(this.IdNumberTextBox_DoubleClick);
+            this.idNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IdNumberTextBox_KeyDown);
+            this.idNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdNumberTextBox_KeyPress);
+            this.idNumberTextBox.Validated += new System.EventHandler(this.IdNumberTextBox_Validated);
             // 
             // nameLabel
             // 
@@ -211,6 +223,7 @@
             this.nameTextBox.Size = new System.Drawing.Size(300, 15);
             this.nameTextBox.TabIndex = 1;
             this.nameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+            this.nameTextBox.DoubleClick += new System.EventHandler(this.NameTextBox_DoubleClick);
             this.nameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NameTextBox_KeyDown);
             // 
             // tituloPictureBox
@@ -259,6 +272,7 @@
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(754, 274);
             this.listadoDataGridView.TabIndex = 2;
+            this.listadoDataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listadoDataGridView_CellContentDoubleClick);
             this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
             // 
             // Venta

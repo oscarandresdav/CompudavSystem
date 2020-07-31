@@ -134,7 +134,11 @@ namespace CompudavSystem.usuario
 
         private bool ValidaCampoIdentificacion(TextBox textBox, bool seleccionaTipoIdAuto = false)
         {
-            ErrorStatus = ValidaIDNumber.VerificaIdentificacion(textBox.Text);
+            ErrorStatus = true;
+            if (textBox.Text.Trim().Length > 0)
+            {
+                ErrorStatus = ValidaIDNumber.VerificaIdentificacion(textBox.Text);
+            }
             if (ErrorStatus)
             {
                 ErrorProvider.SetError(textBox, "");
