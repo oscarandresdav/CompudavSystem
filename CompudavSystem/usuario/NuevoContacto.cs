@@ -12,8 +12,7 @@ namespace CompudavSystem.usuario
         public IContacto Icontacto { get; set; }
         public string TableBdd { get; set; }
         public string IdField { get; set; }
-        public bool ErrorStatus { get; set; }
-        public ErrorProvider ErrorProvider { get; set; } = new ErrorProvider();
+        public ValidaCampo ValidaCampoContacto { get; set; } = new ValidaCampo();
 
         public NuevoContacto()
         {
@@ -50,12 +49,12 @@ namespace CompudavSystem.usuario
 
         private void AceptarButton_Click(object sender, EventArgs e)
         {
-            ValidarCampoRequerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
-            ValidarCampoRequerido(businessNameTextBox, "Por favor ingrese la Razón Social");
-            ValidarCampoRequerido(addressTextBox, "Por favor ingrese la Dirección");
-            ValidaCampoIdentificacion(idNumberTextBox);
+            ValidaCampoContacto.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
+            ValidaCampoContacto.Requerido(businessNameTextBox, "Por favor ingrese la Razón Social");
+            ValidaCampoContacto.Requerido(addressTextBox, "Por favor ingrese la Dirección");
+            ValidaCampoContacto.Identificacion(idNumberTextBox);
 
-            if (ErrorStatus)
+            if (ValidaCampoContacto.ErrorStatus)
             {
                 Guardar();
             }
@@ -119,56 +118,26 @@ namespace CompudavSystem.usuario
             Icontacto.Busqueda();
         }
 
-        private bool ValidarCampoRequerido(TextBox textBox, string mensaje)
+        private void TipoIdentificacionAuto(TextBox _idNumberTextBox)
         {
-            ErrorStatus = true;
-            if (textBox.Text == "")
+            if (_idNumberTextBox.Text.Length == 10)
             {
-                ErrorProvider.SetError(textBox, mensaje);
-                ErrorStatus = false;
+                typeIdentificationComboBox.SelectedIndex = 1;
             }
-            else
-                ErrorProvider.SetError(textBox, "");
-            return ErrorStatus;
-        }
-
-        private bool ValidaCampoIdentificacion(TextBox textBox, bool seleccionaTipoIdAuto = false)
-        {
-            ErrorStatus = true;
-            if (textBox.Text.Trim().Length > 0)
+            else if (_idNumberTextBox.Text.Length == 13)
             {
-                ErrorStatus = ValidaIDNumber.VerificaIdentificacion(textBox.Text);
-            }
-            if (ErrorStatus)
-            {
-                ErrorProvider.SetError(textBox, "");
-                if (seleccionaTipoIdAuto)
-                {
-                    if (textBox.Text.Length == 10)
-                    {
-                        typeIdentificationComboBox.SelectedIndex = 1;
-                    }
-                    else if (textBox.Text.Length == 13)
-                    {
-                        typeIdentificationComboBox.SelectedIndex = 2;
-                    }
-                    else
-                    {
-                        typeIdentificationComboBox.SelectedIndex = 0;
-                    }
-                }
+                typeIdentificationComboBox.SelectedIndex = 2;
             }
             else
             {
-                ErrorProvider.SetError(textBox, "Verifica número de ID");
+                typeIdentificationComboBox.SelectedIndex = 0;
             }
-
-            return ErrorStatus;
         }
 
         private void IdNumberTextBox_Validating(object sender, CancelEventArgs e)
         {
-            ValidaCampoIdentificacion(idNumberTextBox, true);
+            ValidaCampoContacto.Identificacion(idNumberTextBox);
+            TipoIdentificacionAuto(idNumberTextBox);
         }
 
         private void IdNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)

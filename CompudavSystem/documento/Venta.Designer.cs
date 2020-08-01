@@ -272,8 +272,6 @@
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(754, 274);
             this.listadoDataGridView.TabIndex = 2;
-            this.listadoDataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listadoDataGridView_CellContentDoubleClick);
-            this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
             // 
             // Venta
             // 

@@ -78,7 +78,7 @@ namespace CompudavSystem.usuario
             FormularioPanel.MostrarFormulario(NuevoItemForm, NuevoItemForm.businessNameTextBox);
             NuevoItemForm.IdField = id;
             NuevoItemForm.TableBdd = TableBdd;
-            NuevoItemForm.ErrorProvider.Clear();
+            NuevoItemForm.ValidaCampoContacto.ErrorProvider.Clear();
             NuevoItemForm.DatosIniciales();
             NuevoItemForm.aceptarButton.Text = accionBoton;
 

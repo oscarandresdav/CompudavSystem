@@ -15,21 +15,18 @@ namespace CompudavSystem.documento
 {
     public partial class Venta : Form
     {
-        public DataGridView ContactoDataGridView { get; set; } = new DataGridView();
+        private DataGridView ContactoDataGridView { get; set; } = new DataGridView();
         private DataTable DataTableContacto { get; set; } = new DataTable();
         private string IdContact { get; set; }
         private string BusinessNameContact { get; set; }
         private string IdNumberContact { get; set; }
         private string AddressContact { get; set; }
         private string LandlineContact { get; set; }
-        private bool ErrorStatus { get; set; }
-        private ErrorProvider ErrorProvider { get; set; } = new ErrorProvider();
+        private ValidaCampo ValidaCampo { get; set; } = new ValidaCampo();
         public Venta()
         {
             InitializeComponent();
-            //CargaContacto();
             ContactoDataGridView.KeyDown += new KeyEventHandler(ContactoDataGridView_KeyDown);
-            ContactoDataGridView.KeyUp += new KeyEventHandler(ContactoDataGridView_KeyUp);
             ContactoDataGridView.CellContentDoubleClick += new DataGridViewCellEventHandler(ContactoDataGridView_CellContentDoubleClick);
         }
 
@@ -40,7 +37,7 @@ namespace CompudavSystem.documento
             if (campoValor.Length > 0 && DataTableContacto.Rows.Count > 0)
             {
                 ContactoDataGridView.DataSource = DataTableContacto;
-                ContactoDataGridView.Size = new Size(350,120);
+                ContactoDataGridView.Size = new Size(350, 120);
                 ContactoDataGridView.Location = new Point(textBox.Location.X + 10, textBox.Location.Y + 26);
                 ContactoDataGridView.ColumnHeadersVisible = false;
                 ContactoDataGridView.RowHeadersVisible = false;
@@ -117,9 +114,9 @@ namespace CompudavSystem.documento
                 ReadOnlyCamposContacto(true);
                 ContactoDataGridView.Visible = false;
                 dateIssueDateTimePicker.Focus();
-                ValidarCampoRequerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
-                ValidarCampoRequerido(nameTextBox, "Por favor ingrese el Nombre");
-                ValidarCampoRequerido(addressTextBox, "Por favor ingrese la Dirección");
+                ValidaCampo.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
+                ValidaCampo.Requerido(nameTextBox, "Por favor ingrese el Nombre");
+                ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
             }
             if (e.KeyCode == Keys.Escape)
             {
@@ -174,19 +171,10 @@ namespace CompudavSystem.documento
             addressTextBox.Clear();
             landlineTextBox.Clear();
             idNumberTextBox.Focus();
-            ErrorProvider.Clear();
+            dateIssueDateTimePicker.Value = DateTime.Today;
+            ValidaCampo.ErrorProvider.Clear();
         }
 
-        private void ContactoDataGridView_KeyUp(object sender, KeyEventArgs e)
-        {
-            
-
-        }
-
-        private void ListadoDataGridView_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
@@ -233,11 +221,6 @@ namespace CompudavSystem.documento
             if (e.KeyCode == Keys.Enter) { dateIssueDateTimePicker.Focus(); }
         }
 
-        private void listadoDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void IdNumberTextBox_TextChanged(object sender, EventArgs e)
         {
             CargaContacto("id_number", idNumberTextBox);
@@ -250,51 +233,26 @@ namespace CompudavSystem.documento
 
         private void IdNumberTextBox_Validated(object sender, EventArgs e)
         {
-            ValidaCampoIdentificacion(idNumberTextBox);
+            ValidaCampo.Identificacion(idNumberTextBox);
         }
 
-        private bool ValidaCampoIdentificacion(TextBox textBox)
-        {
-            ErrorStatus = true;
-            if (textBox.Text.Trim().Length > 0)
-            {
-                ErrorStatus = ValidaIDNumber.VerificaIdentificacion(textBox.Text);
-            }
-            if (ErrorStatus)
-            {
-                ErrorProvider.SetError(textBox, "");
-            }
-            else
-            {
-                ErrorProvider.SetError(textBox, "Verifica número de ID");
-            }
-
-            return ErrorStatus;
-        }
+        
 
         private void LandlineTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = (char)Validaciones.Telefonos(e.KeyChar);
         }
 
-        private bool ValidarCampoRequerido(TextBox textBox, string mensaje)
-        {
-            ErrorStatus = true;
-            if (textBox.Text == "")
-            {
-                ErrorProvider.SetError(textBox, mensaje);
-                ErrorStatus = false;
-            }
-            else
-                ErrorProvider.SetError(textBox, "");
-            return ErrorStatus;
-        }
+        
 
         private void PrintButton_Click(object sender, EventArgs e)
         {
-            ValidarCampoRequerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
-            ValidarCampoRequerido(nameTextBox, "Por favor ingrese el Nombre");
-            ValidarCampoRequerido(addressTextBox, "Por favor ingrese la Dirección");
+            ValidaCampo.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
+            ValidaCampo.Requerido(nameTextBox, "Por favor ingrese el Nombre");
+            ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
         }
+        
+        
+
     }
 }
