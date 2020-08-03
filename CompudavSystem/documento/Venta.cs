@@ -16,7 +16,11 @@ namespace CompudavSystem.documento
     public partial class Venta : Form
     {
         private DataGridView ContactoDataGridView { get; set; } = new DataGridView();
+        private Panel ProductoPanel { get; set; } = new Panel();
+        private TextBox BusquedaProductoTextBox { get; set; } = new TextBox();
+        private DataGridView ProductoDataGridView { get; set; } = new DataGridView();
         private DataTable DataTableContacto { get; set; } = new DataTable();
+        private DataTable DataTableProducto { get; set; } = new DataTable();
         private string IdContact { get; set; }
         private string BusinessNameContact { get; set; }
         private string IdNumberContact { get; set; }
@@ -251,8 +255,70 @@ namespace CompudavSystem.documento
             ValidaCampo.Requerido(nameTextBox, "Por favor ingrese el Nombre");
             ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
         }
-        
-        
 
+
+        private void CargaProducto(DataGridView dataGridView, DataGridViewCellEventArgs e)
+        {
+            ProductoPanel.Size = new Size(400, 160);
+            ProductoPanel.Location = new Point(
+                dataGridView.GetCellDisplayRectangle(0, e.RowIndex, false).Location.X + 2,
+                dataGridView.GetCellDisplayRectangle(0, e.RowIndex, false).Location.Y +
+                dataGridView.GetCellDisplayRectangle(0, e.RowIndex, false).Size.Height + 2);
+            ProductoPanel.BackColor = Color.WhiteSmoke;
+            
+            BusquedaProductoTextBox.Location = new Point(5, 5);
+            BusquedaProductoTextBox.Width = 390;
+            
+            ProductoDataGridView.Size = new Size(390, 120);
+            ProductoDataGridView.Location = new Point(5,30);
+            ProductoDataGridView.ColumnHeadersVisible = false;
+            ProductoDataGridView.RowHeadersVisible = false;
+            ProductoDataGridView.AllowUserToAddRows = false;
+            ProductoDataGridView.AllowUserToDeleteRows = false;
+            ProductoDataGridView.BackgroundColor = Color.White;
+            ProductoDataGridView.AllowUserToResizeColumns = false;
+            ProductoDataGridView.AllowUserToResizeRows = false;
+            ProductoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ProductoDataGridView.ReadOnly = true;
+
+            mainPanel.Controls.Add(ProductoPanel);
+            ProductoPanel.Controls.Add(BusquedaProductoTextBox);
+            ProductoPanel.Controls.Add(ProductoDataGridView);
+            ProductoPanel.BringToFront();
+
+            if (dataGridView.CurrentRow.Cells[1].Selected || dataGridView.CurrentRow.Cells[0].Selected)
+            {
+                ProductoPanel.Visible = true;
+                BusquedaProductoTextBox.Focus();
+            }
+            else
+            {
+                ProductoPanel.Visible = false;
+            }
+
+           
+
+        }
+
+        private void ListadoDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                var selectedCell = listadoDataGridView.SelectedCells[0];
+                MessageBox.Show(selectedCell.ToString());
+            }
+
+            if (listadoDataGridView.CurrentCell.ColumnIndex == 0)
+            {
+                listadoDataGridView.CurrentRow.Cells[1].Value += "x";
+            }
+        }
+
+        private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            CargaProducto(listadoDataGridView, e);
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.nuevoButton = new System.Windows.Forms.Button();
             this.printButton = new System.Windows.Forms.Button();
@@ -46,6 +47,12 @@
             this.footerPanel = new System.Windows.Forms.Panel();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.listadoDataGridView = new System.Windows.Forms.DataGridView();
+            this.mainCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.descuentoColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
             this.mainPanel.SuspendLayout();
@@ -265,13 +272,75 @@
             // listadoDataGridView
             // 
             this.listadoDataGridView.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listadoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.listadoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listadoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.mainCodeColumn,
+            this.nameColumn,
+            this.cantidadColumn,
+            this.precioColumn,
+            this.descuentoColumn,
+            this.subtotalColumn});
             this.listadoDataGridView.Location = new System.Drawing.Point(3, 3);
             this.listadoDataGridView.Name = "listadoDataGridView";
-            this.listadoDataGridView.RowHeadersVisible = false;
+            this.listadoDataGridView.RowHeadersWidth = 25;
+            this.listadoDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(754, 274);
             this.listadoDataGridView.TabIndex = 2;
+            this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);
+            this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
+            // 
+            // mainCodeColumn
+            // 
+            this.mainCodeColumn.HeaderText = "Código";
+            this.mainCodeColumn.Name = "mainCodeColumn";
+            this.mainCodeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.mainCodeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.HeaderText = "Descripción";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.nameColumn.Width = 300;
+            // 
+            // cantidadColumn
+            // 
+            this.cantidadColumn.HeaderText = "Cantidad";
+            this.cantidadColumn.Name = "cantidadColumn";
+            this.cantidadColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cantidadColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cantidadColumn.Width = 60;
+            // 
+            // precioColumn
+            // 
+            this.precioColumn.HeaderText = "Precio Unitario";
+            this.precioColumn.Name = "precioColumn";
+            this.precioColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // descuentoColumn
+            // 
+            this.descuentoColumn.HeaderText = "Descuento Unitario";
+            this.descuentoColumn.Name = "descuentoColumn";
+            this.descuentoColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.descuentoColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.descuentoColumn.Width = 75;
+            // 
+            // subtotalColumn
+            // 
+            this.subtotalColumn.HeaderText = "Subtotal";
+            this.subtotalColumn.Name = "subtotalColumn";
+            this.subtotalColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.subtotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.subtotalColumn.Width = 90;
             // 
             // Venta
             // 
@@ -315,5 +384,11 @@
         private System.Windows.Forms.Label dateIssueLabel;
         private System.Windows.Forms.DateTimePicker dateIssueDateTimePicker;
         private System.Windows.Forms.DataGridView listadoDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mainCodeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn precioColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descuentoColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subtotalColumn;
     }
 }
