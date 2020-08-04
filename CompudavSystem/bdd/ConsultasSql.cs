@@ -140,6 +140,15 @@ namespace CompudavSystem.bdd
             return dataSet.Tables[tabla];
         }
 
+        public static DataTable Busqueda(string tabla, string condicion1, string condicion2, string valor, string campo = "*")
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion1 } LIKE '%{ valor }%' || { condicion2 } LIKE '%{ valor }%'";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
 
     }
 }

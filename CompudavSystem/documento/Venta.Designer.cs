@@ -53,6 +53,8 @@
             this.precioColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.descuentoColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subtotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
             this.mainPanel.SuspendLayout();
@@ -287,7 +289,10 @@
             this.cantidadColumn,
             this.precioColumn,
             this.descuentoColumn,
-            this.subtotalColumn});
+            this.subtotalColumn,
+            this.idColumn,
+            this.stockColumn});
+            this.listadoDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.listadoDataGridView.Location = new System.Drawing.Point(3, 3);
             this.listadoDataGridView.Name = "listadoDataGridView";
             this.listadoDataGridView.RowHeadersWidth = 25;
@@ -296,6 +301,7 @@
             this.listadoDataGridView.Size = new System.Drawing.Size(754, 274);
             this.listadoDataGridView.TabIndex = 2;
             this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);
+            this.listadoDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellEndEdit);
             this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
             // 
             // mainCodeColumn
@@ -309,6 +315,7 @@
             // 
             this.nameColumn.HeaderText = "Descripción";
             this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
             this.nameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.nameColumn.Width = 300;
             // 
@@ -322,9 +329,12 @@
             // 
             // precioColumn
             // 
+            this.precioColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.precioColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.precioColumn.HeaderText = "Precio Unitario";
             this.precioColumn.Name = "precioColumn";
             this.precioColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.precioColumn.ToolTipText = "Listado de precios";
             // 
             // descuentoColumn
             // 
@@ -341,6 +351,18 @@
             this.subtotalColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.subtotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.subtotalColumn.Width = 90;
+            // 
+            // idColumn
+            // 
+            this.idColumn.HeaderText = "Id";
+            this.idColumn.Name = "idColumn";
+            this.idColumn.Visible = false;
+            // 
+            // stockColumn
+            // 
+            this.stockColumn.HeaderText = "Stock";
+            this.stockColumn.Name = "stockColumn";
+            this.stockColumn.Visible = false;
             // 
             // Venta
             // 
@@ -390,5 +412,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn precioColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descuentoColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotalColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockColumn;
     }
 }

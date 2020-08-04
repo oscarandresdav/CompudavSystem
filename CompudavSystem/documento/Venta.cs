@@ -32,6 +32,10 @@ namespace CompudavSystem.documento
             InitializeComponent();
             ContactoDataGridView.KeyDown += new KeyEventHandler(ContactoDataGridView_KeyDown);
             ContactoDataGridView.CellContentDoubleClick += new DataGridViewCellEventHandler(ContactoDataGridView_CellContentDoubleClick);
+            ProductoDataGridView.CellContentDoubleClick += new DataGridViewCellEventHandler(ProductoDataGridView_CellContentDoubleClick);
+            BusquedaProductoTextBox.TextChanged += new EventHandler(BusquedaProductoTextBox_TextChanged);
+            BusquedaProductoTextBox.KeyDown += new KeyEventHandler(BusquedaProductoTextBox_KeyDown);
+
         }
 
         private void CargaContacto(string campoCondicion, TextBox textBox)
@@ -80,7 +84,21 @@ namespace CompudavSystem.documento
         {
             EventoKeyDownContactoIdOrName(e, nameTextBox);
             if (e.KeyCode == Keys.F2) { ReadOnlyCamposContacto(false); }
-            if (e.KeyCode == Keys.Enter) { addressTextBox.Focus(); }
+            if (e.KeyCode == Keys.Enter) 
+            {
+                if (DataTableContacto.Rows.Count > 0)
+                {
+                    AsignarCeldasDataGridViewAVariables();
+                    AsignarVariablesACamposDelFormulario();
+                    ReadOnlyCamposContacto(true);
+                    ContactoDataGridView.Visible = false;
+                    listadoDataGridView.Focus();
+                }
+                else
+                {
+                    addressTextBox.Focus();
+                }
+            }
         }
 
         private void EventoKeyDownContactoIdOrName(KeyEventArgs e, TextBox textBox)
@@ -117,7 +135,7 @@ namespace CompudavSystem.documento
                 AsignarVariablesACamposDelFormulario();
                 ReadOnlyCamposContacto(true);
                 ContactoDataGridView.Visible = false;
-                dateIssueDateTimePicker.Focus();
+                listadoDataGridView.Focus();
                 ValidaCampo.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
                 ValidaCampo.Requerido(nameTextBox, "Por favor ingrese el Nombre");
                 ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
@@ -135,11 +153,12 @@ namespace CompudavSystem.documento
             AsignarVariablesACamposDelFormulario();
             ReadOnlyCamposContacto(true);
             ContactoDataGridView.Visible = false;
-            dateIssueDateTimePicker.Focus();
+            listadoDataGridView.Focus();
         }
 
         private void AsignarCeldasDataGridViewAVariables()
         {
+            ContactoDataGridView.Focus();
             IdContact = ContactoDataGridView.CurrentRow.Cells["id"].Value.ToString();
             IdNumberContact = ContactoDataGridView.CurrentRow.Cells["id_number"].Value.ToString();
             BusinessNameContact = ContactoDataGridView.CurrentRow.Cells["business_name"].Value.ToString();
@@ -184,6 +203,8 @@ namespace CompudavSystem.documento
         {
             ContactClearFields();
             ReadOnlyCamposContacto(false);
+            listadoDataGridView.Rows.Clear();
+            
         }
 
         private void IdNumberTextBox_DoubleClick(object sender, EventArgs e)
@@ -210,7 +231,21 @@ namespace CompudavSystem.documento
         {
             EventoKeyDownContactoIdOrName(e, nameTextBox);
             if (e.KeyCode == Keys.F2) { ReadOnlyCamposContacto(false); }
-            if (e.KeyCode == Keys.Enter) { nameTextBox.Focus(); }
+            if (e.KeyCode == Keys.Enter) 
+            {
+                if (DataTableContacto.Rows.Count > 0)
+                {
+                    AsignarCeldasDataGridViewAVariables();
+                    AsignarVariablesACamposDelFormulario();
+                    ReadOnlyCamposContacto(true);
+                    ContactoDataGridView.Visible = false;
+                    listadoDataGridView.Focus();
+                }
+                else
+                {
+                    nameTextBox.Focus();
+                }
+            }
         }
 
         private void AddressTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -222,7 +257,7 @@ namespace CompudavSystem.documento
         private void LandlineTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2) { ReadOnlyCamposContacto(false); }
-            if (e.KeyCode == Keys.Enter) { dateIssueDateTimePicker.Focus(); }
+            if (e.KeyCode == Keys.Enter) { listadoDataGridView.Focus(); }
         }
 
         private void IdNumberTextBox_TextChanged(object sender, EventArgs e)
@@ -257,20 +292,21 @@ namespace CompudavSystem.documento
         }
 
 
-        private void CargaProducto(DataGridView dataGridView, DataGridViewCellEventArgs e)
+        private void CargaProducto(DataGridView dataGridView)
         {
             ProductoPanel.Size = new Size(400, 160);
             ProductoPanel.Location = new Point(
-                dataGridView.GetCellDisplayRectangle(0, e.RowIndex, false).Location.X + 2,
-                dataGridView.GetCellDisplayRectangle(0, e.RowIndex, false).Location.Y +
-                dataGridView.GetCellDisplayRectangle(0, e.RowIndex, false).Size.Height + 2);
+                dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Location.X + 2,
+                dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Location.Y +
+                dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Size.Height + 2);
             ProductoPanel.BackColor = Color.WhiteSmoke;
-            
+
             BusquedaProductoTextBox.Location = new Point(5, 5);
             BusquedaProductoTextBox.Width = 390;
-            
+            BusquedaProductoTextBox.CharacterCasing = CharacterCasing.Upper;
+
             ProductoDataGridView.Size = new Size(390, 120);
-            ProductoDataGridView.Location = new Point(5,30);
+            ProductoDataGridView.Location = new Point(5, 30);
             ProductoDataGridView.ColumnHeadersVisible = false;
             ProductoDataGridView.RowHeadersVisible = false;
             ProductoDataGridView.AllowUserToAddRows = false;
@@ -285,6 +321,7 @@ namespace CompudavSystem.documento
             ProductoPanel.Controls.Add(BusquedaProductoTextBox);
             ProductoPanel.Controls.Add(ProductoDataGridView);
             ProductoPanel.BringToFront();
+            FiltrarProducto();
 
             if (dataGridView.CurrentRow.Cells[1].Selected || dataGridView.CurrentRow.Cells[0].Selected)
             {
@@ -296,29 +333,106 @@ namespace CompudavSystem.documento
                 ProductoPanel.Visible = false;
             }
 
-           
+
 
         }
 
-        private void ListadoDataGridView_KeyDown(object sender, KeyEventArgs e)
+        private void FiltrarProducto()
         {
-            if (e.KeyCode == Keys.F1)
-            {
-                var selectedCell = listadoDataGridView.SelectedCells[0];
-                MessageBox.Show(selectedCell.ToString());
-            }
+            string campoValor = BusquedaProductoTextBox.Text.Replace("'", "\\'").Trim();
+            DataTableProducto = ConsultasSql.Busqueda("product", "name", "main_code", campoValor, "id, main_code, name, stock, price, price2, price3");
+            ProductoDataGridView.DataSource = DataTableProducto;
 
-            if (listadoDataGridView.CurrentCell.ColumnIndex == 0)
+            ProductoDataGridView.Columns["main_code"].Width = 100;
+            ProductoDataGridView.Columns["name"].Width = 275;
+            ProductoDataGridView.Columns["id"].Visible = false;
+            ProductoDataGridView.Columns["stock"].Visible = false;
+            ProductoDataGridView.Columns["price"].Visible = false;
+            ProductoDataGridView.Columns["price2"].Visible = false;
+            ProductoDataGridView.Columns["price3"].Visible = false;
+        }
+
+        private void BusquedaProductoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) { listadoDataGridView.Focus(); ProductoPanel.Visible = false; }
+            if (e.KeyCode == Keys.Enter)
             {
-                listadoDataGridView.CurrentRow.Cells[1].Value += "x";
+                if (DataTableProducto.Rows.Count > 0)
+                {
+                    AgregarItemAListadoDatagridView();
+                }
             }
+        }
+
+        private void BusquedaProductoTextBox_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarProducto();
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            CargaProducto(listadoDataGridView);
+        }
+
+        private void ListadoDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Add && listadoDataGridView.CurrentRow.Cells[1].Selected)
+            {
+                CargaProducto(listadoDataGridView);
+            }
+        }
 
 
-            CargaProducto(listadoDataGridView, e);
+        private void ProductoDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AgregarItemAListadoDatagridView();
+        }
+
+        private void AgregarItemAListadoDatagridView()
+        {
+            ProductoDataGridView.Focus();
+            listadoDataGridView.CurrentRow.Cells["idColumn"].Value = ProductoDataGridView.CurrentRow.Cells["id"].Value.ToString();
+            listadoDataGridView.CurrentRow.Cells["mainCodeColumn"].Value = ProductoDataGridView.CurrentRow.Cells["main_code"].Value.ToString();
+            listadoDataGridView.CurrentRow.Cells["nameColumn"].Value = ProductoDataGridView.CurrentRow.Cells["name"].Value.ToString();
+            listadoDataGridView.CurrentRow.Cells["stockColumn"].Value = ProductoDataGridView.CurrentRow.Cells["stock"].Value.ToString();
+
+            DataGridViewComboBoxCell comboCell = (DataGridViewComboBoxCell)listadoDataGridView[3, listadoDataGridView.CurrentRow.Index];
+            comboCell.Items.Clear();
+            comboCell.Items.Add(ProductoDataGridView.CurrentRow.Cells["price"].Value.ToString());
+            comboCell.Value = ProductoDataGridView.CurrentRow.Cells["price"].Value.ToString();
+            if (ProductoDataGridView.CurrentRow.Cells["price2"].Value.ToString() != "")
+            {
+                comboCell.Items.Add(ProductoDataGridView.CurrentRow.Cells["price2"].Value.ToString());
+            }
+            if (ProductoDataGridView.CurrentRow.Cells["price3"].Value.ToString() != "")
+            {
+                comboCell.Items.Add(ProductoDataGridView.CurrentRow.Cells["price3"].Value.ToString());
+            }
+
+            ProductoPanel.Visible = false;
+            listadoDataGridView.CurrentCell = listadoDataGridView.CurrentRow.Cells["cantidadColumn"];
+            listadoDataGridView.Focus();
+        }
+
+        private void ListadoDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value != null && listadoDataGridView.CurrentRow.Cells["stockColumn"].Value != null)
+            {
+                if (int.TryParse(listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value.ToString().Trim(), out int cantidad) && int.TryParse(listadoDataGridView.CurrentRow.Cells["stockColumn"].Value.ToString(), out int stock))
+                {
+                    if (cantidad > stock)
+                    {
+                        MessageBox.Show($"Cantidad elegida supera el valor total disponible. \n\n\t**Disponible:  {listadoDataGridView.CurrentRow.Cells["stockColumn"].Value}");
+                        listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value = listadoDataGridView.CurrentRow.Cells["stockColumn"].Value;
+
+                    }
+                    decimal cantidadDecimal = Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value);
+                    decimal precioDecimal = Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["precioColumn"].Value);
+                    MessageBox.Show((cantidadDecimal * precioDecimal).ToString());
+                    listadoDataGridView.CurrentRow.Cells["subtotalColumn"].Value = cantidadDecimal * precioDecimal;
+                }
+
+            }
         }
     }
 }
