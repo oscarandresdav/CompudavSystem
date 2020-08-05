@@ -1,5 +1,6 @@
 ﻿using CompudavSystem.bdd;
 using CompudavSystem.utilitario;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,21 +22,43 @@ namespace CompudavSystem.documento
         private DataGridView ProductoDataGridView { get; set; } = new DataGridView();
         private DataTable DataTableContacto { get; set; } = new DataTable();
         private DataTable DataTableProducto { get; set; } = new DataTable();
+        private ValidaCampo ValidaCampo { get; set; } = new ValidaCampo();
         private string IdContact { get; set; }
         private string BusinessNameContact { get; set; }
         private string IdNumberContact { get; set; }
         private string AddressContact { get; set; }
         private string LandlineContact { get; set; }
-        private ValidaCampo ValidaCampo { get; set; } = new ValidaCampo();
+        private decimal Subtotal12Decimal { get; set; }
+        private decimal Subtotal0Decimal { get; set; }
+        private decimal SubtotalDescuentoDecimal { get; set; }
+        private decimal DescuentoDecimal { get; set; }
+        private string DescuentoSigno { get; set; }
+        private decimal ValorDescuentoDecimal { get; set; }
+        private decimal SubtotalDecimal { get; set; }
+        private decimal IvaDecimal { get; set; }
+        private decimal TotalDecimal { get; set; }
         public Venta()
         {
             InitializeComponent();
+            CargaDeDatosCombobox(tipoPagoComboBox, "payment_method");
+            InicializarValoresTotales();
             ContactoDataGridView.KeyDown += new KeyEventHandler(ContactoDataGridView_KeyDown);
             ContactoDataGridView.CellContentDoubleClick += new DataGridViewCellEventHandler(ContactoDataGridView_CellContentDoubleClick);
+            ProductoDataGridView.KeyDown += new KeyEventHandler(ProductoDataGridView_KeyDown);
             ProductoDataGridView.CellContentDoubleClick += new DataGridViewCellEventHandler(ProductoDataGridView_CellContentDoubleClick);
+
             BusquedaProductoTextBox.TextChanged += new EventHandler(BusquedaProductoTextBox_TextChanged);
             BusquedaProductoTextBox.KeyDown += new KeyEventHandler(BusquedaProductoTextBox_KeyDown);
 
+        }
+
+        private void CargaDeDatosCombobox(ComboBox comboBox, string table, string displayMember = "name", string valueMember = "id", string campoOrden = "sort")
+        {
+            comboBox.DataSource = ConsultasSql.ConsultaGeneral(table, campoOrden: campoOrden);
+            comboBox.DisplayMember = displayMember;
+            comboBox.ValueMember = valueMember;
+            comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
         private void CargaContacto(string campoCondicion, TextBox textBox)
@@ -182,8 +205,9 @@ namespace CompudavSystem.documento
             landlineTextBox.Text = LandlineContact;
         }
 
-        private void ContactClearFields() 
+        private void ClearFields()
         {
+            CargaDeDatosCombobox(tipoPagoComboBox, "payment_method");
             IdContact = "";
             IdNumberContact = "";
             BusinessNameContact = "";
@@ -195,13 +219,35 @@ namespace CompudavSystem.documento
             landlineTextBox.Clear();
             idNumberTextBox.Focus();
             dateIssueDateTimePicker.Value = DateTime.Today;
+            additionalInformationTextBox.Clear();
             ValidaCampo.ErrorProvider.Clear();
+            InicializarValoresTotales();
+
         }
 
+        private void InicializarValoresTotales()
+        {
+            Subtotal12Decimal = 0;
+            subtotal12TextBox.Text = string.Format("{0:F2}", Subtotal12Decimal);
+            Subtotal0Decimal = 0;
+            subtotal0TextBox.Text = string.Format("{0:F2}", Subtotal0Decimal);
+            DescuentoDecimal = 0;
+            descuentoTextBox.Text = string.Format("{0:F2}", DescuentoDecimal);
+            ValorDescuentoDecimal = 0;
+            valorDescuentoTextBox.Text = string.Format("{0:F2}", ValorDescuentoDecimal);
+            SubtotalDecimal = 0;
+            subtotalTextBox.Text = string.Format("{0:F2}", SubtotalDecimal);
+            IvaDecimal = 0;
+            ivaTextBox.Text = string.Format("{0:F2}", IvaDecimal);
+            TotalDecimal = 0;
+            totalTextBox.Text = string.Format("{0:F2}", TotalDecimal);
+            DescuentoSigno = "%";
+            descuentoButton.Text = DescuentoSigno;
+        }
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
-            ContactClearFields();
+            ClearFields();
             ReadOnlyCamposContacto(false);
             listadoDataGridView.Rows.Clear();
             
@@ -327,6 +373,7 @@ namespace CompudavSystem.documento
             {
                 ProductoPanel.Visible = true;
                 BusquedaProductoTextBox.Focus();
+                BusquedaProductoTextBox.SelectAll();
             }
             else
             {
@@ -340,7 +387,7 @@ namespace CompudavSystem.documento
         private void FiltrarProducto()
         {
             string campoValor = BusquedaProductoTextBox.Text.Replace("'", "\\'").Trim();
-            DataTableProducto = ConsultasSql.Busqueda("product", "name", "main_code", campoValor, "id, main_code, name, stock, price, price2, price3");
+            DataTableProducto = ConsultasSql.Busqueda("product_iva_rate_view", "name", "main_code", campoValor, "id, main_code, name, stock, price, price2, price3, iva_rate_name");
             ProductoDataGridView.DataSource = DataTableProducto;
 
             ProductoDataGridView.Columns["main_code"].Width = 100;
@@ -350,6 +397,7 @@ namespace CompudavSystem.documento
             ProductoDataGridView.Columns["price"].Visible = false;
             ProductoDataGridView.Columns["price2"].Visible = false;
             ProductoDataGridView.Columns["price3"].Visible = false;
+            ProductoDataGridView.Columns["iva_rate_name"].Visible = false;
         }
 
         private void BusquedaProductoTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -361,6 +409,10 @@ namespace CompudavSystem.documento
                 {
                     AgregarItemAListadoDatagridView();
                 }
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                ProductoDataGridView.Focus();
             }
         }
 
@@ -376,7 +428,7 @@ namespace CompudavSystem.documento
 
         private void ListadoDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Add && listadoDataGridView.CurrentRow.Cells[1].Selected)
+            if (e.KeyCode == Keys.Add )
             {
                 CargaProducto(listadoDataGridView);
             }
@@ -388,6 +440,25 @@ namespace CompudavSystem.documento
             AgregarItemAListadoDatagridView();
         }
 
+        private void ProductoDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                if (ProductoDataGridView.CurrentCell.RowIndex == 0)
+                {
+                    BusquedaProductoTextBox.Focus();
+                }
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (DataTableProducto.Rows.Count > 0)
+                {
+                    AgregarItemAListadoDatagridView();
+                }
+            }
+            if (e.KeyCode == Keys.Escape) { listadoDataGridView.Focus(); ProductoPanel.Visible = false; }
+        }
+
         private void AgregarItemAListadoDatagridView()
         {
             ProductoDataGridView.Focus();
@@ -395,6 +466,7 @@ namespace CompudavSystem.documento
             listadoDataGridView.CurrentRow.Cells["mainCodeColumn"].Value = ProductoDataGridView.CurrentRow.Cells["main_code"].Value.ToString();
             listadoDataGridView.CurrentRow.Cells["nameColumn"].Value = ProductoDataGridView.CurrentRow.Cells["name"].Value.ToString();
             listadoDataGridView.CurrentRow.Cells["stockColumn"].Value = ProductoDataGridView.CurrentRow.Cells["stock"].Value.ToString();
+            listadoDataGridView.CurrentRow.Cells["ivaRateColumn"].Value = ProductoDataGridView.CurrentRow.Cells["iva_rate_name"].Value.ToString();
 
             DataGridViewComboBoxCell comboCell = (DataGridViewComboBoxCell)listadoDataGridView[3, listadoDataGridView.CurrentRow.Index];
             comboCell.Items.Clear();
@@ -410,29 +482,199 @@ namespace CompudavSystem.documento
             }
 
             ProductoPanel.Visible = false;
+            listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value = "1";
             listadoDataGridView.CurrentCell = listadoDataGridView.CurrentRow.Cells["cantidadColumn"];
             listadoDataGridView.Focus();
         }
 
         private void ListadoDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            CalculoSubtotalesCeldasDataGridView();
+            CalculoDescuentoAdicional();
+            CalculoSubtotalesTextBoxs();
+        }
+
+        private void CalculoSubtotalesTextBoxs()
+        {
+            Subtotal12Decimal = 0;
+            Subtotal0Decimal = 0;
+            SubtotalDescuentoDecimal = 0;
+
+
+            for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
+            {
+                if (listadoDataGridView.Rows[i].Cells["ivaRateColumn"].Value != null)
+                {
+                    if (listadoDataGridView.Rows[i].Cells["ivaRateColumn"].Value.ToString().Trim() == "12%")
+                    {
+                        decimal _subtotalDecimal = Convert.ToDecimal(listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value);
+                        Subtotal12Decimal += _subtotalDecimal;
+                    }
+                    else
+                    {
+                        decimal _subtotalDecimal = Convert.ToDecimal(listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value);
+                        Subtotal0Decimal += _subtotalDecimal;
+                    }
+                }
+
+                decimal _subtotalDescuentoDecimal = Math.Round(Convert.ToDecimal(listadoDataGridView.Rows[i].Cells["descuentoColumn"].Value), 4);
+                SubtotalDescuentoDecimal += _subtotalDescuentoDecimal;
+
+            }
+
+            subtotal12TextBox.Text = string.Format("{0:F2}", Subtotal12Decimal);
+            subtotal0TextBox.Text = string.Format("{0:F2}", Subtotal0Decimal);
+
+            decimal.TryParse(valorDescuentoTextBox.Text, out decimal _valorDescuentoDecimal);
+            ValorDescuentoDecimal = _valorDescuentoDecimal;
+
+            if (ValorDescuentoDecimal > Subtotal12Decimal)
+            {
+                ValorDescuentoDecimal = 0;
+                DescuentoDecimal = 0;
+            }
+
+            SubtotalDecimal = Subtotal0Decimal + Subtotal12Decimal - ValorDescuentoDecimal;
+            subtotalTextBox.Text = string.Format("{0:F2}", SubtotalDecimal);
+
+            IvaDecimal = Math.Round((Subtotal12Decimal - ValorDescuentoDecimal) * 0.12M, 2);
+            ivaTextBox.Text = string.Format("{0:F2}", IvaDecimal);
+
+            TotalDecimal = SubtotalDecimal + IvaDecimal;
+            totalTextBox.Text = string.Format("{0:F2}", TotalDecimal);
+        }
+
+        private void CalculoSubtotalesCeldasDataGridView()
+        {
             if (listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value != null && listadoDataGridView.CurrentRow.Cells["stockColumn"].Value != null)
             {
                 if (int.TryParse(listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value.ToString().Trim(), out int cantidad) && int.TryParse(listadoDataGridView.CurrentRow.Cells["stockColumn"].Value.ToString(), out int stock))
                 {
+                    if (cantidad == 0)
+                    {
+                        listadoDataGridView.Rows.RemoveAt(listadoDataGridView.CurrentRow.Index);
+                    }
+
                     if (cantidad > stock)
                     {
                         MessageBox.Show($"Cantidad elegida supera el valor total disponible. \n\n\t**Disponible:  {listadoDataGridView.CurrentRow.Cells["stockColumn"].Value}");
                         listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value = listadoDataGridView.CurrentRow.Cells["stockColumn"].Value;
-
                     }
+
                     decimal cantidadDecimal = Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value);
                     decimal precioDecimal = Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["precioColumn"].Value);
-                    MessageBox.Show((cantidadDecimal * precioDecimal).ToString());
-                    listadoDataGridView.CurrentRow.Cells["subtotalColumn"].Value = cantidadDecimal * precioDecimal;
-                }
+                    decimal descuentoDecimal = Math.Round(Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["descuentoColumn"].Value), 4);
+                    decimal subtotalDecimal = Math.Round(cantidadDecimal * (precioDecimal - descuentoDecimal), 2);
 
+                    listadoDataGridView.CurrentRow.Cells["descuentoColumn"].Value = descuentoDecimal;
+                    listadoDataGridView.CurrentRow.Cells["subtotalColumn"].Value = subtotalDecimal;
+                }
             }
+        }
+
+        private void DecimalesDataGridViewColumnKeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            // Un solo punto decinmal
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NumerosDataGridViewColumnKeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ListadoDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.KeyPress -= new KeyPressEventHandler(DecimalesDataGridViewColumnKeyPress);
+            e.Control.KeyPress -= new KeyPressEventHandler(NumerosDataGridViewColumnKeyPress);
+            if (listadoDataGridView.CurrentCell.ColumnIndex == 4) 
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress += new KeyPressEventHandler(DecimalesDataGridViewColumnKeyPress);
+                }
+            }
+            if (listadoDataGridView.CurrentCell.ColumnIndex == 2) 
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress += new KeyPressEventHandler(NumerosDataGridViewColumnKeyPress);
+                }
+            }
+        }
+
+        private void DescuentoButton_Click(object sender, EventArgs e)
+        {
+            DescuentoSigno = DescuentoSigno == "%" ? "$" : "%";
+            descuentoButton.Text = DescuentoSigno;
+
+            CalculoDescuentoAdicional();
+            CalculoSubtotalesTextBoxs();
+        }
+
+        private void DescuentoTextBox_TextChanged(object sender, EventArgs e)
+        {
+            CalculoDescuentoAdicional();
+            CalculoSubtotalesTextBoxs();
+
+
+        }
+
+        private void CalculoDescuentoAdicional()
+        {
+            decimal.TryParse(descuentoTextBox.Text, out decimal _descuentoDecimal);
+            DescuentoDecimal = Math.Round(_descuentoDecimal, 2);
+            if (DescuentoSigno == "%")
+            {
+                valorDescuentoTextBox.Text = string.Format("{0:F2}", (Subtotal12Decimal * DescuentoDecimal) / 100);
+            }
+            if (DescuentoSigno == "$")
+            {
+                valorDescuentoTextBox.Text = string.Format("{0:F2}", DescuentoDecimal);
+            }
+        }
+
+        private void DescuentoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
+        }
+
+        private void DescuentoTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            descuentoTextBox.Text = string.Format("{0:F2}", DescuentoDecimal);
+        }
+
+        private void DescuentoTextBox_Click(object sender, EventArgs e)
+        {
+            descuentoTextBox.SelectAll();
+        }
+
+        private void DescuentoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CalculoDescuentoAdicional();
+                CalculoSubtotalesTextBoxs();
+                additionalInformationTextBox.Focus();
+            }
+
         }
     }
 }

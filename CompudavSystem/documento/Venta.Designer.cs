@@ -29,7 +29,13 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.tipoPagoLabel = new System.Windows.Forms.Label();
+            this.tipoPagoComboBox = new System.Windows.Forms.ComboBox();
             this.nuevoButton = new System.Windows.Forms.Button();
             this.printButton = new System.Windows.Forms.Button();
             this.dateIssueLabel = new System.Windows.Forms.Label();
@@ -45,6 +51,23 @@
             this.tituloPictureBox = new System.Windows.Forms.PictureBox();
             this.tituloLabel = new System.Windows.Forms.Label();
             this.footerPanel = new System.Windows.Forms.Panel();
+            this.printerLabel = new System.Windows.Forms.Label();
+            this.additionalInformationTextBox = new System.Windows.Forms.TextBox();
+            this.additionalInformationLabel = new System.Windows.Forms.Label();
+            this.totalLabel = new System.Windows.Forms.Label();
+            this.totalTextBox = new System.Windows.Forms.TextBox();
+            this.ivaLabel = new System.Windows.Forms.Label();
+            this.ivaTextBox = new System.Windows.Forms.TextBox();
+            this.subtotalLabel = new System.Windows.Forms.Label();
+            this.subtotalTextBox = new System.Windows.Forms.TextBox();
+            this.descuentoButton = new System.Windows.Forms.Button();
+            this.descuentoTextBox = new System.Windows.Forms.TextBox();
+            this.valorDescuentoLabel = new System.Windows.Forms.Label();
+            this.valorDescuentoTextBox = new System.Windows.Forms.TextBox();
+            this.subtotal0Label = new System.Windows.Forms.Label();
+            this.subtotal0TextBox = new System.Windows.Forms.TextBox();
+            this.subtotal12Label = new System.Windows.Forms.Label();
+            this.subtotal12TextBox = new System.Windows.Forms.TextBox();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.listadoDataGridView = new System.Windows.Forms.DataGridView();
             this.mainCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,14 +78,18 @@
             this.subtotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ivaRateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
+            this.footerPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // headerPanel
             // 
+            this.headerPanel.Controls.Add(this.tipoPagoLabel);
+            this.headerPanel.Controls.Add(this.tipoPagoComboBox);
             this.headerPanel.Controls.Add(this.nuevoButton);
             this.headerPanel.Controls.Add(this.printButton);
             this.headerPanel.Controls.Add(this.dateIssueLabel);
@@ -81,6 +108,25 @@
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(760, 150);
             this.headerPanel.TabIndex = 0;
+            // 
+            // tipoPagoLabel
+            // 
+            this.tipoPagoLabel.AutoSize = true;
+            this.tipoPagoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.tipoPagoLabel.Location = new System.Drawing.Point(477, 48);
+            this.tipoPagoLabel.Name = "tipoPagoLabel";
+            this.tipoPagoLabel.Size = new System.Drawing.Size(93, 15);
+            this.tipoPagoLabel.TabIndex = 22;
+            this.tipoPagoLabel.Text = "Metodo de pago";
+            // 
+            // tipoPagoComboBox
+            // 
+            this.tipoPagoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tipoPagoComboBox.FormattingEnabled = true;
+            this.tipoPagoComboBox.Location = new System.Drawing.Point(480, 65);
+            this.tipoPagoComboBox.Name = "tipoPagoComboBox";
+            this.tipoPagoComboBox.Size = new System.Drawing.Size(233, 23);
+            this.tipoPagoComboBox.TabIndex = 21;
             // 
             // nuevoButton
             // 
@@ -112,7 +158,7 @@
             // 
             this.dateIssueLabel.AutoSize = true;
             this.dateIssueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.dateIssueLabel.Location = new System.Drawing.Point(477, 73);
+            this.dateIssueLabel.Location = new System.Drawing.Point(477, 92);
             this.dateIssueLabel.Name = "dateIssueLabel";
             this.dateIssueLabel.Size = new System.Drawing.Size(97, 15);
             this.dateIssueLabel.TabIndex = 15;
@@ -121,7 +167,7 @@
             // dateIssueDateTimePicker
             // 
             this.dateIssueDateTimePicker.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.dateIssueDateTimePicker.Location = new System.Drawing.Point(480, 91);
+            this.dateIssueDateTimePicker.Location = new System.Drawing.Point(480, 110);
             this.dateIssueDateTimePicker.Name = "dateIssueDateTimePicker";
             this.dateIssueDateTimePicker.Size = new System.Drawing.Size(233, 22);
             this.dateIssueDateTimePicker.TabIndex = 4;
@@ -258,10 +304,244 @@
             // 
             // footerPanel
             // 
+            this.footerPanel.Controls.Add(this.printerLabel);
+            this.footerPanel.Controls.Add(this.additionalInformationTextBox);
+            this.footerPanel.Controls.Add(this.additionalInformationLabel);
+            this.footerPanel.Controls.Add(this.totalLabel);
+            this.footerPanel.Controls.Add(this.totalTextBox);
+            this.footerPanel.Controls.Add(this.ivaLabel);
+            this.footerPanel.Controls.Add(this.ivaTextBox);
+            this.footerPanel.Controls.Add(this.subtotalLabel);
+            this.footerPanel.Controls.Add(this.subtotalTextBox);
+            this.footerPanel.Controls.Add(this.descuentoButton);
+            this.footerPanel.Controls.Add(this.descuentoTextBox);
+            this.footerPanel.Controls.Add(this.valorDescuentoLabel);
+            this.footerPanel.Controls.Add(this.valorDescuentoTextBox);
+            this.footerPanel.Controls.Add(this.subtotal0Label);
+            this.footerPanel.Controls.Add(this.subtotal0TextBox);
+            this.footerPanel.Controls.Add(this.subtotal12Label);
+            this.footerPanel.Controls.Add(this.subtotal12TextBox);
             this.footerPanel.Location = new System.Drawing.Point(10, 450);
             this.footerPanel.Name = "footerPanel";
             this.footerPanel.Size = new System.Drawing.Size(760, 180);
             this.footerPanel.TabIndex = 2;
+            // 
+            // printerLabel
+            // 
+            this.printerLabel.AutoSize = true;
+            this.printerLabel.Location = new System.Drawing.Point(3, 165);
+            this.printerLabel.Name = "printerLabel";
+            this.printerLabel.Size = new System.Drawing.Size(0, 15);
+            this.printerLabel.TabIndex = 25;
+            // 
+            // additionalInformationTextBox
+            // 
+            this.additionalInformationTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.additionalInformationTextBox.Location = new System.Drawing.Point(18, 23);
+            this.additionalInformationTextBox.Multiline = true;
+            this.additionalInformationTextBox.Name = "additionalInformationTextBox";
+            this.additionalInformationTextBox.Size = new System.Drawing.Size(360, 100);
+            this.additionalInformationTextBox.TabIndex = 23;
+            // 
+            // additionalInformationLabel
+            // 
+            this.additionalInformationLabel.AutoSize = true;
+            this.additionalInformationLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.additionalInformationLabel.Location = new System.Drawing.Point(15, 5);
+            this.additionalInformationLabel.Name = "additionalInformationLabel";
+            this.additionalInformationLabel.Size = new System.Drawing.Size(121, 15);
+            this.additionalInformationLabel.TabIndex = 24;
+            this.additionalInformationLabel.Text = "Información Adicional";
+            // 
+            // totalLabel
+            // 
+            this.totalLabel.AutoSize = true;
+            this.totalLabel.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.totalLabel.Location = new System.Drawing.Point(559, 130);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(92, 22);
+            this.totalLabel.TabIndex = 22;
+            this.totalLabel.Text = "Valor Total";
+            // 
+            // totalTextBox
+            // 
+            this.totalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.totalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.totalTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.totalTextBox.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalTextBox.Location = new System.Drawing.Point(657, 130);
+            this.totalTextBox.Name = "totalTextBox";
+            this.totalTextBox.ReadOnly = true;
+            this.totalTextBox.Size = new System.Drawing.Size(100, 22);
+            this.totalTextBox.TabIndex = 21;
+            this.totalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // ivaLabel
+            // 
+            this.ivaLabel.AutoSize = true;
+            this.ivaLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.ivaLabel.Location = new System.Drawing.Point(597, 105);
+            this.ivaLabel.Name = "ivaLabel";
+            this.ivaLabel.Size = new System.Drawing.Size(54, 15);
+            this.ivaLabel.TabIndex = 20;
+            this.ivaLabel.Text = "Valor IVA";
+            // 
+            // ivaTextBox
+            // 
+            this.ivaTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ivaTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ivaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ivaTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.ivaTextBox.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ivaTextBox.Location = new System.Drawing.Point(657, 105);
+            this.ivaTextBox.Name = "ivaTextBox";
+            this.ivaTextBox.ReadOnly = true;
+            this.ivaTextBox.Size = new System.Drawing.Size(100, 15);
+            this.ivaTextBox.TabIndex = 19;
+            this.ivaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // subtotalLabel
+            // 
+            this.subtotalLabel.AutoSize = true;
+            this.subtotalLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.subtotalLabel.Location = new System.Drawing.Point(600, 80);
+            this.subtotalLabel.Name = "subtotalLabel";
+            this.subtotalLabel.Size = new System.Drawing.Size(51, 15);
+            this.subtotalLabel.TabIndex = 18;
+            this.subtotalLabel.Text = "Subtotal";
+            // 
+            // subtotalTextBox
+            // 
+            this.subtotalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.subtotalTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.subtotalTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.subtotalTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.subtotalTextBox.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subtotalTextBox.Location = new System.Drawing.Point(657, 80);
+            this.subtotalTextBox.Name = "subtotalTextBox";
+            this.subtotalTextBox.ReadOnly = true;
+            this.subtotalTextBox.Size = new System.Drawing.Size(100, 15);
+            this.subtotalTextBox.TabIndex = 17;
+            this.subtotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // descuentoButton
+            // 
+            this.descuentoButton.BackColor = System.Drawing.Color.White;
+            this.descuentoButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descuentoButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.descuentoButton.Location = new System.Drawing.Point(611, 50);
+            this.descuentoButton.Name = "descuentoButton";
+            this.descuentoButton.Size = new System.Drawing.Size(40, 25);
+            this.descuentoButton.TabIndex = 16;
+            this.descuentoButton.Text = "%";
+            this.descuentoButton.UseVisualStyleBackColor = false;
+            this.descuentoButton.Click += new System.EventHandler(this.DescuentoButton_Click);
+            // 
+            // descuentoTextBox
+            // 
+            this.descuentoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.descuentoTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.descuentoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.descuentoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.descuentoTextBox.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descuentoTextBox.Location = new System.Drawing.Point(530, 55);
+            this.descuentoTextBox.Name = "descuentoTextBox";
+            this.descuentoTextBox.Size = new System.Drawing.Size(75, 15);
+            this.descuentoTextBox.TabIndex = 15;
+            this.descuentoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.descuentoTextBox.Click += new System.EventHandler(this.DescuentoTextBox_Click);
+            this.descuentoTextBox.TextChanged += new System.EventHandler(this.DescuentoTextBox_TextChanged);
+            this.descuentoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DescuentoTextBox_KeyDown);
+            this.descuentoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescuentoTextBox_KeyPress);
+            this.descuentoTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.DescuentoTextBox_Validating);
+            // 
+            // valorDescuentoLabel
+            // 
+            this.valorDescuentoLabel.AutoSize = true;
+            this.valorDescuentoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.valorDescuentoLabel.Location = new System.Drawing.Point(411, 55);
+            this.valorDescuentoLabel.Name = "valorDescuentoLabel";
+            this.valorDescuentoLabel.Size = new System.Drawing.Size(113, 15);
+            this.valorDescuentoLabel.TabIndex = 14;
+            this.valorDescuentoLabel.Text = "Descuento Adicional";
+            // 
+            // valorDescuentoTextBox
+            // 
+            this.valorDescuentoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.valorDescuentoTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.valorDescuentoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.valorDescuentoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.valorDescuentoTextBox.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valorDescuentoTextBox.Location = new System.Drawing.Point(657, 55);
+            this.valorDescuentoTextBox.Name = "valorDescuentoTextBox";
+            this.valorDescuentoTextBox.ReadOnly = true;
+            this.valorDescuentoTextBox.Size = new System.Drawing.Size(100, 15);
+            this.valorDescuentoTextBox.TabIndex = 13;
+            this.valorDescuentoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // subtotal0Label
+            // 
+            this.subtotal0Label.AutoSize = true;
+            this.subtotal0Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.subtotal0Label.Location = new System.Drawing.Point(582, 30);
+            this.subtotal0Label.Name = "subtotal0Label";
+            this.subtotal0Label.Size = new System.Drawing.Size(69, 15);
+            this.subtotal0Label.TabIndex = 12;
+            this.subtotal0Label.Text = "Subtotal 0%";
+            // 
+            // subtotal0TextBox
+            // 
+            this.subtotal0TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.subtotal0TextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.subtotal0TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.subtotal0TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.subtotal0TextBox.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subtotal0TextBox.Location = new System.Drawing.Point(657, 30);
+            this.subtotal0TextBox.Name = "subtotal0TextBox";
+            this.subtotal0TextBox.ReadOnly = true;
+            this.subtotal0TextBox.Size = new System.Drawing.Size(100, 15);
+            this.subtotal0TextBox.TabIndex = 11;
+            this.subtotal0TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // subtotal12Label
+            // 
+            this.subtotal12Label.AutoSize = true;
+            this.subtotal12Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.subtotal12Label.Location = new System.Drawing.Point(576, 5);
+            this.subtotal12Label.Name = "subtotal12Label";
+            this.subtotal12Label.Size = new System.Drawing.Size(75, 15);
+            this.subtotal12Label.TabIndex = 10;
+            this.subtotal12Label.Text = "Subtotal 12%";
+            // 
+            // subtotal12TextBox
+            // 
+            this.subtotal12TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.subtotal12TextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.subtotal12TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.subtotal12TextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.subtotal12TextBox.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subtotal12TextBox.Location = new System.Drawing.Point(657, 5);
+            this.subtotal12TextBox.Name = "subtotal12TextBox";
+            this.subtotal12TextBox.ReadOnly = true;
+            this.subtotal12TextBox.Size = new System.Drawing.Size(100, 15);
+            this.subtotal12TextBox.TabIndex = 9;
+            this.subtotal12TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // mainPanel
             // 
@@ -291,7 +571,8 @@
             this.descuentoColumn,
             this.subtotalColumn,
             this.idColumn,
-            this.stockColumn});
+            this.stockColumn,
+            this.ivaRateColumn});
             this.listadoDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.listadoDataGridView.Location = new System.Drawing.Point(3, 3);
             this.listadoDataGridView.Name = "listadoDataGridView";
@@ -302,12 +583,14 @@
             this.listadoDataGridView.TabIndex = 2;
             this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);
             this.listadoDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellEndEdit);
+            this.listadoDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.ListadoDataGridView_EditingControlShowing);
             this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
             // 
             // mainCodeColumn
             // 
             this.mainCodeColumn.HeaderText = "Código";
             this.mainCodeColumn.Name = "mainCodeColumn";
+            this.mainCodeColumn.ReadOnly = true;
             this.mainCodeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.mainCodeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -321,6 +604,10 @@
             // 
             // cantidadColumn
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.cantidadColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.cantidadColumn.HeaderText = "Cantidad";
             this.cantidadColumn.Name = "cantidadColumn";
             this.cantidadColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -329,6 +616,8 @@
             // 
             // precioColumn
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.precioColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.precioColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.precioColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.precioColumn.HeaderText = "Precio Unitario";
@@ -338,6 +627,10 @@
             // 
             // descuentoColumn
             // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N4";
+            dataGridViewCellStyle4.NullValue = null;
+            this.descuentoColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.descuentoColumn.HeaderText = "Descuento Unitario";
             this.descuentoColumn.Name = "descuentoColumn";
             this.descuentoColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -346,6 +639,10 @@
             // 
             // subtotalColumn
             // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.subtotalColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.subtotalColumn.HeaderText = "Subtotal";
             this.subtotalColumn.Name = "subtotalColumn";
             this.subtotalColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -364,6 +661,12 @@
             this.stockColumn.Name = "stockColumn";
             this.stockColumn.Visible = false;
             // 
+            // ivaRateColumn
+            // 
+            this.ivaRateColumn.HeaderText = "iva";
+            this.ivaRateColumn.Name = "ivaRateColumn";
+            this.ivaRateColumn.Visible = false;
+            // 
             // Venta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
@@ -380,6 +683,8 @@
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).EndInit();
+            this.footerPanel.ResumeLayout(false);
+            this.footerPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -397,8 +702,6 @@
         public System.Windows.Forms.TextBox landlineTextBox;
         private System.Windows.Forms.Label addressLabel;
         public System.Windows.Forms.TextBox addressTextBox;
-        private System.Windows.Forms.Label idNumberLabel;
-        public System.Windows.Forms.TextBox idNumberTextBox;
         private System.Windows.Forms.Label nameLabel;
         public System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Button nuevoButton;
@@ -406,6 +709,27 @@
         private System.Windows.Forms.Label dateIssueLabel;
         private System.Windows.Forms.DateTimePicker dateIssueDateTimePicker;
         private System.Windows.Forms.DataGridView listadoDataGridView;
+        private System.Windows.Forms.Label idNumberLabel;
+        public System.Windows.Forms.TextBox idNumberTextBox;
+        private System.Windows.Forms.Label totalLabel;
+        public System.Windows.Forms.TextBox totalTextBox;
+        private System.Windows.Forms.Label ivaLabel;
+        public System.Windows.Forms.TextBox ivaTextBox;
+        private System.Windows.Forms.Label subtotalLabel;
+        public System.Windows.Forms.TextBox subtotalTextBox;
+        private System.Windows.Forms.Button descuentoButton;
+        public System.Windows.Forms.TextBox descuentoTextBox;
+        private System.Windows.Forms.Label valorDescuentoLabel;
+        public System.Windows.Forms.TextBox valorDescuentoTextBox;
+        private System.Windows.Forms.Label subtotal0Label;
+        public System.Windows.Forms.TextBox subtotal0TextBox;
+        private System.Windows.Forms.Label subtotal12Label;
+        public System.Windows.Forms.TextBox subtotal12TextBox;
+        private System.Windows.Forms.Label tipoPagoLabel;
+        public System.Windows.Forms.ComboBox tipoPagoComboBox;
+        public System.Windows.Forms.TextBox additionalInformationTextBox;
+        private System.Windows.Forms.Label additionalInformationLabel;
+        private System.Windows.Forms.Label printerLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn mainCodeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadColumn;
@@ -414,5 +738,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotalColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ivaRateColumn;
     }
 }
