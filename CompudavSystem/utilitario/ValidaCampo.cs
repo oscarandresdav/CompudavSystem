@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace CompudavSystem.utilitario
 {
@@ -25,12 +20,34 @@ namespace CompudavSystem.utilitario
             }
         }
 
+        public void Requerido(DataGridView dataGridView, Panel panel, string mensaje)
+        {
+            ErrorStatus = true;
+            if (dataGridView.Rows.Count > 1)
+            {
+                ErrorProvider.SetError(panel, "");
+            }
+            else
+            {
+                ErrorProvider.SetError(panel, mensaje);
+                ErrorProvider.SetIconPadding(panel,-30);
+                ErrorStatus = false;
+            }
+        }
+
         public void Identificacion(TextBox textBox)
         {
             ErrorStatus = true;
             if (textBox.Text.Trim().Length > 0)
             {
-                ErrorStatus = ValidaIDNumber.VerificaIdentificacion(textBox.Text);
+                if (textBox.Text.Trim() == "9999999999999")
+                {
+                    ErrorStatus = true;
+                }
+                else
+                {
+                    ErrorStatus = ValidaIDNumber.VerificaIdentificacion(textBox.Text);
+                }
             }
             if (ErrorStatus)
             {
@@ -41,5 +58,7 @@ namespace CompudavSystem.utilitario
                 ErrorProvider.SetError(textBox, "Verifica número de ID");
             }
         }
+
     }
+   
 }

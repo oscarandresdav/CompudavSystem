@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Management;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
 using CompudavSystem.utilitario;
@@ -83,14 +84,13 @@ namespace CompudavSystem.documento
 
                 Controls.Add(ContactoDataGridView);
                 ContactoDataGridView.BringToFront();
+                ContactoDataGridView.Visible = true;
 
                 ContactoDataGridView.Columns["id_number"].Width = 90;
                 ContactoDataGridView.Columns["business_name"].Width = 256;
                 ContactoDataGridView.Columns["id"].Visible = false;
                 ContactoDataGridView.Columns["address"].Visible = false;
                 ContactoDataGridView.Columns["landline"].Visible = false;
-
-                ContactoDataGridView.Visible = true;
             }
             else
             {
@@ -365,7 +365,10 @@ namespace CompudavSystem.documento
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            CargaContacto("business_name", nameTextBox);
+            if (nameTextBox.Text.Trim() != "CONSUMIDOR FINAL")
+            {
+                CargaContacto("business_name", nameTextBox);
+            }
         }
 
         private void NameTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -487,7 +490,10 @@ namespace CompudavSystem.documento
 
         private void IdNumberTextBox_TextChanged(object sender, EventArgs e)
         {
-            CargaContacto("id_number", idNumberTextBox);
+            if (idNumberTextBox.Text.Trim() != "9999999999999")
+            {
+                CargaContacto("id_number", idNumberTextBox);
+            }
         }
 
         private void IdNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -495,7 +501,7 @@ namespace CompudavSystem.documento
             e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
         }
 
-        private void IdNumberTextBox_Validated(object sender, EventArgs e)
+        private void IdNumberTextBox_Validating(object sender, CancelEventArgs e)
         {
             ValidaCampo.Identificacion(idNumberTextBox);
         }
@@ -568,7 +574,6 @@ namespace CompudavSystem.documento
 
         private void DecimalesDataGridViewColumnKeyPress(object sender, KeyPressEventArgs e)
         {
-
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true;
@@ -649,10 +654,12 @@ namespace CompudavSystem.documento
         }
         private void NameTextBox_Enter(object sender, EventArgs e)
         {
-            if (nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
+            if (idNumberTextBox.Text.Trim() == "9999999999999" && nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
             {
                 nameTextBox.Text = "";
                 nameTextBox.ForeColor = Color.Black;
+                idNumberTextBox.Text = "";
+                idNumberTextBox.ForeColor = Color.Black;
             }
         }
         private void NameTextBox_Leave(object sender, EventArgs e)
@@ -661,15 +668,19 @@ namespace CompudavSystem.documento
             {
                 nameTextBox.Text = "CONSUMIDOR FINAL";
                 nameTextBox.ForeColor = Color.DimGray;
+                idNumberTextBox.Text = "9999999999999";
+                idNumberTextBox.ForeColor = Color.DimGray;
             }
         }
 
         private void IdNumberTextBox_Enter(object sender, EventArgs e)
         {
-            if (nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
+            if (idNumberTextBox.Text.Trim() == "9999999999999" && nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
             {
                 nameTextBox.Text = "";
                 nameTextBox.ForeColor = Color.Black;
+                idNumberTextBox.Text = "";
+                idNumberTextBox.ForeColor = Color.Black;
             }
         }
 
@@ -679,6 +690,8 @@ namespace CompudavSystem.documento
             {
                 nameTextBox.Text = "CONSUMIDOR FINAL";
                 nameTextBox.ForeColor = Color.DimGray;
+                idNumberTextBox.Text = "9999999999999";
+                idNumberTextBox.ForeColor = Color.DimGray;
             }
         }
 
@@ -688,10 +701,71 @@ namespace CompudavSystem.documento
 
         private void PrintButton_Click(object sender, EventArgs e)
         {
-            ValidaCampo.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
-            ValidaCampo.Requerido(nameTextBox, "Por favor ingrese el Nombre");
-            ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
+            if (nameTextBox.Text.Trim() != "CONSUMIDOR FINAL")
+            {
+                ValidaCampo.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
+                ValidaCampo.Requerido(nameTextBox, "Por favor ingrese el Nombre");
+                ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
+            }
+            ValidaCampo.Requerido(listadoDataGridView, mainPanel, "Por favor selecciona al menos un item");
+
+            foreach (var printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                additionalInformationTextBox.Text += $"***{printer}***";
+            }
+            if (EstaEnLineaLaImpresora("EPSON FX-890 ESC/P"))
+            {
+                printerLabel.Text = $"EPSON FX-890 en Linea";
+            }
+            else
+            {
+                printerLabel.Text = $"EPSON FX-890 Fuera de Linea";
+            }
+            
         }
 
+        public bool EstaEnLineaLaImpresora(string printerName)
+        {
+            string str = "";
+            bool online = false;
+
+            ManagementScope scope = new ManagementScope(ManagementPath.DefaultPath);
+
+            scope.Connect();
+
+            //Consulta para obtener las impresoras, en la API Win32
+            SelectQuery query = new SelectQuery("select * from Win32_Printer");
+
+            ManagementClass m = new ManagementClass("Win32_Printer");
+
+            ManagementObjectSearcher obj = new ManagementObjectSearcher(scope, query);
+
+            //Obtenemos cada instancia del objeto ManagementObjectSearcher
+            using (ManagementObjectCollection printers = m.GetInstances())
+                foreach (ManagementObject printer in printers)
+                {
+                    if (printer != null)
+                    {
+                        //Obtenemos la primera impresora en el bucle
+                        str = printer["Name"].ToString().ToLower();
+
+                        if (str.Equals(printerName.ToLower()))
+                        {
+                            //Una vez encontrada verificamos el estado de ésta
+                            if (printer["WorkOffline"].ToString().ToLower().Equals("true") || printer["PrinterStatus"].Equals(7))
+                                //Fuera de línea
+                                online = false;
+                            else
+                                //En línea
+                                online = true;
+                        }
+                    }
+                    else
+                        throw new Exception("No fueron encontradas impresoras instaladas en el equipo");
+                }
+            return online;
+        }
+
+        
     }
 }

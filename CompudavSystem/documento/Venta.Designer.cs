@@ -254,7 +254,7 @@
             this.idNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IdNumberTextBox_KeyDown);
             this.idNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdNumberTextBox_KeyPress);
             this.idNumberTextBox.Leave += new System.EventHandler(this.IdNumberTextBox_Leave);
-            this.idNumberTextBox.Validated += new System.EventHandler(this.IdNumberTextBox_Validated);
+            this.idNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.IdNumberTextBox_Validating);
             // 
             // nameLabel
             // 
