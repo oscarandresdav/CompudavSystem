@@ -131,19 +131,19 @@ namespace CompudavSystem.bdd
             return dataSet.Tables[tabla];
         }
 
-        public static DataTable Busqueda(string tabla, string condicion, string valor, string campo = "*")
+        public static DataTable Busqueda(string tabla, string condicion, string valor, string campo = "*", string campoOrden = "name", string orden = "ASC")
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } LIKE '%{ valor }%'";
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } LIKE '%{ valor }%' ORDER BY {campoOrden} {orden}";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];
         }
 
-        public static DataTable Busqueda(string tabla, string condicion1, string condicion2, string valor, string campo = "*")
+        public static DataTable Busqueda(string tabla, string condicion1, string condicion2, string valor, string campo = "*", string campoOrden = "name", string orden = "ASC")
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion1 } LIKE '%{ valor }%' || { condicion2 } LIKE '%{ valor }%'";
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion1 } LIKE '%{ valor }%' || { condicion2 } LIKE '%{ valor }%' ORDER BY {campoOrden} {orden}";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];

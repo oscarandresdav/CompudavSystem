@@ -250,8 +250,10 @@
             this.idNumberTextBox.TabIndex = 0;
             this.idNumberTextBox.TextChanged += new System.EventHandler(this.IdNumberTextBox_TextChanged);
             this.idNumberTextBox.DoubleClick += new System.EventHandler(this.IdNumberTextBox_DoubleClick);
+            this.idNumberTextBox.Enter += new System.EventHandler(this.IdNumberTextBox_Enter);
             this.idNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IdNumberTextBox_KeyDown);
             this.idNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdNumberTextBox_KeyPress);
+            this.idNumberTextBox.Leave += new System.EventHandler(this.IdNumberTextBox_Leave);
             this.idNumberTextBox.Validated += new System.EventHandler(this.IdNumberTextBox_Validated);
             // 
             // nameLabel
@@ -279,7 +281,9 @@
             this.nameTextBox.TabIndex = 1;
             this.nameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             this.nameTextBox.DoubleClick += new System.EventHandler(this.NameTextBox_DoubleClick);
+            this.nameTextBox.Enter += new System.EventHandler(this.NameTextBox_Enter);
             this.nameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NameTextBox_KeyDown);
+            this.nameTextBox.Leave += new System.EventHandler(this.NameTextBox_Leave);
             // 
             // tituloPictureBox
             // 
@@ -631,7 +635,7 @@
             dataGridViewCellStyle4.Format = "N4";
             dataGridViewCellStyle4.NullValue = null;
             this.descuentoColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.descuentoColumn.HeaderText = "Descuento Unitario";
+            this.descuentoColumn.HeaderText = "Descuento Unitario $";
             this.descuentoColumn.Name = "descuentoColumn";
             this.descuentoColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.descuentoColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
