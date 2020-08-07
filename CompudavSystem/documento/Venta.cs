@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Management;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
 using CompudavSystem.utilitario;
@@ -35,6 +34,9 @@ namespace CompudavSystem.documento
         private decimal TotalDecimal { get; set; }
 
         #endregion
+
+        public string PrinterName { get; set; } = "EPSON FX-890 ESC/P";
+
 
         public Venta()
         {
@@ -166,6 +168,7 @@ namespace CompudavSystem.documento
 
         private void InicializarValoresTotales()
         {
+            printerLabel.Text = PrinterName;
             FormatoDecimalF2(subtotal12TextBox, Subtotal12Decimal, true);
             FormatoDecimalF2(subtotal0TextBox, Subtotal0Decimal, true);
             FormatoDecimalF2(descuentoTextBox, DescuentoDecimal, true);
@@ -708,64 +711,19 @@ namespace CompudavSystem.documento
                 ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
             }
             ValidaCampo.Requerido(listadoDataGridView, mainPanel, "Por favor selecciona al menos un item");
+            if (ValidaCampo.ErrorStatus)
+            {
+                printDocument.PrinterSettings.PrinterName = PrinterName;
+                printDocument.Print();
 
-            foreach (var printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
-            {
-                additionalInformationTextBox.Text += $"***{printer}***";
             }
-            if (EstaEnLineaLaImpresora("EPSON FX-890 ESC/P"))
-            {
-                printerLabel.Text = $"EPSON FX-890 en Linea";
-            }
-            else
-            {
-                printerLabel.Text = $"EPSON FX-890 Fuera de Linea";
-            }
+            
             
         }
 
-        public bool EstaEnLineaLaImpresora(string printerName)
+        private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            string str = "";
-            bool online = false;
-
-            ManagementScope scope = new ManagementScope(ManagementPath.DefaultPath);
-
-            scope.Connect();
-
-            //Consulta para obtener las impresoras, en la API Win32
-            SelectQuery query = new SelectQuery("select * from Win32_Printer");
-
-            ManagementClass m = new ManagementClass("Win32_Printer");
-
-            ManagementObjectSearcher obj = new ManagementObjectSearcher(scope, query);
-
-            //Obtenemos cada instancia del objeto ManagementObjectSearcher
-            using (ManagementObjectCollection printers = m.GetInstances())
-                foreach (ManagementObject printer in printers)
-                {
-                    if (printer != null)
-                    {
-                        //Obtenemos la primera impresora en el bucle
-                        str = printer["Name"].ToString().ToLower();
-
-                        if (str.Equals(printerName.ToLower()))
-                        {
-                            //Una vez encontrada verificamos el estado de ésta
-                            if (printer["WorkOffline"].ToString().ToLower().Equals("true") || printer["PrinterStatus"].Equals(7))
-                                //Fuera de línea
-                                online = false;
-                            else
-                                //En línea
-                                online = true;
-                        }
-                    }
-                    else
-                        throw new Exception("No fueron encontradas impresoras instaladas en el equipo");
-                }
-            return online;
+            
         }
-
-        
     }
 }

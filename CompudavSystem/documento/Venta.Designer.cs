@@ -79,6 +79,7 @@
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ivaRateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
             this.footerPanel.SuspendLayout();
@@ -671,6 +672,10 @@
             this.ivaRateColumn.Name = "ivaRateColumn";
             this.ivaRateColumn.Visible = false;
             // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument_PrintPage);
+            // 
             // Venta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
@@ -743,5 +748,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ivaRateColumn;
+        private System.Drawing.Printing.PrintDocument printDocument;
     }
 }

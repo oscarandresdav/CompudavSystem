@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CompudavSystem.catalogo;
+using CompudavSystem.configuracion;
 using CompudavSystem.documento;
 using CompudavSystem.usuario;
 using CompudavSystem.utilitario;
@@ -12,6 +13,7 @@ namespace CompudavSystem.login
         private Catalogo FormCatalogo { get; set; } = new Catalogo();
         private Contacto FormContacto { get; set; } = new Contacto();
         private Venta FormVenta { get; set; } = new Venta();
+        private Configuracion FormConfiguracion { get; set; } = new Configuracion();
 
         public Main()
         {
@@ -54,6 +56,11 @@ namespace CompudavSystem.login
         private void Main_Load(object sender, EventArgs e)
         {
             FormularioPanel.PanelContenedor = panelContainer;
+        }
+
+        private void buttonConfiguracion_Click(object sender, EventArgs e)
+        {
+            FormularioPanel.MostrarFormulario(FormConfiguracion);
         }
     }
 }
