@@ -2,8 +2,10 @@
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
+using CompudavSystem.Properties;
 using CompudavSystem.utilitario;
 
 namespace CompudavSystem.documento
@@ -35,7 +37,7 @@ namespace CompudavSystem.documento
 
         #endregion
 
-        public string PrinterName { get; set; } = "EPSON FX-890 ESC/P";
+        public string PrinterName { get; set; } = Settings.Default.printerName;
 
 
         public Venta()
@@ -704,6 +706,9 @@ namespace CompudavSystem.documento
 
         private void PrintButton_Click(object sender, EventArgs e)
         {
+            PrinterName = Settings.Default.printerName;
+            printerLabel.Text = PrinterName;
+
             if (nameTextBox.Text.Trim() != "CONSUMIDOR FINAL")
             {
                 ValidaCampo.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
@@ -713,7 +718,11 @@ namespace CompudavSystem.documento
             ValidaCampo.Requerido(listadoDataGridView, mainPanel, "Por favor selecciona al menos un item");
             if (ValidaCampo.ErrorStatus)
             {
+
+
                 printDocument.PrinterSettings.PrinterName = PrinterName;
+                printDocument.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("Nombre a poner a esta configuración", width, height);
+
                 printDocument.Print();
 
             }

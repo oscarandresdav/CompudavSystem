@@ -46,5 +46,125 @@ namespace CompudavSystem.Properties {
                 this["servidor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string printerName {
+            get {
+                return ((string)(this["printerName"]));
+            }
+            set {
+                this["printerName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string printerFontFamily {
+            get {
+                return ((string)(this["printerFontFamily"]));
+            }
+            set {
+                this["printerFontFamily"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerFontSize {
+            get {
+                return ((int)(this["printerFontSize"]));
+            }
+            set {
+                this["printerFontSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerHeaderPositionX {
+            get {
+                return ((int)(this["printerHeaderPositionX"]));
+            }
+            set {
+                this["printerHeaderPositionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerHeaderPositionY {
+            get {
+                return ((int)(this["printerHeaderPositionY"]));
+            }
+            set {
+                this["printerHeaderPositionY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerMainPositionX {
+            get {
+                return ((int)(this["printerMainPositionX"]));
+            }
+            set {
+                this["printerMainPositionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerMainPositionY {
+            get {
+                return ((int)(this["printerMainPositionY"]));
+            }
+            set {
+                this["printerMainPositionY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerFooterPositionX {
+            get {
+                return ((int)(this["printerFooterPositionX"]));
+            }
+            set {
+                this["printerFooterPositionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerFooterPositionY {
+            get {
+                return ((int)(this["printerFooterPositionY"]));
+            }
+            set {
+                this["printerFooterPositionY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int preset {
+            get {
+                return ((int)(this["preset"]));
+            }
+            set {
+                this["preset"] = value;
+            }
+        }
     }
 }

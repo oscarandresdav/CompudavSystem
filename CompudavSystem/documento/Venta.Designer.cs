@@ -117,7 +117,7 @@
             this.tipoPagoLabel.Location = new System.Drawing.Point(477, 48);
             this.tipoPagoLabel.Name = "tipoPagoLabel";
             this.tipoPagoLabel.Size = new System.Drawing.Size(93, 15);
-            this.tipoPagoLabel.TabIndex = 22;
+            this.tipoPagoLabel.TabIndex = 13;
             this.tipoPagoLabel.Text = "Metodo de pago";
             // 
             // tipoPagoComboBox
@@ -127,7 +127,7 @@
             this.tipoPagoComboBox.Location = new System.Drawing.Point(480, 65);
             this.tipoPagoComboBox.Name = "tipoPagoComboBox";
             this.tipoPagoComboBox.Size = new System.Drawing.Size(233, 23);
-            this.tipoPagoComboBox.TabIndex = 21;
+            this.tipoPagoComboBox.TabIndex = 4;
             // 
             // nuevoButton
             // 
@@ -137,7 +137,7 @@
             this.nuevoButton.Location = new System.Drawing.Point(657, 3);
             this.nuevoButton.Name = "nuevoButton";
             this.nuevoButton.Size = new System.Drawing.Size(100, 40);
-            this.nuevoButton.TabIndex = 5;
+            this.nuevoButton.TabIndex = 7;
             this.nuevoButton.Text = "Nuevo";
             this.nuevoButton.UseVisualStyleBackColor = false;
             this.nuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
@@ -162,7 +162,7 @@
             this.dateIssueLabel.Location = new System.Drawing.Point(477, 92);
             this.dateIssueLabel.Name = "dateIssueLabel";
             this.dateIssueLabel.Size = new System.Drawing.Size(97, 15);
-            this.dateIssueLabel.TabIndex = 15;
+            this.dateIssueLabel.TabIndex = 14;
             this.dateIssueLabel.Text = "Fecha de emisión";
             // 
             // dateIssueDateTimePicker
@@ -171,7 +171,7 @@
             this.dateIssueDateTimePicker.Location = new System.Drawing.Point(480, 110);
             this.dateIssueDateTimePicker.Name = "dateIssueDateTimePicker";
             this.dateIssueDateTimePicker.Size = new System.Drawing.Size(233, 22);
-            this.dateIssueDateTimePicker.TabIndex = 4;
+            this.dateIssueDateTimePicker.TabIndex = 5;
             // 
             // landlineLabel
             // 
@@ -180,7 +180,7 @@
             this.landlineLabel.Location = new System.Drawing.Point(39, 118);
             this.landlineLabel.Name = "landlineLabel";
             this.landlineLabel.Size = new System.Drawing.Size(53, 15);
-            this.landlineLabel.TabIndex = 11;
+            this.landlineLabel.TabIndex = 12;
             this.landlineLabel.Text = "Teléfono";
             // 
             // landlineTextBox
@@ -207,7 +207,7 @@
             this.addressLabel.Location = new System.Drawing.Point(37, 97);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(55, 15);
-            this.addressLabel.TabIndex = 10;
+            this.addressLabel.TabIndex = 11;
             this.addressLabel.Text = "Dirección";
             // 
             // addressTextBox
@@ -233,7 +233,7 @@
             this.idNumberLabel.Location = new System.Drawing.Point(15, 55);
             this.idNumberLabel.Name = "idNumberLabel";
             this.idNumberLabel.Size = new System.Drawing.Size(77, 15);
-            this.idNumberLabel.TabIndex = 8;
+            this.idNumberLabel.TabIndex = 9;
             this.idNumberLabel.Text = "Identificación";
             // 
             // idNumberTextBox
@@ -264,7 +264,7 @@
             this.nameLabel.Location = new System.Drawing.Point(43, 76);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(49, 15);
-            this.nameLabel.TabIndex = 9;
+            this.nameLabel.TabIndex = 10;
             this.nameLabel.Text = "Nombre";
             // 
             // nameTextBox
@@ -304,7 +304,7 @@
             this.tituloLabel.Location = new System.Drawing.Point(50, 14);
             this.tituloLabel.Name = "tituloLabel";
             this.tituloLabel.Size = new System.Drawing.Size(51, 17);
-            this.tituloLabel.TabIndex = 7;
+            this.tituloLabel.TabIndex = 8;
             this.tituloLabel.Text = "Venta";
             // 
             // footerPanel
@@ -337,7 +337,7 @@
             this.printerLabel.Location = new System.Drawing.Point(3, 165);
             this.printerLabel.Name = "printerLabel";
             this.printerLabel.Size = new System.Drawing.Size(0, 15);
-            this.printerLabel.TabIndex = 25;
+            this.printerLabel.TabIndex = 15;
             // 
             // additionalInformationTextBox
             // 
@@ -346,7 +346,7 @@
             this.additionalInformationTextBox.Multiline = true;
             this.additionalInformationTextBox.Name = "additionalInformationTextBox";
             this.additionalInformationTextBox.Size = new System.Drawing.Size(360, 100);
-            this.additionalInformationTextBox.TabIndex = 23;
+            this.additionalInformationTextBox.TabIndex = 2;
             // 
             // additionalInformationLabel
             // 
@@ -355,7 +355,7 @@
             this.additionalInformationLabel.Location = new System.Drawing.Point(15, 5);
             this.additionalInformationLabel.Name = "additionalInformationLabel";
             this.additionalInformationLabel.Size = new System.Drawing.Size(121, 15);
-            this.additionalInformationLabel.TabIndex = 24;
+            this.additionalInformationLabel.TabIndex = 16;
             this.additionalInformationLabel.Text = "Información Adicional";
             // 
             // totalLabel
@@ -366,7 +366,7 @@
             this.totalLabel.Location = new System.Drawing.Point(559, 130);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(92, 22);
-            this.totalLabel.TabIndex = 22;
+            this.totalLabel.TabIndex = 14;
             this.totalLabel.Text = "Valor Total";
             // 
             // totalTextBox
@@ -382,7 +382,7 @@
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.ReadOnly = true;
             this.totalTextBox.Size = new System.Drawing.Size(100, 22);
-            this.totalTextBox.TabIndex = 21;
+            this.totalTextBox.TabIndex = 8;
             this.totalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // ivaLabel
@@ -392,7 +392,7 @@
             this.ivaLabel.Location = new System.Drawing.Point(597, 105);
             this.ivaLabel.Name = "ivaLabel";
             this.ivaLabel.Size = new System.Drawing.Size(54, 15);
-            this.ivaLabel.TabIndex = 20;
+            this.ivaLabel.TabIndex = 13;
             this.ivaLabel.Text = "Valor IVA";
             // 
             // ivaTextBox
@@ -408,7 +408,7 @@
             this.ivaTextBox.Name = "ivaTextBox";
             this.ivaTextBox.ReadOnly = true;
             this.ivaTextBox.Size = new System.Drawing.Size(100, 15);
-            this.ivaTextBox.TabIndex = 19;
+            this.ivaTextBox.TabIndex = 7;
             this.ivaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // subtotalLabel
@@ -418,7 +418,7 @@
             this.subtotalLabel.Location = new System.Drawing.Point(600, 80);
             this.subtotalLabel.Name = "subtotalLabel";
             this.subtotalLabel.Size = new System.Drawing.Size(51, 15);
-            this.subtotalLabel.TabIndex = 18;
+            this.subtotalLabel.TabIndex = 12;
             this.subtotalLabel.Text = "Subtotal";
             // 
             // subtotalTextBox
@@ -434,7 +434,7 @@
             this.subtotalTextBox.Name = "subtotalTextBox";
             this.subtotalTextBox.ReadOnly = true;
             this.subtotalTextBox.Size = new System.Drawing.Size(100, 15);
-            this.subtotalTextBox.TabIndex = 17;
+            this.subtotalTextBox.TabIndex = 6;
             this.subtotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // descuentoButton
@@ -445,7 +445,7 @@
             this.descuentoButton.Location = new System.Drawing.Point(611, 50);
             this.descuentoButton.Name = "descuentoButton";
             this.descuentoButton.Size = new System.Drawing.Size(40, 25);
-            this.descuentoButton.TabIndex = 16;
+            this.descuentoButton.TabIndex = 1;
             this.descuentoButton.Text = "%";
             this.descuentoButton.UseVisualStyleBackColor = false;
             this.descuentoButton.Click += new System.EventHandler(this.DescuentoButton_Click);
@@ -462,7 +462,7 @@
             this.descuentoTextBox.Location = new System.Drawing.Point(530, 55);
             this.descuentoTextBox.Name = "descuentoTextBox";
             this.descuentoTextBox.Size = new System.Drawing.Size(75, 15);
-            this.descuentoTextBox.TabIndex = 15;
+            this.descuentoTextBox.TabIndex = 0;
             this.descuentoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.descuentoTextBox.Click += new System.EventHandler(this.DescuentoTextBox_Click);
             this.descuentoTextBox.TextChanged += new System.EventHandler(this.DescuentoTextBox_TextChanged);
@@ -477,7 +477,7 @@
             this.valorDescuentoLabel.Location = new System.Drawing.Point(411, 55);
             this.valorDescuentoLabel.Name = "valorDescuentoLabel";
             this.valorDescuentoLabel.Size = new System.Drawing.Size(113, 15);
-            this.valorDescuentoLabel.TabIndex = 14;
+            this.valorDescuentoLabel.TabIndex = 9;
             this.valorDescuentoLabel.Text = "Descuento Adicional";
             // 
             // valorDescuentoTextBox
@@ -493,7 +493,7 @@
             this.valorDescuentoTextBox.Name = "valorDescuentoTextBox";
             this.valorDescuentoTextBox.ReadOnly = true;
             this.valorDescuentoTextBox.Size = new System.Drawing.Size(100, 15);
-            this.valorDescuentoTextBox.TabIndex = 13;
+            this.valorDescuentoTextBox.TabIndex = 5;
             this.valorDescuentoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // subtotal0Label
@@ -503,7 +503,7 @@
             this.subtotal0Label.Location = new System.Drawing.Point(582, 30);
             this.subtotal0Label.Name = "subtotal0Label";
             this.subtotal0Label.Size = new System.Drawing.Size(69, 15);
-            this.subtotal0Label.TabIndex = 12;
+            this.subtotal0Label.TabIndex = 11;
             this.subtotal0Label.Text = "Subtotal 0%";
             // 
             // subtotal0TextBox
@@ -519,7 +519,7 @@
             this.subtotal0TextBox.Name = "subtotal0TextBox";
             this.subtotal0TextBox.ReadOnly = true;
             this.subtotal0TextBox.Size = new System.Drawing.Size(100, 15);
-            this.subtotal0TextBox.TabIndex = 11;
+            this.subtotal0TextBox.TabIndex = 4;
             this.subtotal0TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // subtotal12Label
@@ -545,7 +545,7 @@
             this.subtotal12TextBox.Name = "subtotal12TextBox";
             this.subtotal12TextBox.ReadOnly = true;
             this.subtotal12TextBox.Size = new System.Drawing.Size(100, 15);
-            this.subtotal12TextBox.TabIndex = 9;
+            this.subtotal12TextBox.TabIndex = 3;
             this.subtotal12TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // mainPanel
@@ -585,7 +585,7 @@
             this.listadoDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(754, 274);
-            this.listadoDataGridView.TabIndex = 2;
+            this.listadoDataGridView.TabIndex = 0;
             this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);
             this.listadoDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellEndEdit);
             this.listadoDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.ListadoDataGridView_EditingControlShowing);
