@@ -36,6 +36,8 @@ namespace CompudavSystem.bdd
                     case 1364:
                         MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
+                    default:
+                        break;
                 }
                 return false;
             }
@@ -66,6 +68,8 @@ namespace CompudavSystem.bdd
                         break;
                     case 1364:
                         MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    default:
                         break;
                 }
                 return false;
@@ -98,7 +102,11 @@ namespace CompudavSystem.bdd
                     case 1364:
                         MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
-
+                    case 1451:
+                        MessageBox.Show("No se puede eliminar item relacionado.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    default:
+                        break;
                 }
                 return false;
             }
@@ -131,6 +139,22 @@ namespace CompudavSystem.bdd
             return dataSet.Tables[tabla];
         }
 
+        public static bool VerificarItemExistente(string tabla, string campo, string condicion, string expresion, string valor)
+        {
+            Connection.Close();
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } { expresion } '{ valor }'";
+            Connection.Open();
+            MySqlCommand command = new MySqlCommand(SqlStament, Connection);
+            if (string.IsNullOrEmpty((string)command.ExecuteScalar()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static DataTable Busqueda(string tabla, string condicion, string valor, string campo = "*", string campoOrden = "name", string orden = "ASC")
         {
             DataSet dataSet = new DataSet();
@@ -148,7 +172,5 @@ namespace CompudavSystem.bdd
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];
         }
-
-
     }
 }

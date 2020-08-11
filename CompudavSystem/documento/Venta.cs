@@ -34,11 +34,10 @@ namespace CompudavSystem.documento
         private decimal SubtotalDecimal { get; set; }
         private decimal IvaDecimal { get; set; }
         private decimal TotalDecimal { get; set; }
+        public string PrinterName { get; set; } = Settings.Default.printerName;
+        public Font PrinterFont { get; set; } = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
 
         #endregion
-
-        public string PrinterName { get; set; } = Settings.Default.printerName;
-
 
         public Venta()
         {
@@ -156,6 +155,7 @@ namespace CompudavSystem.documento
             BusinessNameContact = "";
             AddressContact = "";
             LandlineContact = "";
+            idContactLabel.Text = "";
             idNumberTextBox.Clear();
             nameTextBox.Clear();
             addressTextBox.Clear();
@@ -192,8 +192,8 @@ namespace CompudavSystem.documento
         {
             ProductoPanel.Size = new Size(400, 160);
             ProductoPanel.Location = new Point(
-                dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Location.X + 2,
-                dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Location.Y +
+                dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Location.X + mainPanel.Location.X + 2,
+                dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Location.Y + mainPanel.Location.Y +
                 dataGridView.GetCellDisplayRectangle(0, dataGridView.CurrentRow.Index, false).Size.Height + 2);
             ProductoPanel.BackColor = Color.WhiteSmoke;
 
@@ -213,7 +213,7 @@ namespace CompudavSystem.documento
             ProductoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ProductoDataGridView.ReadOnly = true;
 
-            mainPanel.Controls.Add(ProductoPanel);
+            Controls.Add(ProductoPanel);
             ProductoPanel.Controls.Add(BusquedaProductoTextBox);
             ProductoPanel.Controls.Add(ProductoDataGridView);
             ProductoPanel.BringToFront();
@@ -298,7 +298,7 @@ namespace CompudavSystem.documento
                 }
 
                 decimal _subtotalDescuentoDecimal = Math.Round(Convert.ToDecimal(listadoDataGridView.Rows[i].Cells["descuentoColumn"].Value), 4);
-                SubtotalDescuentoDecimal += _subtotalDescuentoDecimal;
+                SubtotalDescuentoDecimal += _subtotalDescuentoDecimal * Convert.ToDecimal(listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value);
 
             }
 
@@ -314,6 +314,7 @@ namespace CompudavSystem.documento
                 DescuentoDecimal = 0;
             }
 
+            SubtotalDescuentoDecimal += ValorDescuentoDecimal;
             SubtotalDecimal = Subtotal0Decimal + Subtotal12Decimal - ValorDescuentoDecimal;
             IvaDecimal = Math.Round((Subtotal12Decimal - ValorDescuentoDecimal) * 0.12M, 2);
             TotalDecimal = SubtotalDecimal + IvaDecimal;
@@ -499,6 +500,24 @@ namespace CompudavSystem.documento
             {
                 CargaContacto("id_number", idNumberTextBox);
             }
+            if (ConsultasSql.VerificarItemExistente("contact", "id, id_number", "id_number", "=", idNumberTextBox.Text))
+            {
+                IdContact = "";
+                if (idNumberTextBox.Text.Trim().Length >= 10)
+                {
+                    IdContact = "nuevo";
+                    idContactLabel.Text = "** CLIENTE NUEVO **";
+                }
+                else
+                {
+                    IdContact = "";
+                    idContactLabel.Text = "";
+                }
+            }
+            else
+            {
+                idContactLabel.Text = "";
+            }
         }
 
         private void IdNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -675,6 +694,8 @@ namespace CompudavSystem.documento
                 nameTextBox.ForeColor = Color.DimGray;
                 idNumberTextBox.Text = "9999999999999";
                 idNumberTextBox.ForeColor = Color.DimGray;
+                addressTextBox.Text = "";
+                landlineTextBox.Text = "";
             }
         }
 
@@ -697,6 +718,8 @@ namespace CompudavSystem.documento
                 nameTextBox.ForeColor = Color.DimGray;
                 idNumberTextBox.Text = "9999999999999";
                 idNumberTextBox.ForeColor = Color.DimGray;
+                addressTextBox.Text = "";
+                landlineTextBox.Text = "";
             }
         }
 
@@ -704,8 +727,10 @@ namespace CompudavSystem.documento
 
         #endregion
 
+        #region REGISTRO E IMPRESION
         private void PrintButton_Click(object sender, EventArgs e)
         {
+            PrinterFont = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
             PrinterName = Settings.Default.printerName;
             printerLabel.Text = PrinterName;
 
@@ -716,23 +741,146 @@ namespace CompudavSystem.documento
                 ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
             }
             ValidaCampo.Requerido(listadoDataGridView, mainPanel, "Por favor selecciona al menos un item");
+
+            string idNumber = (idNumberTextBox.Text.Trim() == "") ? "null" : idNumberTextBox.Text.Trim();
+            string businessName = nameTextBox.Text.Replace("'", "\\'").Trim();
+            businessName = (businessName == "") ? "null" : $"'{businessName}'";
+            string address = addressTextBox.Text.Replace("'", "\\'").Trim();
+            address = (address == "") ? "null" : $"'{address}'";
+            string additional_information = additionalInformationTextBox.Text.Replace("'", "\\'").Trim();
+            additional_information = (additional_information == "") ? "null" : $"'{additional_information}'";
+            string landline = (landlineTextBox.Text.Trim() == "") ? "null" : landlineTextBox.Text.Trim();
+            string numberInvoice = $"{GetNumberInvoice()}";
+            string typeIssuanceId = $"'{GetIdItemTable("type_issuance", "name", "Emisión Normal")}'";
+            string typeDocumentId = $"'{GetIdItemTable("type_document", "name", "FACTURA")}'";
+            string statusDocumentId = $"'{GetIdItemTable("status_document", "name", "Autorizado")}'";
+            string paymentMethodId = $"'{tipoPagoComboBox.SelectedValue}'";
+            DateTime dateTime = dateIssueDateTimePicker.Value;
+            string date_of_issue = $"'{dateTime: yyyy-MM-dd} {DateTime.Now:HH:mm:ss}'";
+
             if (ValidaCampo.ErrorStatus)
             {
-
-
+                GetIdContact(idNumber);
                 printDocument.PrinterSettings.PrinterName = PrinterName;
-                printDocument.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("Nombre a poner a esta configuración", width, height);
-
-                printDocument.Print();
-
+                if (IdContact == "nuevo")
+                {
+                    if (ConsultasSql.Insertar("contact",
+                    "id_number, business_name, tradename, address, client",
+                    $"{idNumber}, {businessName}, {address}, {landline}, true"))
+                    {
+                        GetIdContact(idNumber);
+                    }
+                }
+                if (idNumberTextBox.Text.Trim() == "9999999999999" && nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
+                {
+                    GetIdContact("9999999999999");
+                }
+                string contactId = $"'{IdContact}'";
+                if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
+                    "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
+                    $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
+                    $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, {contactId}, {paymentMethodId}"))
+                {
+                    ConsultasSql.Actualizar("parameter", $"numberInvoice = '{numberInvoice}'", "preset", $"{Settings.Default.preset}");
+                    string documentId = $"'{GetIdItemTable("document", "number", numberInvoice)}'";
+                    for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
+                    {
+                        string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                        string unitary_discount = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                        string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
+                        string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
+                        if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
+                            $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                        {
+                            string stock = GetStockItem("product", "id", productId);
+                            int quantityInt = int.Parse(quantity);
+                            int stockInt = int.Parse(stock);
+                            stockInt -= quantityInt;
+                            ConsultasSql.Actualizar("product", $"stock = {stockInt}", "id", $"'{productId}'");
+                        }
+                    }
+                    printDocument.Print();
+                }
             }
-            
-            
         }
 
-        private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void GetIdContact(string idNumber)
         {
-            
+            DataTable data = ConsultasSql.ConsultaIndividual("contact", "id", "id_number", "=", idNumber);
+            if (data.Rows.Count > 0)
+            {
+                IdContact = data.Rows[0][0].ToString();
+            }
+            else
+            {
+                IdContact = "nuevo";
+            }
         }
+
+        private string GetIdItemTable(string tabla, string campo, string valor)
+        {
+            DataTable data = ConsultasSql.ConsultaIndividual(tabla, "id", campo, "=", valor);
+            return data.Rows[0][0].ToString();
+        }
+
+        private string GetStockItem(string tabla, string campo, string valor)
+        {
+            DataTable data = ConsultasSql.ConsultaIndividual(tabla, "stock", campo, "=", valor);
+            return data.Rows[0][0].ToString();
+        }
+
+        private string GetNumberInvoice()
+        {
+            DataTable data = ConsultasSql.ConsultaIndividual("parameter", "numberInvoice", "preset", "=", $"{Settings.Default.preset}");
+            string number = data.Rows[0][0].ToString();
+            int secuencia = int.Parse(number.Substring(6, 9)) + 1;
+            string firstPart = number.Substring(0, 6);
+            number = $"{firstPart}{string.Format("{0, 0:000000000}", secuencia)}";
+            return number;
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            PrintHeader(e, $"{idNumberTextBox.Text}");
+            PrintHeader(e, $"{landlineTextBox.Text}", xPlus: 100);
+            PrintHeader(e, $"{nameTextBox.Text}", yPlus: Settings.Default.printerFontSize + 5);
+            PrintHeader(e, $"{addressTextBox.Text}", yPlus: (Settings.Default.printerFontSize + 5) * 2);
+            PrintHeader(e, $"CANT.", xPlus: 0, yPlus: (Settings.Default.printerFontSize + 5) * 4);
+            PrintHeader(e, $"DETALLE", xPlus: 35, yPlus: (Settings.Default.printerFontSize + 5) * 4);
+            PrintHeader(e, $"V.TOTAL", xPlus: 200, yPlus: (Settings.Default.printerFontSize + 5) * 4);
+
+            PrintMain(e, yPlus: Settings.Default.printerFontSize + 5);
+
+            PrintFooter(e, "Subtotal 12%", subtotal12TextBox.Text, yPlus: (Settings.Default.printerFontSize + 5));
+            PrintFooter(e, "Subtotal 0%", subtotal0TextBox.Text, yPlus: (Settings.Default.printerFontSize + 5) * 2);
+            PrintFooter(e, "Descuento total", Math.Round(SubtotalDescuentoDecimal, 2).ToString(), yPlus: (Settings.Default.printerFontSize + 5) * 3);
+            PrintFooter(e, "IVA", ivaTextBox.Text, yPlus: (Settings.Default.printerFontSize + 5) * 4);
+            PrintFooter(e, "TOTAL", totalTextBox.Text, yPlus: (Settings.Default.printerFontSize + 5) * 5);
+            PrintFooter(e, "*** GRACIAS POR SU VISITA ***", "", xPlus: -70, yPlus: (Settings.Default.printerFontSize + 5) * 7);
+            PrintFooter(e, "", "", yPlus: (Settings.Default.printerFontSize + 5) * 9);
+        }
+
+        private void PrintHeader(PrintPageEventArgs e, string texto, int xPlus = 0, int yPlus = 0)
+        {
+            e.Graphics.DrawString($"{texto}", PrinterFont, Brushes.Black, Settings.Default.printerHeaderPositionX + xPlus, Settings.Default.printerHeaderPositionY + yPlus);
+        }
+
+        private void PrintMain(PrintPageEventArgs e, int xPlus = 0, int yPlus = 0)
+        {
+            for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
+            {
+                e.Graphics.DrawString($"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}", PrinterFont, Brushes.Black, Settings.Default.printerMainPositionX + xPlus, Settings.Default.printerMainPositionY + (yPlus * i));
+                e.Graphics.DrawString($"{listadoDataGridView.Rows[i].Cells["nameColumn"].Value}", PrinterFont, Brushes.Black, Settings.Default.printerMainPositionX + 35 + xPlus, Settings.Default.printerMainPositionY + (yPlus * i));
+                e.Graphics.DrawString($"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}", PrinterFont, Brushes.Black, Settings.Default.printerMainPositionX + 200 + xPlus, Settings.Default.printerMainPositionY + (yPlus * i));
+            }
+        }
+
+        private void PrintFooter(PrintPageEventArgs e, string titulo, string valor, int xPlus = 0, int yPlus = 0)
+        {
+            e.Graphics.DrawString($"{titulo}", PrinterFont, Brushes.Black, Settings.Default.printerFooterPositionX + xPlus, Settings.Default.printerFooterPositionY + yPlus);
+            e.Graphics.DrawString($"{valor}", PrinterFont, Brushes.Black, Settings.Default.printerFooterPositionX + 100 + xPlus, Settings.Default.printerFooterPositionY + yPlus);
+        }
+        #endregion
+
     }
 }

@@ -20,7 +20,7 @@ namespace CompudavSystem.utilitario
             }
         }
 
-        public void Requerido(DataGridView dataGridView, Panel panel, string mensaje)
+        public void Requerido(DataGridView dataGridView, Panel panel,string mensaje)
         {
             ErrorStatus = true;
             if (dataGridView.Rows.Count > 1)
@@ -30,7 +30,7 @@ namespace CompudavSystem.utilitario
             else
             {
                 ErrorProvider.SetError(panel, mensaje);
-                ErrorProvider.SetIconPadding(panel,-30);
+                ErrorProvider.SetIconPadding(panel, -30);
                 ErrorStatus = false;
             }
         }

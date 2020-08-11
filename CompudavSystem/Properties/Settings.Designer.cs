@@ -166,5 +166,41 @@ namespace CompudavSystem.Properties {
                 this["preset"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerPageWidth {
+            get {
+                return ((int)(this["printerPageWidth"]));
+            }
+            set {
+                this["printerPageWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int printerPageHeight {
+            get {
+                return ((int)(this["printerPageHeight"]));
+            }
+            set {
+                this["printerPageHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string numberInvoice {
+            get {
+                return ((string)(this["numberInvoice"]));
+            }
+            set {
+                this["numberInvoice"] = value;
+            }
+        }
     }
 }

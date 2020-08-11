@@ -101,7 +101,7 @@ namespace CompudavSystem.usuario
         public void Busqueda()
         {
             string busqueda = busquedaTextBox.Text.Replace("'", "\\'").Trim();
-            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "business_name", $"{ busqueda }");
+            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "business_name", $"{ busqueda }", campoOrden: "business_name");
             listadoDataGridView.Sort(listadoDataGridView.Columns["business_name"], ListSortDirection.Ascending);
         }
 

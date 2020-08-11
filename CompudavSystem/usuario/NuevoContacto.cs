@@ -61,15 +61,15 @@ namespace CompudavSystem.usuario
         }
         private void Guardar()
         {
-            string idNumber = (idNumberTextBox.Text.Trim() == "") ? "null" : idNumberTextBox.Text.Trim();
+            string idNumber = (idNumberTextBox.Text.Trim() == "") ? "null" : $"'{idNumberTextBox.Text.Trim()}'";
             string businessName = businessNameTextBox.Text.Replace("'", "\\'").Trim();
             businessName = (businessName == "") ? "null" : $"'{businessName}'";
             string tradename = tradenameTextBox.Text.Replace("'", "\\'").Trim();
             tradename = (tradename == "") ? "null" : $"'{tradename}'";
             string address = addressTextBox.Text.Replace("'", "\\'").Trim();
             address = (address == "") ? "null" : $"'{address}'";
-            string landline = (landlineTextBox.Text.Trim() == "") ? "null" : landlineTextBox.Text.Trim();
-            string mobilePhone = (mobilePhoneTextBox.Text.Trim() == "") ? "null" : mobilePhoneTextBox.Text.Trim();
+            string landline = (landlineTextBox.Text.Trim() == "") ? "null" : $"'{landlineTextBox.Text.Trim()}'";
+            string mobilePhone = (mobilePhoneTextBox.Text.Trim() == "") ? "null" : $"'{mobilePhoneTextBox.Text.Trim()}'";
             string email = emailTextBox.Text.Replace("'", "\\'").Trim();
             email = (email == "") ? "null" : $"'{email}'";
             bool client = clientCheckBox.Checked;

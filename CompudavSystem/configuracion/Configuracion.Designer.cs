@@ -29,6 +29,17 @@
         private void InitializeComponent()
         {
             this.printerGroupBox = new System.Windows.Forms.GroupBox();
+            this.guion2Label = new System.Windows.Forms.Label();
+            this.guion1Label = new System.Windows.Forms.Label();
+            this.numberDocument3TextBox = new System.Windows.Forms.TextBox();
+            this.numberDocument2TextBox = new System.Windows.Forms.TextBox();
+            this.numberDocument1TextBox = new System.Windows.Forms.TextBox();
+            this.numberDocumentlabel = new System.Windows.Forms.Label();
+            this.pageSizeGroupBox = new System.Windows.Forms.GroupBox();
+            this.printerPageWidthLabel = new System.Windows.Forms.Label();
+            this.printerPageWidthTextBox = new System.Windows.Forms.TextBox();
+            this.printerPageHeightTextBox = new System.Windows.Forms.TextBox();
+            this.printerPageHeightLabel = new System.Windows.Forms.Label();
             this.presetDeterminadoLabel = new System.Windows.Forms.Label();
             this.predeterminadoButton = new System.Windows.Forms.Button();
             this.fontSizeTextBox = new System.Windows.Forms.TextBox();
@@ -57,19 +68,20 @@
             this.addPresetButton = new System.Windows.Forms.Button();
             this.cancelarButton = new System.Windows.Forms.Button();
             this.aceptarButton = new System.Windows.Forms.Button();
-            this.pageSizeGroupBox = new System.Windows.Forms.GroupBox();
-            this.anchoLabel = new System.Windows.Forms.Label();
-            this.anchoTextBox = new System.Windows.Forms.TextBox();
-            this.altoTextBox = new System.Windows.Forms.TextBox();
-            this.altoLabel = new System.Windows.Forms.Label();
             this.printerGroupBox.SuspendLayout();
+            this.pageSizeGroupBox.SuspendLayout();
             this.positionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
-            this.pageSizeGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // printerGroupBox
             // 
+            this.printerGroupBox.Controls.Add(this.guion2Label);
+            this.printerGroupBox.Controls.Add(this.guion1Label);
+            this.printerGroupBox.Controls.Add(this.numberDocument3TextBox);
+            this.printerGroupBox.Controls.Add(this.numberDocument2TextBox);
+            this.printerGroupBox.Controls.Add(this.numberDocument1TextBox);
+            this.printerGroupBox.Controls.Add(this.numberDocumentlabel);
             this.printerGroupBox.Controls.Add(this.pageSizeGroupBox);
             this.printerGroupBox.Controls.Add(this.presetDeterminadoLabel);
             this.printerGroupBox.Controls.Add(this.predeterminadoButton);
@@ -83,10 +95,127 @@
             this.printerGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
             this.printerGroupBox.Location = new System.Drawing.Point(50, 100);
             this.printerGroupBox.Name = "printerGroupBox";
-            this.printerGroupBox.Size = new System.Drawing.Size(680, 280);
+            this.printerGroupBox.Size = new System.Drawing.Size(680, 320);
             this.printerGroupBox.TabIndex = 2;
             this.printerGroupBox.TabStop = false;
             this.printerGroupBox.Text = "Impresión";
+            // 
+            // guion2Label
+            // 
+            this.guion2Label.AutoSize = true;
+            this.guion2Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.guion2Label.Location = new System.Drawing.Point(143, 264);
+            this.guion2Label.Name = "guion2Label";
+            this.guion2Label.Size = new System.Drawing.Size(11, 15);
+            this.guion2Label.TabIndex = 15;
+            this.guion2Label.Text = "-";
+            // 
+            // guion1Label
+            // 
+            this.guion1Label.AutoSize = true;
+            this.guion1Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.guion1Label.Location = new System.Drawing.Point(96, 264);
+            this.guion1Label.Name = "guion1Label";
+            this.guion1Label.Size = new System.Drawing.Size(11, 15);
+            this.guion1Label.TabIndex = 14;
+            this.guion1Label.Text = "-";
+            // 
+            // numberDocument3TextBox
+            // 
+            this.numberDocument3TextBox.Location = new System.Drawing.Point(156, 261);
+            this.numberDocument3TextBox.MaxLength = 9;
+            this.numberDocument3TextBox.Name = "numberDocument3TextBox";
+            this.numberDocument3TextBox.Size = new System.Drawing.Size(70, 22);
+            this.numberDocument3TextBox.TabIndex = 13;
+            this.numberDocument3TextBox.Text = "000000000";
+            this.numberDocument3TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numberDocument3TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberDocument3TextBox_KeyPress);
+            // 
+            // numberDocument2TextBox
+            // 
+            this.numberDocument2TextBox.Location = new System.Drawing.Point(110, 261);
+            this.numberDocument2TextBox.MaxLength = 3;
+            this.numberDocument2TextBox.Name = "numberDocument2TextBox";
+            this.numberDocument2TextBox.Size = new System.Drawing.Size(30, 22);
+            this.numberDocument2TextBox.TabIndex = 12;
+            this.numberDocument2TextBox.Text = "000";
+            this.numberDocument2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numberDocument2TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumberDocument2TextBox_KeyDown);
+            this.numberDocument2TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberDocument2TextBox_KeyPress);
+            // 
+            // numberDocument1TextBox
+            // 
+            this.numberDocument1TextBox.Location = new System.Drawing.Point(63, 261);
+            this.numberDocument1TextBox.MaxLength = 3;
+            this.numberDocument1TextBox.Name = "numberDocument1TextBox";
+            this.numberDocument1TextBox.Size = new System.Drawing.Size(30, 22);
+            this.numberDocument1TextBox.TabIndex = 11;
+            this.numberDocument1TextBox.Text = "000";
+            this.numberDocument1TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numberDocument1TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumberDocument1TextBox_KeyDown);
+            this.numberDocument1TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberDocument1TextBox_KeyPress);
+            // 
+            // numberDocumentlabel
+            // 
+            this.numberDocumentlabel.AutoSize = true;
+            this.numberDocumentlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.numberDocumentlabel.Location = new System.Drawing.Point(60, 243);
+            this.numberDocumentlabel.Name = "numberDocumentlabel";
+            this.numberDocumentlabel.Size = new System.Drawing.Size(104, 15);
+            this.numberDocumentlabel.TabIndex = 10;
+            this.numberDocumentlabel.Text = "Numero de factura";
+            // 
+            // pageSizeGroupBox
+            // 
+            this.pageSizeGroupBox.Controls.Add(this.printerPageWidthLabel);
+            this.pageSizeGroupBox.Controls.Add(this.printerPageWidthTextBox);
+            this.pageSizeGroupBox.Controls.Add(this.printerPageHeightTextBox);
+            this.pageSizeGroupBox.Controls.Add(this.printerPageHeightLabel);
+            this.pageSizeGroupBox.Location = new System.Drawing.Point(403, 75);
+            this.pageSizeGroupBox.Name = "pageSizeGroupBox";
+            this.pageSizeGroupBox.Size = new System.Drawing.Size(231, 80);
+            this.pageSizeGroupBox.TabIndex = 4;
+            this.pageSizeGroupBox.TabStop = false;
+            this.pageSizeGroupBox.Text = "Impresión - Tamaño de papel";
+            // 
+            // printerPageWidthLabel
+            // 
+            this.printerPageWidthLabel.AutoSize = true;
+            this.printerPageWidthLabel.Location = new System.Drawing.Point(20, 25);
+            this.printerPageWidthLabel.Name = "printerPageWidthLabel";
+            this.printerPageWidthLabel.Size = new System.Drawing.Size(40, 15);
+            this.printerPageWidthLabel.TabIndex = 2;
+            this.printerPageWidthLabel.Text = "Ancho";
+            // 
+            // printerPageWidthTextBox
+            // 
+            this.printerPageWidthTextBox.Location = new System.Drawing.Point(23, 43);
+            this.printerPageWidthTextBox.MaxLength = 255;
+            this.printerPageWidthTextBox.Name = "printerPageWidthTextBox";
+            this.printerPageWidthTextBox.Size = new System.Drawing.Size(75, 22);
+            this.printerPageWidthTextBox.TabIndex = 0;
+            this.printerPageWidthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.printerPageWidthTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrinterPageWidthTextBox_KeyDown);
+            this.printerPageWidthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PrinterPageWidthTextBox_KeyPress);
+            // 
+            // printerPageHeightTextBox
+            // 
+            this.printerPageHeightTextBox.Location = new System.Drawing.Point(132, 43);
+            this.printerPageHeightTextBox.MaxLength = 255;
+            this.printerPageHeightTextBox.Name = "printerPageHeightTextBox";
+            this.printerPageHeightTextBox.Size = new System.Drawing.Size(75, 22);
+            this.printerPageHeightTextBox.TabIndex = 1;
+            this.printerPageHeightTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.printerPageHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PrinterPageHeightTextBox_KeyPress);
+            // 
+            // printerPageHeightLabel
+            // 
+            this.printerPageHeightLabel.AutoSize = true;
+            this.printerPageHeightLabel.Location = new System.Drawing.Point(129, 25);
+            this.printerPageHeightLabel.Name = "printerPageHeightLabel";
+            this.printerPageHeightLabel.Size = new System.Drawing.Size(28, 15);
+            this.printerPageHeightLabel.TabIndex = 3;
+            this.printerPageHeightLabel.Text = "Alto";
             // 
             // presetDeterminadoLabel
             // 
@@ -94,7 +223,7 @@
             this.presetDeterminadoLabel.Location = new System.Drawing.Point(443, 241);
             this.presetDeterminadoLabel.Name = "presetDeterminadoLabel";
             this.presetDeterminadoLabel.Size = new System.Drawing.Size(0, 15);
-            this.presetDeterminadoLabel.TabIndex = 8;
+            this.presetDeterminadoLabel.TabIndex = 6;
             // 
             // predeterminadoButton
             // 
@@ -105,7 +234,7 @@
             this.predeterminadoButton.Location = new System.Drawing.Point(446, 175);
             this.predeterminadoButton.Name = "predeterminadoButton";
             this.predeterminadoButton.Size = new System.Drawing.Size(140, 60);
-            this.predeterminadoButton.TabIndex = 3;
+            this.predeterminadoButton.TabIndex = 5;
             this.predeterminadoButton.Text = "Establecer Preset Predeterminado";
             this.predeterminadoButton.UseVisualStyleBackColor = false;
             this.predeterminadoButton.Click += new System.EventHandler(this.PredeterminadoButton_Click);
@@ -116,8 +245,9 @@
             this.fontSizeTextBox.MaxLength = 255;
             this.fontSizeTextBox.Name = "fontSizeTextBox";
             this.fontSizeTextBox.Size = new System.Drawing.Size(45, 22);
-            this.fontSizeTextBox.TabIndex = 2;
+            this.fontSizeTextBox.TabIndex = 3;
             this.fontSizeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.fontSizeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FontSizeTextBox_KeyDown);
             this.fontSizeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FontSizeTextBox_KeyPress);
             // 
             // fontSizeLabel
@@ -126,7 +256,7 @@
             this.fontSizeLabel.Location = new System.Drawing.Point(586, 25);
             this.fontSizeLabel.Name = "fontSizeLabel";
             this.fontSizeLabel.Size = new System.Drawing.Size(49, 15);
-            this.fontSizeLabel.TabIndex = 7;
+            this.fontSizeLabel.TabIndex = 9;
             this.fontSizeLabel.Text = "Tamaño";
             // 
             // positionGroupBox
@@ -146,7 +276,7 @@
             this.positionGroupBox.Location = new System.Drawing.Point(63, 75);
             this.positionGroupBox.Name = "positionGroupBox";
             this.positionGroupBox.Size = new System.Drawing.Size(225, 165);
-            this.positionGroupBox.TabIndex = 5;
+            this.positionGroupBox.TabIndex = 1;
             this.positionGroupBox.TabStop = false;
             this.positionGroupBox.Text = "Impresión - Posición";
             // 
@@ -282,7 +412,7 @@
             this.fontFamilyLabel.Location = new System.Drawing.Point(400, 25);
             this.fontFamilyLabel.Name = "fontFamilyLabel";
             this.fontFamilyLabel.Size = new System.Drawing.Size(43, 15);
-            this.fontFamilyLabel.TabIndex = 6;
+            this.fontFamilyLabel.TabIndex = 8;
             this.fontFamilyLabel.Text = "Fuente";
             // 
             // fontFamilyComboBox
@@ -292,7 +422,7 @@
             this.fontFamilyComboBox.Location = new System.Drawing.Point(403, 46);
             this.fontFamilyComboBox.Name = "fontFamilyComboBox";
             this.fontFamilyComboBox.Size = new System.Drawing.Size(180, 23);
-            this.fontFamilyComboBox.TabIndex = 1;
+            this.fontFamilyComboBox.TabIndex = 2;
             // 
             // printerNameLabel
             // 
@@ -301,7 +431,7 @@
             this.printerNameLabel.Location = new System.Drawing.Point(60, 25);
             this.printerNameLabel.Name = "printerNameLabel";
             this.printerNameLabel.Size = new System.Drawing.Size(59, 15);
-            this.printerNameLabel.TabIndex = 4;
+            this.printerNameLabel.TabIndex = 7;
             this.printerNameLabel.Text = "Impresora";
             // 
             // printerNameComboBox
@@ -373,7 +503,7 @@
             // 
             this.cancelarButton.ForeColor = System.Drawing.Color.Red;
             this.cancelarButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.cancelarButton.Location = new System.Drawing.Point(188, 425);
+            this.cancelarButton.Location = new System.Drawing.Point(188, 465);
             this.cancelarButton.Name = "cancelarButton";
             this.cancelarButton.Size = new System.Drawing.Size(200, 29);
             this.cancelarButton.TabIndex = 4;
@@ -386,62 +516,13 @@
             this.aceptarButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aceptarButton.ForeColor = System.Drawing.Color.Green;
             this.aceptarButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.aceptarButton.Location = new System.Drawing.Point(394, 425);
+            this.aceptarButton.Location = new System.Drawing.Point(394, 465);
             this.aceptarButton.Name = "aceptarButton";
             this.aceptarButton.Size = new System.Drawing.Size(200, 29);
             this.aceptarButton.TabIndex = 3;
             this.aceptarButton.Text = "Aceptar";
             this.aceptarButton.UseVisualStyleBackColor = true;
             this.aceptarButton.Click += new System.EventHandler(this.AceptarButton_Click);
-            // 
-            // pageSizeGroupBox
-            // 
-            this.pageSizeGroupBox.Controls.Add(this.anchoLabel);
-            this.pageSizeGroupBox.Controls.Add(this.anchoTextBox);
-            this.pageSizeGroupBox.Controls.Add(this.altoTextBox);
-            this.pageSizeGroupBox.Controls.Add(this.altoLabel);
-            this.pageSizeGroupBox.Location = new System.Drawing.Point(403, 75);
-            this.pageSizeGroupBox.Name = "pageSizeGroupBox";
-            this.pageSizeGroupBox.Size = new System.Drawing.Size(231, 80);
-            this.pageSizeGroupBox.TabIndex = 9;
-            this.pageSizeGroupBox.TabStop = false;
-            this.pageSizeGroupBox.Text = "Impresión - Tamaño de papel";
-            // 
-            // anchoLabel
-            // 
-            this.anchoLabel.AutoSize = true;
-            this.anchoLabel.Location = new System.Drawing.Point(20, 25);
-            this.anchoLabel.Name = "anchoLabel";
-            this.anchoLabel.Size = new System.Drawing.Size(40, 15);
-            this.anchoLabel.TabIndex = 6;
-            this.anchoLabel.Text = "Ancho";
-            // 
-            // anchoTextBox
-            // 
-            this.anchoTextBox.Location = new System.Drawing.Point(23, 43);
-            this.anchoTextBox.MaxLength = 255;
-            this.anchoTextBox.Name = "anchoTextBox";
-            this.anchoTextBox.Size = new System.Drawing.Size(75, 22);
-            this.anchoTextBox.TabIndex = 0;
-            this.anchoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // altoTextBox
-            // 
-            this.altoTextBox.Location = new System.Drawing.Point(132, 43);
-            this.altoTextBox.MaxLength = 255;
-            this.altoTextBox.Name = "altoTextBox";
-            this.altoTextBox.Size = new System.Drawing.Size(75, 22);
-            this.altoTextBox.TabIndex = 1;
-            this.altoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // altoLabel
-            // 
-            this.altoLabel.AutoSize = true;
-            this.altoLabel.Location = new System.Drawing.Point(129, 25);
-            this.altoLabel.Name = "altoLabel";
-            this.altoLabel.Size = new System.Drawing.Size(28, 15);
-            this.altoLabel.TabIndex = 7;
-            this.altoLabel.Text = "Alto";
             // 
             // Configuracion
             // 
@@ -463,11 +544,11 @@
             this.Text = "Configuracion";
             this.printerGroupBox.ResumeLayout(false);
             this.printerGroupBox.PerformLayout();
+            this.pageSizeGroupBox.ResumeLayout(false);
+            this.pageSizeGroupBox.PerformLayout();
             this.positionGroupBox.ResumeLayout(false);
             this.positionGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).EndInit();
-            this.pageSizeGroupBox.ResumeLayout(false);
-            this.pageSizeGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,9 +586,15 @@
         public System.Windows.Forms.Button predeterminadoButton;
         private System.Windows.Forms.Label presetDeterminadoLabel;
         private System.Windows.Forms.GroupBox pageSizeGroupBox;
-        private System.Windows.Forms.Label anchoLabel;
-        public System.Windows.Forms.TextBox anchoTextBox;
-        public System.Windows.Forms.TextBox altoTextBox;
-        private System.Windows.Forms.Label altoLabel;
+        private System.Windows.Forms.Label printerPageWidthLabel;
+        public System.Windows.Forms.TextBox printerPageWidthTextBox;
+        public System.Windows.Forms.TextBox printerPageHeightTextBox;
+        private System.Windows.Forms.Label printerPageHeightLabel;
+        public System.Windows.Forms.TextBox numberDocument3TextBox;
+        public System.Windows.Forms.TextBox numberDocument2TextBox;
+        public System.Windows.Forms.TextBox numberDocument1TextBox;
+        private System.Windows.Forms.Label numberDocumentlabel;
+        private System.Windows.Forms.Label guion2Label;
+        private System.Windows.Forms.Label guion1Label;
     }
 }

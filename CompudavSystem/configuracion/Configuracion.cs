@@ -66,6 +66,12 @@ namespace CompudavSystem.configuracion
             mainYTextBox.Text = dataRow["printerMainPositionY"].ToString();
             footerXTextBox.Text = dataRow["printerFooterPositionX"].ToString();
             footerYTextBox.Text = dataRow["printerFooterPositionY"].ToString();
+            printerPageHeightTextBox.Text = dataRow["printerPageHeight"].ToString();
+            printerPageWidthTextBox.Text = dataRow["printerPageWidth"].ToString();
+            string numberInvoice = dataRow["numberInvoice"].ToString();
+            numberDocument1TextBox.Text = numberInvoice.Substring(0, 3);
+            numberDocument2TextBox.Text = numberInvoice.Substring(3, 3);
+            numberDocument3TextBox.Text = numberInvoice.Substring(6, 9);
             aceptarButton.Text = "Actualizar";
         }
 
@@ -91,9 +97,10 @@ namespace CompudavSystem.configuracion
             mainYTextBox.Text = "0";
             footerXTextBox.Text = "0";
             footerYTextBox.Text = "0";
-
+            numberDocument1TextBox.Text = "000";
+            numberDocument2TextBox.Text = "000";
+            numberDocument3TextBox.Text = "000000000";
             aceptarButton.Text = "Guardar";
-
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)
@@ -113,16 +120,19 @@ namespace CompudavSystem.configuracion
             string printerMainPositionY = $"{mainYTextBox.Text}";
             string printerFooterPositionX = $"{footerXTextBox.Text}";
             string printerFooterPositionY = $"{footerYTextBox.Text}";
+            string printerPageWidth = $"{printerPageWidthTextBox.Text}";
+            string printerPageHeight = $"{printerPageHeightTextBox.Text}";
+            string numberInvoice = $"'{numberDocument1TextBox.Text}{numberDocument2TextBox.Text}{numberDocument3TextBox.Text}'";
 
             if (aceptarButton.Text == "Guardar")
             {
                 if (ConsultasSql.Insertar(TableBdd,
                     "preset, printerName, printerFontFamily, printerFontSize, printerHeaderPositionX, " +
                     "printerHeaderPositionY, printerMainPositionX, printerMainPositionY, " +
-                    "printerFooterPositionX, printerFooterPositionY",
+                    "printerFooterPositionX, printerFooterPositionY, printerPageWidth, printerPageHeight, numberInvoice",
                     $"{preset}, {printerName}, {printerFontFamily}, {printerFontSize}, {printerHeaderPositionX}, " +
                     $"{printerHeaderPositionY}, {printerMainPositionX}, {printerMainPositionY}, " +
-                    $"{printerFooterPositionX}, {printerFooterPositionY} "
+                    $"{printerFooterPositionX}, {printerFooterPositionY}, {printerPageWidth}, {printerPageHeight}, {numberInvoice}"
                     ))
                 {
                     CargarDatos();
@@ -133,7 +143,8 @@ namespace CompudavSystem.configuracion
                 if (ConsultasSql.Actualizar(TableBdd,
                     $"preset = {preset}, printerName = {printerName}, printerFontFamily = {printerFontFamily}, printerFontSize = {printerFontSize}, " +
                     $"printerHeaderPositionX = {printerHeaderPositionX}, printerHeaderPositionY = {printerHeaderPositionY}, printerMainPositionX = {printerMainPositionX}, " +
-                    $"printerMainPositionY = {printerMainPositionY}, printerFooterPositionX = {printerFooterPositionX}, printerFooterPositionY = {printerFooterPositionY}",
+                    $"printerMainPositionY = {printerMainPositionY}, printerFooterPositionX = {printerFooterPositionX}, printerFooterPositionY = {printerFooterPositionY}, " +
+                    $"printerPageWidth = {printerPageWidth}, printerPageHeight = {printerPageHeight}, numberInvoice = {numberInvoice}",
                     "id", $"'{presetComboBox.SelectedValue}'"))
                 {
                     MessageBox.Show("Preset actualizado correctamente");
@@ -143,6 +154,7 @@ namespace CompudavSystem.configuracion
 
         private void PredeterminadoButton_Click(object sender, EventArgs e)
         {
+            string numberInvoice = $"{numberDocument1TextBox.Text}{numberDocument2TextBox.Text}{numberDocument3TextBox.Text}";
             Settings.Default.printerName = printerNameComboBox.Text;
             Settings.Default.printerFontFamily = fontFamilyComboBox.Text;
             Settings.Default.printerFontSize = int.Parse(fontSizeTextBox.Text);
@@ -152,11 +164,13 @@ namespace CompudavSystem.configuracion
             Settings.Default.printerMainPositionY = int.Parse(mainYTextBox.Text);
             Settings.Default.printerFooterPositionX = int.Parse(footerXTextBox.Text);
             Settings.Default.printerFooterPositionY = int.Parse(footerYTextBox.Text);
+            Settings.Default.printerPageWidth = int.Parse(printerPageWidthTextBox.Text);
+            Settings.Default.printerPageHeight = int.Parse(printerPageHeightTextBox.Text);
             Settings.Default.preset = int.Parse(presetComboBox.Text);
+            Settings.Default.numberInvoice = numberInvoice;
             Settings.Default.Save();
             Settings.Default.Reload();
             LoadPreset();
-
         }
 
         private void PresetComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -174,6 +188,12 @@ namespace CompudavSystem.configuracion
                 mainYTextBox.Text = dataRow["printerMainPositionY"].ToString();
                 footerXTextBox.Text = dataRow["printerFooterPositionX"].ToString();
                 footerYTextBox.Text = dataRow["printerFooterPositionY"].ToString();
+                printerPageHeightTextBox.Text = dataRow["printerPageHeight"].ToString();
+                printerPageWidthTextBox.Text = dataRow["printerPageWidth"].ToString();
+                string numberInvoice = dataRow["numberInvoice"].ToString();
+                numberDocument1TextBox.Text = numberInvoice.Substring(0, 3);
+                numberDocument2TextBox.Text = numberInvoice.Substring(3, 3);
+                numberDocument3TextBox.Text = numberInvoice.Substring(6, 9);
             }
         }
 
@@ -254,6 +274,16 @@ namespace CompudavSystem.configuracion
             e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
         }
 
+        private void PrinterPageWidthTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void PrinterPageHeightTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
         private void HeaderXTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) { headerYTextBox.Focus(); }
@@ -284,5 +314,39 @@ namespace CompudavSystem.configuracion
             if (e.KeyCode == Keys.Enter) { fontSizeTextBox.Focus(); }
         }
 
+        private void FontSizeTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { printerPageWidthTextBox.Focus(); }
+        }
+
+        private void PrinterPageWidthTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { printerPageHeightTextBox.Focus(); }
+        }
+
+        private void NumberDocument1TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void NumberDocument2TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void NumberDocument3TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void NumberDocument1TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { numberDocument2TextBox.Focus(); }
+        }
+
+        private void NumberDocument2TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { numberDocument3TextBox.Focus(); }
+        }
     }
 }
