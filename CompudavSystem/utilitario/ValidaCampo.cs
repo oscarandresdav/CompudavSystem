@@ -19,6 +19,24 @@ namespace CompudavSystem.utilitario
                 ErrorProvider.SetError(textBox, "");
             }
         }
+        public void Requerido(TextBox textBox, TextBox textBoxErrorIcon, int textLength, string mensaje)
+        {
+            ErrorStatus = true;
+            if (textBox.Text == "")
+            {
+                ErrorProvider.SetError(textBoxErrorIcon, mensaje);
+                ErrorStatus = false;
+            }
+            else if (textBox.TextLength != textLength)
+            {
+                ErrorProvider.SetError(textBoxErrorIcon, mensaje);
+                ErrorStatus = false;
+            }
+            else
+            {
+                ErrorProvider.SetError(textBoxErrorIcon, "");
+            }
+        }
 
         public void Requerido(DataGridView dataGridView, Panel panel,string mensaje)
         {

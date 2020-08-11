@@ -46,7 +46,7 @@ namespace CompudavSystem.bdd
         public static bool Actualizar(string tabla, string campos, string campoId, string valorId)
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"UPDATE { tabla } SET { campos }, modified_at = '{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffffff}' WHERE { campoId } = {valorId}";
+            SqlStament = $"UPDATE { tabla } SET { campos }, modified_at = '{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffffff}', revision = (revision + 1) WHERE { campoId } = {valorId}";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             try
             {

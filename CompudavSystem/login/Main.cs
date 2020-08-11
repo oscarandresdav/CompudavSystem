@@ -13,6 +13,7 @@ namespace CompudavSystem.login
         private Catalogo FormCatalogo { get; set; } = new Catalogo();
         private Contacto FormContacto { get; set; } = new Contacto();
         private Venta FormVenta { get; set; } = new Venta();
+        private Compra FormCompra { get; set; } = new Compra();
         private Configuracion FormConfiguracion { get; set; } = new Configuracion();
 
         public Main()
@@ -41,11 +42,13 @@ namespace CompudavSystem.login
         private void ButtonCatalogo_Click(object sender, EventArgs e)
         {
             FormularioPanel.MostrarFormulario(FormCatalogo, FormCatalogo.busquedaTextBox);
+            FormCatalogo.Busqueda();
         }
 
         private void ButtonUsuarios_Click(object sender, EventArgs e)
         {
             FormularioPanel.MostrarFormulario(FormContacto, FormContacto.busquedaTextBox);
+            FormContacto.Busqueda();
         }
 
         private void ButtonVentas_Click(object sender, EventArgs e)
@@ -58,9 +61,14 @@ namespace CompudavSystem.login
             FormularioPanel.PanelContenedor = panelContainer;
         }
 
-        private void buttonConfiguracion_Click(object sender, EventArgs e)
+        private void ButtonConfiguracion_Click(object sender, EventArgs e)
         {
             FormularioPanel.MostrarFormulario(FormConfiguracion);
+        }
+
+        private void ButtonCompras_Click(object sender, EventArgs e)
+        {
+            FormularioPanel.MostrarFormulario(FormCompra, FormCompra.idNumberTextBox);
         }
     }
 }
