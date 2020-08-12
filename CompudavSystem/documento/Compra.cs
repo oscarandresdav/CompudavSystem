@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Windows.Forms;
 using CompudavSystem.bdd;
 using CompudavSystem.Properties;
@@ -660,7 +659,7 @@ namespace CompudavSystem.documento
 
         #endregion
 
-        #region REGISTRO E IMPRESION
+        #region REGISTRO
         private void SaveButton_Click(object sender, EventArgs e)
         {
             PrinterFont = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
@@ -689,7 +688,7 @@ namespace CompudavSystem.documento
             string statusDocumentId = $"'{GetIdItemTable("status_document", "name", "Autorizado")}'";
             string paymentMethodId = $"'{GetIdItemTable("payment_method", "name", "Otros con utilización del Sistema Financiero")}'";
             DateTime dateTime = dateIssueDateTimePicker.Value;
-            string date_of_issue = $"'{dateTime: yyyy-MM-dd}'";
+            string date_of_issue = $"'{dateTime: yyyy-MM-dd} 18:59:59'";
 
             if (ValidaCampo.ErrorStatus)
             {

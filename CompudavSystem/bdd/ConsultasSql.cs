@@ -167,7 +167,16 @@ namespace CompudavSystem.bdd
         public static DataTable Busqueda(string tabla, string condicion1, string condicion2, string valor, string campo = "*", string campoOrden = "name", string orden = "ASC")
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion1 } LIKE '%{ valor }%' || { condicion2 } LIKE '%{ valor }%' ORDER BY {campoOrden} {orden}";
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion1 } LIKE '%{ valor }%' OR { condicion2 } LIKE '%{ valor }%' ORDER BY {campoOrden} {orden}";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
+        public static DataTable Busqueda(string tabla, string condicion1, string condicion2, string condicion3, string valor, string campoFecha, string fechaInicio, string fechaFin, string campo = "*", string campoOrden = "name", string orden = "ASC")
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE ({ condicion1 } LIKE '%{ valor }%' OR { condicion2 } LIKE '%{ valor }%' OR { condicion3 } LIKE '%{ valor }%') AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin } ORDER BY {campoOrden} {orden}";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];

@@ -169,6 +169,7 @@
             this.buttonHistorial.Text = "Historial";
             this.buttonHistorial.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonHistorial.UseVisualStyleBackColor = true;
+            this.buttonHistorial.Click += new System.EventHandler(this.ButtonHistorial_Click);
             // 
             // buttonUsuarios
             // 

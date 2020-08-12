@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using CompudavSystem.catalogo;
 using CompudavSystem.configuracion;
 using CompudavSystem.documento;
+using CompudavSystem.historico;
 using CompudavSystem.usuario;
 using CompudavSystem.utilitario;
 
@@ -14,6 +15,7 @@ namespace CompudavSystem.login
         private Contacto FormContacto { get; set; } = new Contacto();
         private Venta FormVenta { get; set; } = new Venta();
         private Compra FormCompra { get; set; } = new Compra();
+        private Historial FormHistorial { get; set; } = new Historial();
         private Configuracion FormConfiguracion { get; set; } = new Configuracion();
 
         public Main()
@@ -69,6 +71,12 @@ namespace CompudavSystem.login
         private void ButtonCompras_Click(object sender, EventArgs e)
         {
             FormularioPanel.MostrarFormulario(FormCompra, FormCompra.idNumberTextBox);
+        }
+
+        private void ButtonHistorial_Click(object sender, EventArgs e)
+        {
+            FormularioPanel.MostrarFormulario(FormHistorial, FormHistorial.busquedaTextBox);
+            FormHistorial.Busqueda();
         }
     }
 }
