@@ -185,10 +185,27 @@ namespace CompudavSystem.bdd
             return dataSet.Tables[tabla];
         }
 
-        public static DataTable TopItems(string tabla, string campoNombre, string campoCantidad, string campoTotal, string campoTipo, string valorTipo, string campoFecha, string fechaInicio, string fechaFin, string limite)
+        public static DataTable TopItems(string tabla, string campoNombre, string campoCantidad, string campoTotal, string campoTipo, string valorTipo, string campoEstado, string valorEstado, string campoFecha, string fechaInicio, string fechaFin, string limite)
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"SELECT {campoNombre}, SUM({campoCantidad}) AS {campoCantidad}, SUM({campoTotal}) AS {campoTotal}, {campoFecha} FROM { tabla } WHERE {campoTipo} = '{valorTipo}' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin } GROUP BY {campoNombre} ORDER BY {campoTotal} DESC LIMIT {limite}";
+            SqlStament = $"SELECT {campoNombre}, SUM({campoCantidad}) AS {campoCantidad}, SUM({campoTotal}) AS {campoTotal}, {campoFecha} FROM { tabla } WHERE {campoTipo} = '{valorTipo}' AND {campoEstado} = '{valorEstado}' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin } GROUP BY {campoNombre} ORDER BY {campoTotal} DESC LIMIT {limite}";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+        public static DataTable SumaTotalItem(string tabla, string campo, string campoTipo, string valorTipo, string campoEstado, string valorEstado, string campoFecha, string fechaInicio, string fechaFin)
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT SUM({campo}) AS {campo} FROM { tabla } WHERE {campoTipo} = '{valorTipo}' AND {campoEstado} = '{valorEstado}' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin }";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
+        public static DataTable ConteoTotalItem(string tabla, string campoTipo, string valorTipo, string campoEstado, string valorEstado, string campoFecha, string fechaInicio, string fechaFin)
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT COUNT(*) FROM { tabla } WHERE {campoTipo} = '{valorTipo}' AND {campoEstado} = '{valorEstado}' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin }";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];

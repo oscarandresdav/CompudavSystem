@@ -56,6 +56,7 @@
             this.listadoDataGridView.ReadOnly = true;
             this.listadoDataGridView.RowHeadersVisible = false;
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.listadoDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.listadoDataGridView.Size = new System.Drawing.Size(760, 467);
             this.listadoDataGridView.TabIndex = 3;
             this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);

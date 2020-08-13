@@ -30,7 +30,7 @@ namespace CompudavSystem.historico
             listadoDataGridView.Columns["date_of_issue"].DefaultCellStyle.Format = "MMMM dd, yyyy";
             listadoDataGridView.Columns["product"].HeaderText = "PRODUCTO";
             listadoDataGridView.Columns["product"].Width = 120;
-            listadoDataGridView.Columns["quantity"].HeaderText = "CANTIDAD";
+            listadoDataGridView.Columns["quantity"].HeaderText = "CANT.";
             listadoDataGridView.Columns["quantity"].Width = 50;
             listadoDataGridView.Columns["quantity"].DefaultCellStyle.Format = "N0";
             listadoDataGridView.Columns["quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
