@@ -63,6 +63,9 @@ namespace CompudavSystem.bdd
                     case 1054:
                         MessageBox.Show("Columna o campo desconocido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
+                    case 1146:
+                        MessageBox.Show($"Tabla {tabla} no existe", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
                     case 1292:
                         MessageBox.Show("Formato de fecha incorrecto.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
@@ -177,6 +180,15 @@ namespace CompudavSystem.bdd
         {
             DataSet dataSet = new DataSet();
             SqlStament = $"SELECT { campo } FROM { tabla } WHERE ({ condicion1 } LIKE '%{ valor }%' OR { condicion2 } LIKE '%{ valor }%' OR { condicion3 } LIKE '%{ valor }%') AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin } ORDER BY {campoOrden} {orden}";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
+        public static DataTable TopItems(string tabla, string campoNombre, string campoCantidad, string campoTotal, string campoTipo, string valorTipo, string campoFecha, string fechaInicio, string fechaFin, string limite)
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT {campoNombre}, SUM({campoCantidad}) AS {campoCantidad}, SUM({campoTotal}) AS {campoTotal}, {campoFecha} FROM { tabla } WHERE {campoTipo} = '{valorTipo}' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin } GROUP BY {campoNombre} ORDER BY {campoTotal} DESC LIMIT {limite}";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];

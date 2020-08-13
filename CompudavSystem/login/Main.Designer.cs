@@ -31,10 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelContainer = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.buttonCerrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelFirma2 = new System.Windows.Forms.Label();
             this.labelFirma = new System.Windows.Forms.Label();
+            this.panelButton = new System.Windows.Forms.Button();
+            this.buttonCerrar = new System.Windows.Forms.Button();
             this.buttonConfiguracion = new System.Windows.Forms.Button();
             this.buttonCompras = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.panelMenu.Controls.Add(this.panelButton);
             this.panelMenu.Controls.Add(this.buttonCerrar);
             this.panelMenu.Controls.Add(this.label1);
             this.panelMenu.Controls.Add(this.labelFirma2);
@@ -68,18 +70,6 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(120, 645);
             this.panelMenu.TabIndex = 0;
-            // 
-            // buttonCerrar
-            // 
-            this.buttonCerrar.FlatAppearance.BorderSize = 0;
-            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
-            this.buttonCerrar.Location = new System.Drawing.Point(45, 482);
-            this.buttonCerrar.Name = "buttonCerrar";
-            this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
-            this.buttonCerrar.TabIndex = 0;
-            this.buttonCerrar.UseVisualStyleBackColor = true;
-            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
             // 
             // label1
             // 
@@ -114,6 +104,37 @@
             this.labelFirma.TabIndex = 7;
             this.labelFirma.Text = "Desarrollado por:";
             // 
+            // panelButton
+            // 
+            this.panelButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.panelButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.panelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.panelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.panelButton.Font = new System.Drawing.Font("Open Sans", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelButton.ForeColor = System.Drawing.Color.White;
+            this.panelButton.Image = global::CompudavSystem.Properties.Resources.combo_chart_36px;
+            this.panelButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.panelButton.Location = new System.Drawing.Point(7, 14);
+            this.panelButton.Name = "panelButton";
+            this.panelButton.Size = new System.Drawing.Size(100, 60);
+            this.panelButton.TabIndex = 10;
+            this.panelButton.Text = "Panel";
+            this.panelButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.panelButton.UseVisualStyleBackColor = true;
+            this.panelButton.Click += new System.EventHandler(this.PanelButton_Click);
+            // 
+            // buttonCerrar
+            // 
+            this.buttonCerrar.FlatAppearance.BorderSize = 0;
+            this.buttonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCerrar.Image = global::CompudavSystem.Properties.Resources.shutdown_24px;
+            this.buttonCerrar.Location = new System.Drawing.Point(45, 527);
+            this.buttonCerrar.Name = "buttonCerrar";
+            this.buttonCerrar.Size = new System.Drawing.Size(30, 30);
+            this.buttonCerrar.TabIndex = 0;
+            this.buttonCerrar.UseVisualStyleBackColor = true;
+            this.buttonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
+            // 
             // buttonConfiguracion
             // 
             this.buttonConfiguracion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
@@ -124,7 +145,7 @@
             this.buttonConfiguracion.ForeColor = System.Drawing.Color.White;
             this.buttonConfiguracion.Image = global::CompudavSystem.Properties.Resources.administrative_tools_36px;
             this.buttonConfiguracion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonConfiguracion.Location = new System.Drawing.Point(9, 365);
+            this.buttonConfiguracion.Location = new System.Drawing.Point(8, 410);
             this.buttonConfiguracion.Name = "buttonConfiguracion";
             this.buttonConfiguracion.Size = new System.Drawing.Size(100, 60);
             this.buttonConfiguracion.TabIndex = 6;
@@ -143,7 +164,7 @@
             this.buttonCompras.ForeColor = System.Drawing.Color.White;
             this.buttonCompras.Image = global::CompudavSystem.Properties.Resources.return_purchase_36px;
             this.buttonCompras.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonCompras.Location = new System.Drawing.Point(9, 101);
+            this.buttonCompras.Location = new System.Drawing.Point(8, 212);
             this.buttonCompras.Name = "buttonCompras";
             this.buttonCompras.Size = new System.Drawing.Size(100, 60);
             this.buttonCompras.TabIndex = 2;
@@ -162,7 +183,7 @@
             this.buttonHistorial.ForeColor = System.Drawing.Color.White;
             this.buttonHistorial.Image = global::CompudavSystem.Properties.Resources.order_history_36px;
             this.buttonHistorial.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonHistorial.Location = new System.Drawing.Point(9, 299);
+            this.buttonHistorial.Location = new System.Drawing.Point(7, 80);
             this.buttonHistorial.Name = "buttonHistorial";
             this.buttonHistorial.Size = new System.Drawing.Size(100, 60);
             this.buttonHistorial.TabIndex = 5;
@@ -181,7 +202,7 @@
             this.buttonUsuarios.ForeColor = System.Drawing.Color.White;
             this.buttonUsuarios.Image = global::CompudavSystem.Properties.Resources.user_group_36px;
             this.buttonUsuarios.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonUsuarios.Location = new System.Drawing.Point(10, 233);
+            this.buttonUsuarios.Location = new System.Drawing.Point(9, 344);
             this.buttonUsuarios.Name = "buttonUsuarios";
             this.buttonUsuarios.Size = new System.Drawing.Size(100, 60);
             this.buttonUsuarios.TabIndex = 4;
@@ -200,7 +221,7 @@
             this.buttonCatalogo.ForeColor = System.Drawing.Color.White;
             this.buttonCatalogo.Image = global::CompudavSystem.Properties.Resources.pills_36px;
             this.buttonCatalogo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonCatalogo.Location = new System.Drawing.Point(9, 167);
+            this.buttonCatalogo.Location = new System.Drawing.Point(8, 278);
             this.buttonCatalogo.Name = "buttonCatalogo";
             this.buttonCatalogo.Size = new System.Drawing.Size(100, 60);
             this.buttonCatalogo.TabIndex = 3;
@@ -219,7 +240,7 @@
             this.buttonVentas.ForeColor = System.Drawing.Color.White;
             this.buttonVentas.Image = global::CompudavSystem.Properties.Resources.market_square_36px;
             this.buttonVentas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonVentas.Location = new System.Drawing.Point(8, 35);
+            this.buttonVentas.Location = new System.Drawing.Point(7, 146);
             this.buttonVentas.Name = "buttonVentas";
             this.buttonVentas.Size = new System.Drawing.Size(100, 60);
             this.buttonVentas.TabIndex = 1;
@@ -266,5 +287,6 @@
         private System.Windows.Forms.Label labelFirma2;
         private System.Windows.Forms.Label labelFirma;
         private System.Windows.Forms.Button buttonCerrar;
+        private System.Windows.Forms.Button panelButton;
     }
 }

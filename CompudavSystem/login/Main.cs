@@ -16,6 +16,7 @@ namespace CompudavSystem.login
         private Venta FormVenta { get; set; } = new Venta();
         private Compra FormCompra { get; set; } = new Compra();
         private Historial FormHistorial { get; set; } = new Historial();
+        private PanelDashboard FormPanel { get; set; } = new PanelDashboard(); 
         private Configuracion FormConfiguracion { get; set; } = new Configuracion();
 
         public Main()
@@ -33,7 +34,6 @@ namespace CompudavSystem.login
             {
                 Application.ExitThread();
             }
-
         }
 
         private void ButtonCerrar_Click(object sender, EventArgs e)
@@ -61,6 +61,7 @@ namespace CompudavSystem.login
         private void Main_Load(object sender, EventArgs e)
         {
             FormularioPanel.PanelContenedor = panelContainer;
+            FormularioPanel.MostrarFormulario(FormPanel);
         }
 
         private void ButtonConfiguracion_Click(object sender, EventArgs e)
@@ -77,6 +78,12 @@ namespace CompudavSystem.login
         {
             FormularioPanel.MostrarFormulario(FormHistorial, FormHistorial.busquedaTextBox);
             FormHistorial.Busqueda();
+        }
+
+        private void PanelButton_Click(object sender, EventArgs e)
+        {
+            FormularioPanel.MostrarFormulario(FormPanel);
+            FormPanel.DatosIniciales();
         }
     }
 }

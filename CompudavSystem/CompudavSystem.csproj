@@ -106,6 +106,12 @@
     <Compile Include="historico\Historial.Designer.cs">
       <DependentUpon>Historial.cs</DependentUpon>
     </Compile>
+    <Compile Include="historico\PanelDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="historico\PanelDashboard.Designer.cs">
+      <DependentUpon>PanelDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="historico\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="historico\PanelDashboard.resx">
+      <DependentUpon>PanelDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
@@ -321,6 +330,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rollback_18px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_58px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_62px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_64px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

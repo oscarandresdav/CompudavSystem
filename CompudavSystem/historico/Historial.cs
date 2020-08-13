@@ -1,14 +1,8 @@
-﻿using CompudavSystem.bdd;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using CompudavSystem.bdd;
 
 namespace CompudavSystem.historico
 {
@@ -26,25 +20,23 @@ namespace CompudavSystem.historico
         {
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             
-            listadoDataGridView.Columns["name"].Width = 200;
+            listadoDataGridView.Columns["number"].HeaderText = "NÚMERO";
+            listadoDataGridView.Columns["number"].Width = 110;
+            listadoDataGridView.Columns["number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            listadoDataGridView.Columns["name"].Width = 180;
             listadoDataGridView.Columns["name"].HeaderText = "CONTACTO";
-
             listadoDataGridView.Columns["date_of_issue"].HeaderText = "FECHA";
-            // listadoDataGridView.Columns["date_of_issue"].Width = 100;
             listadoDataGridView.Columns["date_of_issue"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             listadoDataGridView.Columns["date_of_issue"].DefaultCellStyle.Format = "MMMM dd, yyyy";
             listadoDataGridView.Columns["product"].HeaderText = "PRODUCTO";
-            listadoDataGridView.Columns["product"].Width = 150;
-            listadoDataGridView.Columns["number"].HeaderText = "NÚMERO";
-            listadoDataGridView.Columns["number"].Width = 110;
-            listadoDataGridView.Columns["number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            //listadoDataGridView.Columns["total_value"].HeaderText = "TOTAL";
-            //listadoDataGridView.Columns["total_value"].Width = 80;
-            //listadoDataGridView.Columns["total_value"].DefaultCellStyle.Format = "C2";
-            //listadoDataGridView.Columns["total_value"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("es-EC");
+            listadoDataGridView.Columns["product"].Width = 120;
+            listadoDataGridView.Columns["quantity"].HeaderText = "CANTIDAD";
+            listadoDataGridView.Columns["quantity"].Width = 50;
+            listadoDataGridView.Columns["quantity"].DefaultCellStyle.Format = "N0";
+            listadoDataGridView.Columns["quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             listadoDataGridView.Columns["total_value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             listadoDataGridView.Columns["type_document"].HeaderText = "TIPO";
-            listadoDataGridView.Columns["type_document"].Width = 70;
+            listadoDataGridView.Columns["type_document"].Width = 65;
             listadoDataGridView.Columns["type_document"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             listadoDataGridView.Columns["status_document"].HeaderText = "ESTADO";
             listadoDataGridView.Columns["status_document"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -139,7 +131,6 @@ namespace CompudavSystem.historico
                     toDateTimePicker.Enabled = true;
                     fromDateTimePicker.Enabled = true;
                     break;
-
                 default:
                     break;
             }
@@ -177,17 +168,39 @@ namespace CompudavSystem.historico
         private void Historial_Load(object sender, EventArgs e)
         {
             CrearBotonAccionesDatagridview("Anular", "anularButton", Properties.Resources.rollback_18px);
+            listadoDataGridView.Columns["anularButton"].DefaultCellStyle.Padding = new Padding(0, 0, 15, 0);
         }
 
         private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "anularButton")
             {
-                if (MessageBox.Show($"¿Estas seguro que deseas anular la factura \n#{listadoDataGridView.Rows[e.RowIndex].Cells["number"].Value} del contacto \n{listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value}?", "Anular factura", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if ($"{listadoDataGridView.Rows[e.RowIndex].Cells["status_document"].Value}" == "Anulado")
                 {
-                    if (ConsultasSql.Eliminar(TableBdd, "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value}'"))
+                    MessageBox.Show("Factura anulada","Información",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (MessageBox.Show($"¿Estas seguro que deseas anular la factura \n#{listadoDataGridView.Rows[e.RowIndex].Cells["number"].Value} del contacto \n{listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value}?", "Anular factura", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        DatosIniciales();
+                        DataTable dataStatus = ConsultasSql.ConsultaIndividual("status_document", "id", "name", "=", "Anulado");
+                        string statusDocumentId = dataStatus.Rows[0][0].ToString();
+                        if (ConsultasSql.Actualizar("document", $"statusDocumentId = '{statusDocumentId}'", "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["idDocument"].Value}'"))
+                        {
+                            DataTable dataInvoiceDetailment = ConsultasSql.ConsultaIndividual("invoice_detailment", "quantity, productId", "documentId", "=", $"{listadoDataGridView.Rows[e.RowIndex].Cells["idDocument"].Value}");
+                            for (int i = 0; i < dataInvoiceDetailment.Rows.Count; i++)
+                            {
+                                if ($"{listadoDataGridView.Rows[e.RowIndex].Cells["type_document"].Value}" == "COMPRA")
+                                {
+                                    ConsultasSql.Actualizar("product", $"stock = (stock - {dataInvoiceDetailment.Rows[i]["quantity"]})", "id", $"'{dataInvoiceDetailment.Rows[i]["productId"]}'");
+                                }
+                                if ($"{listadoDataGridView.Rows[e.RowIndex].Cells["type_document"].Value}" == "VENTA")
+                                {
+                                    ConsultasSql.Actualizar("product", $"stock = (stock + {dataInvoiceDetailment.Rows[i]["quantity"]})", "id", $"'{dataInvoiceDetailment.Rows[i]["productId"]}'");
+                                }
+                            }
+                            DatosIniciales();
+                        }
                     }
                 }
             }

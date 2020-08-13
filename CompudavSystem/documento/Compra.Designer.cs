@@ -34,6 +34,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.guion2Label = new System.Windows.Forms.Label();
+            this.guion1Label = new System.Windows.Forms.Label();
+            this.numberDocument3TextBox = new System.Windows.Forms.TextBox();
+            this.numberDocument2TextBox = new System.Windows.Forms.TextBox();
+            this.numberDocument1TextBox = new System.Windows.Forms.TextBox();
+            this.numberDocumentlabel = new System.Windows.Forms.Label();
             this.idContactLabel = new System.Windows.Forms.Label();
             this.nuevoButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -69,12 +75,6 @@
             this.subtotal12TextBox = new System.Windows.Forms.TextBox();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.listadoDataGridView = new System.Windows.Forms.DataGridView();
-            this.guion2Label = new System.Windows.Forms.Label();
-            this.guion1Label = new System.Windows.Forms.Label();
-            this.numberDocument3TextBox = new System.Windows.Forms.TextBox();
-            this.numberDocument2TextBox = new System.Windows.Forms.TextBox();
-            this.numberDocument1TextBox = new System.Windows.Forms.TextBox();
-            this.numberDocumentlabel = new System.Windows.Forms.Label();
             this.mainCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -118,6 +118,63 @@
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(760, 150);
             this.headerPanel.TabIndex = 0;
+            // 
+            // guion2Label
+            // 
+            this.guion2Label.AutoSize = true;
+            this.guion2Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.guion2Label.Location = new System.Drawing.Point(560, 70);
+            this.guion2Label.Name = "guion2Label";
+            this.guion2Label.Size = new System.Drawing.Size(11, 15);
+            this.guion2Label.TabIndex = 21;
+            this.guion2Label.Text = "-";
+            // 
+            // guion1Label
+            // 
+            this.guion1Label.AutoSize = true;
+            this.guion1Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.guion1Label.Location = new System.Drawing.Point(513, 70);
+            this.guion1Label.Name = "guion1Label";
+            this.guion1Label.Size = new System.Drawing.Size(11, 15);
+            this.guion1Label.TabIndex = 20;
+            this.guion1Label.Text = "-";
+            // 
+            // numberDocument3TextBox
+            // 
+            this.numberDocument3TextBox.Location = new System.Drawing.Point(573, 67);
+            this.numberDocument3TextBox.MaxLength = 9;
+            this.numberDocument3TextBox.Name = "numberDocument3TextBox";
+            this.numberDocument3TextBox.Size = new System.Drawing.Size(70, 22);
+            this.numberDocument3TextBox.TabIndex = 19;
+            this.numberDocument3TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // numberDocument2TextBox
+            // 
+            this.numberDocument2TextBox.Location = new System.Drawing.Point(527, 67);
+            this.numberDocument2TextBox.MaxLength = 3;
+            this.numberDocument2TextBox.Name = "numberDocument2TextBox";
+            this.numberDocument2TextBox.Size = new System.Drawing.Size(30, 22);
+            this.numberDocument2TextBox.TabIndex = 18;
+            this.numberDocument2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // numberDocument1TextBox
+            // 
+            this.numberDocument1TextBox.Location = new System.Drawing.Point(480, 67);
+            this.numberDocument1TextBox.MaxLength = 3;
+            this.numberDocument1TextBox.Name = "numberDocument1TextBox";
+            this.numberDocument1TextBox.Size = new System.Drawing.Size(30, 22);
+            this.numberDocument1TextBox.TabIndex = 17;
+            this.numberDocument1TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // numberDocumentlabel
+            // 
+            this.numberDocumentlabel.AutoSize = true;
+            this.numberDocumentlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.numberDocumentlabel.Location = new System.Drawing.Point(477, 49);
+            this.numberDocumentlabel.Name = "numberDocumentlabel";
+            this.numberDocumentlabel.Size = new System.Drawing.Size(104, 15);
+            this.numberDocumentlabel.TabIndex = 16;
+            this.numberDocumentlabel.Text = "Numero de factura";
             // 
             // idContactLabel
             // 
@@ -586,63 +643,6 @@
             this.listadoDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellEndEdit);
             this.listadoDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.ListadoDataGridView_EditingControlShowing);
             this.listadoDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListadoDataGridView_KeyDown);
-            // 
-            // guion2Label
-            // 
-            this.guion2Label.AutoSize = true;
-            this.guion2Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.guion2Label.Location = new System.Drawing.Point(560, 70);
-            this.guion2Label.Name = "guion2Label";
-            this.guion2Label.Size = new System.Drawing.Size(11, 15);
-            this.guion2Label.TabIndex = 21;
-            this.guion2Label.Text = "-";
-            // 
-            // guion1Label
-            // 
-            this.guion1Label.AutoSize = true;
-            this.guion1Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.guion1Label.Location = new System.Drawing.Point(513, 70);
-            this.guion1Label.Name = "guion1Label";
-            this.guion1Label.Size = new System.Drawing.Size(11, 15);
-            this.guion1Label.TabIndex = 20;
-            this.guion1Label.Text = "-";
-            // 
-            // numberDocument3TextBox
-            // 
-            this.numberDocument3TextBox.Location = new System.Drawing.Point(573, 67);
-            this.numberDocument3TextBox.MaxLength = 9;
-            this.numberDocument3TextBox.Name = "numberDocument3TextBox";
-            this.numberDocument3TextBox.Size = new System.Drawing.Size(70, 22);
-            this.numberDocument3TextBox.TabIndex = 19;
-            this.numberDocument3TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numberDocument2TextBox
-            // 
-            this.numberDocument2TextBox.Location = new System.Drawing.Point(527, 67);
-            this.numberDocument2TextBox.MaxLength = 3;
-            this.numberDocument2TextBox.Name = "numberDocument2TextBox";
-            this.numberDocument2TextBox.Size = new System.Drawing.Size(30, 22);
-            this.numberDocument2TextBox.TabIndex = 18;
-            this.numberDocument2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numberDocument1TextBox
-            // 
-            this.numberDocument1TextBox.Location = new System.Drawing.Point(480, 67);
-            this.numberDocument1TextBox.MaxLength = 3;
-            this.numberDocument1TextBox.Name = "numberDocument1TextBox";
-            this.numberDocument1TextBox.Size = new System.Drawing.Size(30, 22);
-            this.numberDocument1TextBox.TabIndex = 17;
-            this.numberDocument1TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numberDocumentlabel
-            // 
-            this.numberDocumentlabel.AutoSize = true;
-            this.numberDocumentlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.numberDocumentlabel.Location = new System.Drawing.Point(477, 49);
-            this.numberDocumentlabel.Name = "numberDocumentlabel";
-            this.numberDocumentlabel.Size = new System.Drawing.Size(104, 15);
-            this.numberDocumentlabel.TabIndex = 16;
-            this.numberDocumentlabel.Text = "Numero de factura";
             // 
             // mainCodeColumn
             // 
