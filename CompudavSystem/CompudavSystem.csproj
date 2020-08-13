@@ -319,5 +319,8 @@
   <ItemGroup>
     <None Include="Resources\bayer_logo_white_24.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rollback_18px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

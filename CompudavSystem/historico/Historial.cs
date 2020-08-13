@@ -66,6 +66,17 @@ namespace CompudavSystem.historico
             listadoDataGridView.DataSource = ConsultasSql.Busqueda(tabla: TableBdd, condicion1: "name", condicion2: "number", condicion3: "product", valor: $"{ busqueda }",campoFecha: "date_of_issue", fechaInicio: $"{ fechaInicio }", fechaFin: $"{ fechaFin }", campo: "*", campoOrden: "date_of_issue", orden: "DESC");
         }
 
+        private void CrearBotonAccionesDatagridview(string headerText, string name, Bitmap pathImage)
+        {
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
+            Image image = pathImage;
+            img.Image = image;
+            listadoDataGridView.Columns.Add(img);
+            img.HeaderText = headerText;
+            img.Name = name;
+            img.Width = 60;
+        }
+
         private void RangoFechaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (rangoFechaComboBox.SelectedIndex)
@@ -160,6 +171,25 @@ namespace CompudavSystem.historico
             if (fromDateTimePicker.Value.Ticks >= toDateTimePicker.Value.Ticks)
             {
                 Busqueda();
+            }
+        }
+
+        private void Historial_Load(object sender, EventArgs e)
+        {
+            CrearBotonAccionesDatagridview("Anular", "anularButton", Properties.Resources.rollback_18px);
+        }
+
+        private void ListadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "anularButton")
+            {
+                if (MessageBox.Show($"¿Estas seguro que deseas anular la factura \n#{listadoDataGridView.Rows[e.RowIndex].Cells["number"].Value} del contacto \n{listadoDataGridView.Rows[e.RowIndex].Cells["name"].Value}?", "Anular factura", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    if (ConsultasSql.Eliminar(TableBdd, "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value}'"))
+                    {
+                        DatosIniciales();
+                    }
+                }
             }
         }
     }

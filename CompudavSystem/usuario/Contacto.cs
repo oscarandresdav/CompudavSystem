@@ -142,7 +142,7 @@ namespace CompudavSystem.usuario
 
             if (e.RowIndex >= 0 && listadoDataGridView.CurrentCell.OwningColumn.Name == "deleteButton")
             {
-                if (MessageBox.Show("¿Está seguro que desea eliminar este item?", "Eliminar item", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show($"¿Estas seguro que deseas eliminar a {listadoDataGridView.Rows[e.RowIndex].Cells["business_name"].Value}?", "Eliminar contacto", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     if (ConsultasSql.Eliminar(TableBdd, "id", $"'{listadoDataGridView.Rows[e.RowIndex].Cells["id"].Value}'"))
                     {

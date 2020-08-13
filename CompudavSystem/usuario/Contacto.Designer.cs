@@ -109,9 +109,9 @@
             this.tituloLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
             this.tituloLabel.Location = new System.Drawing.Point(50, 15);
             this.tituloLabel.Name = "tituloLabel";
-            this.tituloLabel.Size = new System.Drawing.Size(72, 17);
+            this.tituloLabel.Size = new System.Drawing.Size(82, 17);
             this.tituloLabel.TabIndex = 4;
-            this.tituloLabel.Text = "Usuarios";
+            this.tituloLabel.Text = "Contactos";
             // 
             // listadoDataGridView
             // 

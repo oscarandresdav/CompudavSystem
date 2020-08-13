@@ -40,8 +40,8 @@
             this.cvsButton = new System.Windows.Forms.Button();
             this.busquedaLabel = new System.Windows.Forms.Label();
             this.busquedaTextBox = new System.Windows.Forms.TextBox();
-            this.tituloPictureBox = new System.Windows.Forms.PictureBox();
             this.tituloLabel = new System.Windows.Forms.Label();
+            this.tituloPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).BeginInit();
             this.encabezadoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
@@ -60,6 +60,7 @@
             this.listadoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.listadoDataGridView.Size = new System.Drawing.Size(760, 447);
             this.listadoDataGridView.TabIndex = 3;
+            this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListadoDataGridView_CellClick);
             // 
             // encabezadoPanel
             // 
@@ -200,16 +201,6 @@
             this.busquedaTextBox.TabIndex = 0;
             this.busquedaTextBox.TextChanged += new System.EventHandler(this.BusquedaTextBox_TextChanged);
             // 
-            // tituloPictureBox
-            // 
-            this.tituloPictureBox.Image = global::CompudavSystem.Properties.Resources.order_history_36px;
-            this.tituloPictureBox.Location = new System.Drawing.Point(3, 2);
-            this.tituloPictureBox.Name = "tituloPictureBox";
-            this.tituloPictureBox.Size = new System.Drawing.Size(40, 40);
-            this.tituloPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.tituloPictureBox.TabIndex = 1;
-            this.tituloPictureBox.TabStop = false;
-            // 
             // tituloLabel
             // 
             this.tituloLabel.AutoSize = true;
@@ -220,6 +211,16 @@
             this.tituloLabel.Size = new System.Drawing.Size(72, 17);
             this.tituloLabel.TabIndex = 4;
             this.tituloLabel.Text = "Historial";
+            // 
+            // tituloPictureBox
+            // 
+            this.tituloPictureBox.Image = global::CompudavSystem.Properties.Resources.order_history_36px;
+            this.tituloPictureBox.Location = new System.Drawing.Point(3, 2);
+            this.tituloPictureBox.Name = "tituloPictureBox";
+            this.tituloPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.tituloPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.tituloPictureBox.TabIndex = 1;
+            this.tituloPictureBox.TabStop = false;
             // 
             // Historial
             // 
@@ -233,6 +234,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Historial";
             this.Text = "Historial";
+            this.Load += new System.EventHandler(this.Historial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listadoDataGridView)).EndInit();
             this.encabezadoPanel.ResumeLayout(false);
             this.encabezadoPanel.PerformLayout();

@@ -185,7 +185,7 @@
             this.buttonUsuarios.Name = "buttonUsuarios";
             this.buttonUsuarios.Size = new System.Drawing.Size(100, 60);
             this.buttonUsuarios.TabIndex = 4;
-            this.buttonUsuarios.Text = "Usuarios";
+            this.buttonUsuarios.Text = "Contactos";
             this.buttonUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUsuarios.UseVisualStyleBackColor = true;
             this.buttonUsuarios.Click += new System.EventHandler(this.ButtonUsuarios_Click);
