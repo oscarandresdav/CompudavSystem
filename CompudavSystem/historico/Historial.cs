@@ -71,6 +71,9 @@ namespace CompudavSystem.historico
 
         private void RangoFechaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            toDateTimePicker.Value = DateTime.Today;
+            fromDateTimePicker.Value = DateTime.Today;
+
             switch (rangoFechaComboBox.SelectedIndex)
             {
                 case 0: //Hoy

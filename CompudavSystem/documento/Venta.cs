@@ -34,8 +34,9 @@ namespace CompudavSystem.documento
         private decimal SubtotalDecimal { get; set; }
         private decimal IvaDecimal { get; set; }
         private decimal TotalDecimal { get; set; }
-        public string PrinterName { get; set; } = Settings.Default.printerName;
-        public Font PrinterFont { get; set; } = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
+        private string PrinterName { get; set; } = Settings.Default.printerName;
+        private Font PrinterFont { get; set; } = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
+        private int PrinterTimes { get; set; } = 0;
 
         #endregion
 
@@ -149,6 +150,9 @@ namespace CompudavSystem.documento
 
         private void ClearFields()
         {
+            PrinterTimes = 0;
+            printButton.BackColor = ColorTranslator.FromHtml("#374F6E");
+            printButton.Text = "Imprimir";
             CargaDeDatosCombobox(tipoPagoComboBox, "payment_method");
             IdContact = "";
             IdNumberContact = "";
@@ -760,46 +764,55 @@ namespace CompudavSystem.documento
 
             if (ValidaCampo.ErrorStatus)
             {
-                GetIdContact(idNumber);
-                printDocument.PrinterSettings.PrinterName = PrinterName;
-                if (IdContact == "nuevo")
+                if (PrinterTimes == 0)
                 {
-                    if (ConsultasSql.Insertar("contact",
-                    "id_number, business_name, tradename, address, client",
-                    $"{idNumber}, {businessName}, {address}, {landline}, true"))
+                    GetIdContact(idNumber);
+                    printDocument.PrinterSettings.PrinterName = PrinterName;
+                    if (IdContact == "nuevo")
                     {
-                        GetIdContact(idNumber);
-                    }
-                }
-                if (idNumberTextBox.Text.Trim() == "9999999999999" && nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
-                {
-                    GetIdContact("9999999999999");
-                }
-                string contactId = $"{IdContact}";
-                if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
-                    "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
-                    $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
-                    $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
-                {
-                    ConsultasSql.Actualizar("parameter", $"numberInvoice = '{numberInvoice}'", "preset", $"{Settings.Default.preset}");
-                    string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
-                    for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
-                    {
-                        string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
-                        string unitary_discount = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
-                        string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
-                        string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
-                        if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
-                            $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                        if (ConsultasSql.Insertar("contact",
+                        "id_number, business_name, tradename, address, client",
+                        $"{idNumber}, {businessName}, {address}, {landline}, true"))
                         {
-                            string stock = GetStockItem("product", "id", productId);
-                            int quantityInt = int.Parse(quantity);
-                            int stockInt = int.Parse(stock);
-                            stockInt -= quantityInt;
-                            ConsultasSql.Actualizar("product", $"stock = {stockInt}", "id", $"'{productId}'");
+                            GetIdContact(idNumber);
                         }
                     }
-                    printDocument.Print();
+                    if (idNumberTextBox.Text.Trim() == "9999999999999" && nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
+                    {
+                        GetIdContact("9999999999999");
+                    }
+                    string contactId = $"{IdContact}";
+                    if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
+                        "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
+                        $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
+                        $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
+                    {
+                        ConsultasSql.Actualizar("parameter", $"numberInvoice = '{numberInvoice}'", "preset", $"{Settings.Default.preset}");
+                        string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
+                        for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
+                        {
+                            string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                            string unitary_discount = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                            string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
+                            string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
+                            if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
+                                $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                            {
+                                string stock = GetStockItem("product", "id", productId, 0);
+                                string minimumStock = GetStockItem("product", "id", productId, 1);
+                                int quantityInt = int.Parse(quantity);
+                                int stockInt = int.Parse(stock);
+                                int minimumStockInt = int.Parse(minimumStock);
+                                stockInt -= quantityInt;
+                                ConsultasSql.Actualizar("product", $"stock = {stockInt}, stock_indicator = {stockInt - minimumStockInt}", "id", $"'{productId}'");
+                            }
+                        }
+                        printDocument.Print();
+                        PrinterTimes += 1;
+                        printButton.BackColor = ColorTranslator.FromHtml("#56BA54");
+                        printButton.Text = "Impreso";
+                    }
+
                 }
             }
         }
@@ -829,10 +842,10 @@ namespace CompudavSystem.documento
             return data.Rows[0][0].ToString();
         }
 
-        private string GetStockItem(string tabla, string campo, string valor)
+        private string GetStockItem(string tabla, string campo, string valor, int posicion)
         {
-            DataTable data = ConsultasSql.ConsultaIndividual(tabla, "stock", campo, "=", valor);
-            return data.Rows[0][0].ToString();
+            DataTable data = ConsultasSql.ConsultaIndividual(tabla, "stock, minimum_stock_level", campo, "=", valor);
+            return data.Rows[0][posicion].ToString();
         }
 
         private string GetNumberInvoice()

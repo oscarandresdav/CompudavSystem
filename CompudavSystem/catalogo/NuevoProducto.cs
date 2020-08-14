@@ -84,8 +84,10 @@ namespace CompudavSystem.catalogo
             string descripcion = descripcionTextBox.Text.Replace("'", "\\'").Trim();
             descripcion = (descripcion == "") ? "null" : $"'{descripcion}'";
 
-            string stock = (stockTextBox.Text.Trim() == "") ? "null" : stockTextBox.Text.Trim();
-            string minimumStockLevel = (minimumStockLevelTextBox.Text.Trim() == "") ? "null" : minimumStockLevelTextBox.Text.Trim();
+            string stock = (stockTextBox.Text.Trim() == "") ? "0" : stockTextBox.Text.Trim();
+            string minimumStockLevel = (minimumStockLevelTextBox.Text.Trim() == "") ? "0" : minimumStockLevelTextBox.Text.Trim();
+            string stockIndicator = (int.Parse(stock) - int.Parse(minimumStockLevel)).ToString();
+
             string cost = (costTextBox.Text.Trim() == "") ? "null" : costTextBox.Text.Trim();
             string percentagePrice1 = (percentagePrice1TextBox.Text.Trim() == "") ? "null" : percentagePrice1TextBox.Text.Trim();
             string price1 = (price1TextBox.Text.Trim() == "") ? "null" : price1TextBox.Text.Trim();
@@ -105,7 +107,7 @@ namespace CompudavSystem.catalogo
             {
                 if (ConsultasSql.Actualizar(TableBdd,
                     $"main_code = {mainCode}, aux_code = {auxCode}, name = {name}, detail = {descripcion}, " +
-                    $"stock = {stock}, minimum_stock_level = {minimumStockLevel}, cost = {cost}, " +
+                    $"stock = {stock}, minimum_stock_level = {minimumStockLevel}, stock_indicator = {stockIndicator}, cost = {cost}, " +
                     $"percentage_price = {percentagePrice1}, price = {price1}, " +
                     $"percentage_price2 = {percentagePrice2}, price2 = {price2}, " +
                     $"percentage_price3 = {percentagePrice3}, price3 = {price3}, " +
@@ -121,10 +123,10 @@ namespace CompudavSystem.catalogo
             {
                 if (ConsultasSql.Insertar(
                     TableBdd,
-                    "main_code, aux_code, name, detail, stock, minimum_stock_level, " +
+                    "main_code, aux_code, name, detail, stock, minimum_stock_level, stock_indicator, " +
                     "cost, percentage_price, price, percentage_price2, price2, percentage_price3, price3, " +
-                    "categoryId, manufacturerId, iceRateId, ivaRateId, typeProductId, unitMeasurementId",
-                    $"{mainCode}, {auxCode}, {name}, {descripcion}, {stock}, {minimumStockLevel}, " +
+                    "categoryId, manufacturerId, iceRateId, ivaRateId, typeProductId, unitMeasurementId" ,
+                    $"{mainCode}, {auxCode}, {name}, {descripcion}, {stock}, {minimumStockLevel}, {stockIndicator}," +
                     $"{cost}, {percentagePrice1}, {price1}, {percentagePrice2}, {price2}, {percentagePrice3}, {price3}, " +
                     $"{category}, {manufacturer}, {iceRate}, {ivaRate}, {typeProduct}, {unitMeasurement}"
                     ))

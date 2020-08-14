@@ -46,8 +46,15 @@
             this.listadoDataGridView = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.stockPanel = new System.Windows.Forms.Panel();
+            this.busquedaTextBox = new System.Windows.Forms.TextBox();
             this.stockDataGridView = new System.Windows.Forms.DataGridView();
             this.stockLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.busquedaLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.totalVentasPanel.SuspendLayout();
             this.encabezadoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
@@ -230,7 +237,7 @@
             // 
             // topProductosPanel
             // 
-            this.topProductosPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(115)))), ((int)(((byte)(119)))));
+            this.topProductosPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
             this.topProductosPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.topProductosPanel.Controls.Add(this.listadoDataGridView);
             this.topProductosPanel.Controls.Add(this.label2);
@@ -258,7 +265,6 @@
             this.listadoDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listadoDataGridView.Size = new System.Drawing.Size(499, 175);
             this.listadoDataGridView.TabIndex = 29;
-            this.listadoDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listadoDataGridView_CellClick);
             // 
             // label2
             // 
@@ -274,14 +280,36 @@
             // 
             // stockPanel
             // 
-            this.stockPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(115)))), ((int)(((byte)(119)))));
+            this.stockPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
             this.stockPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.stockPanel.Controls.Add(this.label3);
+            this.stockPanel.Controls.Add(this.label1);
+            this.stockPanel.Controls.Add(this.panel3);
+            this.stockPanel.Controls.Add(this.busquedaLabel);
+            this.stockPanel.Controls.Add(this.panel1);
+            this.stockPanel.Controls.Add(this.panel2);
+            this.stockPanel.Controls.Add(this.busquedaTextBox);
             this.stockPanel.Controls.Add(this.stockDataGridView);
             this.stockPanel.Controls.Add(this.stockLabel);
             this.stockPanel.Location = new System.Drawing.Point(269, 384);
             this.stockPanel.Name = "stockPanel";
             this.stockPanel.Size = new System.Drawing.Size(499, 244);
             this.stockPanel.TabIndex = 30;
+            // 
+            // busquedaTextBox
+            // 
+            this.busquedaTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.busquedaTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.busquedaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.busquedaTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.busquedaTextBox.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.busquedaTextBox.Location = new System.Drawing.Point(272, 12);
+            this.busquedaTextBox.Name = "busquedaTextBox";
+            this.busquedaTextBox.Size = new System.Drawing.Size(219, 17);
+            this.busquedaTextBox.TabIndex = 30;
+            this.busquedaTextBox.TextChanged += new System.EventHandler(this.BusquedaTextBox_TextChanged);
             // 
             // stockDataGridView
             // 
@@ -299,9 +327,11 @@
             this.stockDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stockDataGridView.RowTemplate.Height = 30;
             this.stockDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.stockDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.stockDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.stockDataGridView.Size = new System.Drawing.Size(499, 194);
+            this.stockDataGridView.Size = new System.Drawing.Size(499, 180);
             this.stockDataGridView.TabIndex = 29;
+            this.stockDataGridView.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.stockDataGridView_RowPrePaint);
             // 
             // stockLabel
             // 
@@ -314,6 +344,60 @@
             this.stockLabel.Size = new System.Drawing.Size(499, 42);
             this.stockLabel.TabIndex = 28;
             this.stockLabel.Text = "Existencia de productos";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(250)))), ((int)(((byte)(193)))));
+            this.panel1.Location = new System.Drawing.Point(10, 230);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(10, 10);
+            this.panel1.TabIndex = 31;
+            // 
+            // busquedaLabel
+            // 
+            this.busquedaLabel.AutoSize = true;
+            this.busquedaLabel.ForeColor = System.Drawing.Color.White;
+            this.busquedaLabel.Location = new System.Drawing.Point(24, 227);
+            this.busquedaLabel.Name = "busquedaLabel";
+            this.busquedaLabel.Size = new System.Drawing.Size(45, 15);
+            this.busquedaLabel.TabIndex = 31;
+            this.busquedaLabel.Text = "Normal";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(89, 227);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 15);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Alerta";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(251)))), ((int)(((byte)(193)))));
+            this.panel2.Location = new System.Drawing.Point(75, 230);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(10, 10);
+            this.panel2.TabIndex = 33;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(146, 227);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 15);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Agotado";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(201)))), ((int)(((byte)(203)))));
+            this.panel3.Location = new System.Drawing.Point(132, 230);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(10, 10);
+            this.panel3.TabIndex = 33;
             // 
             // PanelDashboard
             // 
@@ -367,5 +451,12 @@
         private System.Windows.Forms.Panel stockPanel;
         private System.Windows.Forms.DataGridView stockDataGridView;
         private System.Windows.Forms.Label stockLabel;
+        public System.Windows.Forms.TextBox busquedaTextBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label busquedaLabel;
+        private System.Windows.Forms.Panel panel2;
     }
 }

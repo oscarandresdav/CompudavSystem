@@ -37,6 +37,7 @@ namespace CompudavSystem.catalogo
             listadoDataGridView.Columns["aux_code"].Visible = false;
             listadoDataGridView.Columns["detail"].Visible = false;
             listadoDataGridView.Columns["minimum_stock_level"].Visible = false;
+            listadoDataGridView.Columns["stock_indicator"].Visible = false;
             listadoDataGridView.Columns["percentage_price"].Visible = false;
             listadoDataGridView.Columns["percentage_price2"].Visible = false;
             listadoDataGridView.Columns["price2"].Visible = false;
@@ -194,7 +195,7 @@ namespace CompudavSystem.catalogo
         public void Busqueda()
         {
             string busqueda = busquedaTextBox.Text.Replace("'", "\\'").Trim();
-            listadoDataGridView.DataSource = ConsultasSql.Busqueda(TableBdd, "name", $"{ busqueda }");
+            listadoDataGridView.DataSource = ConsultasSql.Busqueda(tabla: TableBdd, condicion: "name", valor: $"{ busqueda }");
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
         }
     }

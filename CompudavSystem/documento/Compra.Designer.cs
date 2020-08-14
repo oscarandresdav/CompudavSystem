@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.guion2Label = new System.Windows.Forms.Label();
             this.guion1Label = new System.Windows.Forms.Label();
@@ -147,6 +147,7 @@
             this.numberDocument3TextBox.Size = new System.Drawing.Size(70, 22);
             this.numberDocument3TextBox.TabIndex = 19;
             this.numberDocument3TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numberDocument3TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberDocument3TextBox_KeyPress);
             // 
             // numberDocument2TextBox
             // 
@@ -156,6 +157,9 @@
             this.numberDocument2TextBox.Size = new System.Drawing.Size(30, 22);
             this.numberDocument2TextBox.TabIndex = 18;
             this.numberDocument2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numberDocument2TextBox.TextChanged += new System.EventHandler(this.NumberDocument2TextBox_TextChanged);
+            this.numberDocument2TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumberDocument2TextBox_KeyDown);
+            this.numberDocument2TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberDocument2TextBox_KeyPress);
             // 
             // numberDocument1TextBox
             // 
@@ -165,6 +169,9 @@
             this.numberDocument1TextBox.Size = new System.Drawing.Size(30, 22);
             this.numberDocument1TextBox.TabIndex = 17;
             this.numberDocument1TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numberDocument1TextBox.TextChanged += new System.EventHandler(this.NumberDocument1TextBox_TextChanged);
+            this.numberDocument1TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumberDocument1TextBox_KeyDown);
+            this.numberDocument1TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberDocument1TextBox_KeyPress);
             // 
             // numberDocumentlabel
             // 
@@ -612,14 +619,14 @@
             // listadoDataGridView
             // 
             this.listadoDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.listadoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listadoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.listadoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listadoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.mainCodeColumn,
@@ -662,10 +669,10 @@
             // 
             // cantidadColumn
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.cantidadColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle32.Format = "N0";
+            dataGridViewCellStyle32.NullValue = null;
+            this.cantidadColumn.DefaultCellStyle = dataGridViewCellStyle32;
             this.cantidadColumn.HeaderText = "Cantidad";
             this.cantidadColumn.Name = "cantidadColumn";
             this.cantidadColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -674,9 +681,9 @@
             // 
             // costColumn
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N4";
-            this.costColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle33.Format = "N4";
+            this.costColumn.DefaultCellStyle = dataGridViewCellStyle33;
             this.costColumn.HeaderText = "Costo";
             this.costColumn.Name = "costColumn";
             this.costColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -684,10 +691,10 @@
             // 
             // descuentoColumn
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N4";
-            dataGridViewCellStyle4.NullValue = null;
-            this.descuentoColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle34.Format = "N4";
+            dataGridViewCellStyle34.NullValue = null;
+            this.descuentoColumn.DefaultCellStyle = dataGridViewCellStyle34;
             this.descuentoColumn.HeaderText = "Descuento Unitario $";
             this.descuentoColumn.Name = "descuentoColumn";
             this.descuentoColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -696,11 +703,11 @@
             // 
             // subtotalColumn
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.subtotalColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle35.Format = "N2";
+            dataGridViewCellStyle35.NullValue = null;
+            dataGridViewCellStyle35.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.subtotalColumn.DefaultCellStyle = dataGridViewCellStyle35;
             this.subtotalColumn.HeaderText = "Subtotal";
             this.subtotalColumn.Name = "subtotalColumn";
             this.subtotalColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;

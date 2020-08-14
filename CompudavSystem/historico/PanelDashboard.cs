@@ -57,12 +57,27 @@ namespace CompudavSystem.historico
                 totalFacturasTextBox.Text = $"Facturas totales : {dataTotalDocumentos.Rows[0][0]}";
             }
 
-            stockDataGridView.DataSource = ConsultasSql.ConsultaGeneral("product", "name,stock, minimum_stock_level");
+            stockDataGridView.DataSource = ConsultasSql.ConsultaGeneral("product", "stock", "ASC", "stock_indicator", "ASC", "name, stock, minimum_stock_level, stock_indicator");
+            stockDataGridView.Columns["name"].Width = 408;
+            stockDataGridView.Columns["name"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
+            stockDataGridView.Columns["stock"].Width = 90;
+            stockDataGridView.Columns["stock"].DefaultCellStyle.Format = "N0";
+            stockDataGridView.Columns["minimum_stock_level"].Visible = false;
+            stockDataGridView.Columns["stock_indicator"].Visible = false;
+            stockDataGridView.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#E5E5E5");
+            stockDataGridView.DefaultCellStyle.SelectionForeColor = ColorTranslator.FromHtml("#000000");
+            stockDataGridView.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#ACFAC1");
+
+            listadoDataGridView.ClearSelection();
+            stockDataGridView.ClearSelection();
 
         }
 
         private void RangoFechaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            toDateTimePicker.Value = DateTime.Today;
+            fromDateTimePicker.Value = DateTime.Today;
+
             switch (rangoFechaComboBox.SelectedIndex)
             {
                 case 0: //Hoy
@@ -155,11 +170,36 @@ namespace CompudavSystem.historico
         private void PanelDashboard_Load(object sender, EventArgs e)
         {
             listadoDataGridView.ClearSelection();
+            stockDataGridView.ClearSelection();
         }
 
-        private void listadoDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void stockDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            
+            if (stockDataGridView.Rows.Count > 0)
+            {
+                for (int i = 0; i < stockDataGridView.Rows.Count; i++)
+                {
+                    int _stock_indicator = int.Parse(stockDataGridView.Rows[i].Cells["stock_indicator"].Value.ToString());
+                    int _stock = int.Parse(stockDataGridView.Rows[i].Cells["stock"].Value.ToString());
+                    if (_stock_indicator <= 0)
+                    {
+                        stockDataGridView.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFFBC1");
+                        stockDataGridView.Rows[i].DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#4B00A8");
+                    }
+                    if (_stock <= 0)
+                    {
+                        stockDataGridView.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFC9CB");
+                        stockDataGridView.Rows[i].DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#000000");
+                    }
+                }
+            }
+        }
+
+        private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string busqueda = busquedaTextBox.Text.Replace("'", "\\'").Trim();
+            stockDataGridView.DataSource = ConsultasSql.Busqueda(tabla: "product", condicion: "name", valor: $"{busqueda}", "stock", "ASC", "stock_indicator", "ASC", campo: "name, stock, minimum_stock_level, stock_indicator");
+            stockDataGridView.ClearSelection();
         }
     }
 }

@@ -124,6 +124,14 @@ namespace CompudavSystem.bdd
             return dataSet.Tables[tabla];
         }
 
+        public static DataTable ConsultaGeneral(string tabla, string campoOrden, string orden , string campoOrden2 , string orden2, string campo = "*")
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla } ORDER BY {campoOrden} {orden}, {campoOrden2} {orden2}";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
         public static DataTable ConsultaIndividual(string tabla, string campo, string condicion, string expresion, string valor)
         {
             DataSet dataSet = new DataSet();
@@ -162,6 +170,15 @@ namespace CompudavSystem.bdd
         {
             DataSet dataSet = new DataSet();
             SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } LIKE '%{ valor }%' ORDER BY {campoOrden} {orden}";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            dataAdapter.Fill(dataSet, tabla);
+            return dataSet.Tables[tabla];
+        }
+
+        public static DataTable Busqueda(string tabla, string condicion, string valor, string campoOrden, string orden, string campoOrden2, string orden2, string campo = "*")
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"SELECT { campo } FROM { tabla } WHERE { condicion } LIKE '%{ valor }%' ORDER BY {campoOrden} {orden}, {campoOrden2} {orden2}";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];

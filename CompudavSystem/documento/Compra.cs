@@ -33,8 +33,9 @@ namespace CompudavSystem.documento
         private decimal SubtotalDecimal { get; set; }
         private decimal IvaDecimal { get; set; }
         private decimal TotalDecimal { get; set; }
-        public string PrinterName { get; set; } = Settings.Default.printerName;
-        public Font PrinterFont { get; set; } = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
+        private string PrinterName { get; set; } = Settings.Default.printerName;
+        private Font PrinterFont { get; set; } = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
+        private int SavedTimes { get; set; } = 0;
 
         #endregion
 
@@ -139,6 +140,9 @@ namespace CompudavSystem.documento
 
         private void ClearFields()
         {
+            SavedTimes = 0;
+            saveButton.BackColor = ColorTranslator.FromHtml("#374F6E");
+            saveButton.Text = "Guardar";
             IdContact = "";
             IdNumberContact = "";
             BusinessNameContact = "";
@@ -653,7 +657,47 @@ namespace CompudavSystem.documento
             }
 
         }
-        
+
+        private void NumberDocument1TextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (numberDocument1TextBox.Text.Length == 3)
+            {
+                numberDocument2TextBox.Focus();
+            }
+        }
+
+        private void NumberDocument2TextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (numberDocument2TextBox.Text.Length == 3)
+            {
+                numberDocument3TextBox.Focus();
+            }
+        }
+
+        private void NumberDocument1TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void NumberDocument2TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void NumberDocument3TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.Numeros(e.KeyChar);
+        }
+
+        private void NumberDocument1TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { numberDocument2TextBox.Focus(); }
+        }
+
+        private void NumberDocument2TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { numberDocument3TextBox.Focus(); }
+        }
 
         #endregion
 
@@ -692,41 +736,50 @@ namespace CompudavSystem.documento
 
             if (ValidaCampo.ErrorStatus)
             {
-                GetIdContact(idNumber);
-                if (IdContact == "nuevo")
+                if (SavedTimes == 0)
                 {
-                    if (ConsultasSql.Insertar("contact",
-                    "id_number, business_name, tradename, address, client",
-                    $"{idNumber}, {businessName}, {address}, {landline}, true"))
+                    GetIdContact(idNumber);
+                    if (IdContact == "nuevo")
                     {
-                        GetIdContact(idNumber);
-                    }
-                }
-                string contactId = $"{IdContact}";
-                if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
-                    "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
-                    $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
-                    $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
-                {
-                    string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
-                    for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
-                    {
-                        string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
-                        string unitary_discount = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
-                        string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
-                        string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
-                        if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
-                            $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                        if (ConsultasSql.Insertar("contact",
+                        "id_number, business_name, tradename, address, client",
+                        $"{idNumber}, {businessName}, {address}, {landline}, true"))
                         {
-                            string stock = GetStockItem("product", "id", productId);
-                            int quantityInt = int.Parse(quantity);
-                            int stockInt = int.Parse(stock);
-                            stockInt += quantityInt;
-                            ConsultasSql.Actualizar("product", $"stock = {stockInt}", "id", $"'{productId}'");
+                            GetIdContact(idNumber);
                         }
                     }
-                    MessageBox.Show("Factura de compra registrada correctamente.");
+                    string contactId = $"{IdContact}";
+                    if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
+                        "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
+                        $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
+                        $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
+                    {
+                        string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
+                        for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
+                        {
+                            string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                            string unitary_discount = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                            string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
+                            string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
+                            if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
+                                $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                            {
+                                string stock = GetStockItem("product", "id", productId, 0);
+                                string minimumStock = GetStockItem("product", "id", productId, 1);
+                                int quantityInt = int.Parse(quantity);
+                                int stockInt = int.Parse(stock);
+                                int minimumStockInt = int.Parse(minimumStock);
+                                stockInt += quantityInt;
+                                ConsultasSql.Actualizar("product", $"stock = {stockInt}, stock_indicator = {stockInt - minimumStockInt}", "id", $"'{productId}'");
+                            }
+                        }
+                        MessageBox.Show("Factura de compra registrada correctamente.");
+                        SavedTimes += 1;
+                        saveButton.BackColor = ColorTranslator.FromHtml("#56BA54");
+                        saveButton.Text = "Registrado";
+                    }
                 }
+                
             }
         }
 
@@ -755,13 +808,14 @@ namespace CompudavSystem.documento
             return data.Rows[0][0].ToString();
         }
 
-        private string GetStockItem(string tabla, string campo, string valor)
+        private string GetStockItem(string tabla, string campo, string valor, int posicion)
         {
-            DataTable data = ConsultasSql.ConsultaIndividual(tabla, "stock", campo, "=", valor);
-            return data.Rows[0][0].ToString();
+            DataTable data = ConsultasSql.ConsultaIndividual(tabla, "stock, minimum_stock_level", campo, "=", valor);
+            return data.Rows[0][posicion].ToString();
         }
 
         #endregion
 
+        
     }
 }
