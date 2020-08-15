@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.idContactLabel = new System.Windows.Forms.Label();
             this.tipoPagoLabel = new System.Windows.Forms.Label();
             this.tipoPagoComboBox = new System.Windows.Forms.ComboBox();
             this.nuevoButton = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.tituloPictureBox = new System.Windows.Forms.PictureBox();
             this.tituloLabel = new System.Windows.Forms.Label();
             this.footerPanel = new System.Windows.Forms.Panel();
-            this.idContactLabel = new System.Windows.Forms.Label();
             this.printerLabel = new System.Windows.Forms.Label();
             this.additionalInformationTextBox = new System.Windows.Forms.TextBox();
             this.additionalInformationLabel = new System.Windows.Forms.Label();
@@ -81,6 +81,7 @@
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ivaRateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveButton = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
             this.footerPanel.SuspendLayout();
@@ -90,6 +91,7 @@
             // 
             // headerPanel
             // 
+            this.headerPanel.Controls.Add(this.saveButton);
             this.headerPanel.Controls.Add(this.idContactLabel);
             this.headerPanel.Controls.Add(this.tipoPagoLabel);
             this.headerPanel.Controls.Add(this.tipoPagoComboBox);
@@ -111,6 +113,16 @@
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(760, 150);
             this.headerPanel.TabIndex = 0;
+            // 
+            // idContactLabel
+            // 
+            this.idContactLabel.AutoSize = true;
+            this.idContactLabel.Font = new System.Drawing.Font("Open Sans", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idContactLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.idContactLabel.Location = new System.Drawing.Point(136, 39);
+            this.idContactLabel.Name = "idContactLabel";
+            this.idContactLabel.Size = new System.Drawing.Size(0, 13);
+            this.idContactLabel.TabIndex = 15;
             // 
             // tipoPagoLabel
             // 
@@ -332,16 +344,6 @@
             this.footerPanel.Name = "footerPanel";
             this.footerPanel.Size = new System.Drawing.Size(760, 180);
             this.footerPanel.TabIndex = 2;
-            // 
-            // idContactLabel
-            // 
-            this.idContactLabel.AutoSize = true;
-            this.idContactLabel.Font = new System.Drawing.Font("Open Sans", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idContactLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.idContactLabel.Location = new System.Drawing.Point(136, 39);
-            this.idContactLabel.Name = "idContactLabel";
-            this.idContactLabel.Size = new System.Drawing.Size(0, 13);
-            this.idContactLabel.TabIndex = 15;
             // 
             // printerLabel
             // 
@@ -575,14 +577,14 @@
             // listadoDataGridView
             // 
             this.listadoDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.listadoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listadoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.listadoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listadoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.mainCodeColumn,
@@ -625,10 +627,10 @@
             // 
             // cantidadColumn
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.cantidadColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.cantidadColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.cantidadColumn.HeaderText = "Cantidad";
             this.cantidadColumn.Name = "cantidadColumn";
             this.cantidadColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -637,8 +639,8 @@
             // 
             // precioColumn
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.precioColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.precioColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.precioColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.precioColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.precioColumn.HeaderText = "Precio Unitario";
@@ -648,10 +650,10 @@
             // 
             // descuentoColumn
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N4";
-            dataGridViewCellStyle9.NullValue = null;
-            this.descuentoColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N4";
+            dataGridViewCellStyle4.NullValue = null;
+            this.descuentoColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.descuentoColumn.HeaderText = "Descuento Unitario $";
             this.descuentoColumn.Name = "descuentoColumn";
             this.descuentoColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -660,11 +662,11 @@
             // 
             // subtotalColumn
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.subtotalColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.subtotalColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.subtotalColumn.HeaderText = "Subtotal";
             this.subtotalColumn.Name = "subtotalColumn";
             this.subtotalColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -688,6 +690,19 @@
             this.ivaRateColumn.HeaderText = "iva";
             this.ivaRateColumn.Name = "ivaRateColumn";
             this.ivaRateColumn.Visible = false;
+            // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.saveButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.ForeColor = System.Drawing.Color.White;
+            this.saveButton.Location = new System.Drawing.Point(445, 3);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(100, 40);
+            this.saveButton.TabIndex = 16;
+            this.saveButton.Text = "Guardar";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // Venta
             // 
@@ -763,5 +778,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stockColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ivaRateColumn;
         private System.Windows.Forms.Label idContactLabel;
+        private System.Windows.Forms.Button saveButton;
     }
 }

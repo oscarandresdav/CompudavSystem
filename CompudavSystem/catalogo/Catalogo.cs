@@ -168,6 +168,11 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.price2TextBox.Text = price2Campo;
             NuevoItemForm.percentagePrice3TextBox.Text = percentagePrice3Campo;
             NuevoItemForm.price3TextBox.Text = price3Campo;
+            NuevoItemForm.pvp1TextBox.Text = "";
+            NuevoItemForm.pvp2TextBox.Text = "";
+            NuevoItemForm.pvp3TextBox.Text = "";
+
+
             NuevoItemForm.categoryComboBox.SelectedValue = (categoryIdCampo == "") ? "nulo" : categoryIdCampo;
             NuevoItemForm.manufacturerComboBox.SelectedValue = (manufacturerIdCampo == "") ? "nulo" : manufacturerIdCampo;
             NuevoItemForm.iceRateComboBox.SelectedValue = (iceRateIdCampo == "") ? "nulo" : iceRateIdCampo;
@@ -178,6 +183,44 @@ namespace CompudavSystem.catalogo
                 NuevoItemForm.typeProductComboBox.SelectedValue = typeProductIdCampo;
                 NuevoItemForm.ivaRateComboBox.SelectedValue = ivaRateIdCampo;
                 NuevoItemForm.stockTextBox.ReadOnly = true;
+                
+                if (NuevoItemForm.ivaRateComboBox.Text.Trim() == "12%")
+                {
+                    if (decimal.TryParse(price1Campo, out decimal price1Decimal))
+                    {
+                        decimal pvp1Decimal = Math.Round(price1Decimal * Convert.ToDecimal(1.12), 2);
+                        NuevoItemForm.pvp1TextBox.Text = pvp1Decimal.ToString();
+                    }
+                    if (decimal.TryParse(price2Campo, out decimal price2Decimal))
+                    {
+                        decimal pvp2Decimal = Math.Round(price2Decimal * Convert.ToDecimal(1.12), 2);
+                        NuevoItemForm.pvp2TextBox.Text = pvp2Decimal.ToString();
+                    }
+                    if (decimal.TryParse(price3Campo, out decimal price3Decimal))
+                    {
+                        decimal pvp3Decimal = Math.Round(price3Decimal * Convert.ToDecimal(1.12), 2);
+                        NuevoItemForm.pvp3TextBox.Text = pvp3Decimal.ToString();
+                    }
+
+                }
+                else
+                {
+                    if (decimal.TryParse(price1Campo, out decimal price1Decimal))
+                    {
+                        decimal pvp1Decimal = Math.Round(price1Decimal,2) ;
+                        NuevoItemForm.pvp1TextBox.Text = pvp1Decimal.ToString();
+                    }
+                    if (decimal.TryParse(price2Campo, out decimal price2Decimal))
+                    {
+                        decimal pvp2Decimal = Math.Round(price2Decimal, 2) ;
+                        NuevoItemForm.pvp2TextBox.Text = pvp2Decimal.ToString();
+                    }
+                    if (decimal.TryParse(price3Campo, out decimal price3Decimal))
+                    {
+                        decimal pvp3Decimal = Math.Round(price3Decimal, 2);
+                        NuevoItemForm.pvp3TextBox.Text = pvp3Decimal.ToString();
+                    }
+                }
             }
             else if (accionBoton == "Guardar")
             {

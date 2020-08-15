@@ -1,7 +1,8 @@
-﻿using CompudavSystem.bdd;
-using CompudavSystem.login;
-using System;
+﻿using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
+using CompudavSystem.login;
 
 namespace CompudavSystem
 {
@@ -12,6 +13,7 @@ namespace CompudavSystem
         public Inicio()
         {
             InitializeComponent();
+            DecimalesSettings();
             timer.Interval = 3000;
             timer.Start();
         }
@@ -23,5 +25,13 @@ namespace CompudavSystem
             Hide();
         }
 
+        private void DecimalesSettings()
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-EC");
+            Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyGroupSeparator = ",";
+            Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator = ",";
+        }
     }
 }

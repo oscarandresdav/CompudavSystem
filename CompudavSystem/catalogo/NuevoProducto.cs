@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Xml.Xsl;
 using CompudavSystem.bdd;
 using CompudavSystem.utilitario;
 
@@ -310,17 +311,58 @@ namespace CompudavSystem.catalogo
             if (e.KeyCode == Keys.Enter) { iceRateComboBox.Focus(); }
         }
 
-        private void CalculoPrecio(TextBox cost, TextBox percentage, TextBox price)
+        private void CalculoPrecio(TextBox cost, TextBox percentage, TextBox price, TextBox pvp)
         {
             decimal priceDecimal;
+            decimal pvpDecimal;
             _ = decimal.TryParse(cost.Text, out decimal costDecimal);
             _ = decimal.TryParse(percentage.Text, out decimal percentageDecimal);
             priceDecimal = costDecimal + (costDecimal * (percentageDecimal / 100));
             price.Text = decimal.Round(priceDecimal, 4).ToString();
+            if (ivaRateComboBox.Text.Trim() == "12%")
+            {
+                pvpDecimal = priceDecimal * Convert.ToDecimal(1.12);
+            }
+            else
+            {
+                pvpDecimal = priceDecimal;
+            }
+            pvp.Text = decimal.Round(pvpDecimal, 2).ToString();
         }
 
-        private void CalculoPorcentaje(TextBox cost, TextBox percentage, TextBox price)
+        private void CalculoPVP(TextBox cost, TextBox percentage, TextBox price, TextBox pvp)
         {
+            decimal priceDecimal;
+            decimal percentageDecimal;
+            _ = decimal.TryParse(cost.Text, out decimal costDecimal);
+            _ = decimal.TryParse(pvp.Text, out decimal pvpDecimal);
+            if (ivaRateComboBox.Text.Trim() == "12%")
+            {
+                priceDecimal = pvpDecimal / Convert.ToDecimal(1.12);
+            }
+            else
+            {
+                priceDecimal = pvpDecimal;
+            }
+            price.Text = decimal.Round(priceDecimal, 2).ToString();
+            if (costDecimal == 0)
+            {
+                ErrorProvider.SetError(cost, "Costo es igual a 0");
+                ErrorStatus = false;
+                percentageDecimal = 0;
+            }
+            else
+            {
+                ErrorProvider.SetError(cost, "");
+                percentageDecimal = ((priceDecimal - costDecimal) * 100) / costDecimal;
+            }
+            percentage.Text = decimal.Round(percentageDecimal, 4).ToString();
+            
+        }
+
+        private void CalculoPorcentaje(TextBox cost, TextBox percentage, TextBox price, TextBox pvp)
+        {
+            decimal pvpDecimal;
             decimal percentageDecimal;
             _ = decimal.TryParse(cost.Text, out decimal costDecimal);
             _ = decimal.TryParse(price.Text, out decimal priceDecimal);
@@ -336,44 +378,92 @@ namespace CompudavSystem.catalogo
                 percentageDecimal = ((priceDecimal - costDecimal) * 100) / costDecimal;
             }
             percentage.Text = decimal.Round(percentageDecimal, 4).ToString();
+            if (ivaRateComboBox.Text.Trim() == "12%")
+            {
+                pvpDecimal = priceDecimal * Convert.ToDecimal(1.12);
+            }
+            else
+            {
+                pvpDecimal = priceDecimal;
+            }
+            pvp.Text = decimal.Round(pvpDecimal, 2).ToString();
         }
 
         private void PercentagePrice1TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox);
+            CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox, pvp1TextBox);
         }
 
         private void PercentagePrice2TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox);
+            CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
         }
 
         private void PercentagePrice3TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox);
+            CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
         }
 
         private void Price1TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPorcentaje(costTextBox, percentagePrice1TextBox, price1TextBox);
+            CalculoPorcentaje(costTextBox, percentagePrice1TextBox, price1TextBox, pvp1TextBox);
         }
 
         private void Price2TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPorcentaje(costTextBox, percentagePrice2TextBox, price2TextBox);
+            CalculoPorcentaje(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
         }
 
         private void Price3TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPorcentaje(costTextBox, percentagePrice3TextBox, price3TextBox);
+            CalculoPorcentaje(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
         }
 
         private void CostTextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox);
-            if (percentagePrice2TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox); }
-            if (percentagePrice3TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox); }
+            CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox, pvp1TextBox);
+            if (percentagePrice2TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox); }
+            if (percentagePrice3TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox); }
         }
 
+        private void Pvp1TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPVP(costTextBox, percentagePrice1TextBox, price1TextBox, pvp1TextBox);
+        }
+
+        private void Pvp2TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPVP(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
+        }
+
+        private void Pvp3TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculoPVP(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
+        }
+
+        private void Pvp1TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
+        }
+
+        private void Pvp2TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
+        }
+
+        private void Pvp3TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)Validaciones.DecimalesPunto(e.KeyChar);
+            e.Handled = Validaciones.UnSoloPunto(sender, e);
+        }
+
+        private void IvaRateComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox, pvp1TextBox);
+            if (percentagePrice2TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox); }
+            if (percentagePrice3TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox); }
+        }
     }
 }

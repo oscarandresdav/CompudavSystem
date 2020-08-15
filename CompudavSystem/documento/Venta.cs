@@ -35,7 +35,7 @@ namespace CompudavSystem.documento
         private decimal IvaDecimal { get; set; }
         private decimal TotalDecimal { get; set; }
         private string PrinterName { get; set; } = Settings.Default.printerName;
-        private Font PrinterFont { get; set; } = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize, FontStyle.Regular);
+        private Font PrinterFont { get; set; } = new Font(Settings.Default.printerFontFamily, Settings.Default.printerFontSize = 7, FontStyle.Regular);
         private int PrinterTimes { get; set; } = 0;
 
         #endregion
@@ -153,6 +153,8 @@ namespace CompudavSystem.documento
             PrinterTimes = 0;
             printButton.BackColor = ColorTranslator.FromHtml("#374F6E");
             printButton.Text = "Imprimir";
+            saveButton.BackColor = ColorTranslator.FromHtml("#374F6E");
+            saveButton.Text = "Guardar";
             CargaDeDatosCombobox(tipoPagoComboBox, "payment_method");
             IdContact = "";
             IdNumberContact = "";
@@ -811,6 +813,8 @@ namespace CompudavSystem.documento
                         PrinterTimes += 1;
                         printButton.BackColor = ColorTranslator.FromHtml("#56BA54");
                         printButton.Text = "Impreso";
+                        saveButton.BackColor = ColorTranslator.FromHtml("#56BA54");
+                        saveButton.Text = "Guardado";
                     }
 
                 }
@@ -901,5 +905,86 @@ namespace CompudavSystem.documento
         }
         #endregion
 
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (nameTextBox.Text.Trim() != "CONSUMIDOR FINAL")
+            {
+                ValidaCampo.Requerido(idNumberTextBox, "Por favor ingrese el numero de Identificación");
+                ValidaCampo.Requerido(nameTextBox, "Por favor ingrese el Nombre");
+                ValidaCampo.Requerido(addressTextBox, "Por favor ingrese la Dirección");
+            }
+            ValidaCampo.Requerido(listadoDataGridView, mainPanel, "Por favor selecciona al menos un item");
+
+            string idNumber = (idNumberTextBox.Text.Trim() == "") ? "null" : idNumberTextBox.Text.Trim();
+            string businessName = nameTextBox.Text.Replace("'", "\\'").Trim();
+            businessName = (businessName == "") ? "null" : $"'{businessName}'";
+            string address = addressTextBox.Text.Replace("'", "\\'").Trim();
+            address = (address == "") ? "null" : $"'{address}'";
+            string additional_information = additionalInformationTextBox.Text.Replace("'", "\\'").Trim();
+            additional_information = (additional_information == "") ? "null" : $"'{additional_information}'";
+            string landline = (landlineTextBox.Text.Trim() == "") ? "null" : landlineTextBox.Text.Trim();
+            string numberInvoice = $"000000000000000";
+            string typeIssuanceId = $"'{GetIdItemTable("type_issuance", "name", "Emisión Normal")}'";
+            string typeDocumentId = $"'{GetIdItemTable("type_document", "name", "FACTURA VENTA")}'";
+            string statusDocumentId = $"'{GetIdItemTable("status_document", "name", "Autorizado")}'";
+            string paymentMethodId = $"'{tipoPagoComboBox.SelectedValue}'";
+            DateTime dateTime = dateIssueDateTimePicker.Value;
+            string date_of_issue = $"'{dateTime: yyyy-MM-dd} {DateTime.Now:HH:mm:ss}'";
+
+            if (ValidaCampo.ErrorStatus)
+            {
+                if (PrinterTimes == 0)
+                {
+                    GetIdContact(idNumber);
+                    printDocument.PrinterSettings.PrinterName = PrinterName;
+                    if (IdContact == "nuevo")
+                    {
+                        if (ConsultasSql.Insertar("contact",
+                        "id_number, business_name, tradename, address, client",
+                        $"{idNumber}, {businessName}, {address}, {landline}, true"))
+                        {
+                            GetIdContact(idNumber);
+                        }
+                    }
+                    if (idNumberTextBox.Text.Trim() == "9999999999999" && nameTextBox.Text.Trim() == "CONSUMIDOR FINAL")
+                    {
+                        GetIdContact("9999999999999");
+                    }
+                    string contactId = $"{IdContact}";
+                    if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
+                        "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
+                        $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
+                        $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
+                    {
+                        string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
+                        for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
+                        {
+                            string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                            string unitary_discount = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
+                            string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
+                            string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
+                            if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
+                                $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                            {
+                                string stock = GetStockItem("product", "id", productId, 0);
+                                string minimumStock = GetStockItem("product", "id", productId, 1);
+                                int quantityInt = int.Parse(quantity);
+                                int stockInt = int.Parse(stock);
+                                int minimumStockInt = int.Parse(minimumStock);
+                                stockInt -= quantityInt;
+                                ConsultasSql.Actualizar("product", $"stock = {stockInt}, stock_indicator = {stockInt - minimumStockInt}", "id", $"'{productId}'");
+                            }
+                        }
+                        
+                        PrinterTimes += 1;
+                        printButton.BackColor = ColorTranslator.FromHtml("#56BA54");
+                        printButton.Text = "Impreso";
+                        saveButton.BackColor = ColorTranslator.FromHtml("#56BA54");
+                        saveButton.Text = "Guardado";
+                    }
+
+                }
+            }
+        }
     }
 }
