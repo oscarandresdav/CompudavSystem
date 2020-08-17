@@ -24,7 +24,7 @@ namespace CompudavSystem.configuracion
             LoadPreset();
         }
 
-        private void LoadPreset()
+        public void LoadPreset()
         {
             PresetString = Settings.Default.preset == 0 ? "Ninguno" : Settings.Default.preset.ToString();
             presetDeterminadoLabel.Text = $"Preset predeterminado: {PresetString}";
@@ -50,7 +50,7 @@ namespace CompudavSystem.configuracion
             }
         }
 
-        private void CargarDatos(int presetIndex = 0)
+        public void CargarDatos(int presetIndex = 0)
         {
             parameterDataTable = ConsultasSql.ConsultaGeneral(TableBdd, campoOrden: "preset");
             presetComboBox.DataSource = parameterDataTable;

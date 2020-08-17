@@ -28,7 +28,7 @@ namespace CompudavSystem.catalogo
             listadoDataGridView.Columns["name"].Width = 347;
 
             listadoDataGridView.Columns["cost"].HeaderText = "Costo";
-            listadoDataGridView.Columns["price"].HeaderText = "P.V.P.";
+            listadoDataGridView.Columns["pvp"].HeaderText = "P.V.P.";
             listadoDataGridView.Columns["stock"].HeaderText = "Existencias";
             listadoDataGridView.Columns["stock"].Width = 90;
 
@@ -39,10 +39,13 @@ namespace CompudavSystem.catalogo
             listadoDataGridView.Columns["minimum_stock_level"].Visible = false;
             listadoDataGridView.Columns["stock_indicator"].Visible = false;
             listadoDataGridView.Columns["percentage_price"].Visible = false;
+            listadoDataGridView.Columns["price"].Visible = false;
             listadoDataGridView.Columns["percentage_price2"].Visible = false;
             listadoDataGridView.Columns["price2"].Visible = false;
+            listadoDataGridView.Columns["pvp2"].Visible = false;
             listadoDataGridView.Columns["percentage_price3"].Visible = false;
             listadoDataGridView.Columns["price3"].Visible = false;
+            listadoDataGridView.Columns["pvp3"].Visible = false;
             listadoDataGridView.Columns["status"].Visible = false;
             listadoDataGridView.Columns["created_at"].Visible = false;
             listadoDataGridView.Columns["modified_at"].Visible = false;
@@ -92,9 +95,10 @@ namespace CompudavSystem.catalogo
 
         private void AgregarButton_Click(object sender, EventArgs e)
         {
+            NuevoItemForm.stockTextBox.ReadOnly = false;
             DatosGuardarActualizar
                 (
-                    "", "Guardar", "", "", "", "", "", "", "", "",
+                    "", "Guardar", "", "", "", "", "", "", "", "", "","", "",
                     "", "", "", "", "", "", "", "", "", "", ""
                 );
         }
@@ -116,10 +120,13 @@ namespace CompudavSystem.catalogo
                         listadoDataGridView.Rows[e.RowIndex].Cells["cost"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["percentage_price"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["price"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["pvp"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["percentage_price2"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["price2"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["pvp2"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["percentage_price3"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["price3"].Value.ToString(),
+                        listadoDataGridView.Rows[e.RowIndex].Cells["pvp3"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["categoryId"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["manufacturerId"].Value.ToString(),
                         listadoDataGridView.Rows[e.RowIndex].Cells["iceRateId"].Value.ToString(),
@@ -143,8 +150,10 @@ namespace CompudavSystem.catalogo
 
         private void DatosGuardarActualizar(string id, string accionBoton, string mainCodeCampo, string auxCodeCampo,
             string nameCampo, string detailCampo, string stockCampo, string minimumStockLevelCampo, string costCampo,
-            string percentagePrice1Campo, string price1Campo, string percentagePrice2Campo, string price2Campo,
-            string percentagePrice3Campo, string price3Campo, string categoryIdCampo, string manufacturerIdCampo,
+            string percentagePrice1Campo, string price1Campo, string pvpCampo, 
+            string percentagePrice2Campo, string price2Campo, string pvp2Campo,
+            string percentagePrice3Campo, string price3Campo, string pvp3Campo, 
+            string categoryIdCampo, string manufacturerIdCampo,
             string iceRateIdCampo, string ivaRateIdCampo, string typeProductIdCampo, string unitMeasurementIdCampo)
         {
             NuevoItemForm.Icatalogo = this;
@@ -168,9 +177,9 @@ namespace CompudavSystem.catalogo
             NuevoItemForm.price2TextBox.Text = price2Campo;
             NuevoItemForm.percentagePrice3TextBox.Text = percentagePrice3Campo;
             NuevoItemForm.price3TextBox.Text = price3Campo;
-            NuevoItemForm.pvp1TextBox.Text = "";
-            NuevoItemForm.pvp2TextBox.Text = "";
-            NuevoItemForm.pvp3TextBox.Text = "";
+            NuevoItemForm.pvp1TextBox.Text = pvpCampo;
+            NuevoItemForm.pvp2TextBox.Text = pvp2Campo;
+            NuevoItemForm.pvp3TextBox.Text = pvp3Campo;
 
 
             NuevoItemForm.categoryComboBox.SelectedValue = (categoryIdCampo == "") ? "nulo" : categoryIdCampo;
@@ -183,50 +192,11 @@ namespace CompudavSystem.catalogo
                 NuevoItemForm.typeProductComboBox.SelectedValue = typeProductIdCampo;
                 NuevoItemForm.ivaRateComboBox.SelectedValue = ivaRateIdCampo;
                 NuevoItemForm.stockTextBox.ReadOnly = true;
-                
-                if (NuevoItemForm.ivaRateComboBox.Text.Trim() == "12%")
-                {
-                    if (decimal.TryParse(price1Campo, out decimal price1Decimal))
-                    {
-                        decimal pvp1Decimal = Math.Round(price1Decimal * Convert.ToDecimal(1.12), 2);
-                        NuevoItemForm.pvp1TextBox.Text = pvp1Decimal.ToString();
-                    }
-                    if (decimal.TryParse(price2Campo, out decimal price2Decimal))
-                    {
-                        decimal pvp2Decimal = Math.Round(price2Decimal * Convert.ToDecimal(1.12), 2);
-                        NuevoItemForm.pvp2TextBox.Text = pvp2Decimal.ToString();
-                    }
-                    if (decimal.TryParse(price3Campo, out decimal price3Decimal))
-                    {
-                        decimal pvp3Decimal = Math.Round(price3Decimal * Convert.ToDecimal(1.12), 2);
-                        NuevoItemForm.pvp3TextBox.Text = pvp3Decimal.ToString();
-                    }
-
-                }
-                else
-                {
-                    if (decimal.TryParse(price1Campo, out decimal price1Decimal))
-                    {
-                        decimal pvp1Decimal = Math.Round(price1Decimal,2) ;
-                        NuevoItemForm.pvp1TextBox.Text = pvp1Decimal.ToString();
-                    }
-                    if (decimal.TryParse(price2Campo, out decimal price2Decimal))
-                    {
-                        decimal pvp2Decimal = Math.Round(price2Decimal, 2) ;
-                        NuevoItemForm.pvp2TextBox.Text = pvp2Decimal.ToString();
-                    }
-                    if (decimal.TryParse(price3Campo, out decimal price3Decimal))
-                    {
-                        decimal pvp3Decimal = Math.Round(price3Decimal, 2);
-                        NuevoItemForm.pvp3TextBox.Text = pvp3Decimal.ToString();
-                    }
-                }
             }
             else if (accionBoton == "Guardar")
             {
                 NuevoItemForm.typeProductComboBox.SelectedIndex = 0;
                 NuevoItemForm.ivaRateComboBox.SelectedIndex = 0;
-                NuevoItemForm.stockTextBox.ReadOnly = false;
             }
         }
 

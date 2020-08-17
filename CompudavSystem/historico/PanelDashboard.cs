@@ -8,6 +8,8 @@ namespace CompudavSystem.historico
 {
     public partial class PanelDashboard : Form
     {
+        private int StockIndicator { get; set; } = 0;
+        
         public PanelDashboard()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace CompudavSystem.historico
 
         public void DatosIniciales()
         {
+            StockIndicator = 0;
             DateTime dateTimeStart = toDateTimePicker.Value;
             string fechaInicio = $"'{dateTimeStart: yyyy-MM-dd} 00:00:00'";
             DateTime dateTimeEnd = fromDateTimePicker.Value;
@@ -70,7 +73,6 @@ namespace CompudavSystem.historico
 
             listadoDataGridView.ClearSelection();
             stockDataGridView.ClearSelection();
-
         }
 
         private void RangoFechaComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -173,25 +175,26 @@ namespace CompudavSystem.historico
             stockDataGridView.ClearSelection();
         }
 
-        private void stockDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        private void StockDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            if (stockDataGridView.Rows.Count > 0)
+            if (StockIndicator == 0)
             {
-                for (int i = 0; i < stockDataGridView.Rows.Count; i++)
+                foreach (DataGridViewRow row in stockDataGridView.Rows)
                 {
-                    int _stock_indicator = int.Parse(stockDataGridView.Rows[i].Cells["stock_indicator"].Value.ToString());
-                    int _stock = int.Parse(stockDataGridView.Rows[i].Cells["stock"].Value.ToString());
+                    int _stock_indicator = int.Parse(row.Cells[3].Value.ToString());
+                    int _stock = int.Parse(row.Cells[1].Value.ToString());
                     if (_stock_indicator <= 0)
                     {
-                        stockDataGridView.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFFBC1");
-                        stockDataGridView.Rows[i].DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#4B00A8");
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFFBC1");
+                        row.DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#4B00A8");
                     }
                     if (_stock <= 0)
                     {
-                        stockDataGridView.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFC9CB");
-                        stockDataGridView.Rows[i].DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#000000");
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFC9CB");
+                        row.DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#000000");
                     }
                 }
+                StockIndicator++;
             }
         }
 

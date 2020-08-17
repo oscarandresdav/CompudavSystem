@@ -67,6 +67,8 @@ namespace CompudavSystem.login
         private void ButtonConfiguracion_Click(object sender, EventArgs e)
         {
             FormularioPanel.MostrarFormulario(FormConfiguracion);
+            FormConfiguracion.CargarDatos();
+            FormConfiguracion.LoadPreset();
         }
 
         private void ButtonCompras_Click(object sender, EventArgs e)

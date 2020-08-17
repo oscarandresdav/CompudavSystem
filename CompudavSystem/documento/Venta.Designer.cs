@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.saveButton = new System.Windows.Forms.Button();
             this.idContactLabel = new System.Windows.Forms.Label();
             this.tipoPagoLabel = new System.Windows.Forms.Label();
             this.tipoPagoComboBox = new System.Windows.Forms.ComboBox();
@@ -81,7 +82,6 @@
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ivaRateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveButton = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tituloPictureBox)).BeginInit();
             this.footerPanel.SuspendLayout();
@@ -113,6 +113,19 @@
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(760, 150);
             this.headerPanel.TabIndex = 0;
+            // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
+            this.saveButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.ForeColor = System.Drawing.Color.White;
+            this.saveButton.Location = new System.Drawing.Point(445, 3);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(100, 40);
+            this.saveButton.TabIndex = 16;
+            this.saveButton.Text = "Guardar";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // idContactLabel
             // 
@@ -663,7 +676,7 @@
             // subtotalColumn
             // 
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.Format = "N4";
             dataGridViewCellStyle5.NullValue = null;
             dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.subtotalColumn.DefaultCellStyle = dataGridViewCellStyle5;
@@ -690,19 +703,6 @@
             this.ivaRateColumn.HeaderText = "iva";
             this.ivaRateColumn.Name = "ivaRateColumn";
             this.ivaRateColumn.Visible = false;
-            // 
-            // saveButton
-            // 
-            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(110)))));
-            this.saveButton.Font = new System.Drawing.Font("Open Sans ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.ForeColor = System.Drawing.Color.White;
-            this.saveButton.Location = new System.Drawing.Point(445, 3);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(100, 40);
-            this.saveButton.TabIndex = 16;
-            this.saveButton.Text = "Guardar";
-            this.saveButton.UseVisualStyleBackColor = false;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // Venta
             // 
@@ -768,6 +768,8 @@
         private System.Drawing.Printing.PrintDocument printDocument;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.DataGridView listadoDataGridView;
+        private System.Windows.Forms.Label idContactLabel;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn mainCodeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadColumn;
@@ -777,7 +779,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ivaRateColumn;
-        private System.Windows.Forms.Label idContactLabel;
-        private System.Windows.Forms.Button saveButton;
     }
 }

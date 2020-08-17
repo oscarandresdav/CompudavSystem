@@ -384,6 +384,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="compudav.ico" />
+    <None Include="Resources\password_1_22px.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

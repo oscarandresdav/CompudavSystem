@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
-using System.Xml.Xsl;
 using CompudavSystem.bdd;
 using CompudavSystem.utilitario;
 
@@ -16,9 +16,11 @@ namespace CompudavSystem.catalogo
         public string IdField { get; set; }
         public bool ErrorStatus { get; set; }
         public ErrorProvider ErrorProvider { get; set; } = new ErrorProvider();
+        private TextBox PasswordToEditStock { get; set; } = new TextBox();
 
         public NuevoProducto()
         {
+            PasswordToEditStock.KeyDown += new KeyEventHandler(PasswordToEditStockTextBox_KeyDown);
             InitializeComponent();
             DatosIniciales();
         }
@@ -92,10 +94,13 @@ namespace CompudavSystem.catalogo
             string cost = (costTextBox.Text.Trim() == "") ? "null" : costTextBox.Text.Trim();
             string percentagePrice1 = (percentagePrice1TextBox.Text.Trim() == "") ? "null" : percentagePrice1TextBox.Text.Trim();
             string price1 = (price1TextBox.Text.Trim() == "") ? "null" : price1TextBox.Text.Trim();
+            string pvp = (pvp1TextBox.Text.Trim() == "") ? "null" : pvp1TextBox.Text.Trim();
             string percentagePrice2 = (percentagePrice2TextBox.Text.Trim() == "") ? "null" : percentagePrice2TextBox.Text.Trim();
             string price2 = (price2TextBox.Text.Trim() == "") ? "null" : price2TextBox.Text.Trim();
+            string pvp2 = (pvp2TextBox.Text.Trim() == "") ? "null" : pvp2TextBox.Text.Trim();
             string percentagePrice3 = (percentagePrice3TextBox.Text.Trim() == "") ? "null" : percentagePrice3TextBox.Text.Trim();
             string price3 = (price3TextBox.Text.Trim() == "") ? "null" : price3TextBox.Text.Trim();
+            string pvp3 = (pvp3TextBox.Text.Trim() == "") ? "null" : pvp3TextBox.Text.Trim();
 
             string category = (categoryComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{categoryComboBox.SelectedValue}'";
             string manufacturer = (manufacturerComboBox.SelectedValue.ToString() == "nulo") ? "null" : $"'{manufacturerComboBox.SelectedValue}'";
@@ -109,9 +114,9 @@ namespace CompudavSystem.catalogo
                 if (ConsultasSql.Actualizar(TableBdd,
                     $"main_code = {mainCode}, aux_code = {auxCode}, name = {name}, detail = {descripcion}, " +
                     $"stock = {stock}, minimum_stock_level = {minimumStockLevel}, stock_indicator = {stockIndicator}, cost = {cost}, " +
-                    $"percentage_price = {percentagePrice1}, price = {price1}, " +
-                    $"percentage_price2 = {percentagePrice2}, price2 = {price2}, " +
-                    $"percentage_price3 = {percentagePrice3}, price3 = {price3}, " +
+                    $"percentage_price = {percentagePrice1}, price = {price1}, pvp = {pvp}, " +
+                    $"percentage_price2 = {percentagePrice2}, price2 = {price2}, pvp2 = {pvp2}, " +
+                    $"percentage_price3 = {percentagePrice3}, price3 = {price3}, pvp3 = {pvp3}, " +
                     $"categoryId = {category}, manufacturerId = {manufacturer}, iceRateId = {iceRate}, " +
                     $"ivaRateId = {ivaRate}, typeProductId = {typeProduct}, unitMeasurementId = {unitMeasurement}",
                     "id", $"'{IdField}'"))
@@ -125,10 +130,10 @@ namespace CompudavSystem.catalogo
                 if (ConsultasSql.Insertar(
                     TableBdd,
                     "main_code, aux_code, name, detail, stock, minimum_stock_level, stock_indicator, " +
-                    "cost, percentage_price, price, percentage_price2, price2, percentage_price3, price3, " +
+                    "cost, percentage_price, price, pvp, percentage_price2, price2, pvp2, percentage_price3, price3, pvp3, " +
                     "categoryId, manufacturerId, iceRateId, ivaRateId, typeProductId, unitMeasurementId" ,
                     $"{mainCode}, {auxCode}, {name}, {descripcion}, {stock}, {minimumStockLevel}, {stockIndicator}," +
-                    $"{cost}, {percentagePrice1}, {price1}, {percentagePrice2}, {price2}, {percentagePrice3}, {price3}, " +
+                    $"{cost}, {percentagePrice1}, {price1}, {pvp}, {percentagePrice2}, {price2}, {pvp2}, {percentagePrice3}, {price3}, {pvp3}, " +
                     $"{category}, {manufacturer}, {iceRate}, {ivaRate}, {typeProduct}, {unitMeasurement}"
                     ))
                 {
@@ -344,7 +349,7 @@ namespace CompudavSystem.catalogo
             {
                 priceDecimal = pvpDecimal;
             }
-            price.Text = decimal.Round(priceDecimal, 2).ToString();
+            price.Text = decimal.Round(priceDecimal, 4).ToString();
             if (costDecimal == 0)
             {
                 ErrorProvider.SetError(cost, "Costo es igual a 0");
@@ -464,6 +469,47 @@ namespace CompudavSystem.catalogo
             CalculoPrecio(costTextBox, percentagePrice1TextBox, price1TextBox, pvp1TextBox);
             if (percentagePrice2TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox); }
             if (percentagePrice3TextBox.Text.Trim() != "") { CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox); }
+        }
+
+        private void StockLockButton_Click(object sender, EventArgs e)
+        {
+            PasswordToEditStock.Location = new Point(stockTextBox.Location.X, stockTextBox.Location.Y);
+            PasswordToEditStock.Width = 100;
+            PasswordToEditStock.BackColor = ColorTranslator.FromHtml("#BEDDE8");
+            PasswordToEditStock.PasswordChar = '*';
+
+            Controls.Add(PasswordToEditStock);
+            PasswordToEditStock.Visible = true;
+            PasswordToEditStock.Clear();
+            PasswordToEditStock.BringToFront();
+            PasswordToEditStock.Focus();
+        }
+
+        private void PasswordToEditStockTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                PasswordToEditStock.Visible = false;
+                minimumStockLevelTextBox.Focus();
+                stockTextBox.ReadOnly = true;
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (PasswordToEditStock.Text.Trim() ==  "2105") 
+                {
+                    PasswordToEditStock.Visible = false;
+                    stockTextBox.ReadOnly = false;
+                    stockTextBox.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Contraseña incorrecta");
+                    PasswordToEditStock.Visible = false;
+                    stockTextBox.ReadOnly = true;
+                    minimumStockLevelTextBox.Focus();
+                }
+            }
+            
         }
     }
 }

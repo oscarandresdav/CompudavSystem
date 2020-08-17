@@ -193,13 +193,20 @@ namespace CompudavSystem.historico
                             DataTable dataInvoiceDetailment = ConsultasSql.ConsultaIndividual("invoice_detailment", "quantity, productId", "documentId", "=", $"{listadoDataGridView.Rows[e.RowIndex].Cells["idDocument"].Value}");
                             for (int i = 0; i < dataInvoiceDetailment.Rows.Count; i++)
                             {
+                                DataTable dataMinimumStock = ConsultasSql.ConsultaIndividual("product", "stock, minimum_stock_level", "id", "=", $"{dataInvoiceDetailment.Rows[i]["productId"]}");
+                                int minimumStockInt = int.Parse(dataMinimumStock.Rows[0][1].ToString());
+                                int stockInt = int.Parse(dataMinimumStock.Rows[0][0].ToString());
+                                decimal quantityDecimal = decimal.Parse(dataInvoiceDetailment.Rows[i][0].ToString());
+                                int quantityInt = Convert.ToInt32(quantityDecimal);
                                 if ($"{listadoDataGridView.Rows[e.RowIndex].Cells["type_document"].Value}" == "COMPRA")
                                 {
-                                    ConsultasSql.Actualizar("product", $"stock = (stock - {dataInvoiceDetailment.Rows[i]["quantity"]})", "id", $"'{dataInvoiceDetailment.Rows[i]["productId"]}'");
+                                    stockInt -= quantityInt;
+                                    ConsultasSql.Actualizar("product", $"stock = {stockInt}, stock_indicator = { stockInt - minimumStockInt}", "id", $"'{dataInvoiceDetailment.Rows[i]["productId"]}'");
                                 }
                                 if ($"{listadoDataGridView.Rows[e.RowIndex].Cells["type_document"].Value}" == "VENTA")
                                 {
-                                    ConsultasSql.Actualizar("product", $"stock = (stock + {dataInvoiceDetailment.Rows[i]["quantity"]})", "id", $"'{dataInvoiceDetailment.Rows[i]["productId"]}'");
+                                    stockInt += quantityInt;
+                                    ConsultasSql.Actualizar("product", $"stock = {stockInt}, stock_indicator = { stockInt + minimumStockInt}", "id", $"'{dataInvoiceDetailment.Rows[i]["productId"]}'");
                                 }
                             }
                             DatosIniciales();

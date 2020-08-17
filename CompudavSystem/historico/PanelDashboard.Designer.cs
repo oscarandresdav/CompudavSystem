@@ -331,7 +331,7 @@
             this.stockDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.stockDataGridView.Size = new System.Drawing.Size(499, 180);
             this.stockDataGridView.TabIndex = 29;
-            this.stockDataGridView.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.stockDataGridView_RowPrePaint);
+            this.stockDataGridView.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.StockDataGridView_RowPrePaint);
             // 
             // stockLabel
             // 

@@ -75,6 +75,7 @@
             this.ivaRateComboBox = new System.Windows.Forms.ComboBox();
             this.costLabel = new System.Windows.Forms.Label();
             this.typeProductComboBox = new System.Windows.Forms.ComboBox();
+            this.stockLockButton = new System.Windows.Forms.Button();
             this.listaPreciosGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,7 +188,7 @@
             this.stockTextBox.Location = new System.Drawing.Point(198, 189);
             this.stockTextBox.MaxLength = 11;
             this.stockTextBox.Name = "stockTextBox";
-            this.stockTextBox.Size = new System.Drawing.Size(120, 22);
+            this.stockTextBox.Size = new System.Drawing.Size(100, 22);
             this.stockTextBox.TabIndex = 5;
             this.stockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StockTextBox_KeyDown);
             this.stockTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StockTextBox_KeyPress);
@@ -568,12 +569,29 @@
             this.typeProductComboBox.Size = new System.Drawing.Size(120, 23);
             this.typeProductComboBox.TabIndex = 4;
             // 
+            // stockLockButton
+            // 
+            this.stockLockButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.stockLockButton.BackgroundImage = global::CompudavSystem.Properties.Resources.password_1_22px;
+            this.stockLockButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.stockLockButton.FlatAppearance.BorderSize = 0;
+            this.stockLockButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.stockLockButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.stockLockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stockLockButton.Location = new System.Drawing.Point(304, 188);
+            this.stockLockButton.Name = "stockLockButton";
+            this.stockLockButton.Size = new System.Drawing.Size(24, 24);
+            this.stockLockButton.TabIndex = 31;
+            this.stockLockButton.UseVisualStyleBackColor = false;
+            this.stockLockButton.Click += new System.EventHandler(this.StockLockButton_Click);
+            // 
             // NuevoProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(485, 530);
+            this.Controls.Add(this.stockLockButton);
             this.Controls.Add(this.iceRateLabel);
             this.Controls.Add(this.iceRateComboBox);
             this.Controls.Add(this.ivaRateLabel);
@@ -664,5 +682,6 @@
         public System.Windows.Forms.TextBox pvp2TextBox;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox pvp1TextBox;
+        private System.Windows.Forms.Button stockLockButton;
     }
 }

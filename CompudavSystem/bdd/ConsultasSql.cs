@@ -42,6 +42,38 @@ namespace CompudavSystem.bdd
                 return false;
             }
         }
+        public static bool Insertar(string tabla, string id, string campos, string valores)
+        {
+            DataSet dataSet = new DataSet();
+            SqlStament = $"INSERT INTO { tabla } (id, revision, { campos }) VALUES ({id}, '1', { valores })";
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
+            try
+            {
+                dataAdapter.Fill(dataSet);
+                return true;
+            }
+            catch (MySqlException err)
+            {
+                switch (err.Number)
+                {
+                    case 1062:
+                        MessageBox.Show("Registro duplicado, operacion cancelada.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1054:
+                        MessageBox.Show("Columna o campo desconocido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1292:
+                        MessageBox.Show("Formato de fecha incorrecto.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case 1364:
+                        MessageBox.Show("No se registro por falta de campos obligatorios.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    default:
+                        break;
+                }
+                return false;
+            }
+        }
 
         public static bool Actualizar(string tabla, string campos, string campoId, string valorId)
         {

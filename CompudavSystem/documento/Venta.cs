@@ -150,7 +150,18 @@ namespace CompudavSystem.documento
 
         private void ClearFields()
         {
+            PrinterName = Settings.Default.printerName;
+            printerLabel.Text = PrinterName;
             PrinterTimes = 0;
+            listadoDataGridView.Enabled = true;
+            printButton.Enabled = true;
+            idNumberTextBox.Enabled = true;
+            nameTextBox.Enabled = true;
+            addressTextBox.Enabled = true;
+            landlineTextBox.Enabled = true;
+            additionalInformationTextBox.Enabled = true;
+            descuentoTextBox.Enabled = true;
+            descuentoButton.Enabled = true;
             printButton.BackColor = ColorTranslator.FromHtml("#374F6E");
             printButton.Text = "Imprimir";
             saveButton.BackColor = ColorTranslator.FromHtml("#374F6E");
@@ -348,9 +359,9 @@ namespace CompudavSystem.documento
                     }
 
                     decimal cantidadDecimal = Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["cantidadColumn"].Value);
-                    decimal precioDecimal = Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["precioColumn"].Value);
+                    decimal precioDecimal = Math.Round(Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["precioColumn"].Value),4);
                     decimal descuentoDecimal = Math.Round(Convert.ToDecimal(listadoDataGridView.CurrentRow.Cells["descuentoColumn"].Value), 4);
-                    decimal subtotalDecimal = Math.Round(cantidadDecimal * (precioDecimal - descuentoDecimal), 2);
+                    decimal subtotalDecimal = Math.Round(cantidadDecimal * precioDecimal - descuentoDecimal, 4);
 
                     listadoDataGridView.CurrentRow.Cells["descuentoColumn"].Value = descuentoDecimal;
                     listadoDataGridView.CurrentRow.Cells["subtotalColumn"].Value = subtotalDecimal;
@@ -783,14 +794,14 @@ namespace CompudavSystem.documento
                     {
                         GetIdContact("9999999999999");
                     }
+                    string idDocument = $"'{Guid.NewGuid()}'";
                     string contactId = $"{IdContact}";
-                    if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
+                    if (ConsultasSql.Insertar("document", idDocument, "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
                         "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
                         $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
                         $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
                     {
                         ConsultasSql.Actualizar("parameter", $"numberInvoice = '{numberInvoice}'", "preset", $"{Settings.Default.preset}");
-                        string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
                         for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
                         {
                             string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
@@ -798,7 +809,7 @@ namespace CompudavSystem.documento
                             string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
                             string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
                             if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
-                                $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                                $"{quantity}, {unitary_discount}, {subtotal}, {idDocument}, '{productId}'"))
                             {
                                 string stock = GetStockItem("product", "id", productId, 0);
                                 string minimumStock = GetStockItem("product", "id", productId, 1);
@@ -815,6 +826,14 @@ namespace CompudavSystem.documento
                         printButton.Text = "Impreso";
                         saveButton.BackColor = ColorTranslator.FromHtml("#56BA54");
                         saveButton.Text = "Guardado";
+                        listadoDataGridView.Enabled = false;
+                        idNumberTextBox.Enabled = false;
+                        nameTextBox.Enabled = false;
+                        addressTextBox.Enabled = false;
+                        landlineTextBox.Enabled = false;
+                        additionalInformationTextBox.Enabled = false;
+                        descuentoTextBox.Enabled = false;
+                        descuentoButton.Enabled = false;
                     }
 
                 }
@@ -892,8 +911,14 @@ namespace CompudavSystem.documento
         {
             for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
             {
+                int limiteNamePrint = listadoDataGridView.Rows[i].Cells["nameColumn"].Value.ToString().Length;
+
+                if (listadoDataGridView.Rows[i].Cells["nameColumn"].Value.ToString().Length > 25)
+                {
+                    limiteNamePrint = 25;
+                }
                 e.Graphics.DrawString($"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}", PrinterFont, Brushes.Black, Settings.Default.printerMainPositionX + xPlus, Settings.Default.printerMainPositionY + (yPlus * i));
-                e.Graphics.DrawString($"{listadoDataGridView.Rows[i].Cells["nameColumn"].Value}", PrinterFont, Brushes.Black, Settings.Default.printerMainPositionX + 35 + xPlus, Settings.Default.printerMainPositionY + (yPlus * i));
+                e.Graphics.DrawString($"{listadoDataGridView.Rows[i].Cells["nameColumn"].Value.ToString().Substring(0, limiteNamePrint)}", PrinterFont, Brushes.Black, Settings.Default.printerMainPositionX + 35 + xPlus, Settings.Default.printerMainPositionY + (yPlus * i));
                 e.Graphics.DrawString($"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}", PrinterFont, Brushes.Black, Settings.Default.printerMainPositionX + 200 + xPlus, Settings.Default.printerMainPositionY + (yPlus * i));
             }
         }
@@ -950,13 +975,13 @@ namespace CompudavSystem.documento
                     {
                         GetIdContact("9999999999999");
                     }
+                    string idDocument = $"'{Guid.NewGuid()}'";
                     string contactId = $"{IdContact}";
-                    if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
+                    if (ConsultasSql.Insertar("document", idDocument,"number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
                         "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
                         $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
                         $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
                     {
-                        string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
                         for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
                         {
                             string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
@@ -964,7 +989,7 @@ namespace CompudavSystem.documento
                             string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
                             string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
                             if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
-                                $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                                $"{quantity}, {unitary_discount}, {subtotal}, {idDocument}, '{productId}'"))
                             {
                                 string stock = GetStockItem("product", "id", productId, 0);
                                 string minimumStock = GetStockItem("product", "id", productId, 1);
@@ -977,10 +1002,17 @@ namespace CompudavSystem.documento
                         }
                         
                         PrinterTimes += 1;
-                        printButton.BackColor = ColorTranslator.FromHtml("#56BA54");
-                        printButton.Text = "Impreso";
+                        printButton.Enabled = false;
                         saveButton.BackColor = ColorTranslator.FromHtml("#56BA54");
                         saveButton.Text = "Guardado";
+                        listadoDataGridView.Enabled = false;
+                        idNumberTextBox.Enabled = false;
+                        nameTextBox.Enabled = false;
+                        addressTextBox.Enabled = false;
+                        landlineTextBox.Enabled = false;
+                        additionalInformationTextBox.Enabled = false;
+                        descuentoTextBox.Enabled = false;
+                        descuentoButton.Enabled = false;
                     }
 
                 }

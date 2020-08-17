@@ -353,6 +353,16 @@ namespace CompudavSystem.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap password_1_22px {
+            get {
+                object obj = ResourceManager.GetObject("password_1_22px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap payment_history_36px {
             get {
                 object obj = ResourceManager.GetObject("payment_history_36px", resourceCulture);

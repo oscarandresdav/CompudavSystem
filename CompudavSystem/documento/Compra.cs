@@ -141,6 +141,14 @@ namespace CompudavSystem.documento
         private void ClearFields()
         {
             SavedTimes = 0;
+            listadoDataGridView.Enabled = true;
+            idNumberTextBox.Enabled = true;
+            nameTextBox.Enabled = true;
+            addressTextBox.Enabled = true;
+            landlineTextBox.Enabled = true;
+            additionalInformationTextBox.Enabled = true;
+            descuentoTextBox.Enabled = true;
+            descuentoButton.Enabled = true;
             saveButton.BackColor = ColorTranslator.FromHtml("#374F6E");
             saveButton.Text = "Guardar";
             IdContact = "";
@@ -748,13 +756,13 @@ namespace CompudavSystem.documento
                             GetIdContact(idNumber);
                         }
                     }
+                    string idDocument = $"'{Guid.NewGuid()}'";
                     string contactId = $"{IdContact}";
-                    if (ConsultasSql.Insertar("document", "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
+                    if (ConsultasSql.Insertar("document", idDocument, "number, date_of_issue, subtotal, additional_discount, total_discount, subtotal_iva0, " +
                         "subtotal_iva12, iva_value, total_value, additional_information, typeIssuanceId, typeDocumentId, statusDocumentId, contactId, paymentMethodId",
                         $"'{numberInvoice}', {date_of_issue}, {subtotalTextBox.Text}, {valorDescuentoTextBox.Text}, {Math.Round(SubtotalDescuentoDecimal, 2)}, {subtotal0TextBox.Text}, " +
                         $"{subtotal12TextBox.Text}, {ivaTextBox.Text}, {totalTextBox.Text}, {additional_information}, {typeIssuanceId}, {typeDocumentId}, {statusDocumentId}, '{contactId}', {paymentMethodId}"))
                     {
-                        string documentId = $"'{GetIdItemTable("document", "number", numberInvoice, "contactId", contactId)}'";
                         for (int i = 0; i < listadoDataGridView.Rows.Count - 1; i++)
                         {
                             string quantity = $"{listadoDataGridView.Rows[i].Cells["cantidadColumn"].Value}";
@@ -762,7 +770,7 @@ namespace CompudavSystem.documento
                             string subtotal = $"{listadoDataGridView.Rows[i].Cells["subtotalColumn"].Value}";
                             string productId = $"{listadoDataGridView.Rows[i].Cells["idColumn"].Value}";
                             if (ConsultasSql.Insertar("invoice_detailment", "quantity, unitary_discount, subtotal, documentId, productId",
-                                $"{quantity}, {unitary_discount}, {subtotal}, {documentId}, '{productId}'"))
+                                $"{quantity}, {unitary_discount}, {subtotal}, {idDocument}, '{productId}'"))
                             {
                                 string stock = GetStockItem("product", "id", productId, 0);
                                 string minimumStock = GetStockItem("product", "id", productId, 1);
@@ -770,13 +778,21 @@ namespace CompudavSystem.documento
                                 int stockInt = int.Parse(stock);
                                 int minimumStockInt = int.Parse(minimumStock);
                                 stockInt += quantityInt;
-                                ConsultasSql.Actualizar("product", $"stock = {stockInt}, stock_indicator = {stockInt - minimumStockInt}", "id", $"'{productId}'");
+                                ConsultasSql.Actualizar("product", $"stock = {stockInt}, stock_indicator = {stockInt + minimumStockInt}", "id", $"'{productId}'");
                             }
                         }
                         MessageBox.Show("Factura de compra registrada correctamente.");
                         SavedTimes += 1;
                         saveButton.BackColor = ColorTranslator.FromHtml("#56BA54");
                         saveButton.Text = "Registrado";
+                        listadoDataGridView.Enabled = false;
+                        idNumberTextBox.Enabled = false;
+                        nameTextBox.Enabled = false;
+                        addressTextBox.Enabled = false;
+                        landlineTextBox.Enabled = false;
+                        additionalInformationTextBox.Enabled = false;
+                        descuentoTextBox.Enabled = false;
+                        descuentoButton.Enabled = false;
                     }
                 }
                 
