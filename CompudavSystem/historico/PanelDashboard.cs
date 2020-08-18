@@ -29,35 +29,44 @@ namespace CompudavSystem.historico
             string fechaInicio = $"'{dateTimeStart: yyyy-MM-dd} 00:00:00'";
             DateTime dateTimeEnd = fromDateTimePicker.Value;
             string fechaFin = $"'{dateTimeEnd: yyyy-MM-dd} 23:59:59'";
-            listadoDataGridView.DataSource = ConsultasSql.TopItems("document_history", "product", "quantity", "total_value", "type_document", "VENTA", "status_document", "Autorizado", "date_of_issue", fechaInicio, fechaFin,"5");
+            listadoDataGridView.DataSource = ConsultasSql.TopItems("document_history", "product", "quantity", "subtotal", "type_document", "VENTA", "status_document", "Autorizado", "date_of_issue", fechaInicio, fechaFin,"5");
             listadoDataGridView.Columns["product"].Width = 318;
             listadoDataGridView.Columns["product"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
             listadoDataGridView.Columns["quantity"].Width = 60;
             listadoDataGridView.Columns["quantity"].DefaultCellStyle.Format = "N0";
             listadoDataGridView.Columns["quantity"].DefaultCellStyle.Padding = new Padding(0, 0, 15, 0);
             listadoDataGridView.Columns["quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            listadoDataGridView.Columns["total_value"].Width = 120;
-            listadoDataGridView.Columns["total_value"].DefaultCellStyle.Format = "C2";
-            listadoDataGridView.Columns["total_value"].DefaultCellStyle.Padding = new Padding(0, 0, 15, 0);
-            listadoDataGridView.Columns["total_value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            listadoDataGridView.Columns["subtotal"].Width = 120;
+            listadoDataGridView.Columns["subtotal"].DefaultCellStyle.Format = "C2";
+            listadoDataGridView.Columns["subtotal"].DefaultCellStyle.Padding = new Padding(0, 0, 15, 0);
+            listadoDataGridView.Columns["subtotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             listadoDataGridView.Columns["date_of_issue"].Visible = false;
 
             listadoDataGridView.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#E5E5E5");
             listadoDataGridView.DefaultCellStyle.SelectionForeColor = ColorTranslator.FromHtml("#000000");
 
-            DataTable dataValorTotal = ConsultasSql.SumaTotalItem("document_history", "total_value", "type_document", "VENTA", "status_document", "Autorizado", "date_of_issue", fechaInicio, fechaFin);
+            DataTable dataValorTotal = ConsultasSql.SumaTotalItem("facturas_autorizadas", "total_value", "date_of_issue", fechaInicio, fechaFin);
             decimal.TryParse(dataValorTotal.Rows[0][0].ToString(), out decimal totalVentasDecimal);
             totalVentasTextBox.Text = Math.Round(totalVentasDecimal, 2).ToString("C2");
+
+            DataTable dataTotalFacturasImpresas = ConsultasSql.TotalFacturas("facturas_autorizadas", "!=", "date_of_issue", fechaInicio, fechaFin);
+            int.TryParse(dataTotalFacturasImpresas.Rows[0][0].ToString(), out int totalFacturasImpresas);
+            DataTable dataTotalFacturasGuardadas = ConsultasSql.TotalFacturas("facturas_autorizadas", "=", "date_of_issue", fechaInicio, fechaFin);
+            int.TryParse(dataTotalFacturasGuardadas.Rows[0][0].ToString(), out int totalFacturasGuardadas);
             
-            DataTable dataTotalDocumentos = ConsultasSql.ConteoTotalItem("document_history", "type_document", "VENTA", "status_document", "Autorizado", "date_of_issue", fechaInicio, fechaFin);
-            int.TryParse(dataTotalDocumentos.Rows[0][0].ToString(), out int totalFacturas);
+            int totalFacturas = totalFacturasImpresas + totalFacturasGuardadas;
+            
             if (totalFacturas == 0)
             {
                 totalFacturasTextBox.Text = "No hay facturas registradas";
+                facturasImpresasTextBox.Text = "";
+                facturasGuardadasTextBox.Text = "";
             }
             else if (totalFacturas >= 1)
             {
-                totalFacturasTextBox.Text = $"Facturas totales : {dataTotalDocumentos.Rows[0][0]}";
+                totalFacturasTextBox.Text = $"Facturas totales : {totalFacturas}";
+                facturasImpresasTextBox.Text = $"Facturas impresas : {totalFacturasImpresas}";
+                facturasGuardadasTextBox.Text = $"Facturas guardadas : {totalFacturasGuardadas}";
             }
 
             stockDataGridView.DataSource = ConsultasSql.ConsultaGeneral("product", "stock", "ASC", "stock_indicator", "ASC", "name, stock, minimum_stock_level, stock_indicator");

@@ -242,19 +242,19 @@ namespace CompudavSystem.bdd
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];
         }
-        public static DataTable SumaTotalItem(string tabla, string campo, string campoTipo, string valorTipo, string campoEstado, string valorEstado, string campoFecha, string fechaInicio, string fechaFin)
+        public static DataTable SumaTotalItem(string tabla, string campo, string campoFecha, string fechaInicio, string fechaFin)
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"SELECT SUM({campo}) AS {campo} FROM { tabla } WHERE {campoTipo} = '{valorTipo}' AND {campoEstado} = '{valorEstado}' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin }";
+            SqlStament = $"SELECT SUM({campo}) AS {campo} FROM { tabla } WHERE { campoFecha } BETWEEN { fechaInicio } AND { fechaFin }";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];
         }
 
-        public static DataTable ConteoTotalItem(string tabla, string campoTipo, string valorTipo, string campoEstado, string valorEstado, string campoFecha, string fechaInicio, string fechaFin)
+        public static DataTable TotalFacturas(string tabla, string expresion, string campoFecha, string fechaInicio, string fechaFin)
         {
             DataSet dataSet = new DataSet();
-            SqlStament = $"SELECT COUNT(*) FROM { tabla } WHERE {campoTipo} = '{valorTipo}' AND {campoEstado} = '{valorEstado}' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin }";
+            SqlStament = $"SELECT COUNT(*) FROM {tabla} WHERE number {expresion} '000-000-000000000' AND { campoFecha } BETWEEN { fechaInicio } AND { fechaFin }";
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(SqlStament, Connection);
             dataAdapter.Fill(dataSet, tabla);
             return dataSet.Tables[tabla];

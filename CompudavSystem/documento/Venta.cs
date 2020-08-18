@@ -784,8 +784,8 @@ namespace CompudavSystem.documento
                     if (IdContact == "nuevo")
                     {
                         if (ConsultasSql.Insertar("contact",
-                        "id_number, business_name, tradename, address, client",
-                        $"{idNumber}, {businessName}, {address}, {landline}, true"))
+                        "id_number, business_name, address, landline, client",
+                        $"'{idNumber}', {businessName}, {address}, '{landline}', true"))
                         {
                             GetIdContact(idNumber);
                         }
@@ -965,8 +965,8 @@ namespace CompudavSystem.documento
                     if (IdContact == "nuevo")
                     {
                         if (ConsultasSql.Insertar("contact",
-                        "id_number, business_name, tradename, address, client",
-                        $"{idNumber}, {businessName}, {address}, {landline}, true"))
+                        "id_number, business_name, address, landline, client",
+                        $"'{idNumber}', {businessName}, {address}, '{landline}', true"))
                         {
                             GetIdContact(idNumber);
                         }

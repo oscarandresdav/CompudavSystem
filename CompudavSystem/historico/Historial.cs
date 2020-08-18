@@ -46,6 +46,7 @@ namespace CompudavSystem.historico
             listadoDataGridView.Columns["idDocument"].Visible = false;
             listadoDataGridView.Columns["invoice_detailment"].Visible = false;
             listadoDataGridView.Columns["payment_method"].Visible = false;
+            listadoDataGridView.Columns["subtotal"].Visible = false;
         }
 
         public void Busqueda()
