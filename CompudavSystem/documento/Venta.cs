@@ -887,9 +887,10 @@ namespace CompudavSystem.documento
             PrintHeader(e, $"{landlineTextBox.Text}", xPlus: 100);
             PrintHeader(e, $"{nameTextBox.Text}", yPlus: Settings.Default.printerFontSize + 5);
             PrintHeader(e, $"{addressTextBox.Text}", yPlus: (Settings.Default.printerFontSize + 5) * 2);
-            PrintHeader(e, $"CANT.", xPlus: 0, yPlus: (Settings.Default.printerFontSize + 5) * 4);
-            PrintHeader(e, $"DETALLE", xPlus: 35, yPlus: (Settings.Default.printerFontSize + 5) * 4);
-            PrintHeader(e, $"V.TOTAL", xPlus: 200, yPlus: (Settings.Default.printerFontSize + 5) * 4);
+            PrintHeader(e, $"{dateIssueDateTimePicker.Text}", yPlus: (Settings.Default.printerFontSize + 5) * 3);
+            PrintHeader(e, $"CANT.", xPlus: 0, yPlus: (Settings.Default.printerFontSize + 5) * 5);
+            PrintHeader(e, $"DETALLE", xPlus: 35, yPlus: (Settings.Default.printerFontSize + 5) * 5);
+            PrintHeader(e, $"V.TOTAL", xPlus: 200, yPlus: (Settings.Default.printerFontSize + 5) * 5);
 
             PrintMain(e, yPlus: Settings.Default.printerFontSize + 5);
 
