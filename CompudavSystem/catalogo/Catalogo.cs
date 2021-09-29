@@ -25,12 +25,16 @@ namespace CompudavSystem.catalogo
             listadoDataGridView.DataSource = ConsultasSql.ConsultaGeneral(TableBdd);
             listadoDataGridView.Sort(listadoDataGridView.Columns["name"], ListSortDirection.Ascending);
             listadoDataGridView.Columns["name"].HeaderText = "Descripción";
-            listadoDataGridView.Columns["name"].Width = 347;
+            listadoDataGridView.Columns["name"].Width = 364;
 
             listadoDataGridView.Columns["cost"].HeaderText = "Costo";
-            listadoDataGridView.Columns["pvp"].HeaderText = "P.V.P.";
-            listadoDataGridView.Columns["stock"].HeaderText = "Existencias";
-            listadoDataGridView.Columns["stock"].Width = 90;
+            listadoDataGridView.Columns["cost"].Width = 65;
+            listadoDataGridView.Columns["pvp"].HeaderText = "Oferta";
+            listadoDataGridView.Columns["pvp"].Width = 65;
+            listadoDataGridView.Columns["pvp2"].HeaderText = "Normal";
+            listadoDataGridView.Columns["pvp2"].Width = 65;
+            listadoDataGridView.Columns["stock"].HeaderText = "Stock";
+            listadoDataGridView.Columns["stock"].Width = 55;
 
             listadoDataGridView.Columns["id"].Visible = false;
             listadoDataGridView.Columns["main_code"].Visible = false;
@@ -42,7 +46,6 @@ namespace CompudavSystem.catalogo
             listadoDataGridView.Columns["price"].Visible = false;
             listadoDataGridView.Columns["percentage_price2"].Visible = false;
             listadoDataGridView.Columns["price2"].Visible = false;
-            listadoDataGridView.Columns["pvp2"].Visible = false;
             listadoDataGridView.Columns["percentage_price3"].Visible = false;
             listadoDataGridView.Columns["price3"].Visible = false;
             listadoDataGridView.Columns["pvp3"].Visible = false;

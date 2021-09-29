@@ -322,7 +322,8 @@ namespace CompudavSystem.catalogo
             decimal pvpDecimal;
             _ = decimal.TryParse(cost.Text, out decimal costDecimal);
             _ = decimal.TryParse(percentage.Text, out decimal percentageDecimal);
-            priceDecimal = costDecimal + (costDecimal * (percentageDecimal / 100));
+            priceDecimal = costDecimal / (1 - (percentageDecimal / 100));
+            // priceDecimal = costDecimal + (costDecimal * (percentageDecimal / 100));
             price.Text = decimal.Round(priceDecimal, 4).ToString();
             if (ivaRateComboBox.Text.Trim() == "12%")
             {
@@ -359,7 +360,8 @@ namespace CompudavSystem.catalogo
             else
             {
                 ErrorProvider.SetError(cost, "");
-                percentageDecimal = ((priceDecimal - costDecimal) * 100) / costDecimal;
+                percentageDecimal = Math.Abs(((costDecimal/priceDecimal)-1)*100);
+                //percentageDecimal = ((priceDecimal - costDecimal) * 100) / costDecimal;
             }
             percentage.Text = decimal.Round(percentageDecimal, 4).ToString();
             
@@ -401,12 +403,12 @@ namespace CompudavSystem.catalogo
 
         private void PercentagePrice2TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPrecio(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
+            CalculoPrecio(price1TextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
         }
 
         private void PercentagePrice3TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPrecio(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
+            CalculoPrecio(price1TextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
         }
 
         private void Price1TextBox_KeyUp(object sender, KeyEventArgs e)
@@ -416,12 +418,12 @@ namespace CompudavSystem.catalogo
 
         private void Price2TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPorcentaje(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
+            CalculoPorcentaje(price1TextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
         }
 
         private void Price3TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPorcentaje(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
+            CalculoPorcentaje(price1TextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
         }
 
         private void CostTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -438,12 +440,12 @@ namespace CompudavSystem.catalogo
 
         private void Pvp2TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPVP(costTextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
+            CalculoPVP(price1TextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
         }
 
         private void Pvp3TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            CalculoPVP(costTextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
+            CalculoPVP(price1TextBox, percentagePrice3TextBox, price3TextBox, pvp3TextBox);
         }
 
         private void Pvp1TextBox_KeyPress(object sender, KeyPressEventArgs e)

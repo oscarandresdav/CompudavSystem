@@ -5,8 +5,8 @@ namespace CompudavSystem.bdd
 {
     public static class Conexion
     {
-        public static string User { get; set; } = "compudav";
-        public static string Password { get; set; } = "compudav";
+        public static string User { get; set; } = "andres";
+        public static string Password { get; set; } = "123456";
         public static string Server { get; set; } = Properties.Settings.Default.servidor;
         public static string Database { get; set; } = "compudav";
 
