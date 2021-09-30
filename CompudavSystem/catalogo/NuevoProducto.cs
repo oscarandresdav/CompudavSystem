@@ -360,8 +360,15 @@ namespace CompudavSystem.catalogo
             else
             {
                 ErrorProvider.SetError(cost, "");
-                percentageDecimal = Math.Abs(((costDecimal/priceDecimal)-1)*100);
-                //percentageDecimal = ((priceDecimal - costDecimal) * 100) / costDecimal;
+                if (priceDecimal == 0)
+                {
+                    percentageDecimal = 0;
+                }
+                else
+                {
+                    percentageDecimal = Math.Abs(((costDecimal/priceDecimal)-1)*100);
+                    //percentageDecimal = ((priceDecimal - costDecimal) * 100) / costDecimal;
+                }
             }
             percentage.Text = decimal.Round(percentageDecimal, 4).ToString();
             
@@ -436,6 +443,7 @@ namespace CompudavSystem.catalogo
         private void Pvp1TextBox_KeyUp(object sender, KeyEventArgs e)
         {
             CalculoPVP(costTextBox, percentagePrice1TextBox, price1TextBox, pvp1TextBox);
+            CalculoPrecio(price1TextBox, percentagePrice2TextBox, price2TextBox, pvp2TextBox);
         }
 
         private void Pvp2TextBox_KeyUp(object sender, KeyEventArgs e)
